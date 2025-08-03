@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>书皮设计预览</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #2c3e50;
+            font-family: 'Microsoft YaHei', sans-serif;
+            color: white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            color: #FFD700;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #bdc3c7;
+            font-size: 16px;
+        }
+        
+        .preview-section {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .book-preview {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        
+        .book-preview h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .preview-frame {
+            width: 200px;
+            height: 280px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            position: relative;
+            background: #f8f9fa;
+        }
+        
+        .preview-frame iframe {
+            width: 185mm;
+            height: 260mm;
+            border: none;
+            transform: scale(0.4);
+            transform-origin: top left;
+            position: absolute;
+            top: -20px;
+            left: -20px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #2980b9;
+        }
+        
+        .btn-success {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #229954;
+        }
+        
+        .btn-info {
+            background: #17a2b8;
+            color: white;
+        }
+        
+        .btn-info:hover {
+            background: #138496;
+        }
+        
+        .instructions {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 40px;
+        }
+        
+        .instructions h2 {
+            color: #FFD700;
+            margin-bottom: 20px;
+        }
+        
+        .instructions ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .instructions li {
+            margin: 15px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .instructions li::before {
+            content: "✨";
+            position: absolute;
+            left: 0;
+            font-size: 18px;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .feature-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card h3 {
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+        
+        .download-section {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .download-section h2 {
+            color: #FFD700;
+            margin-bottom: 20px;
+        }
+        
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .preview-section {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 柯南侦探英语冒险 - 书皮设计</h1>
+            <p>16开本专业设计预览</p>
+        </div>
+        
+        <div class="preview-section">
+            <div class="book-preview">
+                <h3>📖 封面设计</h3>
+                <div class="preview-frame">
+                    <iframe src="book_cover.html"></iframe>
+                </div>
+                <div class="action-buttons">
+                    <a href="book_cover.html" target="_blank" class="btn btn-primary">🔍 查看完整封面</a>
+                    <button onclick="printCover()" class="btn btn-success">🖨️ 打印封面</button>
+                </div>
+            </div>
+            
+            <div class="book-preview">
+                <h3>📖 后封面设计</h3>
+                <div class="preview-frame">
+                    <iframe src="book_back_cover.html"></iframe>
+                </div>
+                <div class="action-buttons">
+                    <a href="book_back_cover.html" target="_blank" class="btn btn-primary">🔍 查看完整后封面</a>
+                    <button onclick="printBackCover()" class="btn btn-success">🖨️ 打印后封面</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📏</div>
+                <h3>标准尺寸</h3>
+                <p>16开本 (185mm × 260mm)<br>适合儿童阅读</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>魔法主题</h3>
+                <p>紫色渐变背景<br>魔法粒子效果</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">✨</div>
+                <h3>动画效果</h3>
+                <p>发光、旋转、飘浮<br>生动有趣</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🖨️</div>
+                <h3>打印友好</h3>
+                <p>优化打印样式<br>支持PDF导出</p>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <h2>📋 使用说明</h2>
+            <ul>
+                <li>点击"查看完整封面/后封面"可以看到完整尺寸的设计</li>
+                <li>点击"打印"按钮可以直接打印（推荐A4纸张）</li>
+                <li>在浏览器中按Ctrl+P可以保存为PDF格式</li>
+                <li>设计采用16开本标准尺寸，适合专业印刷</li>
+                <li>所有文字和图标都可以根据需要修改</li>
+                <li>支持添加真实头像和二维码</li>
+            </ul>
+        </div>
+        
+        <div class="download-section">
+            <h2>📁 设计文件下载</h2>
+            <p>以下是完整的设计文件，您可以保存或分享给印刷厂：</p>
+            <div class="download-grid">
+                <a href="book_cover.html" download="封面设计.html" class="btn btn-info">⬇️ 下载封面文件</a>
+                <a href="book_back_cover.html" download="后封面设计.html" class="btn btn-info">⬇️ 下载后封面文件</a>
+                <a href="书皮设计使用说明.md" download="使用说明.md" class="btn btn-info">⬇️ 下载使用说明</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function printCover() {
+            window.open('book_cover.html', '_blank');
+            setTimeout(() => {
+                window.print();
+            }, 1000);
+        }
+        
+        function printBackCover() {
+            window.open('book_back_cover.html', '_blank');
+            setTimeout(() => {
+                window.print();
+            }, 1000);
+        }
+        
+        // 自动调整iframe尺寸
+        window.addEventListener('load', function() {
+            const iframes = document.querySelectorAll('iframe');
+            iframes.forEach(iframe => {
+                iframe.onload = function() {
+                    // iframe内容加载完成后的处理
+                    console.log('设计预览加载完成');
+                };
+            });
+        });
+    </script>
+</body>
+</html>

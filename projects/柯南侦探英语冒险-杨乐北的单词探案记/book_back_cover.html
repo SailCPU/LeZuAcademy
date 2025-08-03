@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>柯南侦探英语冒险 - 后封面设计</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Cinzel:wght@400;600;700&family=Playfair+Display:wght@400;700;900&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 20px;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(120,119,198,0.3), transparent 70%),
+                radial-gradient(circle at 80% 20%, rgba(255,119,198,0.3), transparent 70%),
+                radial-gradient(circle at 40% 80%, rgba(120,219,255,0.4), transparent 70%),
+                linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .book-back-cover {
+            width: 185mm;
+            height: 260mm;
+            background: 
+                radial-gradient(circle at 70% 40%, rgba(255,215,0,0.15), transparent 50%),
+                radial-gradient(circle at 30% 60%, rgba(138,43,226,0.15), transparent 50%),
+                linear-gradient(225deg, #0f0c29 0%, #302b63 35%, #24243e 100%);
+            position: relative;
+            box-shadow: 
+                0 25px 50px rgba(0,0,0,0.5),
+                0 12px 30px rgba(0,0,0,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            padding: 15mm;
+            box-sizing: border-box;
+            border: 2px solid rgba(255,215,0,0.3);
+        }
+        
+        /* 几何装饰边框 */
+        .book-back-cover::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 2px solid rgba(255,215,0,0.4);
+            border-radius: 8px;
+            z-index: 1;
+        }
+        
+        .book-back-cover::after {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            right: 25px;
+            bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 6px;
+            z-index: 1;
+        }
+        
+        /* 高端装饰背景 */
+        .magic-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            opacity: 0.6;
+        }
+        
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, rgba(255,215,0,0.8) 0%, rgba(255,215,0,0.2) 50%, transparent 100%);
+            border-radius: 50%;
+            animation: float 8s infinite ease-in-out;
+        }
+        
+        .particle:nth-child(1) { 
+            left: 20%; top: 15%; width: 5px; height: 5px;
+            animation-delay: 0s; 
+            box-shadow: 0 0 18px rgba(255,215,0,0.5);
+        }
+        .particle:nth-child(2) { 
+            left: 80%; top: 25%; width: 3px; height: 3px;
+            animation-delay: 2s; 
+            background: radial-gradient(circle, rgba(138,43,226,0.8) 0%, rgba(138,43,226,0.2) 50%, transparent 100%);
+            box-shadow: 0 0 12px rgba(138,43,226,0.5);
+        }
+        .particle:nth-child(3) { 
+            left: 60%; top: 45%; width: 6px; height: 6px;
+            animation-delay: 4s; 
+            box-shadow: 0 0 20px rgba(255,215,0,0.4);
+        }
+        .particle:nth-child(4) { 
+            left: 30%; top: 65%; width: 4px; height: 4px;
+            animation-delay: 6s; 
+            background: radial-gradient(circle, rgba(138,43,226,0.9) 0%, rgba(138,43,226,0.2) 50%, transparent 100%);
+            box-shadow: 0 0 15px rgba(138,43,226,0.4);
+        }
+        .particle:nth-child(5) { 
+            left: 90%; top: 85%; width: 4px; height: 4px;
+            animation-delay: 1s; 
+            box-shadow: 0 0 16px rgba(255,215,0,0.6);
+        }
+        
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0px) scale(1) rotate(0deg); 
+                opacity: 0.6; 
+            }
+            50% { 
+                transform: translateY(-20px) scale(1.2) rotate(180deg); 
+                opacity: 1; 
+            }
+        }
+        
+        /* 内容区域 */
+        .content {
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* 简介区域 */
+        .synopsis {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            flex: 1;
+            border: 2px solid rgba(255,215,0,0.4);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .synopsis::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,215,0,0.15), transparent);
+            animation: shimmer 4s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .synopsis h3 {
+            font-family: 'Cinzel', 'Noto Sans SC', serif;
+            background: linear-gradient(135deg, #2c1810 0%, #4A148C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 20px;
+            margin: 0 0 18px 0;
+            text-align: center;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .synopsis p {
+            color: #2c1810;
+            font-size: 15px;
+            line-height: 1.8;
+            margin: 0 0 15px 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .highlight-text {
+            background: linear-gradient(135deg, #E74C3C, #C0392B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            text-shadow: 0 1px 2px rgba(231, 76, 60, 0.3);
+        }
+        
+        /* 特色标签 */
+        .features {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%);
+            border-radius: 18px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 
+                0 12px 30px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            border: 2px solid rgba(255,215,0,0.4);
+            backdrop-filter: blur(8px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,215,0,0.1), transparent);
+            animation: shimmer 5s infinite;
+        }
+        
+        .features h4 {
+            font-family: 'Playfair Display', 'Noto Sans SC', serif;
+            background: linear-gradient(135deg, #2c1810 0%, #4A148C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 18px;
+            margin: 0 0 15px 0;
+            text-align: center;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: #2c1810;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+            padding: 5px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-item:hover {
+            background: rgba(255,215,0,0.1);
+            transform: translateX(5px);
+        }
+        
+        .feature-icon {
+            font-size: 18px;
+            margin-right: 10px;
+            color: #FFD700;
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+        }
+        
+        /* 章节预览 */
+        .chapter-preview {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%);
+            border-radius: 18px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 
+                0 12px 30px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            border: 2px solid rgba(255,215,0,0.4);
+            backdrop-filter: blur(8px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .chapter-preview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,215,0,0.1), transparent);
+            animation: shimmer 6s infinite;
+        }
+        
+        .chapter-preview h4 {
+            font-family: 'Playfair Display', 'Noto Sans SC', serif;
+            background: linear-gradient(135deg, #2c1810 0%, #4A148C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 18px;
+            margin: 0 0 15px 0;
+            text-align: center;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .chapter-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            font-size: 11px;
+        }
+        
+        .chapter-item {
+            color: #2c1810;
+            padding: 8px 12px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.1));
+            border-radius: 10px;
+            border-left: 3px solid #FFD700;
+            font-size: 12px;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .chapter-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(138, 43, 226, 0.1));
+        }
+        
+        /* 版权信息 */
+        .copyright {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%);
+            border-radius: 18px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 
+                0 12px 30px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            margin-top: auto;
+            border: 2px solid rgba(255,215,0,0.4);
+            backdrop-filter: blur(8px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .copyright::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,215,0,0.1), transparent);
+            animation: shimmer 7s infinite;
+        }
+        
+        .copyright p {
+            margin: 8px 0;
+            color: #2c1810;
+            font-size: 13px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .author {
+            font-family: 'Playfair Display', 'Noto Sans SC', serif;
+            background: linear-gradient(135deg, #4A148C, #2c1810);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            font-size: 16px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* 二维码区域 */
+        .qr-section {
+            position: absolute;
+            bottom: 15mm;
+            right: 15mm;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            border: 2px solid rgba(255,215,0,0.6);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .qr-section:hover {
+            transform: scale(1.05);
+            box-shadow: 
+                0 12px 30px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        }
+        
+        .qr-placeholder {
+            font-size: 28px;
+            color: #FFD700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        
+        .qr-text {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 11px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            white-space: nowrap;
+            background: rgba(0,0,0,0.5);
+            padding: 4px 8px;
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+        }
+        
+        /* 装饰元素 */
+        .decoration {
+            position: absolute;
+            font-size: 48px;
+            opacity: 0.4;
+            color: #FFD700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+            z-index: 2;
+        }
+        
+        .decoration.top-left {
+            top: 25px;
+            left: 25px;
+            animation: rotate 12s infinite ease-in-out;
+        }
+        
+        .decoration.bottom-right {
+            bottom: 100px;
+            right: 25px;
+            animation: rotate 18s infinite reverse ease-in-out;
+        }
+        
+        @keyframes rotate {
+            0%, 100% { 
+                transform: rotate(0deg) scale(1); 
+                opacity: 0.4;
+                text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+            }
+            25% { 
+                transform: rotate(90deg) scale(1.1); 
+                opacity: 0.6;
+                text-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+            }
+            50% { 
+                transform: rotate(180deg) scale(1.2); 
+                opacity: 0.8;
+                text-shadow: 0 0 40px rgba(255, 215, 0, 1);
+            }
+            75% { 
+                transform: rotate(270deg) scale(1.1); 
+                opacity: 0.6;
+                text-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+            }
+        }
+        
+        /* 打印样式 */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .book-back-cover {
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="book-back-cover">
+        <!-- 魔法粒子背景 -->
+        <div class="magic-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        
+        <!-- 装饰元素 -->
+        <div class="decoration top-left">✨</div>
+        <div class="decoration bottom-right">🌟</div>
+        
+        <div class="content">
+            <!-- 故事简介 -->
+            <div class="synopsis">
+                <h3>🌟 魔法世界的英语冒险</h3>
+                <p>在这个充满魔法的世界里，<span class="highlight-text">10岁的杨乐北</span>和他的双胞胎弟弟们来到了<span class="highlight-text">柯南魔法学院</span>。</p>
+                <p>通过11个精彩的冒险章节，孩子们将在游戏化的学习中掌握英语单词，培养语言能力和逻辑思维。</p>
+                <p>每一个魔法咒语都是一个英语单词，每一次冒险都是一堂生动的英语课！</p>
+            </div>
+            
+            <!-- 特色功能 -->
+            <div class="features">
+                <h4>✨ 产品特色</h4>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <span class="feature-icon">🎯</span>
+                        <span>单词学习自然融入</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🎮</span>
+                        <span>丰富互动游戏</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">📖</span>
+                        <span>适合亲子阅读</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🏆</span>
+                        <span>成就系统激励</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 章节预览 -->
+            <div class="chapter-preview">
+                <h4>📚 章节一览</h4>
+                <div class="chapter-list">
+                    <div class="chapter-item">第1章：魔法学院入学考试</div>
+                    <div class="chapter-item">第2章：颜色单词魔法咒语</div>
+                    <div class="chapter-item">第3章：数字单词密码破解</div>
+                    <div class="chapter-item">第4章：罗小黑的奇妙相遇</div>
+                    <div class="chapter-item">第5章：魔法生物的语言</div>
+                    <div class="chapter-item">第6章：魔法地图的探索</div>
+                    <div class="chapter-item">第7章：魔法图书馆秘密</div>
+                    <div class="chapter-item">第8章：魔法竞技场挑战</div>
+                    <div class="chapter-item">第9章：魔法天气的预测</div>
+                    <div class="chapter-item">第10章：魔法时间的旅行</div>
+                    <div class="chapter-item">第11章：最终魔法考试</div>
+                    <div class="chapter-item">附录：魔法词典参考答案</div>
+                </div>
+            </div>
+            
+            <!-- 版权信息 -->
+            <div class="copyright">
+                <p class="author">作者：杨乐北 & 柯南魔法学院</p>
+                <p>让英语学习变得有趣、生动、有效！</p>
+                <p>专为小学五年级学生精心设计</p>
+            </div>
+        </div>
+        
+        <!-- 二维码区域 -->
+        <div class="qr-section">
+            <div class="qr-placeholder">📱</div>
+            <div class="qr-text">扫码阅读</div>
+        </div>
+    </div>
+</body>
+</html>

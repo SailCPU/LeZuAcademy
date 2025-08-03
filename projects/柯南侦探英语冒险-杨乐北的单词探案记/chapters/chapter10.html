@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第10章：魔法时间的旅行 - 柯南侦探英语冒险：杨乐北的单词探案记</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', 'SimSun', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+            max-width: 210mm;
+            margin: 0 auto;
+        }
+        
+        .container {
+            max-width: 180mm;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        
+        .chapter-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+        }
+        
+        .chapter-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.2);
+            transition: background 0.3s;
+        }
+        
+        .chapter-nav a:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .chapter-nav a.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .back-link {
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        
+        .back-link:hover {
+            background: #218838;
+        }
+        
+        .chapter {
+            margin-bottom: 40px;
+            page-break-inside: avoid;
+        }
+        
+        .chapter-title {
+            color: #495057;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #6c757d;
+            padding-bottom: 10px;
+        }
+        
+        .section-title {
+            color: #495057;
+            font-size: 1.4em;
+            margin: 25px 0 15px 0;
+            border-left: 3px solid #6c757d;
+            padding-left: 15px;
+        }
+        
+        .magic-box {
+            background: #f3e5f5;
+            border: 2px solid #9c27b0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .story-box {
+            background: #fff3cd;
+            border: 2px solid #ffeaa7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .word-box {
+            background: #d4edda;
+            border: 2px solid #c3e6cb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .game-box {
+            background: #f8d7da;
+            border: 2px solid #f5c6cb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .adventure-box {
+            background: #d1ecf1;
+            border: 2px solid #bee5eb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .english-word {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .chinese-meaning {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .magic {
+            color: #9c27b0;
+            font-weight: bold;
+        }
+        
+        .conan {
+            color: #e67e22;
+            font-weight: bold;
+        }
+        
+        .yang-lebei {
+            color: #3498db;
+            font-weight: bold;
+        }
+        
+        .yang-letian {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .yang-leda {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        
+        .adventure {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        
+        .word-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+                .word-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            user-select: none;
+        }
+        
+        .word-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-color: #007bff;
+        }
+        
+        .word-card .english {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 5px;
+        }
+        
+        .word-card .chinese {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .word-card .example {
+            font-style: italic;
+            color: #666;
+            margin-top: 8px;
+            font-size: 0.9em;
+        }
+        
+        .mission-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .mission-card h4 {
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        @media print {
+            .chapter-nav, .back-link {
+                display: none;
+            }
+            
+            @page {
+                margin: 20mm 15mm 20mm 15mm;
+                size: A4 portrait;
+            }
+            
+            body {
+                margin: 0;
+                padding: 0;
+                font-size: 11pt;
+                line-height: 1.5;
+                background-color: white;
+                max-width: none;
+            }
+            
+            .container {
+                max-width: none;
+                margin: 0;
+                padding: 0;
+                background-color: white;
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">📖 返回总目录</a>
+        <a href="index.html" class="back-link">📚 返回章节目录</a>
+        
+        <div class="chapter-nav">
+            <a href="chapter09.html" class="">⬅️ 上一章</a>
+            <span>第10章：魔法时间的旅行</span>
+            <a href="chapter11.html" class="">下一章 ➡️</a>
+        </div>
+        
+                <div class="chapter">
+            <h3 class="chapter-title">⏰ 第十章：魔法时间的旅行</h3>
+            
+            <div class="story-box">
+                <h4 class="section-title">📖 故事板块：时间魔法沙漏</h4>
+                <p>
+                    柯南院长带着<span class="yang-lebei">杨乐北</span>来到魔法学院的<span class="english-word">time chamber</span>。这里有一个神奇的<span class="english-word">hourglass</span>，可以控制<span class="english-word">time</span>的流动。
+                </p>
+                <p>
+                    "只有学会时间和数字单词，才能掌握时间魔法！"柯南院长神秘地说。
+                </p>
+                <p>
+                    沙漏上显示着<span class="english-word">morning</span>、<span class="english-word">afternoon</span>、<span class="english-word">evening</span>、<span class="english-word">night</span>、<span class="english-word">today</span>、<span class="english-word">yesterday</span>、<span class="english-word">tomorrow</span>、<span class="english-word">week</span>、<span class="english-word">month</span>、<span class="english-word">year</span>等时间词语。
+                </p>
+                
+                <p>突然，<span class="english-word">time chamber</span>的大门被推开，<span class="yang-letian">杨乐天</span>和<span class="yang-leda">杨乐达</span>冲了进来！</p>
+                
+                <p>"<span class="english-word">Sister</span>！我们来了！"<span class="yang-letian">杨乐天</span>兴奋地喊着，手里拿着一个自制的<span class="english-word">time machine</span>。</p>
+                
+                <p>"我们是<span class="english-word">time</span> <span class="english-word">travelers</span>！"<span class="yang-leda">杨乐达</span>自豪地说，戴着一副奇怪的<span class="english-word">time glasses</span>。</p>
+                
+                <p>柯南院长惊讶地看着他们的"<span class="english-word">time machine</span>"——那是一个用纸箱做的奇怪装置。</p>
+                
+                <p>"这个<span class="english-word">machine</span>可以<span class="english-word">travel</span>到<span class="english-word">past</span>和<span class="english-word">future</span>！"<span class="yang-letian">杨乐天</span>解释道。</p>
+                
+                <p>"<span class="english-word">Really</span>？"<span class="yang-lebei">杨乐北</span>好奇地问，"你们想去哪个<span class="english-word">time</span>？"</p>
+                
+                <p>"<span class="english-word">Dinosaur</span> <span class="english-word">time</span>！"<span class="yang-leda">杨乐达</span>兴奋地说，"我们想看<span class="english-word">T-Rex</span>！"</p>
+                
+                <p>就在这时，<span class="yang-letian">杨乐天</span>不小心碰到了真正的<span class="english-word">magic</span> <span class="english-word">hourglass</span>！</p>
+                
+                <p>"<span class="english-word">Careful</span>！"柯南院长大喊，但<span class="english-word">hourglass</span>已经开始<span class="english-word">glowing</span>！</p>
+                
+                <p><span class="english-word">WHOOSH</span>！整个<span class="english-word">time chamber</span>被<span class="english-word">swirling</span> <span class="english-word">time</span> <span class="english-word">energy</span>包围！</p>
+                
+                <p>"<span class="english-word">Oh</span> <span class="english-word">no</span>！"柯南院长说，"<span class="english-word">Time</span> <span class="english-word">magic</span>被<span class="english-word">activated</span>了！你们要被<span class="english-word">sent</span>到<span class="english-word">different</span> <span class="english-word">time</span> <span class="english-word">periods</span>了！"</p>
+                
+                <p>三兄妹感觉周围的<span class="english-word">world</span>在<span class="english-word">spinning</span>！</p>
+                
+                <h4 class="section-title">🦕 时间旅行第一站：史前时代</h4>
+                
+                <p><span class="english-word">CRASH</span>！三兄妹降落在一个<span class="english-word">prehistoric</span> <span class="english-word">jungle</span>里！</p>
+                
+                <p>"<span class="english-word">Where</span> <span class="english-word">are</span> <span class="english-word">we</span>？"<span class="yang-lebei">杨乐北</span>环顾四周。</p>
+                
+                <p>"<span class="english-word">Look</span>！"<span class="yang-leda">杨乐达</span>指着远处，"<span class="english-word">Dinosaurs</span>！"</p>
+                
+                <p>一只巨大的<span class="english-word">Brontosaurus</span>正在吃<span class="english-word">leaves</span>！</p>
+                
+                <p>"<span class="english-word">Wow</span>！真的是<span class="english-word">dinosaur</span> <span class="english-word">time</span>！"<span class="yang-letian">杨乐天</span>激动地说。</p>
+                
+                <p>突然，一个声音传来："<span class="english-word">Welcome</span> to the <span class="english-word">Jurassic</span> <span class="english-word">Period</span>！"</p>
+                
+                <p>出现了一个奇怪的<span class="english-word">creature</span>——<span class="english-word">Professor</span> <span class="english-word">Chronos</span>，一个<span class="english-word">time-traveling</span> <span class="english-word">wizard</span>！</p>
+                
+                <p>"我是<span class="english-word">time</span>的<span class="english-word">guardian</span>，"他说，"你们<span class="english-word">accidentally</span> <span class="english-word">activated</span>了<span class="english-word">time</span> <span class="english-word">magic</span>！"</p>
+                
+                <p>"我们<span class="english-word">how</span> <span class="english-word">get</span> <span class="english-word">back</span>？"<span class="yang-leda">杨乐达</span>担心地问。</p>
+                
+                <p>"你们必须在<span class="english-word">different</span> <span class="english-word">time</span> <span class="english-word">periods</span>学会<span class="english-word">time</span> <span class="english-word">words</span>，"<span class="english-word">Professor</span> <span class="english-word">Chronos</span>解释，"然后<span class="english-word">solve</span> <span class="english-word">time</span> <span class="english-word">puzzles</span>！"</p>
+                
+                <p>在<span class="english-word">dinosaur</span> <span class="english-word">era</span>，他们遇到了<span class="english-word">friendly</span> <span class="english-word">Triceratops</span>！</p>
+                
+                <p>"这个<span class="english-word">dinosaur</span>好<span class="english-word">cute</span>！"<span class="yang-letian">杨乐天</span>说，试图<span class="english-word">pet</span>它。</p>
+                
+                <p>但是<span class="english-word">Triceratops</span>太<span class="english-word">big</span>了，<span class="yang-letian">杨乐天</span>被它的<span class="english-word">tail</span>轻轻一甩就飞了出去！</p>
+                
+                <p>"<span class="english-word">Help</span>！"他大喊，<span class="english-word">landing</span>在一堆<span class="english-word">soft</span> <span class="english-word">ferns</span>里。</p>
+                
+                <p>第一个<span class="english-word">time</span> <span class="english-word">puzzle</span>出现了："<span class="english-word">How</span> <span class="english-word">long</span> <span class="english-word">ago</span> <span class="english-word">did</span> <span class="english-word">dinosaurs</span> <span class="english-word">live</span>？"</p>
+                
+                <p>"<span class="english-word">Millions</span> of <span class="english-word">years</span> <span class="english-word">ago</span>！"<span class="yang-lebei">杨乐北</span>回答。</p>
+                
+                <p>"<span class="english-word">Correct</span>！"<span class="english-word">Professor</span> <span class="english-word">Chronos</span>说，"<span class="english-word">Next</span> <span class="english-word">destination</span>：<span class="english-word">Ancient</span> <span class="english-word">Egypt</span>！"</p>
+                
+                <h4 class="section-title">🏺 时间旅行第二站：古埃及</h4>
+                
+                <p><span class="english-word">FLASH</span>！三兄妹出现在<span class="english-word">ancient</span> <span class="english-word">Egypt</span>，面前是巨大的<span class="english-word">pyramids</span>！</p>
+                
+                <p>"<span class="english-word">Amazing</span>！"<span class="yang-leda">杨乐达</span>惊叹，"<span class="english-word">Pyramids</span>好<span class="english-word">huge</span>！"</p>
+                
+                <p>他们遇到了<span class="english-word">ancient</span> <span class="english-word">Egyptian</span> <span class="english-word">workers</span>正在建造<span class="english-word">pyramid</span>！</p>
+                
+                <p>"<span class="english-word">Hello</span>！"<span class="yang-letian">杨乐天</span>用<span class="english-word">English</span>和他们打招呼，但<span class="english-word">ancient</span> <span class="english-word">Egyptians</span>听不懂！</p>
+                
+                <p>"他们说<span class="english-word">ancient</span> <span class="english-word">Egyptian</span> <span class="english-word">language</span>！"<span class="english-word">Professor</span> <span class="english-word">Chronos</span>解释。</p>
+                
+                <p>第二个<span class="english-word">time</span> <span class="english-word">puzzle</span>："<span class="english-word">How</span> <span class="english-word">many</span> <span class="english-word">thousands</span> of <span class="english-word">years</span> <span class="english-word">ago</span> <span class="english-word">were</span> the <span class="english-word">pyramids</span> <span class="english-word">built</span>？"</p>
+                
+                <p>"<span class="english-word">About</span> <span class="english-word">four</span> <span class="english-word">thousand</span> <span class="english-word">years</span> <span class="english-word">ago</span>！"<span class="yang-lebei">杨乐北</span>猜测。</p>
+                
+                <p>"<span class="english-word">Excellent</span>！<span class="english-word">Next</span> <span class="english-word">stop</span>：<span class="english-word">Medieval</span> <span class="english-word">Times</span>！"</p>
+                
+                <h4 class="section-title">🏰 时间旅行第三站：中世纪</h4>
+                
+                <p>现在他们在<span class="english-word">medieval</span> <span class="english-word">castle</span>里，看到<span class="english-word">knights</span>在<span class="english-word">training</span>！</p>
+                
+                <p>"<span class="english-word">Knights</span>！"<span class="yang-letian">杨乐天</span>兴奋地说，"我想成为<span class="english-word">knight</span>！"</p>
+                
+                <p>他试图举起一把<span class="english-word">heavy</span> <span class="english-word">sword</span>，但<span class="english-word">sword</span>太<span class="english-word">heavy</span>了！</p>
+                
+                <p>"<span class="english-word">Oops</span>！"<span class="yang-letian">杨乐天</span>跌倒了，<span class="english-word">sword</span>掉在地上发出巨大的<span class="english-word">clang</span>声！</p>
+                
+                <p>所有的<span class="english-word">knights</span>都转过头看他！</p>
+                
+                <p>"<span class="english-word">Sorry</span>！"<span class="yang-leda">杨乐达</span>赶紧帮<span class="english-word">brother</span>道歉。</p>
+                
+                <p>第三个<span class="english-word">puzzle</span>："<span class="english-word">How</span> <span class="english-word">many</span> <span class="english-word">centuries</span> <span class="english-word">ago</span> <span class="english-word">was</span> the <span class="english-word">medieval</span> <span class="english-word">period</span>？"</p>
+                
+                <p>"<span class="english-word">About</span> <span class="english-word">ten</span> <span class="english-word">centuries</span> <span class="english-word">ago</span>！"<span class="yang-lebei">杨乐北</span>回答。</p>
+                
+                <h4 class="section-title">🚂 时间旅行第四站：工业时代</h4>
+                
+                <p>接下来是<span class="english-word">Industrial</span> <span class="english-word">Revolution</span>时期！到处都是<span class="english-word">steam</span> <span class="english-word">trains</span>和<span class="english-word">factories</span>！</p>
+                
+                <p>"<span class="english-word">Steam</span> <span class="english-word">train</span>！"<span class="yang-leda">杨乐达</span>指着一辆<span class="english-word">locomotive</span>。</p>
+                
+                <p>他们看到<span class="english-word">workers</span>在<span class="english-word">factory</span>里<span class="english-word">operating</span> <span class="english-word">machines</span>。</p>
+                
+                <p>"这个<span class="english-word">time</span> <span class="english-word">period</span>改变了<span class="english-word">world</span>！"<span class="english-word">Professor</span> <span class="english-word">Chronos</span>解释。</p>
+                
+                <p>第四个<span class="english-word">puzzle</span>："<span class="english-word">When</span> <span class="english-word">did</span> the <span class="english-word">Industrial</span> <span class="english-word">Revolution</span> <span class="english-word">begin</span>？"</p>
+                
+                <p>"<span class="english-word">About</span> <span class="english-word">two</span> <span class="english-word">hundred</span> <span class="english-word">years</span> <span class="english-word">ago</span>！"<span class="yang-lebei">杨乐北</span>说。</p>
+                
+                <h4 class="section-title">🚀 时间旅行第五站：未来世界</h4>
+                
+                <p>最后，他们来到了<span class="english-word">future</span>！到处都是<span class="english-word">flying</span> <span class="english-word">cars</span>和<span class="english-word">robots</span>！</p>
+                
+                <p>"<span class="english-word">Future</span> <span class="english-word">world</span>！"<span class="yang-letian">杨乐天</span>惊叹。</p>
+                
+                <p>一个<span class="english-word">friendly</span> <span class="english-word">robot</span>走过来："<span class="english-word">Welcome</span> to the <span class="english-word">year</span> 3023！"</p>
+                
+                <p>"<span class="english-word">3023</span>？"<span class="yang-leda">杨乐达</span>震惊，"那是<span class="english-word">one</span> <span class="english-word">thousand</span> <span class="english-word">years</span> <span class="english-word">from</span> <span class="english-word">now</span>！"</p>
+                
+                <p>在<span class="english-word">future</span>，他们看到了<span class="english-word">space</span> <span class="english-word">elevators</span>、<span class="english-word">underwater</span> <span class="english-word">cities</span>、和<span class="english-word">time</span> <span class="english-word">travel</span> <span class="english-word">stations</span>！</p>
+                
+                <p>最后的<span class="english-word">puzzle</span>："<span class="english-word">What</span> <span class="english-word">time</span> <span class="english-word">period</span> <span class="english-word">do</span> <span class="english-word">you</span> <span class="english-word">belong</span> <span class="english-word">to</span>？"</p>
+                
+                <p>"<span class="english-word">Present</span> <span class="english-word">time</span>！<span class="english-word">21st</span> <span class="english-word">century</span>！"三兄妹一起回答。</p>
+                
+                <p>"<span class="english-word">Perfect</span>！"<span class="english-word">Professor</span> <span class="english-word">Chronos</span>高兴地说，"你们已经<span class="english-word">mastered</span> <span class="english-word">time</span> <span class="english-word">concepts</span>！<span class="english-word">Time</span> to <span class="english-word">return</span> <span class="english-word">home</span>！"</p>
+                
+                <p><span class="english-word">WHOOSH</span>！他们被<span class="english-word">time</span> <span class="english-word">energy</span>包围，回到了<span class="english-word">present</span> <span class="english-word">time</span>！</p>
+                
+                <p>柯南院长松了一口气："<span class="english-word">Welcome</span> <span class="english-word">back</span>！你们学会了<span class="english-word">time</span> <span class="english-word">travel</span>和<span class="english-word">history</span>！"</p>
+                
+                <p>"<span class="english-word">Time</span> <span class="english-word">travel</span>真是<span class="english-word">amazing</span>！"<span class="yang-letian">杨乐天</span>兴奋地说，"我们看到了<span class="english-word">past</span>、<span class="english-word">present</span>和<span class="english-word">future</span>！"</p>
+                
+                <p>"而且学会了<span class="english-word">so</span> <span class="english-word">many</span> <span class="english-word">time</span> <span class="english-word">words</span>！"<span class="yang-leda">杨乐达</span>补充。</p>
+                
+                <p><span class="yang-lebei">杨乐北</span>思考着说："<span class="english-word">Time</span>真是<span class="english-word">precious</span>，我们要<span class="english-word">cherish</span>每一个<span class="english-word">moment</span>！"</p>
+                
+                <p>柯南院长微笑着点头："<span class="english-word">Exactly</span>！你们三兄妹不仅学会了<span class="english-word">time</span> <span class="english-word">vocabulary</span>，更重要的是理解了<span class="english-word">time</span>的<span class="english-word">value</span>。"</p>
+                
+                <p>"我们<span class="english-word">promise</span>要好好<span class="english-word">manage</span>我们的<span class="english-word">time</span>！"<span class="yang-letian">杨乐天</span>认真地说。</p>
+                
+                <p>"而且要用<span class="english-word">English</span>记录我们的<span class="english-word">daily</span> <span class="english-word">schedule</span>！"<span class="yang-leda">杨乐达</span>补充道。</p>
+                
+                <p>就这样，三兄妹结束了这场神奇的<span class="english-word">time travel</span> <span class="english-word">adventure</span>，带着满满的收获和对<span class="english-word">time</span>的新理解，继续他们的<span class="english-word">English learning</span> <span class="english-word">journey</span>！</p>
+                
+                <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 15px 0; border: 2px dashed #f39c12;">
+                    <h5 style="color: #f39c12; margin-bottom: 10px;">🔍 魔法侦探任务</h5>
+                    <p><strong>你能猜出这些时间和数字单词的意思吗？</strong></p>
+                    <p>💡 <span class="english-word">morning</span> = ________（提示：一天中太阳刚出来的时候）</p>
+                    <p>💡 <span class="english-word">afternoon</span> = ________（提示：一天中太阳在中间的时候）</p>
+                    <p>💡 <span class="english-word">evening</span> = ________（提示：一天中太阳快下山的时候）</p>
+                    <p>💡 <span class="english-word">night</span> = ________（提示：一天中太阳完全下山后）</p>
+                    <p>💡 <span class="english-word">today</span> = ________（提示：现在这一天）</p>
+                    <p>💡 <span class="english-word">yesterday</span> = ________（提示：今天的前一天）</p>
+                    <p>💡 <span class="english-word">tomorrow</span> = ________（提示：今天的后一天）</p>
+                    <p>💡 <span class="english-word">week</span> = ________（提示：七天的时间）</p>
+                    <p>💡 <span class="english-word">month</span> = ________（提示：一个月的时间）</p>
+                    <p>💡 <span class="english-word">year</span> = ________（提示：一年的时间）</p>
+                    <p>💡 <span class="english-word">time chamber</span> = ________（提示：时间房间）</p>
+                    <p>💡 <span class="english-word">hourglass</span> = ________（提示：沙漏）</p>
+                    <p>💡 <span class="english-word">time machine</span> = ________（提示：时间机器）</p>
+                    <p>💡 <span class="english-word">travelers</span> = ________（提示：旅行者）</p>
+                    <p>💡 <span class="english-word">time glasses</span> = ________（提示：时间眼镜）</p>
+                    <p>💡 <span class="english-word">machine</span> = ________（提示：机器）</p>
+                    <p>💡 <span class="english-word">travel</span> = ________（提示：旅行）</p>
+                    <p>💡 <span class="english-word">past</span> = ________（提示：过去）</p>
+                    <p>💡 <span class="english-word">future</span> = ________（提示：未来）</p>
+                    <p>💡 <span class="english-word">dinosaur</span> = ________（提示：恐龙）</p>
+                    <p>💡 <span class="english-word">T-Rex</span> = ________（提示：霸王龙）</p>
+                    <p>💡 <span class="english-word">magic</span> = ________（提示：魔法）</p>
+                    <p>💡 <span class="english-word">glowing</span> = ________（提示：发光的）</p>
+                    <p>💡 <span class="english-word">swirling</span> = ________（提示：旋转的）</p>
+                    <p>💡 <span class="english-word">energy</span> = ________（提示：能量）</p>
+                    <p>💡 <span class="english-word">activated</span> = ________（提示：激活了）</p>
+                    <p>💡 <span class="english-word">sent</span> = ________（提示：被送到）</p>
+                    <p>💡 <span class="english-word">different</span> = ________（提示：不同的）</p>
+                    <p>💡 <span class="english-word">periods</span> = ________（提示：时期）</p>
+                    <p>💡 <span class="english-word">spinning</span> = ________（提示：旋转）</p>
+                    <p>💡 <span class="english-word">prehistoric</span> = ________（提示：史前的）</p>
+                    <p>💡 <span class="english-word">jungle</span> = ________（提示：丛林）</p>
+                    <p>💡 <span class="english-word">dinosaurs</span> = ________（提示：恐龙的复数）</p>
+                    <p>💡 <span class="english-word">Brontosaurus</span> = ________（提示：雷龙）</p>
+                    <p>💡 <span class="english-word">leaves</span> = ________（提示：叶子）</p>
+                    <p>💡 <span class="english-word">Jurassic</span> = ________（提示：侏罗纪）</p>
+                    <p>💡 <span class="english-word">Period</span> = ________（提示：时期）</p>
+                    <p>💡 <span class="english-word">creature</span> = ________（提示：生物）</p>
+                    <p>💡 <span class="english-word">Professor</span> = ________（提示：教授）</p>
+                    <p>💡 <span class="english-word">Chronos</span> = ________（提示：时间之神）</p>
+                    <p>💡 <span class="english-word">time-traveling</span> = ________（提示：时间旅行的）</p>
+                    <p>💡 <span class="english-word">wizard</span> = ________（提示：巫师）</p>
+                    <p>💡 <span class="english-word">guardian</span> = ________（提示：守护者）</p>
+                    <p>💡 <span class="english-word">accidentally</span> = ________（提示：意外地）</p>
+                    <p>💡 <span class="english-word">solve</span> = ________（提示：解决）</p>
+                    <p>💡 <span class="english-word">puzzles</span> = ________（提示：谜题）</p>
+                    <p>💡 <span class="english-word">era</span> = ________（提示：时代）</p>
+                    <p>💡 <span class="english-word">friendly</span> = ________（提示：友好的）</p>
+                    <p>💡 <span class="english-word">Triceratops</span> = ________（提示：三角龙）</p>
+                    <p>💡 <span class="english-word">cute</span> = ________（提示：可爱的）</p>
+                    <p>💡 <span class="english-word">pet</span> = ________（提示：抚摸）</p>
+                    <p>💡 <span class="english-word">big</span> = ________（提示：大的）</p>
+                    <p>💡 <span class="english-word">tail</span> = ________（提示：尾巴）</p>
+                    <p>💡 <span class="english-word">landing</span> = ________（提示：着陆）</p>
+                    <p>💡 <span class="english-word">soft</span> = ________（提示：软的）</p>
+                    <p>💡 <span class="english-word">ferns</span> = ________（提示：蕨类植物）</p>
+                    <p>💡 <span class="english-word">puzzle</span> = ________（提示：谜题）</p>
+                    <p>💡 <span class="english-word">how long ago</span> = ________（提示：多久以前）</p>
+                    <p>💡 <span class="english-word">live</span> = ________（提示：生活）</p>
+                    <p>💡 <span class="english-word">millions</span> = ________（提示：数百万）</p>
+                    <p>💡 <span class="english-word">years ago</span> = ________（提示：年前）</p>
+                    <p>💡 <span class="english-word">correct</span> = ________（提示：正确的）</p>
+                    <p>💡 <span class="english-word">next</span> = ________（提示：下一个）</p>
+                    <p>💡 <span class="english-word">destination</span> = ________（提示：目的地）</p>
+                    <p>💡 <span class="english-word">ancient</span> = ________（提示：古代的）</p>
+                    <p>💡 <span class="english-word">Egypt</span> = ________（提示：埃及）</p>
+                    <p>💡 <span class="english-word">pyramids</span> = ________（提示：金字塔）</p>
+                    <p>💡 <span class="english-word">huge</span> = ________（提示：巨大的）</p>
+                    <p>💡 <span class="english-word">Egyptian</span> = ________（提示：埃及的）</p>
+                    <p>💡 <span class="english-word">workers</span> = ________（提示：工人）</p>
+                    <p>💡 <span class="english-word">pyramid</span> = ________（提示：金字塔）</p>
+                    <p>💡 <span class="english-word">Egyptians</span> = ________（提示：埃及人）</p>
+                    <p>💡 <span class="english-word">language</span> = ________（提示：语言）</p>
+                    <p>💡 <span class="english-word">thousands</span> = ________（提示：数千）</p>
+                    <p>💡 <span class="english-word">built</span> = ________（提示：建造了）</p>
+                    <p>💡 <span class="english-word">about</span> = ________（提示：大约）</p>
+                    <p>💡 <span class="english-word">four</span> = ________（提示：四）</p>
+                    <p>💡 <span class="english-word">thousand</span> = ________（提示：一千）</p>
+                    <p>💡 <span class="english-word">excellent</span> = ________（提示：优秀的）</p>
+                    <p>💡 <span class="english-word">stop</span> = ________（提示：站点）</p>
+                    <p>💡 <span class="english-word">medieval</span> = ________（提示：中世纪的）</p>
+                    <p>💡 <span class="english-word">times</span> = ________（提示：时代）</p>
+                    <p>💡 <span class="english-word">castle</span> = ________（提示：城堡）</p>
+                    <p>💡 <span class="english-word">knights</span> = ________（提示：骑士）</p>
+                    <p>💡 <span class="english-word">training</span> = ________（提示：训练）</p>
+                    <p>💡 <span class="english-word">knight</span> = ________（提示：骑士）</p>
+                    <p>💡 <span class="english-word">heavy</span> = ________（提示：重的）</p>
+                    <p>💡 <span class="english-word">sword</span> = ________（提示：剑）</p>
+                    <p>💡 <span class="english-word">clang</span> = ________（提示：铛声）</p>
+                    <p>💡 <span class="english-word">centuries</span> = ________（提示：世纪）</p>
+                    <p>💡 <span class="english-word">period</span> = ________（提示：时期）</p>
+                    <p>💡 <span class="english-word">ten</span> = ________（提示：十）</p>
+                    <p>💡 <span class="english-word">Industrial</span> = ________（提示：工业的）</p>
+                    <p>💡 <span class="english-word">Revolution</span> = ________（提示：革命）</p>
+                    <p>💡 <span class="english-word">steam</span> = ________（提示：蒸汽）</p>
+                    <p>💡 <span class="english-word">trains</span> = ________（提示：火车）</p>
+                    <p>💡 <span class="english-word">factories</span> = ________（提示：工厂）</p>
+                    <p>💡 <span class="english-word">train</span> = ________（提示：火车）</p>
+                    <p>💡 <span class="english-word">locomotive</span> = ________（提示：机车）</p>
+                    <p>💡 <span class="english-word">factory</span> = ________（提示：工厂）</p>
+                    <p>💡 <span class="english-word">operating</span> = ________（提示：操作）</p>
+                    <p>💡 <span class="english-word">machines</span> = ________（提示：机器的复数）</p>
+                    <p>💡 <span class="english-word">when</span> = ________（提示：什么时候）</p>
+                    <p>💡 <span class="english-word">begin</span> = ________（提示：开始）</p>
+                    <p>💡 <span class="english-word">two</span> = ________（提示：二）</p>
+                    <p>💡 <span class="english-word">hundred</span> = ________（提示：一百）</p>
+                    <p>💡 <span class="english-word">flying</span> = ________（提示：飞行的）</p>
+                    <p>💡 <span class="english-word">cars</span> = ________（提示：汽车）</p>
+                    <p>💡 <span class="english-word">robots</span> = ________（提示：机器人）</p>
+                    <p>💡 <span class="english-word">world</span> = ________（提示：世界）</p>
+                    <p>💡 <span class="english-word">robot</span> = ________（提示：机器人）</p>
+                    <p>💡 <span class="english-word">one</span> = ________（提示：一）</p>
+                    <p>💡 <span class="english-word">from</span> = ________（提示：从）</p>
+                    <p>💡 <span class="english-word">now</span> = ________（提示：现在）</p>
+                    <p>💡 <span class="english-word">space</span> = ________（提示：太空）</p>
+                    <p>💡 <span class="english-word">elevators</span> = ________（提示：电梯）</p>
+                    <p>💡 <span class="english-word">underwater</span> = ________（提示：水下的）</p>
+                    <p>💡 <span class="english-word">cities</span> = ________（提示：城市）</p>
+                    <p>💡 <span class="english-word">stations</span> = ________（提示：站点）</p>
+                    <p>💡 <span class="english-word">belong</span> = ________（提示：属于）</p>
+                    <p>💡 <span class="english-word">present</span> = ________（提示：现在）</p>
+                    <p>💡 <span class="english-word">21st</span> = ________（提示：第21）</p>
+                    <p>💡 <span class="english-word">century</span> = ________（提示：世纪）</p>
+                    <p>💡 <span class="english-word">perfect</span> = ________（提示：完美的）</p>
+                    <p>💡 <span class="english-word">mastered</span> = ________（提示：掌握了）</p>
+                    <p>💡 <span class="english-word">concepts</span> = ________（提示：概念）</p>
+                    <p>💡 <span class="english-word">return</span> = ________（提示：返回）</p>
+                    <p>💡 <span class="english-word">home</span> = ________（提示：家）</p>
+                    <p>💡 <span class="english-word">history</span> = ________（提示：历史）</p>
+                    <p>💡 <span class="english-word">amazing</span> = ________（提示：令人惊叹的）</p>
+                    <p>💡 <span class="english-word">precious</span> = ________（提示：珍贵的）</p>
+                    <p>💡 <span class="english-word">cherish</span> = ________（提示：珍惜）</p>
+                    <p>💡 <span class="english-word">moment</span> = ________（提示：时刻）</p>
+                </div>
+            </div>
+
+            <div class="word-box">
+                <h4 class="section-title">🔢 单词板块：时间与数字单词</h4>
+                <p>时间魔法师说："要想掌握时间魔法，你必须学会所有时间的神秘密码！"</p>
+                
+                <div class="word-list">
+                    <div class="word-card">
+                        <div class="english">time</div>
+                        <div class="chinese">时间</div>
+                        <div class="example">What time is it now?</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">hour</div>
+                        <div class="chinese">小时</div>
+                        <div class="example">One hour has 60 minutes.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">minute</div>
+                        <div class="chinese">分钟</div>
+                        <div class="example">Wait a minute, please.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">second</div>
+                        <div class="chinese">秒</div>
+                        <div class="example">Count to ten seconds.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">clock</div>
+                        <div class="chinese">时钟</div>
+                        <div class="example">The clock shows 3 o'clock.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">watch</div>
+                        <div class="chinese">手表</div>
+                        <div class="example">I wear a watch on my wrist.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">alarm</div>
+                        <div class="chinese">闹钟</div>
+                        <div class="example">The alarm wakes me up.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">morning</div>
+                        <div class="chinese">早上</div>
+                        <div class="example">Good morning, everyone!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">afternoon</div>
+                        <div class="chinese">下午</div>
+                        <div class="example">Good afternoon, teacher!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">evening</div>
+                        <div class="chinese">晚上</div>
+                        <div class="example">Good evening, friends!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">night</div>
+                        <div class="chinese">晚上，夜晚</div>
+                        <div class="example">Good night, sweet dreams!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">midnight</div>
+                        <div class="chinese">半夜</div>
+                        <div class="example">Midnight is 12:00 at night.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">noon</div>
+                        <div class="chinese">中午</div>
+                        <div class="example">We eat lunch at noon.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">dawn</div>
+                        <div class="chinese">黎明</div>
+                        <div class="example">Dawn comes before sunrise.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">dusk</div>
+                        <div class="chinese">黄昏</div>
+                        <div class="example">Dusk is beautiful and peaceful.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">today</div>
+                        <div class="chinese">今天</div>
+                        <div class="example">Today is a wonderful day!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">yesterday</div>
+                        <div class="chinese">昨天</div>
+                        <div class="example">Yesterday was rainy.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">tomorrow</div>
+                        <div class="chinese">明天</div>
+                        <div class="example">Tomorrow will be sunny.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">day</div>
+                        <div class="chinese">天，日子</div>
+                        <div class="example">Have a nice day!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">week</div>
+                        <div class="chinese">星期，周</div>
+                        <div class="example">A week has seven days.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">weekend</div>
+                        <div class="chinese">周末</div>
+                        <div class="example">I love the weekend!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">weekday</div>
+                        <div class="chinese">工作日</div>
+                        <div class="example">Weekdays are for school.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">month</div>
+                        <div class="chinese">月份</div>
+                        <div class="example">January is the first month.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">year</div>
+                        <div class="chinese">年</div>
+                        <div class="example">This year is 2024.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">century</div>
+                        <div class="chinese">世纪</div>
+                        <div class="example">A century has 100 years.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">decade</div>
+                        <div class="chinese">十年</div>
+                        <div class="example">A decade has 10 years.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">Monday</div>
+                        <div class="chinese">星期一</div>
+                        <div class="example">Monday is the first day of work.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">Tuesday</div>
+                        <div class="chinese">星期二</div>
+                        <div class="example">Tuesday follows Monday.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">Wednesday</div>
+                        <div class="chinese">星期三</div>
+                        <div class="example">Wednesday is in the middle of the week.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">Thursday</div>
+                        <div class="chinese">星期四</div>
+                        <div class="example">Thursday comes before Friday.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">Friday</div>
+                        <div class="chinese">星期五</div>
+                        <div class="example">Friday is the last work day.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">Saturday</div>
+                        <div class="chinese">星期六</div>
+                        <div class="example">Saturday is fun and relaxing.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">Sunday</div>
+                        <div class="chinese">星期日</div>
+                        <div class="example">Sunday is the last day of the week.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">birthday</div>
+                        <div class="chinese">生日</div>
+                        <div class="example">Happy birthday to you!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">holiday</div>
+                        <div class="chinese">假期</div>
+                        <div class="example">Summer holiday is coming!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">vacation</div>
+                        <div class="chinese">度假</div>
+                        <div class="example">I love vacation time!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">festival</div>
+                        <div class="chinese">节日</div>
+                        <div class="example">Christmas is a happy festival.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">celebration</div>
+                        <div class="chinese">庆祝</div>
+                        <div class="example">The celebration was wonderful!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">anniversary</div>
+                        <div class="chinese">周年纪念日</div>
+                        <div class="example">It's our school's anniversary.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">date</div>
+                        <div class="chinese">日期</div>
+                        <div class="example">What's today's date?</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">calendar</div>
+                        <div class="chinese">日历</div>
+                        <div class="example">Check the calendar for dates.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">schedule</div>
+                        <div class="chinese">时间表，计划</div>
+                        <div class="example">My schedule is very busy.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">appointment</div>
+                        <div class="chinese">预约，约会</div>
+                        <div class="example">I have an appointment at 3 PM.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">meeting</div>
+                        <div class="chinese">会议</div>
+                        <div class="example">The meeting starts at 10 AM.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">deadline</div>
+                        <div class="chinese">截止日期</div>
+                        <div class="example">The deadline is next Friday.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">period</div>
+                        <div class="chinese">时期，时段</div>
+                        <div class="example">This is a difficult period.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">moment</div>
+                        <div class="chinese">时刻，瞬间</div>
+                        <div class="example">This is a special moment.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">instant</div>
+                        <div class="chinese">瞬间，立刻</div>
+                        <div class="example">It happened in an instant.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">past</div>
+                        <div class="chinese">过去</div>
+                        <div class="example">The past is history.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">present</div>
+                        <div class="chinese">现在，当前</div>
+                        <div class="example">Focus on the present moment.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">future</div>
+                        <div class="chinese">未来</div>
+                        <div class="example">The future looks bright.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">now</div>
+                        <div class="chinese">现在</div>
+                        <div class="example">We need to go right now!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">then</div>
+                        <div class="chinese">然后</div>
+                        <div class="example">First eat, then play.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">when</div>
+                        <div class="chinese">什么时候</div>
+                        <div class="example">When is your birthday?</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">before</div>
+                        <div class="chinese">在…之前</div>
+                        <div class="example">Wash hands before eating.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">after</div>
+                        <div class="chinese">在…之后</div>
+                        <div class="example">Rest after studying.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">during</div>
+                        <div class="chinese">在…期间</div>
+                        <div class="example">Be quiet during the test.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">while</div>
+                        <div class="chinese">当…时候</div>
+                        <div class="example">I read while you cook.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">until</div>
+                        <div class="chinese">直到</div>
+                        <div class="example">Wait until I come back.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">since</div>
+                        <div class="chinese">自从，由于</div>
+                        <div class="example">I've been here since morning.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">already</div>
+                        <div class="chinese">已经</div>
+                        <div class="example">I already finished my homework.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">still</div>
+                        <div class="chinese">仍然，还</div>
+                        <div class="example">It's still raining outside.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">yet</div>
+                        <div class="chinese">还，尚未</div>
+                        <div class="example">I haven't finished yet.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">soon</div>
+                        <div class="chinese">很快，不久</div>
+                        <div class="example">We will leave soon.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">later</div>
+                        <div class="chinese">后来，稍后</div>
+                        <div class="example">See you later!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">early</div>
+                        <div class="chinese">早的，提前</div>
+                        <div class="example">I wake up early every day.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">late</div>
+                        <div class="chinese">晚的，迟到</div>
+                        <div class="example">Don't be late for school!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">on time</div>
+                        <div class="chinese">按时，准时</div>
+                        <div class="example">Always arrive on time.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">in time</div>
+                        <div class="chinese">及时</div>
+                        <div class="example">We arrived just in time.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">sometimes</div>
+                        <div class="chinese">有时</div>
+                        <div class="example">Sometimes I play games.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">always</div>
+                        <div class="chinese">总是，始终</div>
+                        <div class="example">I always brush my teeth.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">never</div>
+                        <div class="chinese">从不，从来不</div>
+                        <div class="example">Never give up your dreams!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">often</div>
+                        <div class="chinese">经常</div>
+                        <div class="example">I often play with friends.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">usually</div>
+                        <div class="chinese">通常</div>
+                        <div class="example">I usually go to bed at 9 PM.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">seldom</div>
+                        <div class="chinese">很少，不常</div>
+                        <div class="example">I seldom eat junk food.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">rarely</div>
+                        <div class="chinese">很少，罕见</div>
+                        <div class="example">I rarely watch TV.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">frequently</div>
+                        <div class="chinese">经常，频繁地</div>
+                        <div class="example">I frequently visit the library.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">regularly</div>
+                        <div class="chinese">定期地，有规律地</div>
+                        <div class="example">Exercise regularly to stay healthy.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">occasionally</div>
+                        <div class="chinese">偶尔，时而</div>
+                        <div class="example">I occasionally eat ice cream.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">immediately</div>
+                        <div class="chinese">立即，马上</div>
+                        <div class="example">Come here immediately!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">gradually</div>
+                        <div class="chinese">逐渐地</div>
+                        <div class="example">I gradually improved my English.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">suddenly</div>
+                        <div class="chinese">突然</div>
+                        <div class="example">It suddenly started to rain.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">finally</div>
+                        <div class="chinese">最终，终于</div>
+                        <div class="example">I finally solved the problem!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">recently</div>
+                        <div class="chinese">最近</div>
+                        <div class="example">I recently learned to swim.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">currently</div>
+                        <div class="chinese">目前，现在</div>
+                        <div class="example">I'm currently studying English.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">previously</div>
+                        <div class="chinese">以前，之前</div>
+                        <div class="example">Previously, I lived in Beijing.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">formerly</div>
+                        <div class="chinese">以前，曾经</div>
+                        <div class="example">This was formerly a school.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">eventually</div>
+                        <div class="chinese">最终，终于</div>
+                        <div class="example">I will eventually master English.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">meanwhile</div>
+                        <div class="chinese">同时，在此期间</div>
+                        <div class="example">I study; meanwhile, you cook.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">afterwards</div>
+                        <div class="chinese">之后，后来</div>
+                        <div class="example">Let's talk afterwards.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">beforehand</div>
+                        <div class="chinese">事先，提前</div>
+                        <div class="example">Prepare everything beforehand.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">age</div>
+                        <div class="chinese">年龄</div>
+                        <div class="example">What's your age?</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">young</div>
+                        <div class="chinese">年轻的</div>
+                        <div class="example">I am young and energetic.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">old</div>
+                        <div class="chinese">老的，旧的</div>
+                        <div class="example">My grandfather is old but wise.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">new</div>
+                        <div class="chinese">新的</div>
+                        <div class="example">This is my new friend.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">ancient</div>
+                        <div class="chinese">古代的，古老的</div>
+                        <div class="example">This is an ancient castle.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">modern</div>
+                        <div class="chinese">现代的</div>
+                        <div class="example">We live in modern times.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">contemporary</div>
+                        <div class="chinese">当代的，同时代的</div>
+                        <div class="example">Contemporary art is interesting.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">eternal</div>
+                        <div class="chinese">永恒的，永远的</div>
+                        <div class="example">Love is eternal.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">temporary</div>
+                        <div class="chinese">暂时的，临时的</div>
+                        <div class="example">This is just a temporary solution.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">permanent</div>
+                        <div class="chinese">永久的，长期的</div>
+                        <div class="example">Is this a permanent change?</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">⏰ 魔法时间问答</h4>
+                <div class="mission-card">
+                    <h4>🕐 魔法任务：时间单词大挑战</h4>
+                    <p>和家人或小伙伴一起玩"时间问答"游戏：</p>
+                    <ol>
+                        <li>一个人说中文时间，另一个人说出英文单词。</li>
+                        <li>说错或说慢了要模仿时钟滴答声！</li>
+                        <li>全部答对，获得"魔法时间大师"称号！</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: white; margin-bottom: 15px;">🕐 时间挑战升级版</h5>
+                    <p style="margin: 8px 0;"><strong>初级挑战：</strong>基础时间词汇（<span class="english-word">morning</span>, <span class="english-word">afternoon</span>, <span class="english-word">evening</span>）</p>
+                    <p style="margin: 8px 0;"><strong>中级挑战：</strong>星期和月份（<span class="english-word">Monday</span>, <span class="english-word">January</span>）</p>
+                    <p style="margin: 8px 0;"><strong>高级挑战：</strong>频率词汇（<span class="english-word">always</span>, <span class="english-word">sometimes</span>, <span class="english-word">never</span>）</p>
+                    <p style="margin: 8px 0;"><strong>终极挑战：</strong>时间连接词（<span class="english-word">before</span>, <span class="english-word">after</span>, <span class="english-word">during</span>）</p>
+                    <p style="margin-top: 15px; font-style: italic;">⏰ 挑战规则：每级别要求在30秒内回答10个问题！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🎪 魔法时间表演秀</h4>
+                <div class="mission-card">
+                    <h4>🎭 魔法任务：时间概念表演</h4>
+                    <p>用身体动作和表情表演不同的时间概念：</p>
+                    <ol>
+                        <li><strong>时钟表演：</strong>用手臂做时钟指针，表演不同时间</li>
+                        <li><strong>年龄表演：</strong>表演从<span class="english-word">young</span>到<span class="english-word">old</span>的变化</li>
+                        <li><strong>速度表演：</strong>表演<span class="english-word">slowly</span>和<span class="english-word">quickly</span></li>
+                        <li><strong>频率表演：</strong>表演<span class="english-word">always</span>、<span class="english-word">sometimes</span>、<span class="english-word">never</span></li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); color: #333; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: #333; margin-bottom: 15px;">🎭 时间表演指南</h5>
+                    <p style="margin: 8px 0;">🕐 <strong>Clock Time:</strong> 用双臂做时钟指针指向不同方向</p>
+                    <p style="margin: 8px 0;">👶 <strong>Young:</strong> 蹦蹦跳跳，充满活力</p>
+                    <p style="margin: 8px 0;">👴 <strong>Old:</strong> 慢慢走路，弯腰驼背</p>
+                    <p style="margin: 8px 0;">🐌 <strong>Slowly:</strong> 动作非常缓慢</p>
+                    <p style="margin: 8px 0;">⚡ <strong>Quickly:</strong> 动作非常快速</p>
+                    <p style="margin: 8px 0;">✅ <strong>Always:</strong> 重复同一动作很多次</p>
+                    <p style="margin: 8px 0;">❌ <strong>Never:</strong> 摇头摆手表示拒绝</p>
+                    <p style="margin-top: 15px; font-style: italic;">🎪 表演技巧：动作要夸张，表达要清晰！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">📅 魔法时间管理师</h4>
+                <div class="mission-card">
+                    <h4>📋 魔法任务：制定英语时间表</h4>
+                    <p>用学到的时间单词，制定一份详细的日程安排：</p>
+                    <ol>
+                        <li>制定一周的英语学习计划</li>
+                        <li>安排每天不同时段的活动</li>
+                        <li>设定学习目标和截止时间</li>
+                        <li>用英语记录时间安排</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: #333; margin-bottom: 15px;">📅 我的魔法时间表</h5>
+                    <p style="margin: 8px 0;">🌅 <strong>Morning Plan:</strong> I <span class="english-word">always</span> ________________ in the <span class="english-word">morning</span></p>
+                    <p style="margin: 8px 0;">☀️ <strong>Afternoon Plan:</strong> I <span class="english-word">usually</span> ________________ in the <span class="english-word">afternoon</span></p>
+                    <p style="margin: 8px 0;">🌙 <strong>Evening Plan:</strong> I <span class="english-word">often</span> ________________ in the <span class="english-word">evening</span></p>
+                    <p style="margin: 8px 0;">📚 <strong>Study Time:</strong> I study English _______ <span class="english-word">minutes</span> every <span class="english-word">day</span></p>
+                    <p style="margin: 8px 0;">🎯 <strong>Weekly Goal:</strong> This <span class="english-word">week</span> I want to ________________</p>
+                    <p style="margin: 8px 0;">⏰ <strong>Deadline:</strong> I will finish it <span class="english-word">before</span> ________________</p>
+                    <p style="margin-top: 15px; font-style: italic;">📊 管理技巧：合理安排时间，坚持每天练习！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🌍 魔法时间旅行</h4>
+                <div class="mission-card">
+                    <h4>🚀 魔法任务：穿越时空大冒险</h4>
+                    <p>想象你有一台时间机器，可以穿越到不同的时代：</p>
+                    <ol>
+                        <li><strong>过去之旅：</strong>回到<span class="english-word">ancient</span>时代，描述你看到了什么</li>
+                        <li><strong>现在探索：</strong>观察<span class="english-word">modern</span>生活，用英语记录</li>
+                        <li><strong>未来畅想：</strong>想象<span class="english-word">future</span>世界的样子</li>
+                        <li><strong>时空对比：</strong>比较不同时代的差异</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: white; margin-bottom: 15px;">🚀 时空旅行日记</h5>
+                    <p style="margin: 8px 0;"><strong>Ancient Times:</strong> In the <span class="english-word">past</span>, people ________________</p>
+                    <p style="margin: 8px 0;"><strong>Modern Day:</strong> <span class="english-word">Now</span>, we have ________________</p>
+                    <p style="margin: 8px 0;"><strong>Future World:</strong> In the <span class="english-word">future</span>, there will be ________________</p>
+                    <p style="margin: 8px 0;"><strong>Time Differences:</strong> <span class="english-word">Previously</span>, _______ but <span class="english-word">currently</span> _______</p>
+                    <p style="margin: 8px 0;"><strong>My Discovery:</strong> I <span class="english-word">recently</span> learned that ________________</p>
+                    <p style="margin-top: 15px; font-style: italic;">⏳ 想象技巧：越详细越有趣！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">⏰ 魔法时钟制作</h4>
+                <div class="mission-card">
+                    <h4>🕰️ 魔法任务：制作英语学习时钟</h4>
+                    <p>制作一个特殊的时钟，帮助学习时间英语：</p>
+                    <ol>
+                        <li>在时钟上标注英语时间词汇</li>
+                        <li>为每个数字配上相应的英语表达</li>
+                        <li>设置学习提醒时间</li>
+                        <li>练习用英语报时</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); color: #333; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: #333; margin-bottom: 15px;">🕰️ 英语时钟设计</h5>
+                    <p style="margin: 8px 0;"><strong>12点位置：</strong><span class="english-word">noon</span> / <span class="english-word">midnight</span></p>
+                    <p style="margin: 8px 0;"><strong>6点位置：</strong><span class="english-word">morning</span> / <span class="english-word">evening</span></p>
+                    <p style="margin: 8px 0;"><strong>时间表达：</strong>"It's _______ o'clock"</p>
+                    <p style="margin: 8px 0;"><strong>半点表达：</strong>"It's half past _______"</p>
+                    <p style="margin: 8px 0;"><strong>整点报时：</strong>"<span class="english-word">Now</span> it's time for _______"</p>
+                    <p style="margin: 8px 0;"><strong>学习提醒：</strong>"<span class="english-word">Remember</span> to study English!"</p>
+                    <p style="margin-top: 15px; font-style: italic;">🎨 制作技巧：用彩色笔让时钟更生动！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🎯 魔法时间侦探</h4>
+                <div class="mission-card">
+                    <h4>🔍 魔法任务：时间线索推理</h4>
+                    <p>根据时间线索，推理出正确的答案：</p>
+                    <ol>
+                        <li>分析时间顺序的线索</li>
+                        <li>推理事件发生的时间</li>
+                        <li>用英语描述时间关系</li>
+                        <li>解释推理过程</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: white; margin-bottom: 15px;">🔍 时间侦探案例</h5>
+                    <p style="margin: 8px 0;"><strong>案例1：</strong></p>
+                    <p style="margin: 8px 0;">🔍 线索：小明<span class="english-word">always</span>在<span class="english-word">morning</span>刷牙，<span class="english-word">usually</span>在<span class="english-word">evening</span>看书</p>
+                    <p style="margin: 8px 0;">🔍 问题：他<span class="english-word">when</span>最可能吃早餐？</p>
+                    <p style="margin: 8px 0;"><strong>案例2：</strong></p>
+                    <p style="margin: 8px 0;">🔍 线索：活动<span class="english-word">before</span> <span class="english-word">noon</span>开始，<span class="english-word">after</span> <span class="english-word">afternoon</span>结束</p>
+                    <p style="margin: 8px 0;">🔍 问题：活动持续了多长<span class="english-word">time</span>？</p>
+                    <p style="margin: 8px 0;"><strong>案例3：</strong></p>
+                    <p style="margin: 8px 0;">🔍 线索：<span class="english-word">Yesterday</span>下雨，<span class="english-word">today</span>晴天，<span class="english-word">tomorrow</span>多云</p>
+                    <p style="margin: 8px 0;">🔍 问题：哪天最适合户外活动？</p>
+                    <p style="margin-top: 15px; font-style: italic;">🕵️ 侦探技巧：仔细分析时间关系！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">📆 魔法日历创作</h4>
+                <div class="mission-card">
+                    <h4>📅 魔法任务：制作英语学习日历</h4>
+                    <p>制作一个个性化的英语学习日历：</p>
+                    <ol>
+                        <li>标注所有<span class="english-word">months</span>和<span class="english-word">days</span>的英文名称</li>
+                        <li>标记重要的<span class="english-word">holidays</span>和<span class="english-word">festivals</span></li>
+                        <li>安排每日英语学习任务</li>
+                        <li>记录学习进度和成果</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: #333; margin-bottom: 15px;">📅 我的英语学习日历</h5>
+                    <p style="margin: 8px 0;"><strong>Month:</strong> This <span class="english-word">month</span> is ________________</p>
+                    <p style="margin: 8px 0;"><strong>Week:</strong> This <span class="english-word">week</span> I will learn ________________</p>
+                    <p style="margin: 8px 0;"><strong>Today's Task:</strong> <span class="english-word">Today</span> I plan to ________________</p>
+                    <p style="margin: 8px 0;"><strong>Weekend Plan:</strong> On <span class="english-word">weekend</span> I will ________________</p>
+                    <p style="margin: 8px 0;"><strong>Monthly Goal:</strong> <span class="english-word">Before</span> this month ends, I want to ________________</p>
+                    <p style="margin: 8px 0;"><strong>Special Day:</strong> My <span class="english-word">birthday</span> is on ________________</p>
+                    <p style="margin-top: 15px; font-style: italic;">📋 规划技巧：制定可实现的小目标！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🗣️ 魔法时间对话</h4>
+                <div class="mission-card">
+                    <h4>💬 魔法任务：用时间单词对话</h4>
+                    <p>用学到的时间单词，和小伙伴进行简单的英语对话：</p>
+                    <p>比如："What time is it?" "It is <span class="english-word">morning</span>."</p>
+                    <p>"When did you go to school?" "<span class="english-word">Yesterday</span>."</p>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: #333; margin-bottom: 15px;">💬 时间对话大全</h5>
+                    <p style="margin: 8px 0;"><strong>基础时间对话：</strong></p>
+                    <p style="margin: 8px 0;">A: "What <span class="english-word">time</span> is it?" B: "It's _______ o'clock."</p>
+                    <p style="margin: 8px 0;"><strong>频率对话：</strong></p>
+                    <p style="margin: 8px 0;">A: "How <span class="english-word">often</span> do you study?" B: "I <span class="english-word">always</span> study every <span class="english-word">day</span>."</p>
+                    <p style="margin: 8px 0;"><strong>过去现在对话：</strong></p>
+                    <p style="margin: 8px 0;">A: "What did you do <span class="english-word">yesterday</span>?" B: "<span class="english-word">Yesterday</span> I played games."</p>
+                    <p style="margin: 8px 0;"><strong>未来计划对话：</strong></p>
+                    <p style="margin: 8px 0;">A: "What will you do <span class="english-word">tomorrow</span>?" B: "<span class="english-word">Tomorrow</span> I will visit friends."</p>
+                    <p style="margin-top: 15px; font-style: italic;">🗣️ 对话技巧：多练习不同的时间表达！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">📝 魔法时间故事创作</h4>
+                <div class="mission-card">
+                    <h4>📚 魔法任务：编一个时间旅行故事</h4>
+                    <p>用学到的时间单词，编一个属于你的魔法时间旅行故事，可以画出来，也可以写下来！</p>
+                    <p>比如："One <span class="english-word">morning</span>, I found a magic <span class="english-word">hourglass</span> that could control <span class="english-word">time</span>..."</p>
+                </div>
+                
+                <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                    <h5><strong>时间旅行故事模板：</strong></h5>
+                    <p><strong>开头：</strong>One <span class="english-word">day</span>, I discovered a magical <span class="english-word">clock</span> that could...</p>
+                    <p><strong>发展：</strong><span class="english-word">Suddenly</span>, I traveled to the <span class="english-word">past</span> and saw...</p>
+                    <p><strong>高潮：</strong><span class="english-word">Then</span> I went to the <span class="english-word">future</span> and found...</p>
+                    <p><strong>结尾：</strong><span class="english-word">Finally</span>, I returned to the <span class="english-word">present</span> and learned...</p>
+                    <p style="margin-top: 10px;"><strong>挑战：</strong>在你的故事中至少使用20个不同的时间单词！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🎯 魔法时间目标设定</h4>
+                <div class="mission-card">
+                    <h4>📊 魔法任务：制定英语学习时间目标</h4>
+                    <p>用时间单词设定清晰的学习目标：</p>
+                    <ol>
+                        <li>设定短期目标（每日、每周）</li>
+                        <li>制定长期计划（每月、每年）</li>
+                        <li>安排复习和练习时间</li>
+                        <li>记录达成目标的时间</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: white; margin-bottom: 15px;">🎯 我的时间学习目标</h5>
+                    <p style="margin: 8px 0;">📅 <strong>Daily Goal:</strong> <span class="english-word">Every day</span> I will ________________</p>
+                    <p style="margin: 8px 0;">📅 <strong>Weekly Goal:</strong> <span class="english-word">Every week</span> I will ________________</p>
+                    <p style="margin: 8px 0;">📅 <strong>Monthly Goal:</strong> <span class="english-word">Every month</span> I will ________________</p>
+                    <p style="margin: 8px 0;">⏰ <strong>Study Time:</strong> I will study for _______ <span class="english-word">minutes</span> <span class="english-word">every day</span></p>
+                    <p style="margin: 8px 0;">🔄 <strong>Review Time:</strong> I will review <span class="english-word">once a week</span> on _______</p>
+                    <p style="margin: 8px 0;">🏆 <strong>Achievement Date:</strong> I will achieve my goal <span class="english-word">before</span> _______</p>
+                    <p style="margin-top: 15px; font-style: italic;">💪 记住：坚持<span class="english-word">regularly</span>练习，<span class="english-word">eventually</span>会成功！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🦕 史前时代恐龙探险</h4>
+                <div class="mission-card">
+                    <h4>🔍 魔法任务：重现史前恐龙时代的冒险</h4>
+                    <p>模拟故事中的史前时代探险：</p>
+                    <ol>
+                        <li><strong>恐龙识别</strong>：学会说<span class="english-word">Brontosaurus</span>、<span class="english-word">Triceratops</span>、<span class="english-word">T-Rex</span>等恐龙名称</li>
+                        <li><strong>时代词汇</strong>：使用<span class="english-word">prehistoric</span>、<span class="english-word">Jurassic Period</span>、<span class="english-word">millions of years ago</span></li>
+                        <li><strong>搞笑互动</strong>：学杨乐天试图<span class="english-word">pet</span>恐龙被尾巴甩飞的情节</li>
+                        <li><strong>化石挖掘</strong>：假装挖掘<span class="english-word">fossils</span>并用英语描述发现</li>
+                    </ol>
+                    <p>成为<span class="english-word">prehistoric</span> <span class="english-word">explorer</span>！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🏺 古埃及金字塔探秘</h4>
+                <div class="mission-card">
+                    <h4>🏜️ 魔法任务：探索Ancient Egypt的神秘文明</h4>
+                    <p>体验古埃及的神奇世界：</p>
+                    <ol>
+                        <li><strong>金字塔建造</strong>：了解<span class="english-word">pyramids</span>的建造过程，学习<span class="english-word">ancient Egyptian workers</span></li>
+                        <li><strong>象形文字</strong>：尝试<span class="english-word">hieroglyphics</span>（象形文字）和现代<span class="english-word">English</span>的对比</li>
+                        <li><strong>时间计算</strong>：练习说"<span class="english-word">four thousand years ago</span>"等时间表达</li>
+                        <li><strong>文化交流</strong>：模拟与<span class="english-word">ancient Egyptians</span>的交流困难</li>
+                    </ol>
+                    <p>揭开<span class="english-word">ancient civilization</span>的秘密！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🏰 中世纪骑士训练营</h4>
+                <div class="mission-card">
+                    <h4>⚔️ 魔法任务：体验Medieval Times的骑士生活</h4>
+                    <p>成为中世纪的勇敢骑士：</p>
+                    <ol>
+                        <li><strong>骑士训练</strong>：学会说<span class="english-word">knights</span>、<span class="english-word">castle</span>、<span class="english-word">training</span></li>
+                        <li><strong>装备认识</strong>：了解<span class="english-word">sword</span>、<span class="english-word">armor</span>、<span class="english-word">shield</span>等装备</li>
+                        <li><strong>搞笑重现</strong>：模仿杨乐天举不起<span class="english-word">heavy sword</span>的搞笑场面</li>
+                        <li><strong>骑士精神</strong>：学习<span class="english-word">chivalry</span>和<span class="english-word">honor</span>的概念</li>
+                    </ol>
+                    <p>成为真正的<span class="english-word">medieval knight</span>！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🚂 工业革命体验馆</h4>
+                <div class="mission-card">
+                    <h4>⚙️ 魔法任务：感受Industrial Revolution的变革力量</h4>
+                    <p>体验工业时代的重大变革：</p>
+                    <ol>
+                        <li><strong>蒸汽动力</strong>：了解<span class="english-word">steam trains</span>和<span class="english-word">steam engines</span>的工作原理</li>
+                        <li><strong>工厂生活</strong>：模拟<span class="english-word">factory workers</span>的工作，学习<span class="english-word">operating machines</span></li>
+                        <li><strong>发明创造</strong>：介绍这个时期的重要<span class="english-word">inventions</span></li>
+                        <li><strong>社会变化</strong>：理解<span class="english-word">Industrial Revolution</span>如何改变<span class="english-word">world</span></li>
+                    </ol>
+                    <p>见证<span class="english-word">technology</span>改变<span class="english-word">society</span>！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🚀 未来世界畅想</h4>
+                <div class="mission-card">
+                    <h4>🌌 魔法任务：探索Future World的无限可能</h4>
+                    <p>畅想未来的神奇世界：</p>
+                    <ol>
+                        <li><strong>未来交通</strong>：想象<span class="english-word">flying cars</span>、<span class="english-word">space elevators</span>的生活</li>
+                        <li><strong>智能科技</strong>：与<span class="english-word">friendly robots</span>对话，学习<span class="english-word">artificial intelligence</span></li>
+                        <li><strong>未来城市</strong>：描述<span class="english-word">underwater cities</span>和<span class="english-word">space colonies</span></li>
+                        <li><strong>时间概念</strong>：理解<span class="english-word">one thousand years from now</span>的时间跨度</li>
+                    </ol>
+                    <p>成为<span class="english-word">future</span> <span class="english-word">visionary</span>！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">⏰ Professor Chronos的时间实验室</h4>
+                <div class="mission-card">
+                    <h4>🧙‍♂️ 魔法任务：掌握时间魔法的终极秘密</h4>
+                    <p>在Professor Chronos的指导下学习时间魔法：</p>
+                    <ol>
+                        <li><strong>时间守护者</strong>：理解<span class="english-word">time guardian</span>的职责</li>
+                        <li><strong>时间谜题</strong>：解决各种<span class="english-word">time puzzles</span>和<span class="english-word">historical questions</span></li>
+                        <li><strong>时间线理解</strong>：掌握<span class="english-word">timeline</span>概念，从<span class="english-word">past</span>到<span class="english-word">future</span></li>
+                        <li><strong>时间魔法咒语</strong>：学会用<span class="english-word">English time words</span>施展魔法</li>
+                    </ol>
+                    <p>成为<span class="english-word">time-traveling wizard</span>！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🕰️ 时间价值教育馆</h4>
+                <div class="mission-card">
+                    <h4>💎 魔法任务：学会珍惜时间的智慧</h4>
+                    <p>深刻理解时间的珍贵价值：</p>
+                    <ol>
+                        <li><strong>时间珍贵性</strong>：体会<span class="english-word">time is precious</span>的道理</li>
+                        <li><strong>珍惜当下</strong>：学会<span class="english-word">cherish every moment</span></li>
+                        <li><strong>时间管理</strong>：掌握<span class="english-word">time management</span>技巧</li>
+                        <li><strong>历史教训</strong>：从<span class="english-word">history</span>中学习<span class="english-word">wisdom</span></li>
+                    </ol>
+                    <p>成为<span class="english-word">wise time manager</span>！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🏆 时间大师认证考试</h4>
+                <div class="mission-card">
+                    <h4>🎓 魔法任务：获得Time Master证书</h4>
+                    <p>完成最终的时间魔法挑战：</p>
+                    <ol>
+                        <li><strong>历史知识</strong>：回答关于不同<span class="english-word">time periods</span>的英语问题</li>
+                        <li><strong>时间计算</strong>：正确使用<span class="english-word">years ago</span>、<span class="english-word">centuries</span>、<span class="english-word">millennia</span></li>
+                        <li><strong>角色扮演</strong>：演示<span class="english-word">time travelers</span>的冒险经历</li>
+                        <li><strong>未来规划</strong>：制定个人的<span class="english-word">future goals</span>和<span class="english-word">timeline</span></li>
+                        <li><strong>时间魔法</strong>：熟练使用<span class="english-word">time vocabulary</span>施展魔法</li>
+                    </ol>
+                    <p>成为<span class="english-word">Official Time Master</span>！</p>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: white; margin-bottom: 15px;">🏆 Time Master证书</h5>
+                    <p style="margin: 8px 0; text-align: center; font-weight: bold;">恭喜你完成了时间旅行的神奇冒险！</p>
+                    <p style="margin: 8px 0; text-align: center;">你现在是一名真正的：</p>
+                    <p style="margin: 8px 0; text-align: center; font-size: 1.2em; color: #fff566; font-weight: bold;">⏰ TIME MASTER ⏰</p>
+                    <p style="margin: 8px 0; text-align: center;">你最感兴趣的历史时期：</p>
+                    <p style="margin: 8px 0; text-align: center;">________________（选择：Prehistoric / Ancient Egypt / Medieval / Industrial / Future）</p>
+                    <p style="margin: 8px 0; text-align: center;">你想回到的时代：</p>
+                    <p style="margin: 8px 0; text-align: center;">________________</p>
+                    <p style="margin: 8px 0; text-align: center;">你的时间管理宣言：</p>
+                    <p style="margin: 8px 0; text-align: center;">________________</p>
+                    <p style="margin-top: 15px; font-style: italic; text-align: center;">🌟 Time is precious - cherish every moment！🌟</p>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="chapter-nav">
+            <a href="chapter09.html" class="">⬅️ 上一章</a>
+            <a href="index.html" class="back-link">📚 返回章节目录</a>
+            <a href="chapter11.html" class="">下一章 ➡️</a>
+        </div>
+    </div>
+    
+    <!-- 单词发音功能 Word Pronunciation Feature -->
+    <script src="../js/word-pronunciation.js"></script>
+    
+    <!-- 发音功能使用说明提示 -->
+    <div id="pronunciation-guide" style="position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); max-width: 300px; font-size: 0.9em; z-index: 1000; opacity: 0; transition: opacity 0.5s ease;">
+        <div style="display: flex; align-items: center; margin-bottom: 8px;">
+            <span style="font-size: 1.2em; margin-right: 8px;">🔊</span>
+            <strong>单词发音功能已启用！</strong>
+        </div>
+        <p style="margin: 5px 0; font-size: 0.85em;">点击任意单词卡即可听到标准英语发音</p>
+        <p style="margin: 5px 0; font-size: 0.85em;">Click any word card to hear pronunciation</p>
+        <button onclick="this.parentElement.style.opacity='0'" style="position: absolute; top: 5px; right: 8px; background: none; border: none; color: white; cursor: pointer; font-size: 1.1em;">×</button>
+    </div>
+    
+    <script>
+        // 显示发音功能提示
+        setTimeout(() => {
+            const guide = document.getElementById('pronunciation-guide');
+            if (guide) {
+                guide.style.opacity = '1';
+                // 5秒后自动隐藏
+                setTimeout(() => {
+                    guide.style.opacity = '0';
+                }, 5000);
+            }
+        }, 2000);
+    </script>
+</body>
+</html>

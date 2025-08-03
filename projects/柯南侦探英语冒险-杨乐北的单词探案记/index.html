@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>柯南侦探英语冒险：杨乐北的单词探案记</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <style>
+        .project-nav {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+        }
+        
+        .project-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            margin: 0 10px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.2);
+            transition: background 0.3s;
+        }
+        
+        .project-nav a:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        /* 书皮设计按钮样式 */
+        .book-cover-btn:hover {
+            transform: translateY(-2px) !important;
+        }
+        
+        .book-cover-btn:active {
+            transform: translateY(0) !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 项目导航 -->
+        <div class="project-nav">
+            <a href="../index.html">📚 返回项目总目录</a>
+            <a href="#chapter-table">📖 查看章节目录</a>
+        </div>
+        
+        <!-- 封面页 -->
+        <div class="cover-page">
+            <div class="cover-content">
+                <div class="cover-image">✨</div>
+                <h1 class="cover-title">柯南侦探英语冒险：杨乐北的单词探案记</h1>
+                <p class="cover-subtitle">魔法世界中的英语学习之旅</p>
+                <p class="cover-author">作者：杨乐北 & 柯南魔法学院</p>
+            </div>
+        </div>
+        
+        <!-- 空白页 -->
+        <div class="blank-page"></div>
+        
+        <h1 class="title">柯南侦探英语冒险：杨乐北的单词探案记</h1>
+        <p class="subtitle">魔法世界中的英语学习之旅</p>
+        
+        <div class="pdf-export-instructions">
+            <h3 style="color: #495057; margin-bottom: 15px;">📄 PDF导出</h3>
+            <button class="export-pdf-button" onclick="exportToPDF()">📄 导出完整书籍为PDF</button>
+            <div style="text-align: left; margin-top: 15px; color: #666; font-size: 14px;">
+                <p><strong>✨ 全新高端PDF导出功能：</strong></p>
+                <ul style="margin: 10px 0; padding-left: 20px;">
+                    <li>🎨 <strong>完整书籍</strong>：包含专业封面、目录、11章内容、附录、后封面</li>
+                    <li>💎 <strong>奢华设计</strong>：高端金色渐变、魔法特效、专业字体完美呈现</li>
+                    <li>🖨️ <strong>双面打印优化</strong>：自动处理页面布局，支持专业装订</li>
+                    <li>📁 <strong>一键下载</strong>：自动保存到下载文件夹</li>
+                    <li>🎯 <strong>两种导出方式</strong>：浏览器一键导出 或 Python脚本高级导出</li>
+                    <li>📚 <strong>专业品质</strong>：达到商业出版标准，适合教学和收藏</li>
+                </ul>
+                <div style="background: #e8f5e8; padding: 10px; border-radius: 5px; margin-top: 10px;">
+                    <p style="margin: 0 0 8px 0; font-size: 12px; color: #2e7d32;">
+                        🖨️ <strong>推荐方式</strong>：<a href="output/柯南侦探英语冒险-完整打印版.html" target="_blank" style="color: #2e7d32; text-decoration: underline;">打开浏览器打印版</a>，按 Ctrl+P 选择"保存为PDF"
+                    </p>
+                    <p style="margin: 0; font-size: 12px; color: #2e7d32;">
+                        📋 或运行 <code>tools/create_print_version.bat</code> (Windows) / <code>tools/create_print_version.sh</code> (Linux/Mac) 创建最新版本
+                    </p>
+                </div>
+                <div style="background: #e3f2fd; padding: 10px; border-radius: 5px; margin-top: 5px;">
+                    <p style="margin: 0; font-size: 12px; color: #1976d2;">
+                        💡 <strong>高级导出</strong>：使用 <code>tools/export_pdf.bat</code> (Windows) 或 <code>tools/export_pdf.sh</code> (Linux/Mac) 获得最高质量输出
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="magic-box" style="margin: 30px 0;">
+            <h3 style="color: #495057; margin-bottom: 20px;">📚 书皮设计预览</h3>
+            <div style="text-align: center; margin-bottom: 20px;">
+                <p style="color: #666; font-size: 14px; margin-bottom: 15px;">
+                    🎨 专为本书设计的16开本书皮，包含封面和后封面设计
+                </p>
+                
+                <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 20px 0;">
+                    <a href="书皮预览.html" target="_blank" class="book-cover-btn" style="
+                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        color: white;
+                        padding: 12px 24px;
+                        text-decoration: none;
+                        border-radius: 8px;
+                        font-weight: bold;
+                        box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+                        transition: all 0.3s ease;
+                        display: inline-block;
+                    ">
+                        🔍 书皮设计预览
+                    </a>
+                    
+                    <a href="book_cover.html" target="_blank" class="book-cover-btn" style="
+                        background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+                        color: white;
+                        padding: 12px 24px;
+                        text-decoration: none;
+                        border-radius: 8px;
+                        font-weight: bold;
+                        box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
+                        transition: all 0.3s ease;
+                        display: inline-block;
+                    ">
+                        📖 查看封面
+                    </a>
+                    
+                    <a href="book_back_cover.html" target="_blank" class="book-cover-btn" style="
+                        background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+                        color: white;
+                        padding: 12px 24px;
+                        text-decoration: none;
+                        border-radius: 8px;
+                        font-weight: bold;
+                        box-shadow: 0 4px 8px rgba(39, 174, 96, 0.3);
+                        transition: all 0.3s ease;
+                        display: inline-block;
+                    ">
+                        📄 查看后封面
+                    </a>
+                </div>
+                
+                <div style="background: rgba(102, 126, 234, 0.1); padding: 15px; border-radius: 8px; margin-top: 15px;">
+                    <p style="margin: 0; color: #495057; font-size: 13px;">
+                        💡 <strong>使用说明：</strong>
+                        书皮设计采用16开本标准尺寸(185mm×260mm)，支持直接打印或发送给印刷厂制作。
+                        点击"书皮设计预览"可查看完整的设计展示和使用说明。
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chapter" id="chapter-table">
+            <h3 class="chapter-title">📋 目录</h3>
+            
+            <div class="magic-box">
+                <h4 class="section-title">📖 目录</h4>
+                <div style="margin: 20px 0;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                        <thead>
+                            <tr style="border-bottom: 2px solid #6c757d;">
+                                <th style="text-align: left; padding: 10px 0; color: #495057; font-weight: bold;">章节</th>
+                                <th style="text-align: center; padding: 10px 0; color: #495057; font-weight: bold;">内容</th>
+                                <th style="text-align: right; padding: 10px 0; color: #495057; font-weight: bold;">链接</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid #dee2e6;">
+                                <td style="padding: 8px 0;">第一章</td>
+                                <td style="text-align: center; padding: 8px 0;">魔法学院的入学考试</td>
+                                <td style="text-align: right; padding: 8px 0;"><a href="chapters/chapter01.html">📖 阅读</a></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #dee2e6;">
+                                <td style="padding: 8px 0;">第二章</td>
+                                <td style="text-align: center; padding: 8px 0;">颜色单词的魔法咒语</td>
+                                <td style="text-align: right; padding: 8px 0;"><a href="chapters/chapter02.html">📖 阅读</a></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #dee2e6;">
+                                <td style="padding: 8px 0;">第三章</td>
+                                <td style="text-align: center; padding: 8px 0;">数字单词的密码破解</td>
+                                <td style="text-align: right; padding: 8px 0;"><a href="chapters/chapter03.html">📖 阅读</a></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #dee2e6;">
+                                <td style="padding: 8px 0;">第四章</td>
+                                <td style="text-align: center; padding: 8px 0;">罗小黑的奇妙相遇</td>
+                                <td style="text-align: right; padding: 8px 0;"><a href="chapters/chapter04.html">📖 阅读</a></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #dee2e6;">
+                                <td style="padding: 8px 0;">第五章</td>
+                                <td style="text-align: center; padding: 8px 0;">魔法生物的语言</td>
+                                <td style="text-align: right; padding: 8px 0;"><a href="chapters/chapter05.html">📖 阅读</a></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #dee2e6;">
+                                <td style="padding: 8px 0;">第六章</td>
+                                <td style="text-align: center; padding: 8px 0;">魔法地图的探索</td>
+                                <td style="text-align: right; padding: 8px 0;"><a href="chapters/chapter06.html">📖 阅读</a></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #dee2e6;">
+                                <td style="padding: 8px 0;">第七章</td>
+                                <td style="text-align: center; padding: 8px 0;">魔法图书馆的秘密</td>
+                                <td style="text-align: right; padding: 8px 0;"><a href="chapters/chapter07.html">📖 阅读</a></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #dee2e6;">
+                                <td style="padding: 8px 0;">第八章</td>
+                                <td style="text-align: center; padding: 8px 0;">魔法竞技场的挑战</td>
+                                <td style="text-align: right; padding: 8px 0;"><a href="chapters/chapter08.html">📖 阅读</a></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #dee2e6;">
+                                <td style="padding: 8px 0;">第九章</td>
+                                <td style="text-align: center; padding: 8px 0;">魔法天气的预测</td>
+                                <td style="text-align: right; padding: 8px 0;"><a href="chapters/chapter09.html">📖 阅读</a></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #dee2e6;">
+                                <td style="padding: 8px 0;">第十章</td>
+                                <td style="text-align: center; padding: 8px 0;">魔法时间的旅行</td>
+                                <td style="text-align: right; padding: 8px 0;"><a href="chapters/chapter10.html">📖 阅读</a></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #dee2e6;">
+                                <td style="padding: 8px 0;">第十一章</td>
+                                <td style="text-align: center; padding: 8px 0;">最终魔法考试</td>
+                                <td style="text-align: right; padding: 8px 0;"><a href="chapters/chapter11.html">📖 阅读</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="story-box">
+                <h4 class="section-title">🎯 基本信息</h4>
+                <ul>
+                    <li><span class="magic">主角</span>：<span class="highlight">杨乐北</span>（10岁，小学五年级）</li>
+                    <li><span class="magic">导师</span>：<span class="highlight">柯南</span>（魔法学院院长）</li>
+                    <li><span class="magic">故事背景</span>：杨乐北被选中进入魔法学院，通过魔法咒语学习英语单词</li>
+                    <li><span class="magic">目标读者</span>：小学五年级学生</li>
+                    <li><span class="magic">学习目标</span>：掌握小学阶段核心英语单词</li>
+                    <li><span class="magic">阅读时长</span>：一周阅读量</li>
+                </ul>
+            </div>
+            
+            <div class="word-box">
+                <h4 class="section-title">📖 分章节内容规划</h4>
+                <ol>
+                    <li><span class="conan">第一章：魔法学院的入学考试</span> - 基础问候语和自我介绍</li>
+                    <li><span class="conan">第二章：颜色单词的魔法咒语</span> - 颜色和形状单词</li>
+                    <li><span class="conan">第三章：数字单词的密码破解</span> - 数字和计算单词</li>
+                    <li><span class="conan">第四章：罗小黑的奇妙相遇</span> - 妖精和魔法单词</li>
+                    <li><span class="conan">第五章：魔法生物的语言</span> - 动物相关单词</li>
+                    <li><span class="conan">第六章：魔法地图的探索</span> - 地点和方向单词</li>
+                    <li><span class="conan">第七章：魔法图书馆的秘密</span> - 学习和知识单词</li>
+                    <li><span class="conan">第八章：魔法竞技场的挑战</span> - 运动和游戏单词</li>
+                    <li><span class="conan">第九章：魔法天气的预测</span> - 天气和季节单词</li>
+                    <li><span class="conan">第十章：魔法时间的旅行</span> - 时间和数字单词</li>
+                    <li><span class="conan">第十一章：最终魔法考试</span> - 综合复习和应用</li>
+                </ol>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🎓 学习目标</h4>
+                <ol>
+                    <li><span class="english-word">英语能力</span>：掌握300+个小学核心单词</li>
+                    <li><span class="english-word">听说能力</span>：通过魔法咒语提高英语听说能力</li>
+                    <li><span class="english-word">阅读能力</span>：培养英语阅读兴趣</li>
+                    <li><span class="english-word">思维能力</span>：通过魔法推理培养逻辑思维</li>
+                    <li><span class="english-word">游戏能力</span>：通过魔法游戏巩固学习效果</li>
+                </ol>
+            </div>
+            
+            <div class="adventure-box">
+                <h4 class="section-title">🔧 使用说明</h4>
+                <ul>
+                    <li><strong>分章节阅读</strong>：点击目录中的链接可以单独阅读每个章节</li>
+                    <li><strong>完整版本</strong>：使用 <code>build.py</code> 脚本可以生成完整的合并版本</li>
+                    <li><strong>打印版本</strong>：完整版本适合打印成实体书籍</li>
+                    <li><strong>在线阅读</strong>：分章节版本更适合在线阅读和学习</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- 项目导航 -->
+        <div class="project-nav">
+            <a href="../index.html">📚 返回项目总目录</a>
+            <a href="chapters/chapter01.html">📖 开始阅读第一章</a>
+        </div>
+    </div>
+
+    <!-- 引入 html2pdf.js 库 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
+    <script>
+        function exportToPDF() {
+            // 显示加载提示
+            alert('🚀 正在准备PDF导出...\n\n即将在新窗口中打开完整版本并自动开始生成PDF。\n请稍候...');
+            
+            // 打开完整版本的书籍文件
+            const fullBookUrl = '柯南侦探英语冒险：杨乐北的单词探案记.html';
+            
+            // 在新窗口中打开完整版本
+            const newWindow = window.open(fullBookUrl, '_blank', 'width=1200,height=800,scrollbars=yes,resizable=yes');
+            
+            if (newWindow) {
+                // 等待页面加载完成后自动开始PDF导出
+                newWindow.onload = function() {
+                    setTimeout(() => {
+                        // 在新窗口中查找并点击导出按钮
+                        const exportButton = newWindow.document.querySelector('.export-pdf-button');
+                        if (exportButton) {
+                            exportButton.click();
+                        } else {
+                            // 如果找不到新的导出按钮，显示说明
+                            alert('📄 完整书籍已打开！\n\n请在新窗口中点击 "📄 导出为PDF" 按钮来生成PDF文件。\n\n新版本支持一键自动下载PDF！');
+                        }
+                    }, 2000);
+                };
+            } else {
+                alert('❌ 无法打开新窗口，请检查浏览器是否阻止了弹出窗口。\n\n💡 解决方案：\n1. 允许此网站弹出窗口\n2. 或直接点击这个链接：柯南侦探英语冒险：杨乐北的单词探案记.html\n3. 然后在打开的页面中点击"📄 导出为PDF"按钮');
+            }
+        }
+
+        // 添加按钮样式
+        const style = document.createElement('style');
+        style.textContent = `
+            .export-pdf-button {
+                background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+                color: white;
+                border: none;
+                padding: 12px 24px;
+                font-size: 16px;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
+                font-family: inherit;
+            }
+            
+            .export-pdf-button:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 12px rgba(231, 76, 60, 0.4);
+                background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
+            }
+            
+            .export-pdf-button:active {
+                transform: translateY(0);
+                box-shadow: 0 2px 4px rgba(231, 76, 60, 0.3);
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

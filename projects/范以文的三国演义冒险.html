@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>范以文的三国演义冒险</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', 'SimSun', serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        .cover-page {
+            text-align: center;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, #8B0000 0%, #B22222 50%, #DC143C 100%);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cover-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="stars" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.3)"/></pattern></defs><rect width="100" height="100" fill="url(%23stars)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .cover-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cover-title {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .cover-subtitle {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .cover-image {
+            width: 200px;
+            height: 200px;
+            margin: 30px auto;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 5px solid rgba(255,255,255,0.3);
+        }
+        
+        .cover-author {
+            font-size: 1.2em;
+            margin-top: 20px;
+            opacity: 0.8;
+        }
+        
+        .title {
+            text-align: center;
+            color: #8B0000;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+        
+        .chapter {
+            margin-bottom: 40px;
+            page-break-before: always;
+            margin-top: 10mm;
+            position: relative;
+        }
+        
+        .chapter-title {
+            color: #8B0000;
+            border-bottom: 2px solid #8B0000;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        .section-title {
+            color: #2F4F4F;
+            border-left: 4px solid #8B0000;
+            padding-left: 15px;
+            margin: 25px 0 15px 0;
+            font-size: 1.4em;
+        }
+        
+        .story-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .knowledge-box {
+            background-color: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .character-box {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .battle-box {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .thought-box {
+            background-color: #e2e3e5;
+            border: 1px solid #d6d8db;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .character {
+            color: #8B0000;
+            font-weight: bold;
+        }
+        
+        .place {
+            color: #2F4F4F;
+            font-weight: bold;
+        }
+        
+        .weapon {
+            color: #8B4513;
+            font-weight: bold;
+        }
+        
+        .strategy {
+            color: #006400;
+            font-weight: bold;
+        }
+        
+        .blank-page {
+            height: 100vh;
+            page-break-after: always;
+        }
+        
+        @media print {
+            .print-button, .print-instructions {
+                display: none;
+            }
+            
+            @page {
+                margin: 20mm 15mm 20mm 15mm;
+                size: A4 portrait;
+                @bottom-center {
+                    content: counter(page);
+                    font-size: 10pt;
+                    color: #666;
+                    font-family: 'Microsoft YaHei', serif;
+                }
+                @top-center {
+                    content: "范以文的三国演义冒险";
+                    font-size: 10pt;
+                    color: #666;
+                    font-family: 'Microsoft YaHei', serif;
+                }
+            }
+            
+            body {
+                counter-reset: page;
+                margin: 0;
+                padding: 0;
+                font-size: 11pt;
+                line-height: 1.5;
+                background-color: white;
+            }
+            
+            .container {
+                max-width: none;
+                margin: 0;
+                padding: 0;
+                background-color: white;
+                box-shadow: none;
+                border-radius: 0;
+            }
+            
+            .cover-page {
+                page-break-after: always;
+                background: white;
+                color: #333;
+                border-radius: 0;
+                padding: 40pt 20pt;
+                margin: 0;
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            .cover-page::before {
+                display: none;
+            }
+            
+            .cover-title {
+                font-size: 24pt;
+                color: #8B0000;
+                margin-bottom: 15pt;
+                text-shadow: none;
+            }
+            
+            .cover-subtitle {
+                font-size: 14pt;
+                color: #666;
+                margin-bottom: 20pt;
+            }
+            
+            .cover-image {
+                width: 120pt;
+                height: 120pt;
+                background: #8B0000;
+                color: white;
+                font-size: 48pt;
+                margin: 20pt auto;
+                border: 3pt solid #8B0000;
+            }
+            
+            .cover-author {
+                font-size: 12pt;
+                color: #666;
+                margin-top: 15pt;
+            }
+            
+            .blank-page {
+                page-break-after: always;
+                height: 100vh;
+            }
+            
+            .title {
+                font-size: 18pt;
+                margin-bottom: 8pt;
+                page-break-after: avoid;
+            }
+            
+            .subtitle {
+                font-size: 12pt;
+                margin-bottom: 20pt;
+                page-break-after: avoid;
+            }
+            
+            .chapter {
+                page-break-before: always;
+                margin-top: 15mm;
+                margin-bottom: 10mm;
+                position: relative;
+            }
+            
+            .chapter-title {
+                font-size: 16pt;
+                margin-bottom: 15pt;
+                page-break-after: avoid;
+                border-bottom: 1pt solid #8B0000;
+                padding-bottom: 8pt;
+            }
+            
+            .section-title {
+                font-size: 13pt;
+                margin: 20pt 0 10pt 0;
+                page-break-after: avoid;
+                border-left: 2pt solid #8B0000;
+                padding-left: 10pt;
+            }
+            
+            .story-box, .knowledge-box, .character-box, .battle-box, .thought-box {
+                background-color: white;
+                border: 1pt solid #ccc;
+                border-radius: 0;
+                padding: 15pt;
+                margin: 10pt 0;
+                page-break-inside: avoid;
+            }
+            
+            .story-box {
+                border-left: 3pt solid #ffeaa7;
+            }
+            
+            .knowledge-box {
+                border-left: 3pt solid #bee5eb;
+            }
+            
+            .character-box {
+                border-left: 3pt solid #f5c6cb;
+            }
+            
+            .battle-box {
+                border-left: 3pt solid #c3e6cb;
+            }
+            
+            .thought-box {
+                border-left: 3pt solid #d6d8db;
+            }
+            
+            p {
+                margin: 8pt 0;
+                text-align: justify;
+                orphans: 2;
+                widows: 2;
+            }
+            
+            ul, ol {
+                margin: 8pt 0;
+                padding-left: 20pt;
+            }
+            
+            li {
+                margin: 4pt 0;
+            }
+            
+            .character, .place, .weapon, .strategy {
+                font-weight: bold;
+            }
+            
+            /* 避免孤行和寡行 */
+            h1, h2, h3, h4 {
+                page-break-after: avoid;
+            }
+            
+            /* 确保章节标题不会单独出现在页面底部 */
+            .chapter-title {
+                page-break-after: avoid;
+            }
+            
+            /* 确保内容框不会跨页断开 */
+            .story-box, .knowledge-box, .character-box, .battle-box, .thought-box {
+                page-break-inside: avoid;
+            }
+        }
+        
+        .print-button {
+            background-color: #8B0000;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 20px auto;
+            display: block;
+        }
+        
+        .print-instructions {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border: 2px solid #dee2e6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 封面页 -->
+        <div class="cover-page">
+            <div class="cover-content">
+                <div class="cover-image">🏰</div>
+                <h1 class="cover-title">范以文的三国演义冒险</h1>
+                <p class="cover-subtitle">穿越时空的奇妙之旅</p>
+                <p class="cover-author">作者：范以文</p>
+            </div>
+        </div>
+        
+        <!-- 空白页 -->
+        <div class="blank-page"></div>
+        
+        <h1 class="title">范以文的三国演义冒险</h1>
+        <p class="subtitle">穿越时空的奇妙之旅</p>
+        
+        <div class="print-instructions">
+            <h3 style="color: #495057; margin-bottom: 15px;">📖 打印说明</h3>
+            <button class="print-button" onclick="window.print()">🖨️ 打印书籍</button>
+            <div style="text-align: left; margin-top: 15px; color: #666; font-size: 14px;">
+                <p><strong>打印建议：</strong></p>
+                <ul style="margin: 10px 0; padding-left: 20px;">
+                    <li>纸张大小：A4</li>
+                    <li>方向：纵向（Portrait）</li>
+                    <li>边距：默认或窄边距</li>
+                    <li>缩放：100%</li>
+                    <li>背景图形：勾选（保留颜色和图片）</li>
+                    <li>双面打印：建议开启双面打印功能</li>
+                    <li>装订：建议左侧装订</li>
+                    <li>封面：第一页为封面，第二页为空白页</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- 内容将在这里添加 -->
+        
+        <div class="chapter">
+            <h3 class="chapter-title">🏰 第一章：桃园三结义</h3>
+            
+            <div class="story-box">
+                <h4 class="section-title">🌟 范以文的穿越奇遇</h4>
+                <p>范以文正在家里看《三国演义》的动画片，突然电视屏幕闪了一下，他感觉一阵头晕目眩。等他再次睁开眼睛时，发现自己竟然站在一个古老的桃园里！</p>
+                
+                <p>"哇！这是哪里？"范以文惊讶地看着周围盛开的桃花，空气中弥漫着淡淡的花香。</p>
+                
+                <p>就在这时，他听到远处传来三个人的声音：</p>
+                
+                <p>"我刘备，字玄德，中山靖王之后..."</p>
+                <p>"我关羽，字云长，河东解良人..."</p>
+                <p>"我张飞，字翼德，涿郡人..."</p>
+                
+                <p>范以文兴奋地跑过去，看到三个穿着古代衣服的人正在桃园里准备结拜。他心想："这不是桃园三结义吗？我竟然穿越到了三国时代！"</p>
+                
+                <p>刘备看到范以文，惊讶地问："小兄弟，你是何人？为何在此？"</p>
+                
+                <p>范以文灵机一动，说："我是...我是天上的小仙童，专门来见证你们三兄弟的结拜！"</p>
+                
+                <p>张飞哈哈大笑："哈哈，小仙童？那你可要给我们做个见证！"</p>
+                
+                <p>关羽捋着长须，微笑着说："既然有仙童见证，那我们的结拜就更有意义了。"</p>
+                
+                <p>于是，范以文有幸亲眼见证了历史上著名的桃园三结义！他看着三人跪在桃花下，共同发誓："不求同年同月同日生，但求同年同月同日死！"</p>
+                
+                <p>结拜仪式结束后，张飞突然问范以文："小仙童，你会什么法术吗？"</p>
+                
+                <p>范以文想了想，说："我会...会变魔术！"说着，他从口袋里掏出一块巧克力，假装念咒语，然后"变"出一块糖果给张飞。</p>
+                
+                <p>张飞惊讶地说："哇！真的会法术！"</p>
+                
+                <p>刘备和关羽也看得目瞪口呆。范以文心里暗笑："哈哈，原来古代人这么好骗！"</p>
+            </div>
+            
+            <div class="knowledge-box">
+                <h4 class="section-title">📚 历史知识</h4>
+                <p><strong>桃园三结义的历史背景：</strong></p>
+                <p>桃园三结义发生在东汉末年，大约在公元184年左右。当时天下大乱，黄巾起义爆发，各地英雄豪杰纷纷起兵。</p>
+                
+                <p><strong>为什么选择桃园？</strong></p>
+                <p>桃园象征着兄弟情谊，桃花盛开时美丽动人，寓意着美好的开始。在古代，桃园也代表着避世隐居的地方。</p>
+                
+                <p><strong>结拜的意义：</strong></p>
+                <p>在古代，结拜是一种非常重要的仪式，表示几个人结为异姓兄弟，从此同甘共苦，生死与共。这种关系比亲兄弟还要亲密。</p>
+                
+                <p><strong>有趣的小知识：</strong></p>
+                <p>1. 刘备当时已经28岁，关羽25岁，张飞23岁</p>
+                <p>2. 他们结拜时用的酒是"三杯酒"，象征三人的情谊</p>
+                <p>3. 桃园三结义后来成为了中国历史上最著名的结拜故事</p>
+            </div>
+            
+            <div class="character-box">
+                <h4 class="section-title">👥 人物介绍</h4>
+                
+                <p><span class="character">刘备</span>：字玄德，中山靖王之后，汉室宗亲。性格仁厚，待人宽厚，有"仁德"之称。虽然出身皇族，但家境贫寒，以织席贩履为生。</p>
+                
+                <p><span class="character">关羽</span>：字云长，河东解良人。身高九尺，面如重枣，唇若涂脂，丹凤眼，卧蚕眉，相貌堂堂。性格忠义，武艺高强，有"美髯公"之称。</p>
+                
+                <p><span class="character">张飞</span>：字翼德，涿郡人。身长八尺，豹头环眼，燕颔虎须，声若巨雷，势如奔马。性格豪爽，武艺超群，有"万人敌"之称。</p>
+                
+                <p><strong>三人的特点：</strong></p>
+                <p>• 刘备：仁德、智慧、有领导才能</p>
+                <p>• 关羽：忠义、勇武、重情重义</p>
+                <p>• 张飞：豪爽、直率、武艺高强</p>
+            </div>
+            
+            <div class="thought-box">
+                <h4 class="section-title">🤔 思考题</h4>
+                <p><strong>1. 为什么刘备、关羽、张飞要结拜？</strong></p>
+                <p>提示：想想当时的社会环境和他们的处境。</p>
+                
+                <p><strong>2. 如果你是范以文，你会怎么帮助这三兄弟？</strong></p>
+                <p>提示：可以用现代的知识和智慧。</p>
+                
+                <p><strong>3. 桃园三结义对后来的三国历史有什么影响？</strong></p>
+                <p>提示：想想他们后来一起做了什么大事。</p>
+                
+                <p><strong>4. 你觉得范以文用巧克力"变魔术"这个情节怎么样？</strong></p>
+                <p>提示：想想古代人看到现代物品会有什么反应。</p>
+            </div>
+            
+            <div class="battle-box">
+                <h4 class="section-title">⚔️ 小知识：古代结拜仪式</h4>
+                <p><strong>结拜的步骤：</strong></p>
+                <p>1. 选择吉日良辰</p>
+                <p>2. 准备香烛、酒水</p>
+                <p>3. 跪拜天地</p>
+                <p>4. 宣读誓词</p>
+                <p>5. 饮血酒（或三杯酒）</p>
+                <p>6. 交换信物</p>
+                
+                <p><strong>誓词内容：</strong></p>
+                <p>"皇天后土，实鉴此心，背义忘恩，天人共戮！"</p>
+                <p>"不求同年同月同日生，但求同年同月同日死！"</p>
+            </div>
+        </div>
+        
+        <div class="chapter">
+            <h3 class="chapter-title">⚔️ 第二章：三英战吕布</h3>
+            
+            <div class="story-box">
+                <h4 class="section-title">🌟 虎牢关的惊险战斗</h4>
+                <p>范以文还在回味桃园三结义的场景，突然眼前又是一阵闪光，等他再次睁开眼睛时，发现自己站在一座高大的关城前！</p>
+                
+                <p>"虎牢关！"范以文看到城门上的大字，兴奋地叫出声来。</p>
+                
+                <p>这时，他听到远处传来震天的战鼓声和马蹄声。只见一匹赤兔马载着一位威风凛凛的将军飞奔而来，那人手持方天画戟，正是传说中的吕布！</p>
+                
+                <p>"吕布在此！谁敢与我一战？"吕布的声音如雷贯耳。</p>
+                
+                <p>范以文躲在城墙后面，看到刘备、关羽、张飞三人骑马而来。他心想："这就是著名的三英战吕布啊！"</p>
+                
+                <p>张飞第一个冲上去："燕人张飞在此！"</p>
+                
+                <p>两人大战五十回合，不分胜负。关羽见状，也提刀上阵："关云长来也！"</p>
+                
+                <p>三人战得难解难分，范以文看得心惊胆战。突然，他灵机一动，从口袋里掏出一面小镜子，对着太阳反射光线。</p>
+                
+                <p>"咦？"吕布被突然的强光晃了一下眼睛，动作稍微迟缓。</p>
+                
+                <p>刘备抓住机会，大喊："三弟，二弟，我们一起上！"</p>
+                
+                <p>三人合力，终于将吕布击退。吕布骑着赤兔马逃走了。</p>
+                
+                <p>战斗结束后，张飞好奇地问范以文："小仙童，刚才那道强光是你施的法术吗？"</p>
+                
+                <p>范以文得意地说："当然！这是我的'太阳神光术'！"</p>
+                
+                <p>关羽捋着长须，赞叹道："小仙童的法术果然厉害，帮了我们大忙！"</p>
+                
+                <p>刘备也感激地说："多谢小仙童相助！"</p>
+                
+                <p>范以文心里暗笑："哈哈，原来小镜子也能当武器用！"</p>
+            </div>
+            
+            <div class="knowledge-box">
+                <h4 class="section-title">📚 历史知识</h4>
+                <p><strong>虎牢关之战的历史背景：</strong></p>
+                <p>虎牢关之战发生在公元190年，是十八路诸侯讨伐董卓时的重要战役。虎牢关是洛阳的东大门，地理位置非常重要。</p>
+                
+                <p><strong>吕布的传说：</strong></p>
+                <p>吕布，字奉先，五原郡九原县人。他武艺高强，有"人中吕布，马中赤兔"的美誉。赤兔马是当时最好的战马，日行千里。</p>
+                
+                <p><strong>三英战吕布的意义：</strong></p>
+                <p>这场战斗展示了刘备、关羽、张飞三人的武艺和配合默契。虽然单打独斗可能不是吕布的对手，但三人合力却能与之抗衡。</p>
+                
+                <p><strong>有趣的小知识：</strong></p>
+                <p>1. 吕布的方天画戟重达八十斤</p>
+                <p>2. 赤兔马是董卓送给吕布的珍贵礼物</p>
+                <p>3. 虎牢关后来改名为汜水关</p>
+                <p>4. 这场战斗在《三国演义》中被描写得非常精彩</p>
+            </div>
+            
+            <div class="character-box">
+                <h4 class="section-title">👥 人物介绍</h4>
+                
+                <p><span class="character">吕布</span>：字奉先，五原郡九原县人。身高一丈，面如冠玉，眼若流星，虎体猿臂，彪腹狼腰。武艺超群，有"飞将"之称。性格勇猛但反复无常，有"三姓家奴"的绰号。</p>
+                
+                <p><strong>吕布的特点：</strong></p>
+                <p>• 武艺高强：号称"人中吕布，马中赤兔"</p>
+                <p>• 勇猛无比：单挑无敌，少有敌手</p>
+                <p>• 性格缺陷：反复无常，缺乏忠诚</p>
+                <p>• 武器：方天画戟，重达八十斤</p>
+                
+                <p><strong>赤兔马的特点：</strong></p>
+                <p>• 毛色：全身赤红，如火焰般</p>
+                <p>• 速度：日行千里，夜行八百</p>
+                <p>• 来历：西域进贡的宝马</p>
+                <p>• 特点：通人性，忠诚护主</p>
+            </div>
+            
+            <div class="thought-box">
+                <h4 class="section-title">🤔 思考题</h4>
+                <p><strong>1. 为什么吕布被称为"人中吕布，马中赤兔"？</strong></p>
+                <p>提示：想想他的武艺和坐骑的特点。</p>
+                
+                <p><strong>2. 范以文用镜子反射阳光帮助三英，你觉得这个创意怎么样？</strong></p>
+                <p>提示：想想现代科技在古代的应用。</p>
+                
+                <p><strong>3. 为什么刘备、关羽、张飞要三个人一起对付吕布？</strong></p>
+                <p>提示：想想吕布的武艺有多强。</p>
+                
+                <p><strong>4. 如果你是范以文，你还会用什么现代物品来帮助三英？</strong></p>
+                <p>提示：想想现代有什么东西可以迷惑敌人。</p>
+            </div>
+            
+            <div class="battle-box">
+                <h4 class="section-title">⚔️ 小知识：古代兵器</h4>
+                <p><strong>方天画戟：</strong></p>
+                <p>吕布的武器，重达八十斤，是一种长柄武器，既有枪的刺击功能，又有刀的砍杀功能。</p>
+                
+                <p><strong>青龙偃月刀：</strong></p>
+                <p>关羽的武器，重达八十二斤，刀身如青龙，锋利无比。</p>
+                
+                <p><strong>丈八蛇矛：</strong></p>
+                <p>张飞的武器，长一丈八尺，矛头如蛇信，灵活多变。</p>
+                
+                <p><strong>双股剑：</strong></p>
+                <p>刘备的武器，两把宝剑，一长一短，配合使用。</p>
+                
+                <p><strong>古代战马的重要性：</strong></p>
+                <p>在古代战争中，一匹好马往往能决定战斗的胜负。赤兔马就是当时最好的战马之一。</p>
+            </div>
+        </div>
+        
+        <div class="chapter">
+            <h3 class="chapter-title">🚢 第三章：草船借箭</h3>
+            
+            <div class="story-box">
+                <h4 class="section-title">🌟 诸葛亮的智慧计谋</h4>
+                <p>范以文还在回味虎牢关的战斗，突然又是一阵闪光，等他睁开眼睛时，发现自己站在长江边上！</p>
+                
+                <p>"哇！好大的江啊！"范以文看着宽阔的长江，江水滔滔不绝。</p>
+                
+                <p>这时，他看到一位身穿道袍、手持羽扇的先生正在江边观察天气。那人正是诸葛亮！</p>
+                
+                <p>诸葛亮看到范以文，微笑着说："小兄弟，你也是来观江的吗？"</p>
+                
+                <p>范以文兴奋地说："诸葛先生！我是天上的小仙童，专门来见证您的智慧！"</p>
+                
+                <p>诸葛亮捋着胡须，笑道："哦？小仙童？那你可知道我现在在想什么？"</p>
+                
+                <p>范以文想了想，说："您在想...如何用草船借箭！"</p>
+                
+                <p>诸葛亮惊讶地看着范以文："小仙童果然神通广大，连我的计谋都知道！"</p>
+                
+                <p>就在这时，周瑜派人来请诸葛亮商议军情。诸葛亮对范以文说："小仙童，不如随我一起去？"</p>
+                
+                <p>在军帐中，周瑜说："孔明先生，我军箭矢不足，如何是好？"</p>
+                
+                <p>诸葛亮微笑着说："都督莫急，我自有妙计。"</p>
+                
+                <p>范以文好奇地问："诸葛先生，您要用什么计谋？"</p>
+                
+                <p>诸葛亮神秘地说："天机不可泄露，小仙童明日便知。"</p>
+                
+                <p>第二天，大雾弥漫。诸葛亮命人准备了许多草船，船上扎满稻草人。</p>
+                
+                <p>范以文看到后，恍然大悟："原来如此！用草船去'借'敌人的箭！"</p>
+                
+                <p>诸葛亮笑着说："小仙童果然聪明！"</p>
+                
+                <p>草船驶向曹军水寨，曹军看到大雾中隐约有船只，以为是敌军来袭，纷纷放箭。</p>
+                
+                <p>范以文兴奋地数着："一箭、两箭、三箭...哇！好多箭啊！"</p>
+                
+                <p>等草船回来时，上面插满了箭矢。周瑜看到后，惊叹道："孔明先生真乃神人也！"</p>
+                
+                <p>范以文得意地说："诸葛先生，我帮您数了，一共借了十万支箭！"</p>
+                
+                <p>诸葛亮哈哈大笑："小仙童，你连这个都知道？"</p>
+                
+                <p>范以文心里暗笑："哈哈，我可是看过《三国演义》的！"</p>
+            </div>
+            
+            <div class="knowledge-box">
+                <h4 class="section-title">📚 历史知识</h4>
+                <p><strong>草船借箭的历史背景：</strong></p>
+                <p>草船借箭发生在赤壁之战前夕，大约在公元208年。当时孙刘联军准备与曹操决战，但箭矢不足，诸葛亮想出了这个妙计。</p>
+                
+                <p><strong>为什么选择大雾天？</strong></p>
+                <p>大雾天能见度低，曹军看不清草船上的稻草人，以为是真的敌军，所以会放箭。这就是诸葛亮选择大雾天的原因。</p>
+                
+                <p><strong>诸葛亮的智慧：</strong></p>
+                <p>诸葛亮不仅精通天文地理，还善于利用天时地利。他选择大雾天，利用曹军的心理，成功"借"到了箭矢。</p>
+                
+                <p><strong>有趣的小知识：</strong></p>
+                <p>1. 诸葛亮借到的箭据说有十万支</p>
+                <p>2. 草船借箭后来成为了成语，比喻巧妙利用敌人的资源</p>
+                <p>3. 这个故事在《三国演义》中被描写得非常精彩</p>
+                <p>4. 诸葛亮还精通天文，能预测天气变化</p>
+            </div>
+            
+            <div class="character-box">
+                <h4 class="section-title">👥 人物介绍</h4>
+                
+                <p><span class="character">诸葛亮</span>：字孔明，号卧龙，琅琊阳都人。身高八尺，面如冠玉，头戴纶巾，身披鹤氅，飘飘然有神仙之概。精通天文地理，善于用兵，有"卧龙"之称。</p>
+                
+                <p><span class="character">周瑜</span>：字公瑾，庐江舒县人。身高八尺，面如美玉，目似朗星，有"美周郎"之称。精通音律，善于用兵，是东吴的重要将领。</p>
+                
+                <p><strong>诸葛亮的特点：</strong></p>
+                <p>• 智慧超群：精通天文地理，善于用兵</p>
+                <p>• 足智多谋：善于利用天时地利人和</p>
+                <p>• 忠诚可靠：对刘备忠心耿耿</p>
+                <p>• 谦虚谨慎：从不居功自傲</p>
+                
+                <p><strong>周瑜的特点：</strong></p>
+                <p>• 英俊潇洒：有"美周郎"之称</p>
+                <p>• 精通音律：能听出琴声中的杀机</p>
+                <p>• 善于用兵：是东吴的重要将领</p>
+                <p>• 性格刚烈：有时过于急躁</p>
+            </div>
+            
+            <div class="thought-box">
+                <h4 class="section-title">🤔 思考题</h4>
+                <p><strong>1. 为什么诸葛亮要选择大雾天去借箭？</strong></p>
+                <p>提示：想想大雾天有什么特点，对借箭有什么帮助。</p>
+                
+                <p><strong>2. 范以文为什么能猜到诸葛亮的计谋？</strong></p>
+                <p>提示：想想范以文是从哪里来的。</p>
+                
+                <p><strong>3. 草船借箭体现了诸葛亮的哪些智慧？</strong></p>
+                <p>提示：想想他如何利用天时地利。</p>
+                
+                <p><strong>4. 如果你是范以文，你会怎么帮助诸葛亮？</strong></p>
+                <p>提示：想想现代有什么工具可以预测天气。</p>
+            </div>
+            
+            <div class="battle-box">
+                <h4 class="section-title">⚔️ 小知识：古代军事计谋</h4>
+                <p><strong>草船借箭的巧妙之处：</strong></p>
+                <p>1. 利用天时：选择大雾天，能见度低</p>
+                <p>2. 利用地利：在长江上，水流湍急</p>
+                <p>3. 利用人和：利用曹军的心理恐惧</p>
+                <p>4. 巧妙伪装：用稻草人伪装成士兵</p>
+                
+                <p><strong>古代军事智慧：</strong></p>
+                <p>• 天时：利用天气、季节等自然条件</p>
+                <p>• 地利：利用地形、地势等地理优势</p>
+                <p>• 人和：利用人心、士气等心理因素</p>
+                <p>• 计谋：用智慧弥补实力的不足</p>
+                
+                <p><strong>诸葛亮的其他著名计谋：</strong></p>
+                <p>• 空城计：利用敌人的疑心</p>
+                <p>• 七擒孟获：以德服人</p>
+                <p>• 火烧新野：利用火攻</p>
+                <p>• 木牛流马：发明运输工具</p>
+            </div>
+        </div>
+        
+        <div class="chapter">
+            <h3 class="chapter-title">🔥 第四章：火烧赤壁</h3>
+            
+            <div class="story-box">
+                <h4 class="section-title">🌟 长江上的火攻大战</h4>
+                <p>范以文还在回味草船借箭的智慧，突然又是一阵闪光，等他睁开眼睛时，发现自己站在一艘战船上！</p>
+                
+                <p>"哇！好大的船队啊！"范以文看到江面上密密麻麻的战船，旌旗招展。</p>
+                
+                <p>这时，他看到周瑜正在和诸葛亮商议军情。周瑜说："孔明先生，曹操大军压境，如何是好？"</p>
+                
+                <p>诸葛亮微笑着说："都督莫急，我观天象，今夜必有东风。"</p>
+                
+                <p>范以文兴奋地说："诸葛先生，您要用火攻！"</p>
+                
+                <p>诸葛亮惊讶地看着范以文："小仙童，你连这个都知道？"</p>
+                
+                <p>周瑜也好奇地问："小仙童，你有什么好主意吗？"</p>
+                
+                <p>范以文想了想，说："我建议用连环计！把曹操的战船用铁链连起来！"</p>
+                
+                <p>诸葛亮眼前一亮："小仙童果然聪明！这样火攻的效果会更好！"</p>
+                
+                <p>就在这时，黄盖来报："都督，曹操已经中计，将战船用铁链连在一起了！"</p>
+                
+                <p>范以文兴奋地说："太好了！现在可以实施火攻了！"</p>
+                
+                <p>周瑜命人准备火船，船上装满干草和火油。范以文看到后，说："都督，我建议在火船上再加一些硫磺！"</p>
+                
+                <p>周瑜好奇地问："硫磺？那是什么？"</p>
+                
+                <p>范以文神秘地说："这是天上的神火粉，能让火烧得更旺！"</p>
+                
+                <p>（其实范以文是从口袋里掏出了一盒火柴，假装是"神火粉"）</p>
+                
+                <p>夜幕降临，东风果然来了。周瑜命人点燃火船，向曹军水寨冲去。</p>
+                
+                <p>范以文兴奋地看着火船冲向曹军："哇！好壮观的火攻啊！"</p>
+                
+                <p>火船撞上曹军的连环船，顿时火光冲天，浓烟滚滚。曹军大乱，纷纷跳水逃生。</p>
+                
+                <p>范以文数着："一艘、两艘、三艘...哇！曹操的船队全着火了！"</p>
+                
+                <p>周瑜看到战果，惊叹道："小仙童的'神火粉'果然厉害！"</p>
+                
+                <p>诸葛亮也赞叹道："小仙童，你的计谋真是妙不可言！"</p>
+                
+                <p>范以文得意地说："哈哈，这就是现代科技的威力！"</p>
+                
+                <p>（当然，他只是在心里说，古代人听不懂"现代科技"这个词）</p>
+            </div>
+            
+            <div class="knowledge-box">
+                <h4 class="section-title">📚 历史知识</h4>
+                <p><strong>赤壁之战的历史背景：</strong></p>
+                <p>赤壁之战发生在公元208年，是三国时期最重要的战役之一。曹操率领大军南下，意图统一天下，但被孙刘联军击败。</p>
+                
+                <p><strong>为什么选择火攻？</strong></p>
+                <p>曹操的军队大多是北方人，不习水战。孙刘联军利用火攻，一举击溃了曹操的水军，奠定了三国鼎立的基础。</p>
+                
+                <p><strong>连环计的作用：</strong></p>
+                <p>庞统献计，让曹操将战船用铁链连在一起，表面上是让北方士兵适应水战，实际上是让火攻的效果更好。</p>
+                
+                <p><strong>有趣的小知识：</strong></p>
+                <p>1. 赤壁之战曹操损失了二十多万大军</p>
+                <p>2. 这场战役奠定了三国鼎立的格局</p>
+                <p>3. 赤壁之战是中国历史上著名的以少胜多的战役</p>
+                <p>4. 东风对火攻的成功起了关键作用</p>
+            </div>
+            
+            <div class="character-box">
+                <h4 class="section-title">👥 人物介绍</h4>
+                
+                <p><span class="character">曹操</span>：字孟德，沛国谯县人。身高七尺，细眼长髯，有"奸雄"之称。善于用兵，精通文学，是三国时期的重要人物。</p>
+                
+                <p><span class="character">庞统</span>：字士元，号凤雏，襄阳人。身高八尺，面如冠玉，有"凤雏"之称。与诸葛亮齐名，都是当时著名的谋士。</p>
+                
+                <p><span class="character">黄盖</span>：字公覆，零陵泉陵人。身长八尺，面如重枣，有"老将"之称。在赤壁之战中献计火攻，立下大功。</p>
+                
+                <p><strong>曹操的特点：</strong></p>
+                <p>• 雄才大略：善于用兵，统一北方</p>
+                <p>• 多疑善变：性格多疑，有时过于谨慎</p>
+                <p>• 文学造诣：是著名的文学家</p>
+                <p>• 用人有方：善于发现和任用人才</p>
+                
+                <p><strong>庞统的特点：</strong></p>
+                <p>• 足智多谋：与诸葛亮齐名</p>
+                <p>• 性格刚烈：有时过于急躁</p>
+                <p>• 善于用计：连环计就是他的杰作</p>
+                <p>• 忠诚可靠：对刘备忠心耿耿</p>
+            </div>
+            
+            <div class="thought-box">
+                <h4 class="section-title">🤔 思考题</h4>
+                <p><strong>1. 为什么曹操要将战船连在一起？</strong></p>
+                <p>提示：想想北方士兵的特点和水战的关系。</p>
+                
+                <p><strong>2. 范以文的"神火粉"是什么？为什么古代人觉得神奇？</strong></p>
+                <p>提示：想想现代有什么东西古代没有。</p>
+                
+                <p><strong>3. 赤壁之战对三国历史有什么影响？</strong></p>
+                <p>提示：想想这场战役的结果。</p>
+                
+                <p><strong>4. 如果你是范以文，你还会用什么现代物品来帮助火攻？</strong></p>
+                <p>提示：想想现代有什么东西可以助燃。</p>
+            </div>
+            
+            <div class="battle-box">
+                <h4 class="section-title">⚔️ 小知识：古代火攻战术</h4>
+                <p><strong>火攻的准备工作：</strong></p>
+                <p>1. 准备火船：装满干草、火油等易燃物</p>
+                <p>2. 选择时机：等待东风，顺风放火</p>
+                <p>3. 伪装船只：让火船看起来像普通船只</p>
+                <p>4. 配合水军：火攻后立即发动总攻</p>
+                
+                <p><strong>火攻的优势：</strong></p>
+                <p>• 破坏力强：能迅速摧毁敌船</p>
+                <p>• 心理威慑：造成敌军恐慌</p>
+                <p>• 成本低廉：主要用火油和干草</p>
+                <p>• 效果显著：往往能一举击溃敌军</p>
+                
+                <p><strong>古代火攻的其他著名战例：</strong></p>
+                <p>• 火烧新野：诸葛亮用火攻击败曹军</p>
+                <p>• 火烧连营：陆逊用火攻击败刘备</p>
+                <p>• 火烧博望坡：诸葛亮用火攻击败夏侯惇</p>
+                <p>• 火烧藤甲兵：诸葛亮用火攻击败孟获</p>
+            </div>
+        </div>
+        
+        <div class="chapter">
+            <h3 class="chapter-title">🏠 第五章：三顾茅庐</h3>
+            
+            <div class="story-box">
+                <h4 class="section-title">🌟 隆中的智慧相遇</h4>
+                <p>范以文还在回味火烧赤壁的壮观场面，突然又是一阵闪光，等他睁开眼睛时，发现自己站在一座山脚下！</p>
+                
+                <p>"隆中！"范以文看到山上的茅草屋，兴奋地叫出声来。</p>
+                
+                <p>这时，他看到刘备、关羽、张飞三人骑马而来。刘备说："二弟、三弟，听说隆中有位卧龙先生，我们前去拜访。"</p>
+                
+                <p>范以文心想："这就是著名的三顾茅庐啊！"他赶紧跟了上去。</p>
+                
+                <p>来到茅庐前，刘备下马整理衣冠，恭敬地敲门："卧龙先生在家吗？"</p>
+                
+                <p>门开了，出来一个小童。小童说："先生不在家，去游山玩水了。"</p>
+                
+                <p>刘备失望地说："那我们改日再来。"</p>
+                
+                <p>范以文看到刘备要走，赶紧说："刘皇叔，不如我们在这里等等吧！"</p>
+                
+                <p>刘备好奇地问："小仙童，你怎么知道我会再来？"</p>
+                
+                <p>范以文神秘地说："因为这是'三顾茅庐'啊！您要来三次才能见到诸葛亮先生！"</p>
+                
+                <p>张飞不耐烦地说："大哥，何必这么麻烦？直接进去就是了！"</p>
+                
+                <p>关羽劝道："三弟，礼贤下士，不可鲁莽。"</p>
+                
+                <p>第二次来访时，诸葛亮还是不在家。张飞更加不耐烦了："大哥，这卧龙先生架子也太大了！"</p>
+                
+                <p>范以文笑着说："张将军，耐心点！诸葛亮先生这是在考验刘皇叔的诚意呢！"</p>
+                
+                <p>第三次来访时，正值隆冬，大雪纷飞。刘备冒着风雪来到茅庐，看到诸葛亮正在读书。</p>
+                
+                <p>诸葛亮看到刘备，起身相迎："刘皇叔远道而来，有失远迎！"</p>
+                
+                <p>范以文兴奋地说："太好了！终于见到了！"</p>
+                
+                <p>诸葛亮看到范以文，微笑着说："这位小仙童，似乎对我很熟悉？"</p>
+                
+                <p>范以文得意地说："当然！我可是知道您会出山辅佐刘皇叔的！"</p>
+                
+                <p>刘备惊讶地问："卧龙先生，您愿意出山辅佐我吗？"</p>
+                
+                <p>诸葛亮微笑着说："刘皇叔仁德爱民，我愿效犬马之劳。"</p>
+                
+                <p>范以文兴奋地说："太好了！这就是'三顾茅庐'的完美结局！"</p>
+                
+                <p>诸葛亮好奇地问："小仙童，你怎么知道这么多？"</p>
+                
+                <p>范以文神秘地说："因为我是从未来来的小仙童啊！"</p>
+                
+                <p>（当然，他只是在心里说，古代人听不懂"未来"这个词）</p>
+            </div>
+            
+            <div class="knowledge-box">
+                <h4 class="section-title">📚 历史知识</h4>
+                <p><strong>三顾茅庐的历史背景：</strong></p>
+                <p>三顾茅庐发生在公元207年，当时刘备刚刚失去徐州，正在寻找贤才辅佐。听说隆中有位卧龙先生，便前去拜访。</p>
+                
+                <p><strong>为什么叫"三顾茅庐"？</strong></p>
+                <p>刘备为了请诸葛亮出山，三次前往隆中拜访。第一次和第二次诸葛亮都不在家，第三次才见到。这体现了刘备求贤若渴的诚意。</p>
+                
+                <p><strong>隆中的地理位置：</strong></p>
+                <p>隆中位于今湖北省襄阳市，是诸葛亮隐居的地方。这里山清水秀，环境优美，适合读书隐居。</p>
+                
+                <p><strong>有趣的小知识：</strong></p>
+                <p>1. 诸葛亮当时只有27岁，但已经很有名气</p>
+                <p>2. 隆中茅庐是诸葛亮自己搭建的</p>
+                <p>3. 三顾茅庐后来成为了成语，比喻诚心诚意地邀请贤才</p>
+                <p>4. 诸葛亮在隆中隐居了十年</p>
+            </div>
+            
+            <div class="character-box">
+                <h4 class="section-title">👥 人物介绍</h4>
+                
+                <p><span class="character">诸葛亮</span>：字孔明，号卧龙，琅琊阳都人。身高八尺，面如冠玉，头戴纶巾，身披鹤氅。精通天文地理，善于用兵，有"卧龙"之称。</p>
+                
+                <p><span class="character">刘备</span>：字玄德，中山靖王之后。身高七尺五寸，面如冠玉，唇若涂脂。性格仁厚，待人宽厚，有"仁德"之称。</p>
+                
+                <p><span class="character">关羽</span>：字云长，河东解良人。身高九尺，面如重枣，唇若涂脂，丹凤眼，卧蚕眉。性格忠义，武艺高强。</p>
+                
+                <p><span class="character">张飞</span>：字翼德，涿郡人。身长八尺，豹头环眼，燕颔虎须。性格豪爽，武艺超群。</p>
+                
+                <p><strong>诸葛亮的特点：</strong></p>
+                <p>• 智慧超群：精通天文地理，善于用兵</p>
+                <p>• 谦虚谨慎：从不居功自傲</p>
+                <p>• 忠诚可靠：对刘备忠心耿耿</p>
+                <p>• 善于观察：能看出刘备的诚意</p>
+                
+                <p><strong>刘备的特点：</strong></p>
+                <p>• 仁德爱民：深受百姓爱戴</p>
+                <p>• 礼贤下士：尊重人才，虚心求教</p>
+                <p>• 坚持不懈：三次拜访，诚意十足</p>
+                <p>• 有领导才能：善于团结人才</p>
+            </div>
+            
+            <div class="thought-box">
+                <h4 class="section-title">🤔 思考题</h4>
+                <p><strong>1. 为什么刘备要三次拜访诸葛亮？</strong></p>
+                <p>提示：想想诸葛亮为什么要考验刘备。</p>
+                
+                <p><strong>2. 范以文为什么知道"三顾茅庐"的故事？</strong></p>
+                <p>提示：想想范以文是从哪里来的。</p>
+                
+                <p><strong>3. 诸葛亮为什么要隐居在隆中？</strong></p>
+                <p>提示：想想当时的社会环境和诸葛亮的性格。</p>
+                
+                <p><strong>4. 如果你是范以文，你会怎么帮助刘备请诸葛亮出山？</strong></p>
+                <p>提示：想想现代有什么方法可以表达诚意。</p>
+            </div>
+            
+            <div class="battle-box">
+                <h4 class="section-title">⚔️ 小知识：古代礼贤下士</h4>
+                <p><strong>三顾茅庐的礼仪：</strong></p>
+                <p>1. 整理衣冠：表示对贤才的尊重</p>
+                <p>2. 恭敬敲门：不鲁莽，有礼貌</p>
+                <p>3. 耐心等待：不急于求成</p>
+                <p>4. 虚心求教：态度诚恳</p>
+                
+                <p><strong>古代求贤的方式：</strong></p>
+                <p>• 亲自拜访：表示诚意</p>
+                <p>• 礼贤下士：尊重人才</p>
+                <p>• 虚心求教：不耻下问</p>
+                <p>• 以德服人：用品德感化</p>
+                
+                <p><strong>诸葛亮在隆中的生活：</strong></p>
+                <p>• 读书学习：研究天文地理</p>
+                <p>• 耕种自给：自食其力</p>
+                <p>• 结交朋友：与当地名士交往</p>
+                <p>• 观察天下：了解时事</p>
+                
+                <p><strong>隆中对策的内容：</strong></p>
+                <p>• 分析天下形势</p>
+                <p>• 提出统一策略</p>
+                <p>• 规划发展路线</p>
+                <p>• 制定具体措施</p>
+            </div>
+        </div>
+        
+        <div class="chapter">
+            <h3 class="chapter-title">⚔️ 第六章：长坂坡救阿斗</h3>
+            
+            <div class="story-box">
+                <h4 class="section-title">🌟 赵云的英勇救主</h4>
+                <p>范以文还在回味三顾茅庐的温馨场景，突然又是一阵闪光，等他睁开眼睛时，发现自己站在一片战场上！</p>
+                
+                <p>"长坂坡！"范以文看到战场上的旗帜，兴奋地叫出声来。</p>
+                
+                <p>这时，他听到远处传来震天的喊杀声。只见一位白袍将军骑着白马，手持银枪，在曹军中来回冲杀，正是赵云！</p>
+                
+                <p>"赵将军！"范以文兴奋地喊道。</p>
+                
+                <p>赵云看到范以文，惊讶地问："小仙童，你怎么在这里？"</p>
+                
+                <p>范以文说："我是来见证您的英勇事迹的！"</p>
+                
+                <p>就在这时，赵云听到婴儿的哭声。他循声望去，看到糜夫人抱着阿斗，被曹军围困。</p>
+                
+                <p>赵云大喊："夫人莫慌，赵云来也！"</p>
+                
+                <p>范以文看到赵云冲入敌阵，银枪如龙，所向披靡。他兴奋地数着："一个、两个、三个...哇！赵将军真厉害！"</p>
+                
+                <p>赵云杀到糜夫人身边，糜夫人说："赵将军，请救阿斗！"</p>
+                
+                <p>糜夫人将阿斗交给赵云，自己跳井自尽。赵云抱着阿斗，再次冲入敌阵。</p>
+                
+                <p>范以文看到赵云在敌阵中来回冲杀，银枪上下翻飞，曹军纷纷避让。他兴奋地说："赵将军，您真是一身是胆！"</p>
+                
+                <p>赵云听到范以文的话，豪气顿生："小仙童，你说得对！我赵云一身是胆！"</p>
+                
+                <p>就在这时，曹操看到赵云如此英勇，惊叹道："真虎将也！"</p>
+                
+                <p>范以文听到曹操的话，兴奋地说："赵将军，连曹操都夸您是虎将呢！"</p>
+                
+                <p>赵云哈哈大笑："小仙童，你连曹操的话都知道？"</p>
+                
+                <p>范以文得意地说："当然！我可是天上的小仙童，什么都知道！"</p>
+                
+                <p>赵云抱着阿斗，在敌阵中杀出一条血路，终于冲出了重围。</p>
+                
+                <p>范以文看到赵云安全归来，兴奋地说："太好了！赵将军成功救出了阿斗！"</p>
+                
+                <p>刘备看到赵云抱着阿斗回来，激动地说："子龙，你真是我的好兄弟！"</p>
+                
+                <p>赵云将阿斗交给刘备，说："主公，阿斗安然无恙！"</p>
+                
+                <p>范以文看到这一幕，感动地说："这就是著名的'长坂坡救阿斗'啊！"</p>
+                
+                <p>赵云好奇地问："小仙童，你怎么知道这么多？"</p>
+                
+                <p>范以文神秘地说："因为我是从历史书里来的小仙童啊！"</p>
+                
+                <p>（当然，他只是在心里说，古代人听不懂"历史书"这个词）</p>
+            </div>
+            
+            <div class="knowledge-box">
+                <h4 class="section-title">📚 历史知识</h4>
+                <p><strong>长坂坡之战的历史背景：</strong></p>
+                <p>长坂坡之战发生在公元208年，当时曹操大军南下，刘备带着百姓撤退。在长坂坡，曹军追上了刘备的部队，发生了激烈的战斗。</p>
+                
+                <p><strong>为什么叫"长坂坡"？</strong></p>
+                <p>长坂坡位于今湖北省当阳市，是一个山坡地带。这里地势险要，是兵家必争之地。赵云在这里单骑救主，成为了千古佳话。</p>
+                
+                <p><strong>阿斗是谁？</strong></p>
+                <p>阿斗是刘备的儿子刘禅，当时还是个婴儿。赵云为了救他，在敌阵中七进七出，最终成功救出。</p>
+                
+                <p><strong>有趣的小知识：</strong></p>
+                <p>1. 赵云在长坂坡杀了曹军五十多员大将</p>
+                <p>2. 阿斗后来成为了蜀汉的皇帝</p>
+                <p>3. 长坂坡救阿斗后来成为了成语，比喻英勇救主</p>
+                <p>4. 赵云被称为"常胜将军"，一生从未败过</p>
+            </div>
+            
+            <div class="character-box">
+                <h4 class="section-title">👥 人物介绍</h4>
+                
+                <p><span class="character">赵云</span>：字子龙，常山真定人。身高八尺，面如冠玉，目似朗星，有"常胜将军"之称。武艺高强，忠诚可靠，是蜀汉的重要将领。</p>
+                
+                <p><span class="character">糜夫人</span>：糜竺的妹妹，刘备的妻子。在长坂坡之战中，为了保护阿斗，跳井自尽，体现了古代妇女的贞烈。</p>
+                
+                <p><span class="character">阿斗</span>：即刘禅，刘备的儿子。后来成为蜀汉的皇帝，在位四十一年，是三国时期在位时间最长的皇帝。</p>
+                
+                <p><span class="character">曹操</span>：字孟德，沛国谯县人。身高七尺，细眼长髯，有"奸雄"之称。善于用兵，精通文学，是三国时期的重要人物。</p>
+                
+                <p><strong>赵云的特点：</strong></p>
+                <p>• 武艺高强：银枪如龙，所向披靡</p>
+                <p>• 忠诚可靠：对刘备忠心耿耿</p>
+                <p>• 英勇无畏：一身是胆，不怕危险</p>
+                <p>• 谦虚谨慎：从不居功自傲</p>
+                
+                <p><strong>糜夫人的特点：</strong></p>
+                <p>• 贞烈刚烈：为了保护阿斗而自尽</p>
+                <p>• 深明大义：知道阿斗的重要性</p>
+                <p>• 勇敢坚强：在危急时刻保持冷静</p>
+                <p>• 母爱伟大：为了孩子不惜牺牲自己</p>
+            </div>
+            
+            <div class="thought-box">
+                <h4 class="section-title">🤔 思考题</h4>
+                <p><strong>1. 为什么赵云要冒着生命危险去救阿斗？</strong></p>
+                <p>提示：想想阿斗对刘备的重要性。</p>
+                
+                <p><strong>2. 范以文为什么知道赵云"一身是胆"？</strong></p>
+                <p>提示：想想范以文是从哪里来的。</p>
+                
+                <p><strong>3. 糜夫人为什么要跳井自尽？</strong></p>
+                <p>提示：想想当时的社会环境和他的处境。</p>
+                
+                <p><strong>4. 如果你是范以文，你会怎么帮助赵云救阿斗？</strong></p>
+                <p>提示：想想现代有什么方法可以保护婴儿。</p>
+            </div>
+            
+            <div class="battle-box">
+                <h4 class="section-title">⚔️ 小知识：古代战场救护</h4>
+                <p><strong>赵云救阿斗的英勇事迹：</strong></p>
+                <p>1. 单骑冲阵：一个人冲入敌阵</p>
+                <p>2. 七进七出：在敌阵中来回冲杀</p>
+                <p>3. 保护婴儿：用身体保护阿斗</p>
+                <p>4. 杀出重围：最终成功救出阿斗</p>
+                
+                <p><strong>古代战场的特点：</strong></p>
+                <p>• 混乱危险：刀剑无眼，随时可能受伤</p>
+                <p>• 需要勇气：面对死亡需要极大的勇气</p>
+                <p>• 需要技巧：武艺高强才能生存</p>
+                <p>• 需要智慧：要懂得保护重要人物</p>
+                
+                <p><strong>赵云的武器：</strong></p>
+                <p>• 银枪：长枪，适合马上作战</p>
+                <p>• 白马：良驹，速度快，灵活</p>
+                <p>• 铠甲：保护身体，减少受伤</p>
+                <p>• 头盔：保护头部，防止致命伤</p>
+                
+                <p><strong>古代婴儿保护：</strong></p>
+                <p>• 襁褓：用布包裹，保暖保护</p>
+                <p>• 怀抱：母亲或保护者怀抱</p>
+                <p>• 隐蔽：藏在安全的地方</p>
+                <p>• 转移：及时转移到安全地点</p>
+            </div>
+        </div>
+        
+        <div class="chapter">
+            <h3 class="chapter-title">🏰 第七章：空城计</h3>
+            
+            <div class="story-box">
+                <h4 class="section-title">🌟 诸葛亮的胆识智慧</h4>
+                <p>范以文还在回味长坂坡的英勇场面，突然又是一阵闪光，等他睁开眼睛时，发现自己站在一座城墙上！</p>
+                
+                <p>"西城！"范以文看到城楼上的旗帜，兴奋地叫出声来。</p>
+                
+                <p>这时，他看到诸葛亮正在城楼上弹琴，神态悠闲。城下是司马懿率领的大军，黑压压的一片。</p>
+                
+                <p>"诸葛先生！"范以文兴奋地喊道。</p>
+                
+                <p>诸葛亮看到范以文，微笑着说："小仙童，你怎么来了？"</p>
+                
+                <p>范以文说："我是来见证您的'空城计'的！"</p>
+                
+                <p>诸葛亮惊讶地问："小仙童，你怎么知道我要用空城计？"</p>
+                
+                <p>范以文得意地说："因为我是天上的小仙童，什么都知道！"</p>
+                
+                <p>就在这时，司马懿的大军来到城下。司马懿看到城楼上只有诸葛亮一个人在弹琴，城门大开，城内空无一人。</p>
+                
+                <p>司马懿疑惑地说："诸葛亮这是何意？"</p>
+                
+                <p>范以文看到司马懿犹豫不决，兴奋地说："诸葛先生，您的计谋要成功了！"</p>
+                
+                <p>诸葛亮继续弹琴，琴声悠扬。城下的司马懿更加疑惑了。</p>
+                
+                <p>司马懿的儿子司马师说："父亲，诸葛亮城上只有一人，城内空虚，我们何不攻城？"</p>
+                
+                <p>司马懿摇头说："诸葛亮平生谨慎，从不弄险。今日大开城门，必有埋伏。"</p>
+                
+                <p>范以文听到司马懿的话，兴奋地说："诸葛先生，司马懿中计了！"</p>
+                
+                <p>诸葛亮微笑着说："小仙童，你说得对。司马懿多疑，正好中了我的计谋。"</p>
+                
+                <p>司马懿最终下令撤军。范以文看到曹军撤退，兴奋地说："太好了！空城计成功了！"</p>
+                
+                <p>诸葛亮收起琴，对范以文说："小仙童，你真是我的知音啊！"</p>
+                
+                <p>范以文得意地说："诸葛先生，您的智慧真是无人能及！"</p>
+                
+                <p>诸葛亮好奇地问："小仙童，你怎么知道这么多？"</p>
+                
+                <p>范以文神秘地说："因为我是从故事书里来的小仙童啊！"</p>
+                
+                <p>（当然，他只是在心里说，古代人听不懂"故事书"这个词）</p>
+                
+                <p>诸葛亮哈哈大笑："小仙童，你的话真是有趣！"</p>
+                
+                <p>范以文看到诸葛亮成功用空城计吓退了司马懿，心里暗笑："哈哈，这就是心理战的威力！"</p>
+            </div>
+            
+            <div class="knowledge-box">
+                <h4 class="section-title">📚 历史知识</h4>
+                <p><strong>空城计的历史背景：</strong></p>
+                <p>空城计发生在公元228年，当时诸葛亮北伐，派马谡守街亭。马谡失守后，诸葛亮被迫撤退，在西城用空城计吓退了司马懿。</p>
+                
+                <p><strong>为什么叫"空城计"？</strong></p>
+                <p>诸葛亮故意大开城门，让城内看起来空无一人，利用司马懿多疑的性格，成功吓退了敌军。这就是"空城计"的由来。</p>
+                
+                <p><strong>司马懿为什么中计？</strong></p>
+                <p>司马懿知道诸葛亮平生谨慎，从不弄险。看到诸葛亮大开城门，反而怀疑有埋伏，不敢攻城，最终中计。</p>
+                
+                <p><strong>有趣的小知识：</strong></p>
+                <p>1. 空城计后来成为了成语，比喻用虚张声势吓退敌人</p>
+                <p>2. 诸葛亮在西城弹琴，琴声悠扬，更增加了计谋的效果</p>
+                <p>3. 司马懿后来成为了魏国的重要将领</p>
+                <p>4. 空城计体现了心理战的重要性</p>
+            </div>
+            
+            <div class="character-box">
+                <h4 class="section-title">👥 人物介绍</h4>
+                
+                <p><span class="character">司马懿</span>：字仲达，河内温县人。身高八尺，面如冠玉，有"冢虎"之称。善于用兵，多疑谨慎，是魏国的重要将领。</p>
+                
+                <p><span class="character">司马师</span>：字子元，司马懿的长子。身高八尺，面如冠玉，有"小司马"之称。后来成为魏国的重要将领。</p>
+                
+                <p><span class="character">马谡</span>：字幼常，襄阳人。身高八尺，面如冠玉，有"马幼常"之称。在街亭之战中失守，导致诸葛亮北伐失败。</p>
+                
+                <p><strong>司马懿的特点：</strong></p>
+                <p>• 多疑谨慎：性格多疑，不轻易冒险</p>
+                <p>• 善于用兵：精通兵法，善于观察</p>
+                <p>• 城府很深：善于隐藏自己的真实想法</p>
+                <p>• 有耐心：能够等待时机</p>
+                
+                <p><strong>诸葛亮的特点：</strong></p>
+                <p>• 智慧超群：精通兵法，善于用计</p>
+                <p>• 了解敌人：知道司马懿多疑的性格</p>
+                <p>• 胆识过人：敢于用空城计</p>
+                <p>• 琴艺高超：用琴声增加计谋效果</p>
+            </div>
+            
+            <div class="thought-box">
+                <h4 class="section-title">🤔 思考题</h4>
+                <p><strong>1. 为什么诸葛亮要用空城计？</strong></p>
+                <p>提示：想想当时的情况和诸葛亮的处境。</p>
+                
+                <p><strong>2. 范以文为什么知道"空城计"？</strong></p>
+                <p>提示：想想范以文是从哪里来的。</p>
+                
+                <p><strong>3. 司马懿为什么会被空城计吓退？</strong></p>
+                <p>提示：想想司马懿的性格特点。</p>
+                
+                <p><strong>4. 如果你是范以文，你会怎么帮助诸葛亮？</strong></p>
+                <p>提示：想想现代有什么方法可以迷惑敌人。</p>
+            </div>
+            
+            <div class="battle-box">
+                <h4 class="section-title">⚔️ 小知识：古代心理战</h4>
+                <p><strong>空城计的心理战术：</strong></p>
+                <p>1. 虚张声势：故意显示虚弱</p>
+                <p>2. 利用多疑：抓住敌人的心理弱点</p>
+                <p>3. 琴声悠扬：用音乐增加效果</p>
+                <p>4. 城门大开：显示无所畏惧</p>
+                
+                <p><strong>古代心理战的特点：</strong></p>
+                <p>• 了解敌人：知道敌人的性格和弱点</p>
+                <p>• 虚虚实实：真真假假，迷惑敌人</p>
+                <p>• 利用恐惧：让敌人产生恐惧心理</p>
+                <p>• 制造假象：让敌人看到想看到的东西</p>
+                
+                <p><strong>诸葛亮的其他心理战：</strong></p>
+                <p>• 草船借箭：利用敌人的恐惧心理</p>
+                <p>• 火烧赤壁：利用敌人的轻敌心理</p>
+                <p>• 七擒孟获：利用敌人的骄傲心理</p>
+                <p>• 木牛流马：利用敌人的好奇心理</p>
+                
+                <p><strong>古代音乐在战争中的作用：</strong></p>
+                <p>• 鼓舞士气：用激昂的音乐鼓舞士兵</p>
+                <p>• 迷惑敌人：用悠扬的音乐迷惑敌人</p>
+                <p>• 传递信号：用不同的音乐传递不同的信号</p>
+                <p>• 安抚人心：用舒缓的音乐安抚人心</p>
+            </div>
+        </div>
+        
+        <div class="chapter">
+            <h3 class="chapter-title">🏠 第八章：回到现实世界</h3>
+            
+            <div class="story-box">
+                <h4 class="section-title">🌟 范以文的奇妙总结</h4>
+                <p>范以文还在回味空城计的智慧，突然又是一阵闪光，等他睁开眼睛时，发现自己回到了家里！</p>
+                
+                <p>"哇！我回来了！"范以文兴奋地看着熟悉的房间，电视里还在播放《三国演义》的动画片。</p>
+                
+                <p>他看了看时间，发现只过去了十分钟。范以文心想："原来我在三国时代经历了这么多，现实世界才过了十分钟！"</p>
+                
+                <p>这时，他的好朋友杨乐达和杨乐天跑了进来。</p>
+                
+                <p>杨乐达好奇地问："范以文，你在看什么？"</p>
+                
+                <p>范以文兴奋地说："我在看《三国演义》！我刚才还穿越到三国时代了呢！"</p>
+                
+                <p>杨乐天笑着说："范以文，你又做梦了！"</p>
+                
+                <p>范以文神秘地说："才不是做梦呢！我亲眼见证了桃园三结义、三英战吕布、草船借箭、火烧赤壁、三顾茅庐、长坂坡救阿斗，还有空城计！"</p>
+                
+                <p>杨乐达好奇地问："范以文，那你最喜欢哪个故事？"</p>
+                
+                <p>范以文想了想，说："我最喜欢草船借箭！诸葛亮真是太聪明了，用草船就能借到十万支箭！"</p>
+                
+                <p>杨乐天又问："那你学到了什么？"</p>
+                
+                <p>范以文认真地说："我学到了很多！比如：</p>
+                <p>• 刘备的仁德和礼贤下士</p>
+                <p>• 诸葛亮的智慧和胆识</p>
+                <p>• 赵云的忠诚和勇敢</p>
+                <p>• 关羽的忠义和武艺</p>
+                <p>• 张飞的豪爽和直率</p>
+                <p>• 还有古代人的智慧和勇气！"</p>
+                
+                <p>杨乐达兴奋地说："范以文，你能给我们讲讲这些故事吗？"</p>
+                
+                <p>范以文得意地说："当然可以！让我给你们讲讲我的三国冒险..."</p>
+                
+                <p>于是，范以文开始给朋友们讲述他在三国时代的奇妙经历。他讲得绘声绘色，朋友们听得津津有味。</p>
+                
+                <p>杨乐天听完后，感叹道："范以文，你真是太厉害了！"</p>
+                
+                <p>范以文笑着说："其实，最重要的是我学到了很多道理。比如：</p>
+                <p>• 要像刘备一样仁德爱民</p>
+                <p>• 要像诸葛亮一样智慧勇敢</p>
+                <p>• 要像赵云一样忠诚可靠</p>
+                <p>• 要像关羽一样重情重义</p>
+                <p>• 要像张飞一样豪爽直率</p>
+                <p>• 还要学习古代人的智慧和勇气！"</p>
+                
+                <p>杨乐达和杨乐天听完后，都表示要向范以文学习。</p>
+                
+                <p>范以文看着朋友们，心里暗笑："哈哈，我的三国冒险真是太有趣了！不仅学到了历史知识，还让朋友们对历史产生了兴趣！"</p>
+                
+                <p>从此以后，范以文经常给朋友们讲三国故事，他们一起学习历史，一起成长。</p>
+                
+                <p>范以文心想："这就是我的奇妙三国冒险！虽然只是穿越了十分钟，但我学到了很多，也收获了很多快乐！"</p>
+            </div>
+            
+            <div class="knowledge-box">
+                <h4 class="section-title">📚 三国演义知识总结</h4>
+                <p><strong>我们学到的历史知识：</strong></p>
+                <p>1. 桃园三结义：刘备、关羽、张飞的结拜，体现了兄弟情谊</p>
+                <p>2. 三英战吕布：展示了武艺和配合的重要性</p>
+                <p>3. 草船借箭：体现了诸葛亮的智慧和天时地利的重要性</p>
+                <p>4. 火烧赤壁：展示了火攻战术和心理战的重要性</p>
+                <p>5. 三顾茅庐：体现了礼贤下士和求贤若渴的精神</p>
+                <p>6. 长坂坡救阿斗：展示了赵云的忠诚和勇敢</p>
+                <p>7. 空城计：体现了心理战和胆识的重要性</p>
+                
+                <p><strong>我们认识的历史人物：</strong></p>
+                <p>• 刘备：仁德爱民，礼贤下士</p>
+                <p>• 诸葛亮：智慧超群，足智多谋</p>
+                <p>• 关羽：忠义无双，武艺高强</p>
+                <p>• 张飞：豪爽直率，武艺超群</p>
+                <p>• 赵云：忠诚可靠，一身是胆</p>
+                <p>• 曹操：雄才大略，多疑善变</p>
+                <p>• 周瑜：英俊潇洒，善于用兵</p>
+                <p>• 司马懿：多疑谨慎，善于用兵</p>
+                
+                <p><strong>我们学到的道理：</strong></p>
+                <p>• 要像刘备一样仁德爱民</p>
+                <p>• 要像诸葛亮一样智慧勇敢</p>
+                <p>• 要像关羽一样重情重义</p>
+                <p>• 要像张飞一样豪爽直率</p>
+                <p>• 要像赵云一样忠诚可靠</p>
+                <p>• 要学习古代人的智慧和勇气</p>
+            </div>
+            
+            <div class="character-box">
+                <h4 class="section-title">👥 范以文的成长感悟</h4>
+                
+                <p><strong>范以文的收获：</strong></p>
+                <p>• 历史知识：了解了三国时期的重要事件和人物</p>
+                <p>• 人生道理：学到了很多做人的道理</p>
+                <p>• 学习兴趣：对历史产生了浓厚的兴趣</p>
+                <p>• 分享快乐：能够给朋友们讲故事</p>
+                
+                <p><strong>范以文的感悟：</strong></p>
+                <p>• 历史很有趣：通过穿越体验，发现历史很有趣</p>
+                <p>• 学习很重要：知识能让我们变得更聪明</p>
+                <p>• 分享很快乐：把学到的知识分享给别人很快乐</p>
+                <p>• 成长需要努力：要像古代英雄一样努力学习和成长</p>
+                
+                <p><strong>范以文的愿望：</strong></p>
+                <p>• 继续学习历史：了解更多有趣的历史故事</p>
+                <p>• 给朋友们讲故事：让朋友们也爱上历史</p>
+                <p>• 做一个好朋友：像古代英雄一样勇敢和善良</p>
+                <p>• 长大后做有用的人：为社会做出贡献</p>
+            </div>
+            
+            <div class="thought-box">
+                <h4 class="section-title">🤔 思考题</h4>
+                <p><strong>1. 范以文的穿越经历对他有什么帮助？</strong></p>
+                <p>提示：想想他学到了什么知识和道理。</p>
+                
+                <p><strong>2. 为什么范以文要给朋友们讲故事？</strong></p>
+                <p>提示：想想分享知识的好处。</p>
+                
+                <p><strong>3. 从三国故事中，你学到了什么道理？</strong></p>
+                <p>提示：想想古代英雄的品质。</p>
+                
+                <p><strong>4. 如果你是范以文，你会怎么利用学到的知识？</strong></p>
+                <p>提示：想想如何把历史知识应用到生活中。</p>
+            </div>
+            
+            <div class="battle-box">
+                <h4 class="section-title">⚔️ 小知识：如何学习历史</h4>
+                <p><strong>学习历史的方法：</strong></p>
+                <p>1. 阅读历史书籍：了解历史事件和人物</p>
+                <p>2. 观看历史影视：通过影像了解历史</p>
+                <p>3. 参观历史遗迹：实地感受历史</p>
+                <p>4. 与家人分享：把学到的知识分享给家人</p>
+                
+                <p><strong>历史学习的好处：</strong></p>
+                <p>• 增长知识：了解过去的人和事</p>
+                <p>• 学习道理：从历史中学习做人的道理</p>
+                <p>• 培养兴趣：对学习产生兴趣</p>
+                <p>• 提高能力：提高阅读和表达能力</p>
+                
+                <p><strong>如何给家人讲故事：</strong></p>
+                <p>• 选择有趣的故事：选择家人感兴趣的故事</p>
+                <p>• 讲得生动有趣：用生动的语言讲述</p>
+                <p>• 加入自己的理解：加入自己的感悟</p>
+                <p>• 鼓励家人参与：鼓励家人一起讨论</p>
+                
+                <p><strong>学习历史的建议：</strong></p>
+                <p>• 从兴趣开始：选择自己感兴趣的历史</p>
+                <p>• 循序渐进：从简单的故事开始</p>
+                <p>• 多问多思：多问问题，多思考</p>
+                <p>• 学以致用：把学到的知识应用到生活中</p>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html> 

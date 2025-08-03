@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>杨乐北的奇妙冒险：数学王国历险记</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', 'SimSun', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+            max-width: 210mm;
+            margin: 0 auto;
+        }
+        
+        .container {
+            max-width: 180mm;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        
+        .cover-page {
+            text-align: center;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #3498db 100%);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cover-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="math" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.3)"/><text x="10" y="15" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.3)">π</text></pattern></defs><rect width="100" height="100" fill="url(%23math)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .cover-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cover-title {
+            font-size: 2.8em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .cover-subtitle {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .cover-image {
+            width: 200px;
+            height: 200px;
+            margin: 30px auto;
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 5px solid rgba(255,255,255,0.3);
+        }
+        
+        .cover-author {
+            font-size: 1.2em;
+            margin-top: 20px;
+            opacity: 0.8;
+        }
+        
+        .blank-page {
+            height: 100vh;
+            page-break-after: always;
+        }
+        
+        .title {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+        
+        .chapter {
+            margin-bottom: 40px;
+            page-break-inside: avoid;
+        }
+        
+        .chapter-title {
+            color: #495057;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #6c757d;
+            padding-bottom: 10px;
+        }
+        
+        .section-title {
+            color: #495057;
+            font-size: 1.4em;
+            margin: 25px 0 15px 0;
+            border-left: 3px solid #6c757d;
+            padding-left: 15px;
+        }
+        
+        .math-box {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .story-box {
+            background: #fff3cd;
+            border: 2px solid #ffeaa7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .knowledge-box {
+            background: #d1ecf1;
+            border: 2px solid #bee5eb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .exercise-box {
+            background: #d4edda;
+            border: 2px solid #c3e6cb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .thought-box {
+            background: #f8d7da;
+            border: 2px solid #f5c6cb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .math-formula {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .character {
+            color: #d63384;
+            font-weight: bold;
+        }
+        
+        .spirit {
+            color: #0d6efd;
+            font-weight: bold;
+        }
+        
+        .magic {
+            color: #6f42c1;
+            font-weight: bold;
+        }
+        
+        .number {
+            color: #fd7e14;
+            font-weight: bold;
+        }
+        
+        .formula {
+            color: #198754;
+            font-weight: bold;
+        }
+        
+        .math-icon {
+            width: 30px;
+            height: 30px;
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+        
+        .print-button {
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 20px auto;
+            display: block;
+        }
+        
+        .print-instructions {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border: 2px solid #dee2e6;
+        }
+        
+        @media print {
+            .print-button, .print-instructions {
+                display: none;
+            }
+            
+            @page {
+                margin: 20mm 15mm 20mm 15mm;
+                size: A4 portrait;
+                @bottom-center {
+                    content: counter(page);
+                    font-size: 10pt;
+                    color: #666;
+                    font-family: 'Microsoft YaHei', serif;
+                }
+                @top-center {
+                    content: "杨乐北的奇妙冒险：数学王国历险记";
+                    font-size: 10pt;
+                    color: #666;
+                    font-family: 'Microsoft YaHei', serif;
+                }
+            }
+            
+            body {
+                counter-reset: page;
+                margin: 0;
+                padding: 0;
+                font-size: 11pt;
+                line-height: 1.5;
+                background-color: white;
+                max-width: none;
+            }
+            
+            .container {
+                max-width: none;
+                margin: 0;
+                padding: 0;
+                background-color: white;
+                box-shadow: none;
+                border-radius: 0;
+            }
+            
+            .cover-page {
+                page-break-after: always;
+                background: white;
+                color: #333;
+                border-radius: 0;
+                padding: 40pt 20pt;
+                margin: 0;
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            .cover-page::before {
+                display: none;
+            }
+            
+            .cover-title {
+                font-size: 22pt;
+                color: #2c3e50;
+                margin-bottom: 15pt;
+                text-shadow: none;
+            }
+            
+            .cover-subtitle {
+                font-size: 12pt;
+                color: #666;
+                margin-bottom: 20pt;
+            }
+            
+            .cover-image {
+                width: 120pt;
+                height: 120pt;
+                background: #2c3e50;
+                color: white;
+                font-size: 48pt;
+                margin: 20pt auto;
+                border: 3pt solid #2c3e50;
+            }
+            
+            .cover-author {
+                font-size: 12pt;
+                color: #666;
+                margin-top: 15pt;
+            }
+            
+            .blank-page {
+                page-break-after: always;
+                height: 100vh;
+            }
+            
+            .title {
+                font-size: 18pt;
+                margin-bottom: 8pt;
+                page-break-after: avoid;
+            }
+            
+            .subtitle {
+                font-size: 12pt;
+                margin-bottom: 20pt;
+                page-break-after: avoid;
+            }
+            
+            .chapter {
+                page-break-before: always;
+                margin-top: 15mm;
+                margin-bottom: 10mm;
+                position: relative;
+            }
+            
+            .chapter-title {
+                font-size: 16pt;
+                margin-bottom: 15pt;
+                page-break-after: avoid;
+                border-bottom: 1pt solid #6c757d;
+                padding-bottom: 8pt;
+            }
+            
+            .section-title {
+                font-size: 13pt;
+                margin: 20pt 0 10pt 0;
+                page-break-after: avoid;
+                border-left: 2pt solid #6c757d;
+                padding-left: 10pt;
+            }
+            
+            .math-box, .story-box, .knowledge-box, .exercise-box, .thought-box {
+                background-color: white;
+                border: 1pt solid #ccc;
+                border-radius: 0;
+                padding: 15pt;
+                margin: 10pt 0;
+                page-break-inside: avoid;
+            }
+            
+            .math-box {
+                border-left: 3pt solid #e9ecef;
+            }
+            
+            .story-box {
+                border-left: 3pt solid #ffeaa7;
+            }
+            
+            .knowledge-box {
+                border-left: 3pt solid #bee5eb;
+            }
+            
+            .exercise-box {
+                border-left: 3pt solid #c3e6cb;
+            }
+            
+            .thought-box {
+                border-left: 3pt solid #f5c6cb;
+            }
+            
+            .math-formula {
+                background-color: white;
+                border: 1pt solid #ccc;
+                border-radius: 0;
+                padding: 10pt;
+                margin: 8pt 0;
+                font-family: 'Courier New', monospace;
+                text-align: center;
+                font-weight: bold;
+            }
+            
+            .highlight {
+                background-color: #fff3cd;
+                padding: 1pt 3pt;
+                border-radius: 2pt;
+                font-weight: bold;
+            }
+            
+            p {
+                margin: 8pt 0;
+                text-align: justify;
+                orphans: 2;
+                widows: 2;
+            }
+            
+            ul, ol {
+                margin: 8pt 0;
+                padding-left: 20pt;
+            }
+            
+            li {
+                margin: 4pt 0;
+            }
+            
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 10pt 0;
+            }
+            
+            th, td {
+                border: 1pt solid #ccc;
+                padding: 6pt;
+                text-align: left;
+            }
+            
+            th {
+                background-color: #f8f9fa;
+                font-weight: bold;
+            }
+            
+            .character, .spirit, .magic, .number, .formula {
+                font-weight: bold;
+            }
+            
+            /* 避免孤行和寡行 */
+            h1, h2, h3, h4, h5 {
+                page-break-after: avoid;
+            }
+            
+            /* 确保章节标题不会单独出现在页面底部 */
+            .chapter-title {
+                page-break-after: avoid;
+            }
+            
+            /* 确保内容框不会跨页断开 */
+            .math-box, .story-box, .knowledge-box, .exercise-box, .thought-box {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 封面页 -->
+        <div class="cover-page">
+            <div class="cover-content">
+                <div class="cover-image">🔢</div>
+                <h1 class="cover-title">杨乐北的奇妙冒险：数学王国历险记</h1>
+                <p class="cover-subtitle">探索数学的奇妙世界</p>
+                <p class="cover-author">作者：杨乐北</p>
+            </div>
+        </div>
+        
+        <!-- 空白页 -->
+        <div class="blank-page"></div>
+        
+        <h1 class="title">杨乐北的奇妙冒险：数学王国历险记</h1>
+        <p class="subtitle">探索数学的奇妙世界</p>
+        
+        <div class="print-instructions">
+            <h3 style="color: #495057; margin-bottom: 15px;">📖 打印说明</h3>
+            <button class="print-button" onclick="window.print()">🖨️ 打印书籍</button>
+            <div style="text-align: left; margin-top: 15px; color: #666; font-size: 14px;">
+                <p><strong>打印建议：</strong></p>
+                <ul style="margin: 10px 0; padding-left: 20px;">
+                    <li>纸张大小：A4</li>
+                    <li>方向：纵向（Portrait）</li>
+                    <li>边距：默认或窄边距</li>
+                    <li>缩放：100%</li>
+                    <li>背景图形：勾选（保留颜色和图片）</li>
+                    <li>双面打印：建议开启双面打印功能</li>
+                    <li>装订：建议左侧装订</li>
+                    <li>封面：第一页为封面，第二页为空白页</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="chapter">
+            <h3 class="chapter-title">📋 目录</h3>
+            
+            <div class="knowledge-box">
+                <h4 class="section-title">📖 目录</h4>
+                <div style="margin: 20px 0;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                        <thead>
+                            <tr style="border-bottom: 2px solid #6c757d;">
+                                <th style="text-align: left; padding: 10px 0; color: #495057; font-weight: bold;">章节</th>
+                                <th style="text-align: center; padding: 10px 0; color: #495057; font-weight: bold;">内容</th>
+                                <th style="text-align: right; padding: 10px 0; color: #495057; font-weight: bold;">页码</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid #dee2e6;">
+                                <td style="padding: 8px 0;">第一章</td>
+                                <td style="text-align: center; padding: 8px 0;">神秘的数学王国</td>
+                                <td style="text-align: right; padding: 8px 0;">第 3 页</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #dee2e6;">
+                                <td style="padding: 8px 0;">第二章</td>
+                                <td style="text-align: center; padding: 8px 0;">分数城堡的挑战</td>
+                                <td style="text-align: right; padding: 8px 0;">第 4 页</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #dee2e6;">
+                                <td style="padding: 8px 0;">第三章</td>
+                                <td style="text-align: center; padding: 8px 0;">几何森林的探索</td>
+                                <td style="text-align: right; padding: 8px 0;">第 5 页</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #dee2e6;">
+                                <td style="padding: 8px 0;">第四章</td>
+                                <td style="text-align: center; padding: 8px 0;">数据小镇的秘密</td>
+                                <td style="text-align: right; padding: 8px 0;">第 6 页</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #dee2e6;">
+                                <td style="padding: 8px 0;">第五章</td>
+                                <td style="text-align: center; padding: 8px 0;">方程迷宫的考验</td>
+                                <td style="text-align: right; padding: 8px 0;">第 7 页</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #dee2e6;">
+                                <td style="padding: 8px 0;">第六章</td>
+                                <td style="text-align: center; padding: 8px 0;">时间与速度的竞赛</td>
+                                <td style="text-align: right; padding: 8px 0;">第 8 页</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #dee2e6;">
+                                <td style="padding: 8px 0;">第七章</td>
+                                <td style="text-align: center; padding: 8px 0;">回到现实世界</td>
+                                <td style="text-align: right; padding: 8px 0;">第 9 页</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #dee2e6;">
+                                <td style="padding: 8px 0;">附录</td>
+                                <td style="text-align: center; padding: 8px 0;">数学知识总结</td>
+                                <td style="text-align: right; padding: 8px 0;">第 10 页</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="story-box">
+                <h4 class="section-title">🎯 基本信息</h4>
+                <ul>
+                    <li><span class="character">主角</span>：<span class="highlight">杨乐北</span>（姐姐，10岁，小学五年级）</li>
+                    <li><span class="character">配角</span>：<span class="highlight">杨乐达</span>、<span class="highlight">杨乐天</span>（双胞胎弟弟）</li>
+                    <li><span class="character">故事背景</span>：杨乐北意外进入一个神奇的数学王国，需要运用各种知识来帮助王国解决问题</li>
+                    <li><span class="character">目标读者</span>：小学五年级学生</li>
+                    <li><span class="character">阅读时长</span>：一周阅读量</li>
+                </ul>
+            </div>
+            
+            <div class="knowledge-box">
+                <h4 class="section-title">📖 分章节内容规划</h4>
+                <ol>
+                    <li><span class="magic">第一章：神秘的数学王国</span> - 分数、小数、百分数</li>
+                    <li><span class="magic">第二章：分数城堡的挑战</span> - 分数运算</li>
+                    <li><span class="magic">第三章：几何森林的探索</span> - 周长和面积</li>
+                    <li><span class="magic">第四章：数据小镇的秘密</span> - 统计图表</li>
+                    <li><span class="magic">第五章：方程迷宫的考验</span> - 简单方程</li>
+                    <li><span class="magic">第六章：时间与速度的竞赛</span> - 时间计算和速度问题</li>
+                    <li><span class="magic">第七章：回到现实世界</span> - 综合应用</li>
+                </ol>
+            </div>
+            
+            <div class="exercise-box">
+                <h4 class="section-title">🎓 学习目标</h4>
+                <ol>
+                    <li><span class="formula">语文能力</span>：阅读理解、写作表达、词汇积累</li>
+                    <li><span class="formula">数学能力</span>：分数运算、几何计算、统计图表、简单方程</li>
+                    <li><span class="formula">百科知识</span>：数学史、科学应用、生活联系</li>
+                    <li><span class="formula">思维能力</span>：逻辑推理、问题解决、创新思维</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="chapter">
+            <h3 class="chapter-title">🌟 第一章：神秘的数学王国</h3>
+            
+            <div class="story-box">
+                <h4 class="section-title">📖 语文板块：杨乐北的奇妙发现</h4>
+                <p>那是一个普通的星期六下午，<span class="character">杨乐北</span>正坐在书桌前做数学作业。她的双胞胎弟弟<span class="character">杨乐达</span>和<span class="character">杨乐天</span>在客厅里玩积木，时不时传来他们欢快的笑声。</p>
+                
+                <p>"姐姐，这道分数题好难啊！"<span class="character">杨乐北</span>皱着眉头，看着作业本上的题目：<span class="math-formula">3/4 + 2/5 = ?</span></p>
+                
+                <p>她叹了口气，心想："要是数学能变得有趣一点就好了。"</p>
+                
+                <p>就在这时，她的数学书突然发出了一道柔和的金光。<span class="character">杨乐北</span>惊讶地揉了揉眼睛，以为自己看错了。但金光越来越亮，书页开始自动翻动，最后停在了空白页上。</p>
+                
+                <p>"欢迎来到数学王国，勇敢的小探险家！"一个温柔的声音从书中传来。</p>
+                
+                <p><span class="character">杨乐北</span>瞪大了眼睛，只见书页上浮现出了一个可爱的小精灵，它有着蓝色的翅膀和闪闪发光的眼睛。</p>
+                
+                <p>"你...你是谁？"<span class="character">杨乐北</span>结结巴巴地问道。</p>
+                
+                <p>"我是<span class="spirit">数学精灵小算</span>，是数学王国的向导。"小精灵微笑着说，"我注意到你在为数学烦恼，所以邀请你来我们的王国做客。在这里，数学不再是枯燥的符号，而是充满魔力的工具！"</p>
+            </div>
+            
+            <div class="math-box">
+                <h4 class="section-title">🔢 数学板块：认识数字精灵</h4>
+                <p><span class="spirit">小算</span>带着<span class="character">杨乐北</span>来到了一座水晶宫殿前。宫殿的墙壁上镶嵌着各种数字，它们在阳光下闪闪发光。</p>
+                
+                <p>"这里是数字精灵们的家，"<span class="spirit">小算</span>介绍道，"让我们进去认识一下它们吧。"</p>
+                
+                <p>宫殿内部金碧辉煌，三个不同颜色的精灵正在大厅里忙碌着。</p>
+                
+                <ul>
+                    <li><span class="spirit">分数精灵</span>：红色衣服，特点是分子和分母</li>
+                    <li><span class="spirit">小数精灵</span>：蓝色衣服，用小数点表示分数</li>
+                    <li><span class="spirit">百分数精灵</span>：绿色衣服，用百分号表示分数</li>
+                </ul>
+                
+                <div class="math-formula">
+                    <p>
+                        <svg class="math-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="20" y="20" width="60" height="60" fill="none" stroke="#6c757d" stroke-width="2"/>
+                            <text x="50" y="45" text-anchor="middle" font-size="15" fill="#6c757d">a</text>
+                            <text x="50" y="65" text-anchor="middle" font-size="15" fill="#6c757d">b</text>
+                        </svg>
+                        <span class="formula">分数转小数：分子 ÷ 分母</span>
+                    </p>
+                    <p>
+                        <svg class="math-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="30" fill="none" stroke="#6c757d" stroke-width="2"/>
+                            <text x="50" y="55" text-anchor="middle" font-size="20" fill="#6c757d">%</text>
+                        </svg>
+                        <span class="formula">分数转百分数：分子 ÷ 分母 × 100%</span>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="knowledge-box">
+                <h4 class="section-title">📚 百科知识板块：数学的历史发展</h4>
+                <p><span class="spirit">小算</span>带着<span class="character">杨乐北</span>来到了一座古老的图书馆，这里的书架上摆满了关于数学历史的书籍。</p>
+                
+                <h5>古代数学的发展：</h5>
+                <ul>
+                    <li><span class="number">古埃及（约公元前3000年）</span>：发明了分数系统，用分数解决土地分配问题</li>
+                    <li><span class="number">古巴比伦（约公元前2000年）</span>：发展了60进制系统，发明了位置记数法</li>
+                    <li><span class="number">古希腊（约公元前600年）</span>：欧几里得创立了几何学，毕达哥拉斯发现了数学规律</li>
+                    <li><span class="number">古印度（约公元前500年）</span>：发明了十进制系统，创造了数字0的概念</li>
+                    <li><span class="number">中国古代数学</span>：《九章算术》是最早的数学专著，发明了算盘</li>
+                </ul>
+            </div>
+            
+            <div class="thought-box">
+                <h4 class="section-title">💭 思考题</h4>
+                <ol>
+                    <li>如果你有<span class="number">100</span>元钱，花了<span class="number">3/4</span>，还剩多少钱？（用分数、小数、百分数三种方式表示）</li>
+                    <li>在数学王国里，你最喜欢哪个数字精灵？为什么？</li>
+                    <li>你能想出生活中还有哪些地方用到了分数、小数或百分数吗？</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="chapter">
+            <h3 class="chapter-title">🏰 第二章：分数城堡的挑战</h3>
+            
+            <div class="story-box">
+                <h4 class="section-title">📖 语文板块：通往分数城堡的路</h4>
+                <p>第二天清晨，<span class="character">杨乐北</span>在<span class="spirit">小算</span>的带领下，踏上了前往分数城堡的路。阳光透过数学王国的天空，洒在她们身上，形成了一道道金色的光柱。</p>
+                
+                <p>"分数城堡在数学王国的东部，"<span class="spirit">小算</span>一边飞一边介绍，"那里住着所有的分数精灵。不过最近城堡里出现了一些问题，分数精灵们变得混乱不堪。"</p>
+                
+                <p>走了大约一个小时，一座巨大的城堡出现在她们面前。城堡的墙壁由各种颜色的砖块砌成，每一块砖上都写着不同的分数。</p>
+                
+                <p>"哇！这就是分数城堡吗？"<span class="character">杨乐北</span>惊叹道。</p>
+                
+                <p>就在这时，城堡的大门缓缓打开，一个穿着红色衣服的小精灵飞了出来。</p>
+                
+                <p>"欢迎来到分数城堡！"小精灵微笑着说，"我是<span class="spirit">分数精灵女王小分</span>。"</p>
+            </div>
+            
+            <div class="math-box">
+                <h4 class="section-title">🔢 数学板块：分数的运算规则</h4>
+                <p><span class="spirit">小分</span>带着<span class="character">杨乐北</span>来到城堡的会议室，这里有一块巨大的黑板，上面写满了各种分数运算题。</p>
+                
+                <h5>1. 分数的加法</h5>
+                <div class="math-formula">
+                    <p>
+                        <svg class="math-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="30" fill="none" stroke="#6c757d" stroke-width="2"/>
+                            <text x="50" y="55" text-anchor="middle" font-size="25" fill="#6c757d">+</text>
+                        </svg>
+                        当分母相同时：<span class="formula">分子相加，分母不变</span>
+                    </p>
+                </div>
+                
+                <p>例如：<span class="math-formula">1/4 + 2/4 = 3/4</span></p>
+                
+                <h5>2. 分数的减法</h5>
+                <div class="math-formula">
+                    <p>
+                        <svg class="math-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="30" fill="none" stroke="#6c757d" stroke-width="2"/>
+                            <text x="50" y="55" text-anchor="middle" font-size="25" fill="#6c757d">-</text>
+                        </svg>
+                        当分母相同时：<span class="formula">分子相减，分母不变</span>
+                    </p>
+                </div>
+                
+                <p>例如：<span class="math-formula">3/4 - 1/4 = 2/4 = 1/2</span></p>
+                
+                <h5>3. 分数的乘法</h5>
+                <div class="math-formula">
+                    <p>
+                        <svg class="math-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="30" fill="none" stroke="#6c757d" stroke-width="2"/>
+                            <text x="50" y="55" text-anchor="middle" font-size="25" fill="#6c757d">×</text>
+                        </svg>
+                        <span class="formula">分子相乘，分母相乘</span>
+                    </p>
+                </div>
+                
+                <p>例如：<span class="math-formula">2/3 × 3/4 = 6/12 = 1/2</span></p>
+            </div>
+            
+            <div class="knowledge-box">
+                <h4 class="section-title">📚 百科知识板块：分数的历史</h4>
+                <p><span class="spirit">小分</span>带着<span class="character">杨乐北</span>来到城堡的历史博物馆，这里展示了分数发展的历史。</p>
+                
+                <h5>分数的起源：</h5>
+                <ul>
+                    <li><span class="number">古埃及</span>：最早使用分数，用眼睛符号表示1/2</li>
+                    <li><span class="number">古巴比伦</span>：发明了60进制分数系统</li>
+                    <li><span class="number">古希腊</span>：欧几里得在《几何原本》中详细讨论了分数</li>
+                    <li><span class="number">古印度</span>：发明了现代分数的表示方法</li>
+                    <li><span class="number">中国古代</span>：《九章算术》中有详细的分数运算</li>
+                </ul>
+            </div>
+            
+            <div class="thought-box">
+                <h4 class="section-title">💭 思考题</h4>
+                <ol>
+                    <li>计算：<span class="math-formula">1/3 + 2/3 = ?</span></li>
+                    <li>计算：<span class="math-formula">5/6 - 1/6 = ?</span></li>
+                    <li>计算：<span class="math-formula">2/5 × 3/4 = ?</span></li>
+                    <li>你能用分数表示你一天的时间分配吗？（比如：睡觉、学习、玩耍各占多少？）</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="chapter">
+            <h3 class="chapter-title">🌲 第三章：几何森林的探索</h3>
+            
+            <div class="story-box">
+                <h4 class="section-title">📖 语文板块：迷失在几何森林</h4>
+                <p>告别了分数城堡，<span class="character">杨乐北</span>和<span class="spirit">小算</span>踏上了前往几何森林的路。这次，<span class="spirit">小算</span>的表情有些凝重。</p>
+                
+                <p>"几何森林是数学王国最神秘的地方，"<span class="spirit">小算</span>一边飞一边说，"那里住着各种几何图形精灵。但是最近，森林里的测量工具都失灵了，精灵们无法正确计算周长和面积。"</p>
+                
+                <p>走了大约两个小时，一片茂密的森林出现在她们面前。这里的树木形状奇特，有的像三角形，有的像圆形，还有的像正方形。</p>
+                
+                <p>"哇！这里的树都是几何形状的！"<span class="character">杨乐北</span>惊叹道。</p>
+                
+                <p>就在这时，一个穿着三角形衣服的小精灵从森林里飞了出来。</p>
+                
+                <p>"你们好！我是<span class="spirit">三角形精灵小三角</span>，"小精灵急切地说，"森林里出现了大问题！我们的测量工具都失灵了，无法正确计算周长和面积。你们能帮助我们吗？"</p>
+            </div>
+            
+            <div class="math-box">
+                <h4 class="section-title">🔢 数学板块：几何图形的周长和面积</h4>
+                <p><span class="spirit">小三角</span>带着<span class="character">杨乐北</span>来到森林中央的一座几何学院，这里有一块巨大的黑板，上面画满了各种几何图形。</p>
+                
+                <h5>1. 正方形的周长和面积</h5>
+                <div class="math-formula">
+                    <p>
+                        <svg class="math-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="20" y="20" width="60" height="60" fill="none" stroke="#6c757d" stroke-width="2"/>
+                            <text x="50" y="55" text-anchor="middle" font-size="15" fill="#6c757d">a</text>
+                        </svg>
+                        <span class="formula">周长 = 4 × 边长</span>
+                    </p>
+                    <p><span class="formula">面积 = 边长 × 边长</span></p>
+                </div>
+                
+                <h5>2. 长方形的周长和面积</h5>
+                <div class="math-formula">
+                    <p>
+                        <svg class="math-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="15" y="25" width="70" height="50" fill="none" stroke="#6c757d" stroke-width="2"/>
+                            <text x="50" y="45" text-anchor="middle" font-size="12" fill="#6c757d">a</text>
+                            <text x="50" y="65" text-anchor="middle" font-size="12" fill="#6c757d">b</text>
+                        </svg>
+                        <span class="formula">周长 = 2 × (长 + 宽)</span>
+                    </p>
+                    <p><span class="formula">面积 = 长 × 宽</span></p>
+                </div>
+                
+                <h5>3. 三角形的周长和面积</h5>
+                <div class="math-formula">
+                    <p>
+                        <svg class="math-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="50,20 80,80 20,80" fill="none" stroke="#6c757d" stroke-width="2"/>
+                            <text x="50" y="60" text-anchor="middle" font-size="12" fill="#6c757d">h</text>
+                            <text x="35" y="85" text-anchor="middle" font-size="12" fill="#6c757d">a</text>
+                        </svg>
+                        <span class="formula">周长 = 边1 + 边2 + 边3</span>
+                    </p>
+                    <p><span class="formula">面积 = (底 × 高) ÷ 2</span></p>
+                </div>
+                
+                <h5>4. 圆形的周长和面积</h5>
+                <div class="math-formula">
+                    <p>
+                        <svg class="math-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="35" fill="none" stroke="#6c757d" stroke-width="2"/>
+                            <text x="50" y="55" text-anchor="middle" font-size="15" fill="#6c757d">r</text>
+                        </svg>
+                        <span class="formula">周长 = 2π × 半径</span>
+                    </p>
+                    <p><span class="formula">面积 = π × 半径²</span></p>
+                </div>
+            </div>
+            
+            <div class="knowledge-box">
+                <h4 class="section-title">📚 百科知识板块：几何学的发展历史</h4>
+                <p><span class="spirit">小三角</span>带着<span class="character">杨乐北</span>来到几何学院的图书馆，这里有很多关于几何学历史的书籍。</p>
+                
+                <h5>几何学在生活中的应用：</h5>
+                <ul>
+                    <li><span class="highlight">建筑领域</span>：设计房屋、桥梁、道路</li>
+                    <li><span class="highlight">艺术领域</span>：绘画、雕塑、设计</li>
+                    <li><span class="highlight">工程领域</span>：机械设计、电路设计</li>
+                    <li><span class="highlight">日常生活</span>：装修、园艺、手工</li>
+                </ul>
+            </div>
+            
+            <div class="thought-box">
+                <h4 class="section-title">💭 思考题</h4>
+                <ol>
+                    <li>如果你有一个边长<span class="number">10</span>厘米的正方形和一个半径<span class="number">5</span>厘米的圆形，哪个的面积更大？</li>
+                    <li>一个长方形的周长是<span class="number">20</span>厘米，长是<span class="number">6</span>厘米，宽是多少厘米？</li>
+                    <li>你能想出生活中还有哪些地方用到了几何图形的周长和面积计算吗？</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="chapter">
+            <h3 class="chapter-title">📊 第四章：数据小镇的秘密</h3>
+            
+            <div class="story-box">
+                <h4 class="section-title">📖 语文板块：调查数据小镇的异常现象</h4>
+                <p>告别了几何森林，<span class="character">杨乐北</span>和<span class="spirit">小算</span>继续她们的冒险之旅。这次，她们的目标是数据小镇。</p>
+                
+                <p>"数据小镇是数学王国最热闹的地方，"<span class="spirit">小算</span>一边飞一边介绍，"那里住着各种统计精灵，它们负责收集和分析各种数据。但是最近，小镇里出现了一些奇怪的现象。"</p>
+                
+                <p>走了大约三个小时，一座现代化的城镇出现在她们面前。这里的建筑都是各种图表形状，有的像柱状图，有的像饼图，还有的像折线图。</p>
+                
+                <p>"哇！这里到处都是数据！"<span class="character">杨乐北</span>惊叹道。</p>
+                
+                <p>就在这时，一个穿着柱状图衣服的小精灵从一栋建筑里飞了出来。</p>
+                
+                <p>"你们好！我是<span class="spirit">柱状图精灵小柱</span>，"小精灵急切地说，"小镇里出现了大问题！我们的数据收集系统出现了故障，无法正确统计和分析数据。你们能帮助我们调查吗？"</p>
+            </div>
+            
+            <div class="math-box">
+                <h4 class="section-title">🔢 数学板块：统计图表和数据分析</h4>
+                <p><span class="spirit">小柱</span>带着<span class="character">杨乐北</span>来到小镇的统计中心，这里有一块巨大的电子屏幕，上面显示着各种数据。</p>
+                
+                <h5>1. 柱状图</h5>
+                <p>柱状图适合比较不同类别的数据。特点是用不同高度的柱子表示数据，柱子越高，数据越大。</p>
+                
+                <h5>2. 饼图</h5>
+                <p>饼图适合表示整体中各部分的占比。特点是用扇形表示各部分占比，扇形越大，占比越大。</p>
+                
+                <h5>3. 折线图</h5>
+                <p>折线图适合表示数据的变化趋势。特点是用线连接各个数据点，可以看出数据的变化趋势。</p>
+                
+                <h5>4. 平均数和中位数</h5>
+                <div class="math-formula">
+                    <p><span class="formula">平均数 = 所有数据的总和 ÷ 数据的个数</span></p>
+                    <p><span class="formula">中位数 = 数据从小到大排列后的中间数</span></p>
+                </div>
+            </div>
+            
+            <div class="knowledge-box">
+                <h4 class="section-title">📚 百科知识板块：统计学在生活中的应用</h4>
+                <p><span class="spirit">小柱</span>带着<span class="character">杨乐北</span>来到小镇的图书馆，这里有很多关于统计学应用的书籍。</p>
+                
+                <h5>统计学在生活中的应用：</h5>
+                <ul>
+                    <li><span class="highlight">教育领域</span>：分析学生成绩分布，评估教学效果</li>
+                    <li><span class="highlight">医疗领域</span>：分析疾病发病率，评估治疗效果</li>
+                    <li><span class="highlight">商业领域</span>：分析市场趋势，评估产品销量</li>
+                    <li><span class="highlight">科学研究</span>：分析实验数据，验证科学假设</li>
+                </ul>
+            </div>
+            
+            <div class="thought-box">
+                <h4 class="section-title">💭 思考题</h4>
+                <ol>
+                    <li>如果你要调查班级同学最喜欢的运动，你会用什么图表来展示结果？为什么？</li>
+                    <li>一个班级有<span class="number">30</span>个学生，其中<span class="number">10</span>个喜欢足球，<span class="number">8</span>个喜欢篮球，<span class="number">6</span>个喜欢排球，<span class="number">4</span>个喜欢乒乓球，<span class="number">2</span>个喜欢其他运动。用饼图表示这个数据。</li>
+                    <li>你能想出生活中还有哪些地方用到了统计图表和数据分析吗？</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="chapter">
+            <h3 class="chapter-title">🧩 第五章：方程迷宫的考验</h3>
+            
+            <div class="story-box">
+                <h4 class="section-title">📖 语文板块：解开方程迷宫的谜题</h4>
+                <p>告别了数据小镇，<span class="character">杨乐北</span>和<span class="spirit">小算</span>继续她们的冒险之旅。这次，她们的目标是方程迷宫。</p>
+                
+                <p>"方程迷宫是数学王国最神秘的地方，"<span class="spirit">小算</span>一边飞一边介绍，"那里住着各种代数精灵，它们负责解各种数学方程。但是最近，迷宫里的方程都变得混乱了，精灵们无法正确求解。"</p>
+                
+                <p>走了大约四个小时，一座巨大的迷宫出现在她们面前。这座迷宫由无数道数学符号组成的墙壁构成，每一面墙上都写着不同的方程。</p>
+                
+                <p>"哇！这里到处都是方程！"<span class="character">杨乐北</span>惊叹道。</p>
+                
+                <p>就在这时，一个穿着字母衣服的小精灵从迷宫的入口处飞了出来。</p>
+                
+                <p>"你们好！我是<span class="spirit">代数精灵小代</span>，"小精灵急切地说，"迷宫里出现了大问题！所有的方程都变得混乱了，我们无法正确求解。你们能帮助我们吗？"</p>
+            </div>
+            
+            <div class="math-box">
+                <h4 class="section-title">🔢 数学板块：简单方程和代数思维</h4>
+                <p><span class="spirit">小代</span>带着<span class="character">杨乐北</span>来到迷宫中央的代数学院，这里有一块巨大的黑板，上面写满了各种方程。</p>
+                
+                <h5>1. 加法方程</h5>
+                <div class="math-formula">
+                    <p>解加法方程，把常数移到等号另一边，变成减法</p>
+                    <p>例如：<span class="number">x + 5 = 12</span> → <span class="number">x = 7</span></p>
+                </div>
+                
+                <h5>2. 减法方程</h5>
+                <div class="math-formula">
+                    <p>解减法方程，把常数移到等号另一边，变成加法</p>
+                    <p>例如：<span class="number">x - 3 = 8</span> → <span class="number">x = 11</span></p>
+                </div>
+                
+                <h5>3. 乘法方程</h5>
+                <div class="math-formula">
+                    <p>解乘法方程，把系数移到等号另一边，变成除法</p>
+                    <p>例如：<span class="number">3x = 15</span> → <span class="number">x = 5</span></p>
+                </div>
+                
+                <h5>4. 除法方程</h5>
+                <div class="math-formula">
+                    <p>解除法方程，把除数移到等号另一边，变成乘法</p>
+                    <p>例如：<span class="number">x ÷ 4 = 3</span> → <span class="number">x = 12</span></p>
+                </div>
+            </div>
+            
+            <div class="knowledge-box">
+                <h4 class="section-title">📚 百科知识板块：代数学的发展</h4>
+                <p><span class="spirit">小代</span>带着<span class="character">杨乐北</span>来到代数学院的图书馆，这里有很多关于代数学历史的书籍。</p>
+                
+                <h5>代数学在生活中的应用：</h5>
+                <ul>
+                    <li><span class="highlight">购物计算</span>：计算折扣价格，计算找零钱</li>
+                    <li><span class="highlight">时间计算</span>：计算到达时间，计算工作时间</li>
+                    <li><span class="highlight">距离计算</span>：计算路程，计算速度</li>
+                    <li><span class="highlight">面积计算</span>：计算房间面积，计算花园面积</li>
+                </ul>
+            </div>
+            
+            <div class="thought-box">
+                <h4 class="section-title">💭 思考题</h4>
+                <ol>
+                    <li>如果你有<span class="number">x</span>元钱，花了<span class="number">15</span>元后还剩<span class="number">25</span>元，求<span class="number">x</span>的值。</li>
+                    <li>一个长方形的长是<span class="number">x</span>厘米，宽是<span class="number">6</span>厘米，面积是<span class="number">30</span>平方厘米，求长是多少厘米。</li>
+                    <li>你能想出生活中还有哪些地方用到了方程吗？</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="chapter">
+            <h3 class="chapter-title">⏰ 第六章：时间与速度的竞赛</h3>
+            
+            <div class="story-box">
+                <h4 class="section-title">📖 语文板块：与时间精灵的赛跑</h4>
+                <p>告别了方程迷宫，<span class="character">杨乐北</span>和<span class="spirit">小算</span>继续她们的冒险之旅。这次，她们的目标是时间与速度的竞赛场。</p>
+                
+                <p>"竞赛场是数学王国最热闹的地方，"<span class="spirit">小算</span>一边飞一边介绍，"那里住着时间精灵和速度精灵，它们负责管理时间和速度的计算。但是最近，竞赛场里出现了一些问题，精灵们无法正确计算时间和速度。"</p>
+                
+                <p>走了大约五个小时，一个巨大的竞技场出现在她们面前。这个竞技场由各种时钟和速度计组成，中央有一个巨大的跑道。</p>
+                
+                <p>"哇！这里到处都是时钟和速度计！"<span class="character">杨乐北</span>惊叹道。</p>
+                
+                <p>就在这时，一个穿着时钟衣服的小精灵从竞技场中央飞了出来。</p>
+                
+                <p>"你们好！我是<span class="spirit">时间精灵小时</span>，"小精灵急切地说，"竞赛场里出现了大问题！我们的时间计算系统出现了故障，无法正确计算时间。你们能帮助我们吗？"</p>
+            </div>
+            
+            <div class="math-box">
+                <h4 class="section-title">🔢 数学板块：时间计算和速度问题</h4>
+                <p><span class="spirit">小时</span>带着<span class="character">杨乐北</span>来到竞技场的计算中心，这里有一块巨大的显示屏，上面显示着各种时间和速度的计算。</p>
+                
+                <h5>1. 时间单位换算</h5>
+                <div class="math-formula">
+                    <p><span class="formula">1小时 = 60分钟</span></p>
+                    <p><span class="formula">1分钟 = 60秒</span></p>
+                    <p><span class="formula">1小时 = 3600秒</span></p>
+                </div>
+                
+                <h5>2. 速度计算</h5>
+                <div class="math-formula">
+                    <p><span class="formula">速度 = 距离 ÷ 时间</span></p>
+                    <p><span class="formula">距离 = 速度 × 时间</span></p>
+                    <p><span class="formula">时间 = 距离 ÷ 速度</span></p>
+                </div>
+            </div>
+            
+            <div class="knowledge-box">
+                <h4 class="section-title">📚 百科知识板块：时间测量的历史</h4>
+                <p><span class="spirit">小时</span>带着<span class="character">杨乐北</span>来到竞技场的博物馆，这里有很多关于时间测量历史的展品。</p>
+                
+                <h5>时间在生活中的应用：</h5>
+                <ul>
+                    <li><span class="highlight">日常生活</span>：安排作息时间，计算工作时间</li>
+                    <li><span class="highlight">交通运输</span>：计算到达时间，安排班次时间</li>
+                    <li><span class="highlight">工业生产</span>：计算生产效率，安排生产计划</li>
+                    <li><span class="highlight">科学研究</span>：记录实验时间，计算反应时间</li>
+                </ul>
+            </div>
+            
+            <div class="thought-box">
+                <h4 class="section-title">💭 思考题</h4>
+                <ol>
+                    <li>如果你以每小时<span class="number">60</span>公里的速度行驶，要行驶<span class="number">180</span>公里需要多少时间？</li>
+                    <li>小明从家到学校用了<span class="number">20</span>分钟，从学校到家用了<span class="number">25</span>分钟，他一天往返两次，总共用了多少时间？</li>
+                    <li>你能想出生活中还有哪些地方用到了时间和速度的计算吗？</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="chapter">
+            <h3 class="chapter-title">🏠 第七章：回到现实世界</h3>
+            
+            <div class="story-box">
+                <h4 class="section-title">📖 语文板块：总结冒险经历</h4>
+                <p>经过在数学王国的奇妙冒险，<span class="character">杨乐北</span>终于要回到现实世界了。<span class="spirit">小算</span>带着她来到数学王国的边界，那里有一扇闪闪发光的大门。</p>
+                
+                <p>"<span class="character">杨乐北</span>，你的冒险就要结束了，"<span class="spirit">小算</span>微笑着说，"你已经帮助了所有的精灵，恢复了数学王国的秩序。现在是你回到现实世界的时候了。"</p>
+                
+                <p>当<span class="character">杨乐北</span>再次睁开眼睛时，她发现自己已经回到了自己的房间里，坐在书桌前。她的数学书还摊开着，上面写着那道让她烦恼的分数题：<span class="math-formula">3/4 + 2/5 = ?</span></p>
+                
+                <p>"姐姐！"客厅里传来双胞胎弟弟的声音，"你在做什么呢？"</p>
+                
+                <p><span class="character">杨乐北</span>微笑着合上数学书，走出房间。她看到<span class="character">杨乐达</span>和<span class="character">杨乐天</span>正在客厅里玩积木。</p>
+                
+                <p>"弟弟们，"<span class="character">杨乐北</span>兴奋地说，"我有个好消息要告诉你们！"</p>
+                
+                <p>"什么好消息？"<span class="character">杨乐达</span>好奇地问。</p>
+                
+                <p>"我学会了如何让数学变得有趣！"<span class="character">杨乐北</span>说，"让我来教你们一些有趣的数学知识。"</p>
+            </div>
+            
+            <div class="math-box">
+                <h4 class="section-title">🔢 数学板块：综合应用题</h4>
+                <p><span class="character">杨乐北</span>决定用她在数学王国学到的知识来帮助弟弟们解决实际问题。</p>
+                
+                <h5>1. 分数应用题</h5>
+                <p>"弟弟们，假设我们有一个大蛋糕，"<span class="character">杨乐北</span>说，"我们三个人要平分，每人分到几分之几？"</p>
+                
+                <h5>2. 几何应用题</h5>
+                <p>"现在假设我们要给房间铺地板，"<span class="character">杨乐北</span>说，"房间是长方形，长<span class="number">6</span>米，宽<span class="number">4</span>米，需要多少平方米的地板？"</p>
+                
+                <h5>3. 统计应用题</h5>
+                <p>"如果我们调查班级同学最喜欢的颜色，"<span class="character">杨乐北</span>说，"红色有<span class="number">10</span>人，蓝色有<span class="number">8</span>人，绿色有<span class="number">6</span>人，用饼图表示这个数据。"</p>
+                
+                <h5>4. 方程应用题</h5>
+                <p>"如果我们有<span class="number">x</span>元钱，"<span class="character">杨乐北</span>说，"花了<span class="number">15</span>元后还剩<span class="number">25</span>元，求<span class="number">x</span>的值。"</p>
+                
+                <h5>5. 时间速度应用题</h5>
+                <p>"如果我们以每小时<span class="number">60</span>公里的速度行驶，"<span class="character">杨乐北</span>说，"要行驶<span class="number">180</span>公里需要多少时间？"</p>
+            </div>
+            
+            <div class="knowledge-box">
+                <h4 class="section-title">📚 百科知识板块：数学与生活的联系</h4>
+                <p><span class="character">杨乐北</span>向弟弟们展示了数学在生活中的广泛应用。</p>
+                
+                <h5>数学在日常生活中的应用：</h5>
+                <ul>
+                    <li><span class="highlight">购物计算</span>：计算折扣价格，计算找零钱，比较商品价格</li>
+                    <li><span class="highlight">时间管理</span>：安排作息时间，计算路程时间，计划学习时间</li>
+                    <li><span class="highlight">空间规划</span>：计算房间面积，安排家具位置，设计花园布局</li>
+                    <li><span class="highlight">数据分析</span>：分析学习成绩，统计零花钱，记录运动数据</li>
+                </ul>
+                
+                <h5>学习数学的建议：</h5>
+                <ol>
+                    <li><span class="formula">培养兴趣</span>：从有趣的数学故事开始</li>
+                    <li><span class="formula">联系生活</span>：把数学知识应用到实际生活中</li>
+                    <li><span class="formula">多做练习</span>：通过练习巩固数学知识</li>
+                    <li><span class="formula">合作学习</span>：与同学一起学习数学</li>
+                </ol>
+            </div>
+            
+            <div class="thought-box">
+                <h4 class="section-title">💭 思考题</h4>
+                <ol>
+                    <li>如果你要在家里举办一个聚会，需要准备食物和饮料，你会如何用数学知识来规划？</li>
+                    <li>如果你要设计一个花园，你会如何运用几何知识来安排植物的位置？</li>
+                    <li>你能想出生活中还有哪些地方用到了数学知识吗？</li>
+                </ol>
+            </div>
+            
+            <div class="story-box">
+                <h4 class="section-title">🎉 故事结尾</h4>
+                <p>经过这次奇妙的数学王国冒险，<span class="character">杨乐北</span>不仅学会了各种数学知识，更重要的是，她发现了数学的魅力和乐趣。她明白了数学不仅仅是枯燥的符号和公式，而是解决生活中各种问题的有力工具。</p>
+                
+                <p>现在，<span class="character">杨乐北</span>和她的双胞胎弟弟们一起，用数学的眼光观察世界，用数学的思维解决问题，用数学的智慧创造美好生活。</p>
+                
+                <p>数学王国的冒险虽然结束了，但数学学习的旅程才刚刚开始。在未来的日子里，<span class="character">杨乐北</span>和她的弟弟们将继续探索数学的奥秘，发现数学的美丽，享受数学带来的快乐。</p>
+                
+                                 <h3 style="text-align: center; color: #495057; margin-top: 30px;">数学王国冒险记 - 完</h3>
+            </div>
+        </div>
+        
+        <div class="chapter">
+            <h3 class="chapter-title">📋 附录：数学知识总结</h3>
+            
+            <div class="knowledge-box">
+                <h4 class="section-title">📚 第一章：分数、小数、百分数</h4>
+                <ul>
+                    <li>分数的概念和表示方法</li>
+                    <li>分数、小数、百分数的转换</li>
+                    <li>数学的历史发展</li>
+                </ul>
+            </div>
+            
+            <div class="math-box">
+                <h4 class="section-title">🔢 第二章：分数运算</h4>
+                <ul>
+                    <li>分数的加减乘除运算</li>
+                    <li>分数在日常生活中的应用</li>
+                    <li>分数运算的实际例子</li>
+                </ul>
+            </div>
+            
+            <div class="story-box">
+                <h4 class="section-title">🌲 第三章：几何图形</h4>
+                <ul>
+                    <li>正方形、长方形、三角形、圆形的周长和面积</li>
+                    <li>几何学的发展历史</li>
+                    <li>几何在生活中的应用</li>
+                </ul>
+            </div>
+            
+            <div class="exercise-box">
+                <h4 class="section-title">📊 第四章：统计图表</h4>
+                <ul>
+                    <li>柱状图、饼图、折线图的使用</li>
+                    <li>平均数和中位数的计算</li>
+                    <li>统计学在生活中的应用</li>
+                </ul>
+            </div>
+            
+            <div class="thought-box">
+                <h4 class="section-title">🧩 第五章：简单方程</h4>
+                <ul>
+                    <li>加法、减法、乘法、除法方程的解法</li>
+                    <li>代数学的发展历史</li>
+                    <li>方程在生活中的应用</li>
+                </ul>
+            </div>
+            
+            <div class="knowledge-box">
+                <h4 class="section-title">⏰ 第六章：时间与速度</h4>
+                <ul>
+                    <li>时间单位换算</li>
+                    <li>速度、距离、时间的计算</li>
+                    <li>时间测量的历史</li>
+                </ul>
+            </div>
+            
+            <div class="math-box">
+                <h4 class="section-title">🏠 第七章：综合应用</h4>
+                <ul>
+                    <li>综合数学知识的应用</li>
+                    <li>数学与生活的联系</li>
+                    <li>数学学习的方法和建议</li>
+                </ul>
+            </div>
+            
+                         <div class="story-box" style="text-align: center; margin-top: 40px;">
+                 <h3 style="color: #495057;">祝杨乐北和她的弟弟们在数学学习的道路上越走越远！</h3>
+                 <p style="font-size: 1.2em; margin-top: 20px;">数学王国冒险记</p>
+             </div>
+        </div>
+        
+    </div>
+</body>
+</html> 

@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第4章：罗小黑的奇妙相遇 - 柯南侦探英语冒险：杨乐北的单词探案记</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', 'SimSun', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+            max-width: 210mm;
+            margin: 0 auto;
+        }
+        
+        .container {
+            max-width: 180mm;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        
+        .chapter-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+        }
+        
+        .chapter-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.2);
+            transition: background 0.3s;
+        }
+        
+        .chapter-nav a:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .chapter-nav a.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .back-link {
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        
+        .back-link:hover {
+            background: #218838;
+        }
+        
+        .chapter {
+            margin-bottom: 40px;
+            page-break-inside: avoid;
+        }
+        
+        .chapter-title {
+            color: #495057;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #6c757d;
+            padding-bottom: 10px;
+        }
+        
+        .section-title {
+            color: #495057;
+            font-size: 1.4em;
+            margin: 25px 0 15px 0;
+            border-left: 3px solid #6c757d;
+            padding-left: 15px;
+        }
+        
+        .magic-box {
+            background: #f3e5f5;
+            border: 2px solid #9c27b0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .story-box {
+            background: #fff3cd;
+            border: 2px solid #ffeaa7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .word-box {
+            background: #d4edda;
+            border: 2px solid #c3e6cb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .game-box {
+            background: #f8d7da;
+            border: 2px solid #f5c6cb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .adventure-box {
+            background: #d1ecf1;
+            border: 2px solid #bee5eb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .english-word {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .chinese-meaning {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .magic {
+            color: #9c27b0;
+            font-weight: bold;
+        }
+        
+        .conan {
+            color: #e67e22;
+            font-weight: bold;
+        }
+        
+        .yang-lebei {
+            color: #3498db;
+            font-weight: bold;
+        }
+        
+        .yang-letian {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .yang-leda {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        
+        .adventure {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        
+        .word-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+                .word-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            user-select: none;
+        }
+        
+        .word-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-color: #007bff;
+        }
+        
+        .word-card .english {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 5px;
+        }
+        
+        .word-card .chinese {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .word-card .example {
+            font-style: italic;
+            color: #666;
+            margin-top: 8px;
+            font-size: 0.9em;
+        }
+        
+        .mission-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .mission-card h4 {
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        .story-image {
+            max-width: 100%;
+            width: 300px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            margin: 20px auto;
+            display: block;
+        }
+        
+        .image-container {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: transparent;
+            border-radius: 15px;
+        }
+        
+        .image-caption {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        
+        @media print {
+            .chapter-nav, .back-link {
+                display: none;
+            }
+            
+            @page {
+                margin: 20mm 15mm 20mm 15mm;
+                size: A4 portrait;
+            }
+            
+            body {
+                margin: 0;
+                padding: 0;
+                font-size: 11pt;
+                line-height: 1.5;
+                background-color: white;
+                max-width: none;
+            }
+            
+            .container {
+                max-width: none;
+                margin: 0;
+                padding: 0;
+                background-color: white;
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">📖 返回总目录</a>
+        <a href="index.html" class="back-link">📚 返回章节目录</a>
+        
+        <div class="chapter-nav">
+            <a href="chapter03.html" class="">⬅️ 上一章</a>
+            <span>第4章：罗小黑的奇妙相遇</span>
+            <a href="chapter05.html" class="">下一章 ➡️</a>
+        </div>
+        
+                <div class="chapter">
+            <h3 class="chapter-title">🐱 第四章：罗小黑的奇妙相遇</h3>
+            
+            <div class="story-box">
+                <h4 class="section-title">📖 故事板块：神秘的黑猫妖精</h4>
+                
+                <div class="image-container">
+                    <img src="../assets/images/罗小黑战记/角色/罗小黑战记 角色_001.webp" alt="罗小黑" class="story-image">
+                    <div class="image-caption">🐱 神秘的黑猫妖精 - 罗小黑</div>
+                </div>
+                
+                <p>那天下午，<span class="yang-lebei">杨乐北</span>正在魔法学院的<span class="english-word">garden</span>里练习咒语。突然，一只<span class="english-word">black</span>色的小<span class="english-word">cat</span>从<span class="english-word">tree</span>上跳了下来。</p>
+                
+                <p>"<span class="english-word">Hello</span>！"小<span class="english-word">cat</span>竟然会说英语！"我是<span class="english-word">Luo Xiao Hei</span>，一只<span class="english-word">cat demon</span>。"</p>
+                
+                <p>"<span class="english-word">Wow</span>！会说话的<span class="english-word">cat</span>！"<span class="yang-lebei">杨乐北</span>惊讶地说，"你真的是<span class="english-word">demon</span>吗？"</p>
+                
+                <p>"<span class="english-word">Don't worry</span>！"罗小黑摆摆<span class="english-word">paw</span>，"我是<span class="english-word">good</span> <span class="english-word">demon</span>，不是<span class="english-word">bad</span> <span class="english-word">demon</span>！我<span class="english-word">can</span> <span class="english-word">help</span>你学习<span class="english-word">magic</span>！"</p>
+                
+                <p>这时，罗小黑的<span class="english-word">tail</span>突然分离出来，变成了一个<span class="english-word">black</span>色的小精灵在空中飞舞。</p>
+                
+                <p>"<span class="english-word">Hei！Hei Xiu！</span>"小精灵发出萌萌的声音，在空中快乐地转圈圈。</p>
+                
+                <p>"你们太<span class="english-word">amazing</span>了！"<span class="yang-lebei">杨乐北</span>兴奋地说，"你们会什么<span class="english-word">magic</span>？"</p>
+                
+                <p>"<span class="english-word">Watch this</span>！"罗小黑说着，突然分出了<span class="english-word">many</span>个<span class="english-word">copies</span>，"这是我的<span class="english-word">clone</span> <span class="english-word">magic</span>！"</p>
+                
+                <div class="image-container">
+                    <img src="../assets/images/罗小黑战记/角色/罗小黑战记 角色_003.webp" alt="罗小黑魔法" class="story-image">
+                    <div class="image-caption">✨ 罗小黑的分身魔法</div>
+                </div>
+                
+                <p>"这是我的<span class="english-word">tail</span>，它叫<span class="english-word">Hei Xiu</span>！"罗小黑解释道，"<span class="english-word">Hei</span>！<span class="english-word">Hei</span>！"嘿咻在空中转了一圈，发出开心的叫声。</p>
+                
+                <p>就在这时，<span class="yang-letian">杨乐天</span>和<span class="yang-leda">杨乐达</span>又爬到了<span class="english-word">window</span>上偷看。</p>
+                
+                <p>"<span class="english-word">Sister</span>！那只<span class="english-word">cat</span>好<span class="english-word">cool</span>！"<span class="yang-letian">杨乐天</span>大声喊道。</p>
+                
+                <p>"<span class="english-word">And</span>那个<span class="english-word">black</span> <span class="english-word">tail</span>会<span class="english-word">fly</span>！"<span class="yang-leda">杨乐达</span>也兴奋地喊道。</p>
+                
+                <p>"<span class="english-word">Come down</span>，<span class="english-word">boys</span>！"罗小黑笑着说，"我<span class="english-word">want</span> <span class="english-word">to</span> <span class="english-word">meet</span>你们！"</p>
+                
+                <p><span class="yang-letian">杨乐天</span>和<span class="yang-leda">杨乐达</span>兴奋地跳了下来。</p>
+                
+                <p>"<span class="english-word">Hello</span>！我是<span class="yang-letian">杨乐天</span>！"<span class="yang-letian">杨乐天</span>说。</p>
+                
+                <p>"<span class="english-word">Hello</span>！我是<span class="yang-leda">杨乐达</span>！"<span class="yang-leda">杨乐达</span>也说。</p>
+                
+                <p>"<span class="english-word">Hei！Hei Xiu！</span>"嘿咻飞到他们面前，开心地转圈圈，发出萌萌的叫声。</p>
+                
+                <div class="image-container">
+                    <img src="../assets/images/罗小黑战记/角色/罗小黑战记 角色_005.webp" alt="罗小黑和朋友们" class="story-image">
+                    <div class="image-caption">👫 三兄妹与罗小黑的奇妙相遇</div>
+                </div>
+                
+                <p>"<span class="english-word">Yes</span>！<span class="english-word">Yes</span>！"双胞胎弟弟异口同声地说。</p>
+                
+                <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 15px 0; border: 2px dashed #f39c12;">
+                    <h5 style="color: #f39c12; margin-bottom: 10px;">🔍 魔法侦探任务</h5>
+                    <p><strong>你能猜出这些妖精和魔法单词的意思吗？</strong></p>
+                    <p>💡 <span class="english-word">cat demon</span> = ________（提示：猫妖）</p>
+                    <p>💡 <span class="english-word">tail</span> = ________（提示：尾巴）</p>
+                    <p>💡 <span class="english-word">clone</span> = ________（提示：分身）</p>
+                    <p>💡 <span class="english-word">copies</span> = ________（提示：复制品）</p>
+                    <p>💡 <span class="english-word">disappear</span> = ________（提示：消失）</p>
+                    <p>💡 <span class="english-word">paw</span> = ________（提示：爪子）</p>
+                    <p>💡 <span class="english-word">best friend</span> = ________（提示：最好的朋友）</p>
+                    <p>💡 <span class="english-word">cute</span> = ________（提示：可爱的）</p>
+                </div>
+            </div>
+            
+            <div class="story-box">
+                <h4 class="section-title">🎭 故事板块：妖精魔法学习课</h4>
+                <p>"<span class="english-word">First</span>，让我<span class="english-word">teach</span>你们我的<span class="english-word">special</span> <span class="english-word">magic</span>！"罗小黑说着，开始展示他的<span class="english-word">powers</span>。</p>
+                
+                <p>"<span class="english-word">Shadow</span> <span class="english-word">magic</span>！"罗小黑念道，他的<span class="english-word">shadow</span>突然变成了一只<span class="english-word">big</span> <span class="english-word">dragon</span>！</p>
+                
+                <p>"<span class="english-word">Amazing</span>！"<span class="yang-lebei">杨乐北</span>拍手说，"你的<span class="english-word">shadow</span> <span class="english-word">can</span> <span class="english-word">change</span> <span class="english-word">shape</span>！"</p>
+                
+                <p>"<span class="english-word">Yes</span>！"罗小黑骄傲地说，"我<span class="english-word">can</span> <span class="english-word">make</span>我的<span class="english-word">shadow</span> <span class="english-word">become</span> <span class="english-word">anything</span>！"</p>
+                
+                <p>"<span class="english-word">Hei Xiu！</span>"嘿咻也开始表演，它在空中画了一个<span class="english-word">circle</span>，竟然出现了一个<span class="english-word">magical</span> <span class="english-word">door</span>！"这是<span class="english-word">portal magic</span>！"罗小黑为它解释道。</p>
+                
+                <p>"<span class="english-word">This</span> <span class="english-word">portal</span> <span class="english-word">can</span> <span class="english-word">take</span> <span class="english-word">us</span> <span class="english-word">anywhere</span>！"罗小黑解释道，"<span class="english-word">Hei！</span>"嘿咻在传送门旁边飞来飞去，表示同意。</p>
+                
+                <p>"我们<span class="english-word">can</span> <span class="english-word">go</span> <span class="english-word">where</span>？"<span class="yang-letian">杨乐天</span>好奇地问。</p>
+                
+                <p>"<span class="english-word">Anywhere</span>！<span class="english-word">Forest</span>、<span class="english-word">mountain</span>、<span class="english-word">ocean</span>、甚至<span class="english-word">space</span>！"罗小黑继续说道，"<span class="english-word">Hei Xiu！</span>"嘿咻兴奋地在空中做着各种可爱的动作。</p>
+                
+                <p>"<span class="english-word">But</span> <span class="english-word">first</span>，"罗小黑说，"你们<span class="english-word">must</span> <span class="english-word">learn</span> <span class="english-word">demon</span> <span class="english-word">language</span>！"</p>
+                
+                <p>"<span class="english-word">Demon</span> <span class="english-word">language</span>？"<span class="yang-leda">杨乐达</span>疑惑地问，"<span class="english-word">Is it</span> <span class="english-word">difficult</span>？"</p>
+                
+                <p>"<span class="english-word">Not</span> <span class="english-word">really</span>！"罗小黑说，"<span class="english-word">Demon</span> <span class="english-word">language</span> <span class="english-word">is</span> <span class="english-word">just</span> <span class="english-word">English</span> <span class="english-word">with</span> <span class="english-word">magic</span> <span class="english-word">power</span>！""<span class="english-word">Hei！</span>"嘿咻在旁边点头同意。</p>
+                
+                <p>"<span class="english-word">Let me</span> <span class="english-word">show</span> <span class="english-word">you</span>！"罗小黑说，"<span class="english-word">When</span> <span class="english-word">you</span> <span class="english-word">say</span> '<span class="english-word">grow</span>'，<span class="english-word">plants</span> <span class="english-word">will</span> <span class="english-word">grow</span>！"</p>
+                
+                <p>"<span class="english-word">Grow</span>！"<span class="yang-lebei">杨乐北</span>试着念道。</p>
+                
+                <p>突然，<span class="english-word">garden</span>里的<span class="english-word">flowers</span>都开始快速<span class="english-word">grow</span>！</p>
+                
+                <p>"<span class="english-word">It</span> <span class="english-word">works</span>！"<span class="yang-lebei">杨乐北</span>兴奋地跳了起来。</p>
+                
+                <p>"<span class="english-word">Now</span> <span class="english-word">try</span> '<span class="english-word">shrink</span>'！"罗小黑建议道，"<span class="english-word">Hei！</span>"嘿咻点头同意。</p>
+                
+                <p>"<span class="english-word">Shrink</span>！"<span class="yang-letian">杨乐天</span>大声喊道。</p>
+                
+                <p><span class="english-word">Flowers</span>又变<span class="english-word">small</span>了！</p>
+                
+                <p>"<span class="english-word">Cool</span>！我们是<span class="english-word">demon</span> <span class="english-word">magicians</span>了！"<span class="yang-leda">杨乐达</span>开心地说。</p>
+                
+                <p>这时，柯南院长走了过来。</p>
+                
+                <p>"<span class="english-word">What</span> <span class="english-word">is</span> <span class="english-word">happening</span> <span class="english-word">here</span>？"柯南院长看到罗小黑和嘿咻，很<span class="english-word">surprised</span>。</p>
+                
+                <p>"<span class="english-word">Hello</span>！"罗小黑礼貌地说，"我是罗小黑，这是我的<span class="english-word">tail</span>嘿咻。我们<span class="english-word">come</span> <span class="english-word">from</span> <span class="english-word">demon</span> <span class="english-word">world</span>。""<span class="english-word">Hei！</span>"嘿咻在空中做了个可爱的动作，表示打招呼。</p>
+                
+                <p>"<span class="english-word">Demon</span> <span class="english-word">world</span>？"柯南院长思考了一下，"<span class="english-word">Are</span> <span class="english-word">you</span> <span class="english-word">here</span> <span class="english-word">to</span> <span class="english-word">help</span> <span class="english-word">or</span> <span class="english-word">cause</span> <span class="english-word">trouble</span>？"</p>
+                
+                <p>"<span class="english-word">Help</span>！<span class="english-word">Definitely</span> <span class="english-word">help</span>！"罗小黑快速地说，"我们<span class="english-word">want</span> <span class="english-word">to</span> <span class="english-word">teach</span> <span class="english-word">children</span> <span class="english-word">demon</span> <span class="english-word">magic</span>！""<span class="english-word">Hei Xiu！</span>"嘿咻在空中连续做着可爱的动作，表示同意。</p>
+                
+                <p>"<span class="english-word">Hmm</span>..."柯南院长考虑着，"如果你们<span class="english-word">promise</span> <span class="english-word">to</span> <span class="english-word">be</span> <span class="english-word">good</span>，<span class="english-word">maybe</span> <span class="english-word">you</span> <span class="english-word">can</span> <span class="english-word">stay</span>。"</p>
+                
+                <p>"<span class="english-word">We</span> <span class="english-word">promise</span>！"罗小黑说道，"<span class="english-word">Hei！Hei！</span>"嘿咻也在旁边开心地叫着。</p>
+                
+                <p>"<span class="english-word">Yay</span>！"<span class="yang-lebei">杨乐北</span>、<span class="yang-letian">杨乐天</span>和<span class="yang-leda">杨乐达</span>一起欢呼。</p>
+                
+                <p>"<span class="english-word">Alright</span>，"柯南院长微笑说，"<span class="english-word">welcome</span> <span class="english-word">to</span> <span class="english-word">our</span> <span class="english-word">magic</span> <span class="english-word">academy</span>！让我们<span class="english-word">learn</span> <span class="english-word">together</span>！"</p>
+            </div>
+            
+            <div class="story-box">
+                <h4 class="section-title">🌟 故事板块：妖精与人类的友谊</h4>
+                <p>从那天起，罗小黑和嘿咻就成了魔法学院的<span class="english-word">special</span> <span class="english-word">guests</span>。他们和<span class="yang-lebei">杨乐北</span>、<span class="yang-letian">杨乐天</span>、<span class="yang-leda">杨乐达</span>成了<span class="english-word">best</span> <span class="english-word">friends</span>。</p>
+                
+                <p>"<span class="english-word">Every</span> <span class="english-word">morning</span>，"罗小黑告诉<span class="yang-lebei">杨乐北</span>，"<span class="english-word">we</span> <span class="english-word">practice</span> <span class="english-word">magic</span> <span class="english-word">in</span> <span class="english-word">demon</span> <span class="english-word">world</span>。<span class="english-word">But</span> <span class="english-word">here</span>，<span class="english-word">with</span> <span class="english-word">you</span>，<span class="english-word">magic</span> <span class="english-word">is</span> <span class="english-word">more</span> <span class="english-word">fun</span>！"</p>
+                
+                <p>"<span class="english-word">Really</span>？"<span class="yang-lebei">杨乐北</span>开心地问，"<span class="english-word">Why</span>？"</p>
+                
+                <p>"<span class="english-word">Because</span>，"罗小黑说，"<span class="english-word">friendship</span> <span class="english-word">makes</span> <span class="english-word">magic</span> <span class="english-word">stronger</span>！""<span class="english-word">Hei！</span>"嘿咻飞过来，在空中做着可爱的动作表示同意。</p>
+                
+                <p>这时，<span class="yang-letian">杨乐天</span>跑了过来。</p>
+                
+                <p>"罗小黑！嘿咻！"<span class="yang-letian">杨乐天</span>兴奋地说，"<span class="english-word">Can</span> <span class="english-word">you</span> <span class="english-word">teach</span> <span class="english-word">me</span> <span class="english-word">to</span> <span class="english-word">fly</span>？"</p>
+                
+                <p>"<span class="english-word">Flying</span> <span class="english-word">is</span> <span class="english-word">advanced</span> <span class="english-word">magic</span>，"罗小黑想了想，"<span class="english-word">but</span> <span class="english-word">maybe</span> <span class="english-word">we</span> <span class="english-word">can</span> <span class="english-word">start</span> <span class="english-word">with</span> <span class="english-word">jumping</span> <span class="english-word">high</span>！"</p>
+                
+                <p>"<span class="english-word">Yes</span>！"<span class="yang-leda">杨乐达</span>也跑了过来，"我<span class="english-word">want</span> <span class="english-word">to</span> <span class="english-word">jump</span> <span class="english-word">like</span> <span class="english-word">superhero</span>！"</p>
+                
+                <p>"<span class="english-word">Okay</span>！"罗小黑说，"<span class="english-word">First</span>，<span class="english-word">say</span> '<span class="english-word">light</span> <span class="english-word">as</span> <span class="english-word">feather</span>'！""<span class="english-word">Hei Xiu！</span>"嘿咻在空中飞来飞去，很兴奋的样子。</p>
+                
+                <p>"<span class="english-word">Light</span> <span class="english-word">as</span> <span class="english-word">feather</span>！"三个孩子一起念道。</p>
+                
+                <p>突然，他们都感觉<span class="english-word">body</span>变得很<span class="english-word">light</span>，一跳就能跳得很<span class="english-word">high</span>！</p>
+                
+                <p>"<span class="english-word">We</span> <span class="english-word">are</span> <span class="english-word">flying</span>！"<span class="yang-lebei">杨乐北</span>在空中大喊。</p>
+                
+                <p>"<span class="english-word">Almost</span> <span class="english-word">flying</span>！"罗小黑笑着纠正，"<span class="english-word">This</span> <span class="english-word">is</span> <span class="english-word">called</span> '<span class="english-word">super</span> <span class="english-word">jump</span>'！"</p>
+                
+                <p>他们在<span class="english-word">garden</span>里跳来跳去，就像<span class="english-word">kangaroos</span>一样！</p>
+                
+                <p>"<span class="english-word">This</span> <span class="english-word">is</span> <span class="english-word">the</span> <span class="english-word">best</span> <span class="english-word">day</span> <span class="english-word">ever</span>！"<span class="yang-letian">杨乐天</span>在空中翻了个跟头。</p>
+                
+                <p>"<span class="english-word">Agreed</span>！"<span class="yang-leda">杨乐达</span>也开心地说。</p>
+                
+                <p>柯南院长看到他们<span class="english-word">having</span> <span class="english-word">so</span> <span class="english-word">much</span> <span class="english-word">fun</span>，也笑了。</p>
+                
+                <p>"<span class="english-word">It</span> <span class="english-word">seems</span> <span class="english-word">like</span> <span class="english-word">demon</span> <span class="english-word">magic</span> <span class="english-word">and</span> <span class="english-word">human</span> <span class="english-word">magic</span> <span class="english-word">work</span> <span class="english-word">well</span> <span class="english-word">together</span>！"柯南院长说。</p>
+                
+                <p>"<span class="english-word">Yes</span>！"罗小黑说，"<span class="english-word">Different</span> <span class="english-word">kinds</span> <span class="english-word">of</span> <span class="english-word">magic</span> <span class="english-word">can</span> <span class="english-word">create</span> <span class="english-word">wonderful</span> <span class="english-word">things</span> <span class="english-word">when</span> <span class="english-word">combined</span>！"</p>
+                
+                <p>"<span class="english-word">And</span> <span class="english-word">different</span> <span class="english-word">friends</span> <span class="english-word">make</span> <span class="english-word">adventures</span> <span class="english-word">more</span> <span class="english-word">exciting</span>！"罗小黑补充道，"<span class="english-word">Hei！Hei！</span>"嘿咻在旁边开心地飞舞。</p>
+                
+                <p>从那天起，魔法学院变得更加<span class="english-word">magical</span>了。<span class="yang-lebei">杨乐北</span>不仅学会了<span class="english-word">human</span> <span class="english-word">magic</span>，还学会了<span class="english-word">demon</span> <span class="english-word">magic</span>，她和罗小黑、嘿咻一起度过了许多<span class="english-word">wonderful</span> <span class="english-word">adventures</span>！</p>
+                
+                <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 15px 0; border: 2px dashed #f39c12;">
+                    <h5 style="color: #f39c12; margin-bottom: 10px;">🔍 魔法侦探任务</h5>
+                    <p><strong>你能猜出这些进阶魔法单词的意思吗？</strong></p>
+                    <p>💡 <span class="english-word">shadow</span> = ________（提示：阴影）</p>
+                    <p>💡 <span class="english-word">dragon</span> = ________（提示：龙）</p>
+                    <p>💡 <span class="english-word">portal</span> = ________（提示：传送门）</p>
+                    <p>💡 <span class="english-word">friendship</span> = ________（提示：友谊）</p>
+                    <p>💡 <span class="english-word">superhero</span> = ________（提示：超级英雄）</p>
+                    <p>💡 <span class="english-word">feather</span> = ________（提示：羽毛）</p>
+                    <p>💡 <span class="english-word">kangaroos</span> = ________（提示：袋鼠）</p>
+                    <p>💡 <span class="english-word">adventures</span> = ________（提示：冒险）</p>
+                </div>
+            </div>
+            
+            <div class="word-box">
+                <h4 class="section-title">🔢 单词板块：妖精魔法单词</h4>
+                
+                <div class="image-container">
+                    <img src="../assets/images/罗小黑战记/角色/罗小黑战记 角色_007.webp" alt="罗小黑教学" class="story-image">
+                    <div class="image-caption">📚 罗小黑老师教授妖精魔法单词</div>
+                </div>
+                
+                <p>通过与罗小黑和嘿咻的相遇，<span class="yang-lebei">杨乐北</span>学会了许多关于妖精、魔法和友谊的英语单词。</p>
+                
+                <div class="word-list">
+                    <div class="word-card">
+                        <div class="english">demon</div>
+                        <div class="chinese-meaning">妖精</div>
+                        <div class="example">Luo Xiao Hei is a cat demon.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">tail</div>
+                        <div class="chinese-meaning">尾巴</div>
+                        <div class="example">Hei Xiu is Luo Xiao Hei's black tail.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">cute</div>
+                        <div class="chinese-meaning">可爱的</div>
+                        <div class="example">Hei Xiu makes cute sounds like "Hei!"</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">clone</div>
+                        <div class="chinese-meaning">分身</div>
+                        <div class="example">He can make many clones.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">shadow</div>
+                        <div class="chinese-meaning">阴影</div>
+                        <div class="example">The shadow can change shape.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">portal</div>
+                        <div class="chinese-meaning">传送门</div>
+                        <div class="example">The portal leads to another world.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">friendship</div>
+                        <div class="chinese-meaning">友谊</div>
+                        <div class="example">Friendship makes magic stronger.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">superhero</div>
+                        <div class="chinese-meaning">超级英雄</div>
+                        <div class="example">I want to jump like a superhero!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">feather</div>
+                        <div class="chinese-meaning">羽毛</div>
+                        <div class="example">Light as a feather!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">kangaroos</div>
+                        <div class="chinese-meaning">袋鼠</div>
+                        <div class="example">We jump like kangaroos!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">adventures</div>
+                        <div class="chinese-meaning">冒险</div>
+                        <div class="example">We had many wonderful adventures!</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🐱 罗小黑魔法挑战</h4>
+                <div class="mission-card">
+                    <h4>🔮 魔法任务：学会分身术</h4>
+                    <p>像罗小黑一样练习分身魔法：</p>
+                    <ol>
+                        <li>学会说"<span class="english-word">clone magic</span>"</li>
+                        <li>用英语描述你的分身在做什么</li>
+                        <li>练习"<span class="english-word">shadow</span>"相关的英语单词</li>
+                        <li>和小伙伴一起演出分身魔法秀</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: white; margin-bottom: 15px;">🐱 罗小黑魔法咒语练习</h5>
+                    <p style="margin: 8px 0;"><strong>分身咒语：</strong>"<span class="english-word">Clone magic, make many me!</span>"</p>
+                    <p style="margin: 8px 0;"><strong>阴影咒语：</strong>"<span class="english-word">Shadow magic, change your shape!</span>"</p>
+                    <p style="margin: 8px 0;"><strong>消失咒语：</strong>"<span class="english-word">Disappear magic, hide from sight!</span>"</p>
+                    <p style="margin: 8px 0;"><strong>出现咒语：</strong>"<span class="english-word">Appear magic, show yourself!</span>"</p>
+                    <p style="margin-top: 15px; font-style: italic;">🌟 记住：每个咒语都要配上可爱的动作！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">✨ 嘿咻传送门游戏</h4>
+                <div class="mission-card">
+                    <h4>🌀 魔法任务：创建传送门</h4>
+                    <p>学习罗小黑和嘿咻一起表演的传送门魔法：</p>
+                    <ol>
+                        <li>画出你想去的地方（<span class="english-word">forest</span>, <span class="english-word">mountain</span>, <span class="english-word">ocean</span>）</li>
+                        <li>用英语描述每个地方的特色</li>
+                        <li>练习"<span class="english-word">portal magic</span>"咒语</li>
+                        <li>设计你的专属传送门</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); color: #333; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: #333; margin-bottom: 15px;">✨ 嘿咻传送门目的地</h5>
+                    <p style="margin: 8px 0;">🌲 <strong>Forest Portal:</strong> "I want to go to the <span class="english-word">magical forest</span>!"</p>
+                    <p style="margin: 8px 0;">⛰️ <strong>Mountain Portal:</strong> "Take me to the <span class="english-word">high mountain</span>!"</p>
+                    <p style="margin: 8px 0;">🌊 <strong>Ocean Portal:</strong> "Let's visit the <span class="english-word">blue ocean</span>!"</p>
+                    <p style="margin: 8px 0;">🚀 <strong>Space Portal:</strong> "I want to explore <span class="english-word">outer space</span>!"</p>
+                    <p style="margin: 8px 0;">🏠 <strong>Home Portal:</strong> "Portal magic, take me <span class="english-word">home</span>!"</p>
+                    <p style="margin-top: 15px; font-style: italic;">🌀 创作技巧：画出彩色的圆圈作为传送门！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🤝 妖精友谊对话</h4>
+                <div class="mission-card">
+                    <h4>💬 魔法任务：与妖精交朋友</h4>
+                    <p>学会用英语和妖精朋友对话：</p>
+                    <ol>
+                        <li>练习自我介绍："<span class="english-word">Hello, I'm a human magician!</span>"</li>
+                        <li>询问妖精能力："<span class="english-word">What magic can you do?</span>"</li>
+                        <li>表达友谊："<span class="english-word">Let's be best friends!</span>"</li>
+                        <li>邀请一起玩："<span class="english-word">Want to practice magic together?</span>"</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: #333; margin-bottom: 15px;">🤝 妖精友谊对话练习</h5>
+                    <p style="margin: 8px 0;"><strong>初次见面：</strong></p>
+                    <p style="margin: 8px 0;">你："<span class="english-word">Hello! Are you a demon?</span>"</p>
+                    <p style="margin: 8px 0;">妖精："<span class="english-word">Yes, but I'm a good demon!</span>"</p>
+                    <p style="margin: 8px 0;"><strong>互相了解：</strong></p>
+                    <p style="margin: 8px 0;">你："<span class="english-word">What's your special power?</span>"</p>
+                    <p style="margin: 8px 0;">妖精："<span class="english-word">I can make clones and portals!</span>"</p>
+                    <p style="margin: 8px 0;"><strong>建立友谊：</strong></p>
+                    <p style="margin: 8px 0;">你："<span class="english-word">That's amazing! Can we be friends?</span>"</p>
+                    <p style="margin: 8px 0;">妖精："<span class="english-word">Of course! Friendship makes magic stronger!</span>"</p>
+                    <p style="margin-top: 15px; font-style: italic;">💫 友谊提示：真诚和善良是最好的魔法！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🏃‍♂️ 超级跳跃训练</h4>
+                <div class="mission-card">
+                    <h4>⚡ 魔法任务：轻如羽毛魔法</h4>
+                    <p>学会罗小黑教的超级跳跃魔法：</p>
+                    <ol>
+                        <li>练习咒语："<span class="english-word">Light as feather!</span>"</li>
+                        <li>安全地练习跳跃（在软垫上）</li>
+                        <li>用英语描述感受："<span class="english-word">I feel so light!</span>"</li>
+                        <li>和朋友比赛谁跳得更高</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); color: #333; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: #333; margin-bottom: 15px;">⚡ 超级跳跃训练步骤</h5>
+                    <p style="margin: 8px 0;"><strong>准备阶段：</strong>"<span class="english-word">Ready to jump!</span>"</p>
+                    <p style="margin: 8px 0;"><strong>咒语阶段：</strong>"<span class="english-word">Light as feather magic!</span>"</p>
+                    <p style="margin: 8px 0;"><strong>跳跃阶段：</strong>"<span class="english-word">Super jump activated!</span>"</p>
+                    <p style="margin: 8px 0;"><strong>着陆阶段：</strong>"<span class="english-word">Perfect landing!</span>"</p>
+                    <p style="margin: 8px 0;"><strong>庆祝阶段：</strong>"<span class="english-word">I can jump like a superhero!</span>"</p>
+                    <p style="margin-top: 15px; font-style: italic;">⚠️ 安全提示：记得在安全的地方练习，保护好自己！</p>
+                </div>
+            </div>
+            
+            <div class="summary-box">
+                <h4 class="section-title">🌟 第四章总结：罗小黑与嘿咻的友谊之旅</h4>
+                <p>在这一章中，<span class="yang-lebei">杨乐北</span>遇到了来自罗小黑战记的神奇朋友们。通过与罗小黑和嘿咻的相遇和互动，他不仅学会了许多新的英语单词，还体验了妖精世界的神奇魔法。</p>
+                
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: white; margin-bottom: 15px;">🎯 本章学习成果</h5>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin: 8px 0;">🐱 学会了妖精魔法相关的英语单词</li>
+                        <li style="margin: 8px 0;">🌀 掌握了分身术和传送门魔法咒语</li>
+                        <li style="margin: 8px 0;">💫 学会了用英语与妖精朋友对话</li>
+                        <li style="margin: 8px 0;">⚡ 体验了超级跳跃魔法的乐趣</li>
+                        <li style="margin: 8px 0;">🤝 理解了友谊让魔法更强大的道理</li>
+                    </ul>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); color: #333; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: #333; margin-bottom: 15px;">🌈 友谊的魔法力量</h5>
+                    <p style="margin: 8px 0;">罗小黑告诉杨乐北："<span class="english-word">True friendship is the most powerful magic!</span>（真正的友谊是最强大的魔法！）"</p>
+                    <p style="margin: 8px 0;">罗小黑补充道："<span class="english-word">When friends work together, anything is possible!</span>（当朋友们一起努力时，一切皆有可能！）""<span class="english-word">Hei！Hei Xiu！</span>"嘿咻在旁边开心地叫着表示同意。</p>
+                    <p style="margin: 8px 0; font-style: italic;">💖 这就是杨乐北在妖精世界学到的最重要的一课。</p>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: #333; margin-bottom: 15px;">🎭 精彩回顾</h5>
+                    <p style="margin: 8px 0;">🌟 <strong>初次相遇：</strong>杨乐北在花园里遇到了神秘的黑猫妖精罗小黑</p>
+                    <p style="margin: 8px 0;">✨ <strong>魔法学习：</strong>罗小黑教会了大家分身术，嘿咻展示了传送门魔法</p>
+                    <p style="margin: 8px 0;">🤝 <strong>友谊建立：</strong>通过一起练习魔法，他们成为了最好的朋友</p>
+                    <p style="margin: 8px 0;">⚡ <strong>超级体验：</strong>学会了轻如羽毛的超级跳跃魔法</p>
+                    <p style="margin: 8px 0;">🎯 <strong>成长收获：</strong>明白了友谊和善良是最强大的魔法力量</p>
+                </div>
+                
+                <p style="text-align: center; margin-top: 20px; font-size: 1.1em; color: #666;">
+                    🌟 下一章预告：杨乐北将和他的妖精朋友们一起探索更多神奇的魔法世界！
+                </p>
+            </div>
+        </div>
+        
+        
+        <div class="chapter-nav">
+            <a href="chapter03.html" class="">⬅️ 上一章</a>
+            <a href="index.html" class="back-link">📚 返回章节目录</a>
+            <a href="chapter05.html" class="">下一章 ➡️</a>
+        </div>
+    </div>
+    
+    <!-- 单词发音功能 Word Pronunciation Feature -->
+    <script src="../js/word-pronunciation.js"></script>
+    
+    <!-- 发音功能使用说明提示 -->
+    <div id="pronunciation-guide" style="position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); max-width: 300px; font-size: 0.9em; z-index: 1000; opacity: 0; transition: opacity 0.5s ease;">
+        <div style="display: flex; align-items: center; margin-bottom: 8px;">
+            <span style="font-size: 1.2em; margin-right: 8px;">🔊</span>
+            <strong>单词发音功能已启用！</strong>
+        </div>
+        <p style="margin: 5px 0; font-size: 0.85em;">点击任意单词卡即可听到标准英语发音</p>
+        <p style="margin: 5px 0; font-size: 0.85em;">Click any word card to hear pronunciation</p>
+        <button onclick="this.parentElement.style.opacity='0'" style="position: absolute; top: 5px; right: 8px; background: none; border: none; color: white; cursor: pointer; font-size: 1.1em;">×</button>
+    </div>
+    
+    <script>
+        // 显示发音功能提示
+        setTimeout(() => {
+            const guide = document.getElementById('pronunciation-guide');
+            if (guide) {
+                guide.style.opacity = '1';
+                // 5秒后自动隐藏
+                setTimeout(() => {
+                    guide.style.opacity = '0';
+                }, 5000);
+            }
+        }, 2000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第7章：魔法图书馆的秘密 - 柯南侦探英语冒险：杨乐北的单词探案记</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', 'SimSun', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+            max-width: 210mm;
+            margin: 0 auto;
+        }
+        
+        .container {
+            max-width: 180mm;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        
+        .chapter-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+        }
+        
+        .chapter-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.2);
+            transition: background 0.3s;
+        }
+        
+        .chapter-nav a:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .chapter-nav a.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .back-link {
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        
+        .back-link:hover {
+            background: #218838;
+        }
+        
+        .chapter {
+            margin-bottom: 40px;
+            page-break-inside: avoid;
+        }
+        
+        .chapter-title {
+            color: #495057;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #6c757d;
+            padding-bottom: 10px;
+        }
+        
+        .section-title {
+            color: #495057;
+            font-size: 1.4em;
+            margin: 25px 0 15px 0;
+            border-left: 3px solid #6c757d;
+            padding-left: 15px;
+        }
+        
+        .magic-box {
+            background: #f3e5f5;
+            border: 2px solid #9c27b0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .story-box {
+            background: #fff3cd;
+            border: 2px solid #ffeaa7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .word-box {
+            background: #d4edda;
+            border: 2px solid #c3e6cb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .game-box {
+            background: #f8d7da;
+            border: 2px solid #f5c6cb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .adventure-box {
+            background: #d1ecf1;
+            border: 2px solid #bee5eb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .english-word {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .chinese-meaning {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .magic {
+            color: #9c27b0;
+            font-weight: bold;
+        }
+        
+        .conan {
+            color: #e67e22;
+            font-weight: bold;
+        }
+        
+        .yang-lebei {
+            color: #3498db;
+            font-weight: bold;
+        }
+        
+        .yang-letian {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .yang-leda {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        
+        .adventure {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        
+        .word-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+                .word-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            user-select: none;
+        }
+        
+        .word-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-color: #007bff;
+        }
+        
+        .word-card .english {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 5px;
+        }
+        
+        .word-card .chinese {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .word-card .example {
+            font-style: italic;
+            color: #666;
+            margin-top: 8px;
+            font-size: 0.9em;
+        }
+        
+        .mission-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .mission-card h4 {
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        @media print {
+            .chapter-nav, .back-link {
+                display: none;
+            }
+            
+            @page {
+                margin: 20mm 15mm 20mm 15mm;
+                size: A4 portrait;
+            }
+            
+            body {
+                margin: 0;
+                padding: 0;
+                font-size: 11pt;
+                line-height: 1.5;
+                background-color: white;
+                max-width: none;
+            }
+            
+            .container {
+                max-width: none;
+                margin: 0;
+                padding: 0;
+                background-color: white;
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">📖 返回总目录</a>
+        <a href="index.html" class="back-link">📚 返回章节目录</a>
+        
+        <div class="chapter-nav">
+            <a href="chapter06.html" class="">⬅️ 上一章</a>
+            <span>第7章：魔法图书馆的秘密</span>
+            <a href="chapter08.html" class="">下一章 ➡️</a>
+        </div>
+        
+                <div class="chapter">
+            <h3 class="chapter-title">📚 第七章：魔法图书馆的秘密</h3>
+            
+            <div class="story-box">
+                <h4 class="section-title">📖 故事板块：会说话的图书馆</h4>
+                <p>
+                    <span class="yang-lebei">杨乐北</span>跟着柯南院长来到神秘的<span class="english-word">library</span>。这里的书会自己飞来飞去，还有一本<span class="english-word">dictionary</span>会说话！
+                </p>
+                <p>
+                    "在魔法图书馆里，只有学会知识单词，才能找到最厉害的魔法书。"柯南院长说。
+                </p>
+                <p>
+                    <span class="yang-lebei">杨乐北</span>打开一本<span class="english-word">book</span>，发现里面写着：<span class="english-word">read</span>、<span class="english-word">write</span>、<span class="english-word">study</span>、<span class="english-word">knowledge</span>。
+                </p>
+                
+                <p>突然，<span class="english-word">library</span>的<span class="english-word">door</span>被猛地推开，<span class="yang-letian">杨乐天</span>和<span class="yang-leda">杨乐达</span>冲了进来！</p>
+                
+                <p>"<span class="english-word">Sister</span>！我们是<span class="english-word">book</span> <span class="english-word">detectives</span>！"<span class="yang-letian">杨乐天</span>兴奋地举着一个<span class="english-word">magnifying</span> <span class="english-word">glass</span>说。</p>
+                
+                <p>"我们来<span class="english-word">investigate</span> <span class="english-word">mysterious</span> <span class="english-word">books</span>！"<span class="yang-leda">杨乐达</span>补充道，戴着一顶<span class="english-word">detective</span> <span class="english-word">hat</span>。</p>
+                
+                <p>"<span class="english-word">Shh</span>！"<span class="english-word">Library</span>里的一本会说话的<span class="english-word">dictionary</span>提醒他们，"这里是<span class="english-word">quiet</span> <span class="english-word">zone</span>！"</p>
+                
+                <p>"<span class="english-word">Sorry</span>！"双胞胎小声说，但<span class="yang-letian">杨乐天</span>立刻被一本飞来飞去的<span class="english-word">book</span>吸引了。</p>
+                
+                <p>"<span class="english-word">Wow</span>！<span class="english-word">Flying</span> <span class="english-word">book</span>！"他伸手想抓，但<span class="english-word">book</span>飞得太快，<span class="yang-letian">杨乐天</span>一个踉跄，撞到了一个高高的<span class="english-word">bookshelf</span>！</p>
+                
+                <p>"<span class="english-word">Watch</span> <span class="english-word">out</span>！"<span class="yang-lebei">杨乐北</span>大喊。</p>
+                
+                <p><span class="english-word">Boom</span>！许多<span class="english-word">books</span>从<span class="english-word">bookshelf</span>上掉了下来，散落得到处都是。</p>
+                
+                <p>"<span class="english-word">Oh</span> <span class="english-word">no</span>！"<span class="yang-letian">杨乐天</span>说，"<span class="english-word">Books</span>到处都是！"</p>
+                
+                <p>"<span class="english-word">Don't</span> <span class="english-word">panic</span>！"会说话的<span class="english-word">dictionary</span>说，"这其实是一个<span class="english-word">test</span>！"</p>
+                
+                <p>"<span class="english-word">Test</span>？"<span class="yang-leda">杨乐达</span>困惑地问。</p>
+                
+                <p>"<span class="english-word">Yes</span>！"<span class="english-word">dictionary</span>解释，"要想<span class="english-word">organize</span>这些<span class="english-word">books</span>，你们必须学会<span class="english-word">classify</span>它们！"</p>
+                
+                <p>柯南院长点头说："每本<span class="english-word">book</span>都有<span class="english-word">category</span>——<span class="english-word">science</span>、<span class="english-word">history</span>、<span class="english-word">literature</span>、<span class="english-word">mathematics</span>......"</p>
+                
+                <p>"<span class="english-word">Mathematics</span>？"<span class="yang-letian">杨乐天</span>看着手中的一本<span class="english-word">book</span>，"这个<span class="english-word">word</span>好<span class="english-word">long</span>！"</p>
+                
+                <p>"<span class="english-word">Mathematics</span>就是<span class="english-word">math</span>！"<span class="yang-lebei">杨乐北</span>帮忙解释。</p>
+                
+                <p>"<span class="english-word">Oh</span>！<span class="english-word">Math</span>我<span class="english-word">know</span>！"<span class="yang-leda">杨乐达</span>高兴地说。</p>
+                
+                <p>就在这时，图书馆里出现了一位神秘的老<span class="english-word">librarian</span>——<span class="english-word">Professor</span> <span class="english-word">Bookworm</span>！</p>
+                
+                <p>"<span class="english-word">Welcome</span>，<span class="english-word">young</span> <span class="english-word">scholars</span>！"他和蔼地说，"我是<span class="english-word">Professor</span> <span class="english-word">Bookworm</span>，这个<span class="english-word">magical</span> <span class="english-word">library</span>的<span class="english-word">guardian</span>！"</p>
+                
+                <p>"<span class="english-word">Professor</span> <span class="english-word">Bookworm</span>？"<span class="yang-letian">杨乐天</span>好奇地问，"您真的是<span class="english-word">bookworm</span>吗？"</p>
+                
+                <p><span class="english-word">Professor</span> <span class="english-word">Bookworm</span>大笑："<span class="english-word">Bookworm</span>不是真的<span class="english-word">worm</span>！<span class="english-word">Bookworm</span>是指<span class="english-word">love</span> <span class="english-word">reading</span>的人！"</p>
+                
+                <p>"<span class="english-word">Oh</span>！我<span class="english-word">understand</span>！"<span class="yang-leda">杨乐达</span>恍然大悟。</p>
+                
+                <p>"现在，"<span class="english-word">Professor</span> <span class="english-word">Bookworm</span>说，"让我们来<span class="english-word">solve</span>这个<span class="english-word">book</span> <span class="english-word">chaos</span>！但是，有个<span class="english-word">challenge</span>......"</p>
+                
+                <p>"<span class="english-word">What</span> <span class="english-word">challenge</span>？"<span class="yang-lebei">杨乐北</span>问。</p>
+                
+                <p>"这些<span class="english-word">books</span>都被<span class="english-word">mixed</span> <span class="english-word">up</span>了！<span class="english-word">Science</span> <span class="english-word">books</span>和<span class="english-word">story</span> <span class="english-word">books</span>混在一起，<span class="english-word">math</span> <span class="english-word">books</span>和<span class="english-word">art</span> <span class="english-word">books</span>也搞混了！"</p>
+                
+                <p>"我们<span class="english-word">help</span>！"<span class="yang-letian">杨乐天</span>自告奋勇，拿起一本<span class="english-word">book</span>，"这本是......<span class="english-word">cooking</span> <span class="english-word">book</span>！"</p>
+                
+                <p>"<span class="english-word">How</span> <span class="english-word">do</span> <span class="english-word">you</span> <span class="english-word">know</span>？"<span class="yang-leda">杨乐达</span>问。</p>
+                
+                <p>"因为上面有<span class="english-word">pictures</span>的<span class="english-word">food</span>！"<span class="yang-letian">杨乐天</span>得意地说，但是他把<span class="english-word">book</span>拿反了！</p>
+                
+                <p><span class="yang-lebei">杨乐北</span>笑着说："<span class="english-word">Brother</span>，<span class="english-word">book</span>拿<span class="english-word">upside</span> <span class="english-word">down</span>了！"</p>
+                
+                <p>"<span class="english-word">Oops</span>！"<span class="yang-letian">杨乐天</span>翻转<span class="english-word">book</span>，"现在<span class="english-word">correct</span>了！"</p>
+                
+                <p><span class="english-word">Professor</span> <span class="english-word">Bookworm</span>教他们<span class="english-word">classification</span> <span class="english-word">system</span>："<span class="english-word">Fiction</span> <span class="english-word">books</span>放这边，<span class="english-word">non-fiction</span> <span class="english-word">books</span>放那边。"</p>
+                
+                <p>"<span class="english-word">Fiction</span>和<span class="english-word">non-fiction</span>有什么<span class="english-word">difference</span>？"<span class="yang-leda">杨乐达</span>问。</p>
+                
+                <p>"<span class="english-word">Fiction</span>是<span class="english-word">imaginary</span> <span class="english-word">stories</span>，<span class="english-word">non-fiction</span>是<span class="english-word">real</span> <span class="english-word">facts</span>！"<span class="english-word">Professor</span> <span class="english-word">Bookworm</span>解释。</p>
+                
+                <p>在整理<span class="english-word">books</span>的过程中，<span class="yang-letian">杨乐天</span>发现了一本奇特的<span class="english-word">book</span>。</p>
+                
+                <p>"这本<span class="english-word">book</span>好<span class="english-word">strange</span>！"他说，"封面上写着'<span class="english-word">Magic</span> <span class="english-word">Recipes</span>'，但是里面全是<span class="english-word">math</span> <span class="english-word">formulas</span>！"</p>
+                
+                <p>"<span class="english-word">Let</span> <span class="english-word">me</span> <span class="english-word">see</span>！"<span class="english-word">Professor</span> <span class="english-word">Bookworm</span>兴奋地说，"<span class="english-word">Oh</span> <span class="english-word">my</span>！这是<span class="english-word">legendary</span> <span class="english-word">Mathmagic</span> <span class="english-word">Book</span>！"</p>
+                
+                <p>"<span class="english-word">Mathmagic</span>？"三个孩子异口同声地问。</p>
+                
+                <p>"<span class="english-word">Math</span>加上<span class="english-word">Magic</span>！这本<span class="english-word">book</span>能让<span class="english-word">math</span> <span class="english-word">problems</span>变得像<span class="english-word">magic</span>一样<span class="english-word">fun</span>！"</p>
+                
+                <p>突然，<span class="english-word">book</span>开始发光，从里面跳出了各种<span class="english-word">numbers</span>和<span class="english-word">symbols</span>：1、2、3、+、-、×、÷！</p>
+                
+                <p>"<span class="english-word">Numbers</span>在<span class="english-word">dancing</span>！"<span class="yang-leda">杨乐达</span>惊叹道。</p>
+                
+                <p>"这些<span class="english-word">dancing</span> <span class="english-word">numbers</span>需要<span class="english-word">help</span>！"会说话的<span class="english-word">dictionary</span>说，"它们被<span class="english-word">confused</span>了，不知道自己属于哪个<span class="english-word">math</span> <span class="english-word">problem</span>！"</p>
+                
+                <p>"我们<span class="english-word">help</span>它们<span class="english-word">find</span> <span class="english-word">home</span>！"<span class="yang-lebei">杨乐北</span>说。</p>
+                
+                <p>在<span class="english-word">Professor</span> <span class="english-word">Bookworm</span>的指导下，他们开始用<span class="english-word">English</span>解<span class="english-word">math</span> <span class="english-word">problems</span>。</p>
+                
+                <p>"<span class="english-word">Two</span> <span class="english-word">plus</span> <span class="english-word">three</span> <span class="english-word">equals</span> <span class="english-word">five</span>！"<span class="yang-letian">杨乐天</span>成功地把<span class="english-word">numbers</span> 2、+、3、=、5组合在一起。</p>
+                
+                <p>"<span class="english-word">Excellent</span>！"<span class="english-word">Professor</span> <span class="english-word">Bookworm</span>称赞道。</p>
+                
+                <p>当所有的<span class="english-word">books</span>都被正确<span class="english-word">organized</span>，所有的<span class="english-word">numbers</span>都找到<span class="english-word">home</span>后，整个<span class="english-word">library</span>都亮了起来！</p>
+                
+                <p>"<span class="english-word">Congratulations</span>！"<span class="english-word">Professor</span> <span class="english-word">Bookworm</span>说，"你们现在是<span class="english-word">official</span> <span class="english-word">Library</span> <span class="english-word">Wizards</span>！"</p>
+                
+                <p>"<span class="english-word">Really</span>？"<span class="yang-leda">杨乐达</span>兴奋地问。</p>
+                
+                <p>"<span class="english-word">Yes</span>！你们不仅<span class="english-word">learned</span> <span class="english-word">library</span> <span class="english-word">skills</span>，还<span class="english-word">discovered</span> <span class="english-word">mathmagic</span>！"</p>
+                
+                <p>柯南院长骄傲地说："<span class="english-word">Knowledge</span>是最<span class="english-word">powerful</span> <span class="english-word">magic</span>！你们已经<span class="english-word">mastered</span>它了！"</p>
+                
+                <p>"而且，"会说话的<span class="english-word">dictionary</span>补充，"你们还学会了<span class="english-word">teamwork</span>和<span class="english-word">responsibility</span>！"</p>
+                
+                <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 15px 0; border: 2px dashed #f39c12;">
+                    <h5 style="color: #f39c12; margin-bottom: 10px;">🔍 魔法侦探任务</h5>
+                    <p><strong>你能猜出这些知识单词的意思吗？</strong></p>
+                    <p>💡 <span class="english-word">library</span> = ________（提示：有很多书的地方）</p>
+                    <p>💡 <span class="english-word">book</span> = ________（提示：可以阅读的东西）</p>
+                    <p>💡 <span class="english-word">dictionary</span> = ________（提示：查单词用的书）</p>
+                    <p>💡 <span class="english-word">read</span> = ________（提示：用眼睛看书）</p>
+                    <p>💡 <span class="english-word">write</span> = ________（提示：用笔写字）</p>
+                    <p>💡 <span class="english-word">study</span> = ________（提示：学习的动作）</p>
+                    <p>💡 <span class="english-word">knowledge</span> = ________（提示：学到的本领和道理）</p>
+                    <p>💡 <span class="english-word">door</span> = ________（提示：门）</p>
+                    <p>💡 <span class="english-word">detectives</span> = ________（提示：侦探的复数）</p>
+                    <p>💡 <span class="english-word">magnifying</span> = ________（提示：放大）</p>
+                    <p>💡 <span class="english-word">glass</span> = ________（提示：玻璃，放大镜）</p>
+                    <p>💡 <span class="english-word">investigate</span> = ________（提示：调查）</p>
+                    <p>💡 <span class="english-word">mysterious</span> = ________（提示：神秘的）</p>
+                    <p>💡 <span class="english-word">books</span> = ________（提示：书的复数）</p>
+                    <p>💡 <span class="english-word">detective</span> = ________（提示：侦探）</p>
+                    <p>💡 <span class="english-word">hat</span> = ________（提示：帽子）</p>
+                    <p>💡 <span class="english-word">shh</span> = ________（提示：安静！）</p>
+                    <p>💡 <span class="english-word">quiet</span> = ________（提示：安静的）</p>
+                    <p>💡 <span class="english-word">zone</span> = ________（提示：区域）</p>
+                    <p>💡 <span class="english-word">sorry</span> = ________（提示：对不起）</p>
+                    <p>💡 <span class="english-word">flying</span> = ________（提示：飞行的）</p>
+                    <p>💡 <span class="english-word">bookshelf</span> = ________（提示：书架）</p>
+                    <p>💡 <span class="english-word">watch</span> = ________（提示：小心）</p>
+                    <p>💡 <span class="english-word">out</span> = ________（提示：出去）</p>
+                    <p>💡 <span class="english-word">boom</span> = ________（提示：轰的声音）</p>
+                    <p>💡 <span class="english-word">oh no</span> = ________（提示：哦不）</p>
+                    <p>💡 <span class="english-word">don't</span> = ________（提示：不要）</p>
+                    <p>💡 <span class="english-word">panic</span> = ________（提示：恐慌）</p>
+                    <p>💡 <span class="english-word">test</span> = ________（提示：测试）</p>
+                    <p>💡 <span class="english-word">yes</span> = ________（提示：是的）</p>
+                    <p>💡 <span class="english-word">organize</span> = ________（提示：整理）</p>
+                    <p>💡 <span class="english-word">classify</span> = ________（提示：分类）</p>
+                    <p>💡 <span class="english-word">category</span> = ________（提示：类别）</p>
+                    <p>💡 <span class="english-word">science</span> = ________（提示：科学）</p>
+                    <p>💡 <span class="english-word">history</span> = ________（提示：历史）</p>
+                    <p>💡 <span class="english-word">literature</span> = ________（提示：文学）</p>
+                    <p>💡 <span class="english-word">mathematics</span> = ________（提示：数学）</p>
+                    <p>💡 <span class="english-word">word</span> = ________（提示：单词）</p>
+                    <p>💡 <span class="english-word">long</span> = ________（提示：长的）</p>
+                    <p>💡 <span class="english-word">math</span> = ________（提示：数学）</p>
+                    <p>💡 <span class="english-word">oh</span> = ________（提示：哦）</p>
+                    <p>💡 <span class="english-word">know</span> = ________（提示：知道）</p>
+                    <p>💡 <span class="english-word">librarian</span> = ________（提示：图书管理员）</p>
+                    <p>💡 <span class="english-word">professor</span> = ________（提示：教授）</p>
+                    <p>💡 <span class="english-word">bookworm</span> = ________（提示：书虫）</p>
+                    <p>💡 <span class="english-word">welcome</span> = ________（提示：欢迎）</p>
+                    <p>💡 <span class="english-word">young</span> = ________（提示：年轻的）</p>
+                    <p>💡 <span class="english-word">scholars</span> = ________（提示：学者）</p>
+                    <p>💡 <span class="english-word">magical</span> = ________（提示：魔法的）</p>
+                    <p>💡 <span class="english-word">guardian</span> = ________（提示：守护者）</p>
+                    <p>💡 <span class="english-word">worm</span> = ________（提示：虫子）</p>
+                    <p>💡 <span class="english-word">love</span> = ________（提示：爱）</p>
+                    <p>💡 <span class="english-word">reading</span> = ________（提示：阅读）</p>
+                    <p>💡 <span class="english-word">understand</span> = ________（提示：理解）</p>
+                    <p>💡 <span class="english-word">solve</span> = ________（提示：解决）</p>
+                    <p>💡 <span class="english-word">chaos</span> = ________（提示：混乱）</p>
+                    <p>💡 <span class="english-word">challenge</span> = ________（提示：挑战）</p>
+                    <p>💡 <span class="english-word">what</span> = ________（提示：什么）</p>
+                    <p>💡 <span class="english-word">mixed</span> = ________（提示：混合的）</p>
+                    <p>💡 <span class="english-word">up</span> = ________（提示：向上）</p>
+                    <p>💡 <span class="english-word">story</span> = ________（提示：故事）</p>
+                    <p>💡 <span class="english-word">art</span> = ________（提示：艺术）</p>
+                    <p>💡 <span class="english-word">help</span> = ________（提示：帮助）</p>
+                    <p>💡 <span class="english-word">cooking</span> = ________（提示：烹饪）</p>
+                    <p>💡 <span class="english-word">how</span> = ________（提示：怎么）</p>
+                    <p>💡 <span class="english-word">do</span> = ________（提示：做）</p>
+                    <p>💡 <span class="english-word">you</span> = ________（提示：你）</p>
+                    <p>💡 <span class="english-word">pictures</span> = ________（提示：图片）</p>
+                    <p>💡 <span class="english-word">food</span> = ________（提示：食物）</p>
+                    <p>💡 <span class="english-word">brother</span> = ________（提示：兄弟）</p>
+                    <p>💡 <span class="english-word">upside</span> = ________（提示：上面）</p>
+                    <p>💡 <span class="english-word">down</span> = ________（提示：下面）</p>
+                    <p>💡 <span class="english-word">oops</span> = ________（提示：哎呀）</p>
+                    <p>💡 <span class="english-word">correct</span> = ________（提示：正确的）</p>
+                    <p>💡 <span class="english-word">classification</span> = ________（提示：分类）</p>
+                    <p>💡 <span class="english-word">system</span> = ________（提示：系统）</p>
+                    <p>💡 <span class="english-word">fiction</span> = ________（提示：小说）</p>
+                    <p>💡 <span class="english-word">non-fiction</span> = ________（提示：非小说）</p>
+                    <p>💡 <span class="english-word">difference</span> = ________（提示：不同）</p>
+                    <p>💡 <span class="english-word">imaginary</span> = ________（提示：想象的）</p>
+                    <p>💡 <span class="english-word">stories</span> = ________（提示：故事的复数）</p>
+                    <p>💡 <span class="english-word">real</span> = ________（提示：真实的）</p>
+                    <p>💡 <span class="english-word">facts</span> = ________（提示：事实）</p>
+                    <p>💡 <span class="english-word">strange</span> = ________（提示：奇怪的）</p>
+                    <p>💡 <span class="english-word">magic</span> = ________（提示：魔法）</p>
+                    <p>💡 <span class="english-word">recipes</span> = ________（提示：食谱）</p>
+                    <p>💡 <span class="english-word">formulas</span> = ________（提示：公式）</p>
+                    <p>💡 <span class="english-word">let</span> = ________（提示：让）</p>
+                    <p>💡 <span class="english-word">me</span> = ________（提示：我）</p>
+                    <p>💡 <span class="english-word">see</span> = ________（提示：看）</p>
+                    <p>💡 <span class="english-word">my</span> = ________（提示：我的）</p>
+                    <p>💡 <span class="english-word">legendary</span> = ________（提示：传说的）</p>
+                    <p>💡 <span class="english-word">mathmagic</span> = ________（提示：数学魔法）</p>
+                    <p>💡 <span class="english-word">problems</span> = ________（提示：问题的复数）</p>
+                    <p>💡 <span class="english-word">fun</span> = ________（提示：有趣的）</p>
+                    <p>💡 <span class="english-word">numbers</span> = ________（提示：数字的复数）</p>
+                    <p>💡 <span class="english-word">symbols</span> = ________（提示：符号的复数）</p>
+                    <p>💡 <span class="english-word">dancing</span> = ________（提示：跳舞）</p>
+                    <p>💡 <span class="english-word">confused</span> = ________（提示：困惑的）</p>
+                    <p>💡 <span class="english-word">problem</span> = ________（提示：问题）</p>
+                    <p>💡 <span class="english-word">find</span> = ________（提示：找到）</p>
+                    <p>💡 <span class="english-word">home</span> = ________（提示：家）</p>
+                    <p>💡 <span class="english-word">english</span> = ________（提示：英语）</p>
+                    <p>💡 <span class="english-word">two</span> = ________（提示：二）</p>
+                    <p>💡 <span class="english-word">plus</span> = ________（提示：加）</p>
+                    <p>💡 <span class="english-word">three</span> = ________（提示：三）</p>
+                    <p>💡 <span class="english-word">equals</span> = ________（提示：等于）</p>
+                    <p>💡 <span class="english-word">five</span> = ________（提示：五）</p>
+                    <p>💡 <span class="english-word">excellent</span> = ________（提示：优秀的）</p>
+                    <p>💡 <span class="english-word">organized</span> = ________（提示：整理好的）</p>
+                    <p>💡 <span class="english-word">congratulations</span> = ________（提示：恭喜）</p>
+                    <p>💡 <span class="english-word">official</span> = ________（提示：官方的）</p>
+                    <p>💡 <span class="english-word">wizards</span> = ________（提示：巫师的复数）</p>
+                    <p>💡 <span class="english-word">really</span> = ________（提示：真的吗）</p>
+                    <p>💡 <span class="english-word">learned</span> = ________（提示：学会了）</p>
+                    <p>💡 <span class="english-word">skills</span> = ________（提示：技能）</p>
+                    <p>💡 <span class="english-word">discovered</span> = ________（提示：发现了）</p>
+                    <p>💡 <span class="english-word">powerful</span> = ________（提示：强大的）</p>
+                    <p>💡 <span class="english-word">mastered</span> = ________（提示：掌握了）</p>
+                    <p>💡 <span class="english-word">teamwork</span> = ________（提示：团队合作）</p>
+                    <p>💡 <span class="english-word">responsibility</span> = ________（提示：责任）</p>
+                </div>
+            </div>
+
+            <div class="word-box">
+                <h4 class="section-title">🔢 单词板块：图书馆知识单词</h4>
+                <p>图书馆里的会说话的字典告诉<span class="yang-lebei">杨乐北</span>："要想掌握所有魔法知识，你必须学会这些重要的学习单词！"</p>
+                
+                <div class="word-list">
+                    <div class="word-card">
+                        <div class="english">library</div>
+
+                        <div class="example">I love reading in the library.</div>
+                </div>
+                    <div class="word-card">
+                        <div class="english">book</div>
+
+                        <div class="example">This is my favorite book.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">dictionary</div>
+
+                        <div class="example">I use a dictionary to learn words.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">read</div>
+
+                        <div class="example">I read books every day.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">write</div>
+
+                        <div class="example">I write in my notebook.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">study</div>
+
+                        <div class="example">I study English every day.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">knowledge</div>
+
+                        <div class="example">Knowledge is power!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">learn</div>
+
+                        <div class="example">I want to learn magic.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">teach</div>
+
+                        <div class="example">The teacher teaches us English.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">homework</div>
+
+                        <div class="example">I do my homework every day.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">test</div>
+
+                        <div class="example">We have a test tomorrow.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">exam</div>
+
+                        <div class="example">The exam is very important.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">answer</div>
+
+                        <div class="example">Do you know the answer?</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">question</div>
+
+                        <div class="example">I have a question for you.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">think</div>
+
+                        <div class="example">Let me think about it.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">understand</div>
+
+                        <div class="example">I understand the lesson.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">remember</div>
+
+                        <div class="example">Please remember this word.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">forget</div>
+
+                        <div class="example">Don't forget your homework.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">listen</div>
+
+                        <div class="example">Please listen carefully.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">speak</div>
+
+                        <div class="example">Can you speak English?</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">spell</div>
+
+                        <div class="example">How do you spell this word?</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">word</div>
+
+                        <div class="example">This is a new word for me.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">sentence</div>
+
+                        <div class="example">Make a sentence with this word.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">paragraph</div>
+
+                        <div class="example">Read the first paragraph.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">story</div>
+
+                        <div class="example">Tell me a story.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">language</div>
+
+                        <div class="example">English is a beautiful language.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">grammar</div>
+
+                        <div class="example">Grammar is important for learning.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">vocabulary</div>
+
+                        <div class="example">I need to learn more vocabulary.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">practice</div>
+
+                        <div class="example">Practice makes perfect!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">exercise</div>
+
+                        <div class="example">Do this exercise carefully.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">notebook</div>
+
+                        <div class="example">I write notes in my notebook.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">page</div>
+
+                        <div class="example">Turn to page 10.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">chapter</div>
+
+                        <div class="example">We are reading chapter 6.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">lesson</div>
+
+                        <div class="example">Today's lesson is very interesting.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">subject</div>
+
+                        <div class="example">English is my favorite subject.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">math</div>
+
+                        <div class="example">Math is fun for me.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">science</div>
+
+                        <div class="example">I love science experiments.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">history</div>
+
+                        <div class="example">History tells us about the past.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">art</div>
+
+                        <div class="example">I enjoy drawing in art class.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">music</div>
+
+                        <div class="example">Music makes me happy.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">computer</div>
+
+                        <div class="example">I use a computer for learning.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">internet</div>
+
+                        <div class="example">The internet has lots of information.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">search</div>
+
+                        <div class="example">Search for information online.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">information</div>
+
+                        <div class="example">This book has useful information.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">idea</div>
+
+                        <div class="example">I have a good idea!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">important</div>
+
+                        <div class="example">This lesson is very important.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">interesting</div>
+
+                        <div class="example">The story is very interesting.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">difficult</div>
+
+                        <div class="example">This math problem is difficult.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">easy</div>
+
+                        <div class="example">This test is very easy.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">smart</div>
+
+                        <div class="example">You are a smart student!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">clever</div>
+
+                        <div class="example">That's a clever answer!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">wise</div>
+
+                        <div class="example">The owl is very wise.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">creative</div>
+
+                        <div class="example">You have a creative mind!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">curious</div>
+
+                        <div class="example">Curious students learn more.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">discover</div>
+
+                        <div class="example">We discovered a new fact!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">explore</div>
+
+                        <div class="example">Let's explore the library together.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">experiment</div>
+
+                        <div class="example">We did a fun science experiment.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">research</div>
+
+                        <div class="example">I need to research this topic.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">project</div>
+
+                        <div class="example">Our group project is about animals.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">report</div>
+
+                        <div class="example">I need to write a book report.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">presentation</div>
+
+                        <div class="example">Give a presentation about your topic.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">explain</div>
+
+                        <div class="example">Can you explain this to me?</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">describe</div>
+
+                        <div class="example">Describe your favorite book.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">compare</div>
+
+                        <div class="example">Compare these two stories.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">organize</div>
+
+                        <div class="example">Organize your notes carefully.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">plan</div>
+
+                        <div class="example">Make a plan for your study.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">goal</div>
+
+                        <div class="example">My goal is to learn 100 words.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">achieve</div>
+
+                        <div class="example">I want to achieve my goal.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">success</div>
+
+                        <div class="example">Hard work leads to success.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">improve</div>
+
+                        <div class="example">I want to improve my English.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">progress</div>
+
+                        <div class="example">You're making great progress!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">effort</div>
+
+                        <div class="example">Good effort in your studies!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">focus</div>
+
+                        <div class="example">Focus on your homework.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">concentrate</div>
+
+                        <div class="example">Concentrate when you study.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">attention</div>
+
+                        <div class="example">Pay attention to the teacher.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">patience</div>
+
+                        <div class="example">Learning needs patience.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">determination</div>
+
+                        <div class="example">She has strong determination to learn.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">confidence</div>
+
+                        <div class="example">Have confidence in yourself!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">mistake</div>
+
+                        <div class="example">Learn from your mistakes.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">correct</div>
+
+                        <div class="example">Your answer is correct!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">wrong</div>
+
+                        <div class="example">This answer is wrong.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">review</div>
+
+                        <div class="example">Review your lessons every day.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">repeat</div>
+
+                        <div class="example">Repeat the new words aloud.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">memorize</div>
+
+                        <div class="example">Memorize this important poem.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">prepare</div>
+
+                        <div class="example">Prepare well for your test.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">ready</div>
+
+                        <div class="example">Are you ready for the lesson?</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">finish</div>
+
+                        <div class="example">Finish your homework first.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">complete</div>
+
+                        <div class="example">Complete all the exercises.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">📖 魔法知识问答</h4>
+                <div class="mission-card">
+                    <h4>🧠 魔法任务：知识单词大挑战</h4>
+                    <p>和家人或小伙伴一起玩"知识问答"游戏：</p>
+                    <ol>
+                        <li>一个人说中文意思，另一个人说出英文单词。</li>
+                        <li>说错或说慢了要模仿一本书飞起来！</li>
+                        <li>全部答对，获得"魔法知识大师"称号！</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: white; margin-bottom: 15px;">🧠 快速抢答挑战</h5>
+                    <p style="margin: 8px 0;">🔮 你在哪里看书？（________）</p>
+                    <p style="margin: 8px 0;">🔮 当你不懂时要做什么？（________）</p>
+                    <p style="margin: 8px 0;">🔮 老师每天都会给你什么？（________）</p>
+                    <p style="margin: 8px 0;">🔮 你最喜欢的科目是什么？（________）</p>
+                    <p style="margin: 8px 0;">🔮 学习需要什么品质？（________）</p>
+                    <p style="margin: 8px 0;">🔮 当你犯错误时应该怎么办？（________）</p>
+                    <p style="margin-top: 15px; font-style: italic;">⚡ 挑战：看谁能在最短时间内全部答对！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🎯 魔法单词接龙大赛</h4>
+                <div class="mission-card">
+                    <h4>🔗 魔法任务：学习单词接龙</h4>
+                    <p>让我们来一场精彩的单词接龙比赛！</p>
+                    <ol>
+                        <li>第一个人说："I <span class="english-word">read</span> a book"</li>
+                        <li>第二个人接："I read a book and <span class="english-word">write</span> notes"</li>
+                        <li>第三个人接："I read a book, write notes and <span class="english-word">study</span> hard"</li>
+                        <li>看谁能接得最长，用最多的学习单词！</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); color: #333; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: #333; margin-bottom: 15px;">🎯 接龙挑战示例</h5>
+                    <p style="margin: 8px 0;">✨ 起始句："I go to the library..."</p>
+                    <p style="margin: 8px 0;">✨ 第2句："I go to the library to <span class="english-word">read</span>..."</p>
+                    <p style="margin: 8px 0;">✨ 第3句："I go to the library to read <span class="english-word">books</span>..."</p>
+                    <p style="margin: 8px 0;">✨ 第4句："I go to the library to read books and <span class="english-word">study</span>..."</p>
+                    <p style="margin: 8px 0;">✨ 你能接到第几句？</p>
+                    <p style="margin-top: 15px; font-style: italic;">🏆 目标：用上20个以上的学习单词！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🎭 魔法学习情景剧</h4>
+                <div class="mission-card">
+                    <h4>🎪 魔法任务：表演学习场景</h4>
+                    <p>和小伙伴一起表演不同的学习场景，用学到的单词对话：</p>
+                    <ol>
+                        <li><strong>场景1：</strong>图书馆借书对话</li>
+                        <li><strong>场景2：</strong>课堂问答互动</li>
+                        <li><strong>场景3：</strong>考试前的复习</li>
+                        <li><strong>场景4：</strong>做项目研究</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: #333; margin-bottom: 15px;">🎭 情景剧台词示例</h5>
+                    <p style="margin: 8px 0;"><strong>图书馆场景：</strong></p>
+                    <p style="margin: 8px 0;">👩 "Excuse me, where can I find a <span class="english-word">dictionary</span>?"</p>
+                    <p style="margin: 8px 0;">👨 "The <span class="english-word">dictionary</span> is on that shelf. Do you need help with your <span class="english-word">homework</span>?"</p>
+                    <p style="margin: 8px 0;">👩 "Yes, I need to <span class="english-word">research</span> about animals for my <span class="english-word">project</span>."</p>
+                    <p style="margin: 8px 0;">👨 "Great! This <span class="english-word">book</span> has lots of <span class="english-word">information</span> about animals."</p>
+                    <p style="margin-top: 15px; font-style: italic;">🌟 创作技巧：加上表情和手势，让对话更生动！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🔮 魔法记忆宫殿</h4>
+                <div class="mission-card">
+                    <h4>🏰 魔法任务：建造单词记忆宫殿</h4>
+                    <p>在你的大脑里建造一座记忆宫殿，把学习单词分门别类地储存起来：</p>
+                    <ol>
+                        <li><strong>第1层：</strong>基础学习房间（read, write, study...）</li>
+                        <li><strong>第2层：</strong>学科知识房间（math, science, history...）</li>
+                        <li><strong>第3层：</strong>学习品质房间（smart, curious, creative...）</li>
+                        <li><strong>第4层：</strong>学习方法房间（practice, review, focus...）</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: white; margin-bottom: 15px;">🏰 记忆宫殿蓝图</h5>
+                    <p style="margin: 8px 0;">🏠 <strong>基础学习房间：</strong>这里住着read, write, study小精灵</p>
+                    <p style="margin: 8px 0;">📚 <strong>学科知识房间：</strong>math巫师和science博士在这里</p>
+                    <p style="margin: 8px 0;">✨ <strong>学习品质房间：</strong>smart天使和curious小龙居住</p>
+                    <p style="margin: 8px 0;">🔧 <strong>学习方法房间：</strong>practice教练训练各种技能</p>
+                    <p style="margin-top: 15px; font-style: italic;">💡 记忆秘诀：给每个单词编一个有趣的小故事！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🎨 魔法单词艺术创作</h4>
+                <div class="mission-card">
+                    <h4>🎨 魔法任务：单词变身艺术品</h4>
+                    <p>把学习单词变成艺术作品，让学习更有趣：</p>
+                    <ol>
+                        <li><strong>单词画：</strong>画出单词的形象（比如把"book"画成一本打开的书）</li>
+                        <li><strong>单词歌：</strong>给单词编一首朗朗上口的歌</li>
+                        <li><strong>单词舞：</strong>为单词创造一个专属动作</li>
+                        <li><strong>单词诗：</strong>用单词编一首小诗</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); color: #333; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: #333; margin-bottom: 15px;">🎨 创作示例</h5>
+                    <p style="margin: 8px 0;"><strong>单词歌：</strong></p>
+                    <p style="margin: 8px 0;">🎵 "Read, read, 我爱读书每一天"</p>
+                    <p style="margin: 8px 0;">🎵 "Write, write, 用笔写字很有趣"</p>
+                    <p style="margin: 8px 0;">🎵 "Study, study, 学习让我更聪明"</p>
+                    <p style="margin: 8px 0;"><strong>单词诗：</strong></p>
+                    <p style="margin: 8px 0;">📝 "Smart students love to <span class="english-word">read</span>,</p>
+                    <p style="margin: 8px 0;">&nbsp;&nbsp;&nbsp;&nbsp;Knowledge is what they always need."</p>
+                    <p style="margin-top: 15px; font-style: italic;">🌈 发挥想象：让每个单词都有自己的故事！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">✍️ 魔法写作练习</h4>
+                <div class="mission-card">
+                    <h4>📝 魔法任务：用单词造句</h4>
+                    <p>用学到的知识单词，每个单词造一个英文句子，可以写下来，也可以大声读出来！</p>
+                    <p>比如："I like to <span class="english-word">read</span> books in the <span class="english-word">library</span>."</p>
+                </div>
+                
+                <div style="background: #e8f5e8; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                    <h5><strong>造句挑战等级：</strong></h5>
+                    <p><strong>初级：</strong>每个单词造一个简单句子</p>
+                    <p><strong>中级：</strong>用两个单词造一个句子</p>
+                    <p><strong>高级：</strong>用五个以上单词造一个长句子</p>
+                    <p><strong>终极：</strong>写一个包含20个学习单词的段落</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🔍 魔法单词侦探</h4>
+                <div class="mission-card">
+                    <h4>🕵️ 魔法任务：单词线索侦破</h4>
+                    <p>成为魔法单词侦探，根据线索猜出正确的单词：</p>
+                    <ol>
+                        <li>听线索描述，猜出对应的英文单词</li>
+                        <li>每个单词有3个线索，从易到难</li>
+                        <li>第一个线索猜对得3分，第二个得2分，第三个得1分</li>
+                        <li>看谁能成为"魔法单词侦探大师"！</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: white; margin-bottom: 15px;">🕵️ 侦探挑战案例</h5>
+                    <p style="margin: 8px 0;"><strong>神秘单词A：</strong></p>
+                    <p style="margin: 8px 0;">🔍 线索1：这是一个地方，有很多书</p>
+                    <p style="margin: 8px 0;">🔍 线索2：你可以在这里安静地学习</p>
+                    <p style="margin: 8px 0;">🔍 线索3：图书管理员在这里工作</p>
+                    <p style="margin: 8px 0;"><strong>神秘单词B：</strong></p>
+                    <p style="margin: 8px 0;">🔍 线索1：这是一种能力，聪明人都有</p>
+                    <p style="margin: 8px 0;">🔍 线索2：通过学习可以获得它</p>
+                    <p style="margin: 8px 0;">🔍 线索3：它就是power！</p>
+                    <p style="margin-top: 15px; font-style: italic;">🏆 你能全部猜对吗？</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">📝 魔法图书馆故事创作</h4>
+                <div class="mission-card">
+                    <h4>📚 魔法任务：编一个图书馆冒险故事</h4>
+                    <p>用学到的知识单词，编一个属于你的魔法图书馆冒险故事，可以画出来，也可以写下来！</p>
+                    <p>比如："One day, I found a talking <span class="english-word">dictionary</span> in the <span class="english-word">library</span>..."</p>
+                </div>
+                
+                <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                    <h5><strong>故事创作模板：</strong></h5>
+                    <p><strong>开头：</strong>One day, when I was in the <span class="english-word">library</span>...</p>
+                    <p><strong>发展：</strong>I discovered a magical <span class="english-word">book</span> that could...</p>
+                    <p><strong>高潮：</strong>Suddenly, I had to <span class="english-word">solve</span> a difficult <span class="english-word">problem</span>...</p>
+                    <p><strong>结尾：</strong>Finally, I learned that <span class="english-word">knowledge</span> is...</p>
+                    <p style="margin-top: 10px;"><strong>挑战：</strong>在你的故事中至少使用15个不同的学习单词！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🎯 魔法学习目标设定</h4>
+                <div class="mission-card">
+                    <h4>🎯 魔法任务：制定学习计划</h4>
+                    <p>用学到的单词，为自己制定一个魔法学习计划：</p>
+                    <ol>
+                        <li>设定你的学习<span class="english-word">goal</span>（目标）</li>
+                        <li>计划如何<span class="english-word">practice</span>（练习）</li>
+                        <li>决定每天<span class="english-word">study</span>（学习）多长时间</li>
+                        <li>想想如何<span class="english-word">improve</span>（提高）自己</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: #333; margin-bottom: 15px;">🎯 我的魔法学习计划</h5>
+                    <p style="margin: 8px 0;">📌 <strong>My Goal:</strong> I want to ________________</p>
+                    <p style="margin: 8px 0;">📅 <strong>Daily Practice:</strong> I will ________________</p>
+                    <p style="margin: 8px 0;">⏰ <strong>Study Time:</strong> I will study for _______ every day</p>
+                    <p style="margin: 8px 0;">📈 <strong>How to Improve:</strong> I will ________________</p>
+                    <p style="margin: 8px 0;">🏆 <strong>Success Reward:</strong> When I achieve my goal, I will ________________</p>
+                    <p style="margin-top: 15px; font-style: italic;">💪 记住：有了plan（计划），就有了success（成功）的开始！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🔍 图书侦探大冒险</h4>
+                <div class="mission-card">
+                    <h4>🕵️ 魔法任务：模仿双胞胎的图书侦探冒险</h4>
+                    <p>重现杨乐天和杨乐达的搞笑图书馆冒险：</p>
+                    <ol>
+                        <li><strong>侦探装备</strong>：像双胞胎一样准备<span class="english-word">magnifying glass</span>和<span class="english-word">detective hat</span></li>
+                        <li><strong>搞笑调查</strong>：学杨乐天说"我们是<span class="english-word">book detectives</span>！"</li>
+                        <li><strong>意外制造</strong>：假装撞倒书架（安全地），然后说"<span class="english-word">Oh no</span>！"</li>
+                        <li><strong>倒着拿书</strong>：像杨乐天一样把书拿<span class="english-word">upside down</span>，然后纠正</li>
+                    </ol>
+                    <p>记住：<span class="english-word">Mistakes</span>是学习的一部分，<span class="english-word">don't panic</span>！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">📚 图书分类大师</h4>
+                <div class="mission-card">
+                    <h4>📖 魔法任务：成为Professor Bookworm的助手</h4>
+                    <p>学习图书馆的分类系统：</p>
+                    <ol>
+                        <li><strong>基础分类</strong>：区分<span class="english-word">fiction</span>（小说）和<span class="english-word">non-fiction</span>（非小说）</li>
+                        <li><strong>学科分类</strong>：将书籍分为<span class="english-word">science</span>、<span class="english-word">math</span>、<span class="english-word">history</span>、<span class="english-word">art</span>等</li>
+                        <li><strong>快速识别</strong>：通过<span class="english-word">pictures</span>和<span class="english-word">words</span>判断书的类型</li>
+                        <li><strong>整理技能</strong>：正确<span class="english-word">organize</span>不同<span class="english-word">category</span>的书</li>
+                    </ol>
+                    <p>完成后成为<span class="english-word">Classification Expert</span>！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🔢 Mathmagic数学魔法</h4>
+                <div class="mission-card">
+                    <h4>✨ 魔法任务：掌握传说中的Mathmagic Book</h4>
+                    <p>体验故事中的数学魔法：</p>
+                    <ol>
+                        <li><strong>英语数学</strong>：用英语说数学运算，如"<span class="english-word">two plus three equals five</span>"</li>
+                        <li><strong>跳舞数字</strong>：让<span class="english-word">numbers</span>和<span class="english-word">symbols</span>"跳舞"（用手势表演）</li>
+                        <li><strong>数字救援</strong>：帮助"<span class="english-word">confused numbers</span>"找到正确的<span class="english-word">math problem</span></li>
+                        <li><strong>魔法公式</strong>：创造自己的<span class="english-word">mathmagic formulas</span></li>
+                    </ol>
+                    <p>让<span class="english-word">math</span>变得像<span class="english-word">magic</span>一样<span class="english-word">fun</span>！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🤫 图书馆礼仪学院</h4>
+                <div class="mission-card">
+                    <h4>📖 魔法任务：学会图书馆的正确行为</h4>
+                    <p>掌握图书馆礼仪和英语表达：</p>
+                    <ol>
+                        <li><strong>安静规则</strong>：学会说"<span class="english-word">Shh</span>！"和"<span class="english-word">This is a quiet zone</span>"</li>
+                        <li><strong>礼貌道歉</strong>：犯错时说"<span class="english-word">Sorry</span>！"</li>
+                        <li><strong>寻求帮助</strong>：礼貌地问"<span class="english-word">Can you help me</span>？"</li>
+                        <li><strong>感谢表达</strong>：说"<span class="english-word">Thank you</span>"和"<span class="english-word">You're welcome</span>"</li>
+                    </ol>
+                    <p>成为<span class="english-word">Polite Library User</span>！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">📚 会说话的字典挑战</h4>
+                <div class="mission-card">
+                    <h4>📖 魔法任务：与魔法字典对话</h4>
+                    <p>模拟与会说话的字典的互动：</p>
+                    <ol>
+                        <li><strong>查词游戏</strong>：假装查<span class="english-word">dictionary</span>，说"<span class="english-word">What does ___ mean?</span>"</li>
+                        <li><strong>词汇拓展</strong>：学习一个单词的<span class="english-word">synonyms</span>（同义词）</li>
+                        <li><strong>造句挑战</strong>：用新学的单词造<span class="english-word">sentences</span></li>
+                        <li><strong>发音练习</strong>：跟着"字典"学习正确<span class="english-word">pronunciation</span></li>
+                    </ol>
+                    <p>字典是你最好的<span class="english-word">learning companion</span>！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🎭 学科角色扮演</h4>
+                <div class="mission-card">
+                    <h4>🎪 魔法任务：变身不同学科的专家</h4>
+                    <p>体验不同学科的魅力：</p>
+                    <ol>
+                        <li><strong>科学家</strong>：说"I love <span class="english-word">science</span>！"，假装做实验</li>
+                        <li><strong>数学家</strong>：说"<span class="english-word">Mathematics</span> is <span class="english-word">fun</span>！"，解决数学题</li>
+                        <li><strong>历史学家</strong>：说"<span class="english-word">History</span> tells <span class="english-word">stories</span>！"，讲历史故事</li>
+                        <li><strong>艺术家</strong>：说"<span class="english-word">Art</span> is <span class="english-word">beautiful</span>！"，画画或表演</li>
+                    </ol>
+                    <p>发现你最喜欢的<span class="english-word">subject</span>！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🏆 Library Wizard毕业考试</h4>
+                <div class="mission-card">
+                    <h4>🎓 魔法任务：获得Library Wizard证书</h4>
+                    <p>完成最终图书馆挑战：</p>
+                    <ol>
+                        <li><strong>速度分类</strong>：2分钟内正确分类10本书</li>
+                        <li><strong>知识问答</strong>：回答关于图书馆的5个英语问题</li>
+                        <li><strong>数学魔法</strong>：用英语解决3个<span class="english-word">mathmagic</span>问题</li>
+                        <li><strong>团队合作</strong>：展示<span class="english-word">teamwork</span>和<span class="english-word">responsibility</span></li>
+                        <li><strong>礼仪展示</strong>：演示正确的图书馆行为</li>
+                    </ol>
+                    <p>全部通过获得"<span class="english-word">Official Library Wizard</span>"证书！</p>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: white; margin-bottom: 15px;">🏆 Library Wizard证书</h5>
+                    <p style="margin: 8px 0; text-align: center; font-weight: bold;">恭喜你完成了图书馆魔法学习！</p>
+                    <p style="margin: 8px 0; text-align: center;">你现在是一名真正的：</p>
+                    <p style="margin: 8px 0; text-align: center; font-size: 1.2em; color: #fff566; font-weight: bold;">📚 LIBRARY WIZARD 📚</p>
+                    <p style="margin: 8px 0; text-align: center;">你最喜欢的学科：</p>
+                    <p style="margin: 8px 0; text-align: center;">________________（选择：Science / Math / History / Art / Literature）</p>
+                    <p style="margin: 8px 0; text-align: center;">你整理过的书籍数量：</p>
+                    <p style="margin: 8px 0; text-align: center;">________________本</p>
+                    <p style="margin: 8px 0; text-align: center;">你最想探索的神秘书籍：</p>
+                    <p style="margin: 8px 0; text-align: center;">________________</p>
+                    <p style="margin-top: 15px; font-style: italic; text-align: center;">🌟 Knowledge is the most powerful magic！🌟</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">📖 魔法读书俱乐部</h4>
+                <div class="mission-card">
+                    <h4>👥 魔法任务：创建你的英语读书俱乐部</h4>
+                    <p>建立学习<span class="english-word">community</span>：</p>
+                    <div style="background: #f6ffed; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                        <p><strong>俱乐部活动：</strong></p>
+                        <p>📚 <span class="english-word">Weekly Reading</span>: 每周共读一本英语书</p>
+                        <p>🗣️ <span class="english-word">Discussion Time</span>: 用英语讨论书中内容</p>
+                        <p>🎭 <span class="english-word">Story Acting</span>: 表演书中的故事</p>
+                        <p>✍️ <span class="english-word">Writing Practice</span>: 写读后感和书评</p>
+                        <p>🏆 <span class="english-word">Reading Challenge</span>: 设定阅读目标</p>
+                    </div>
+                    <ol>
+                        <li><strong>选择书籍</strong>：挑选适合的英语<span class="english-word">books</span></li>
+                        <li><strong>制定规则</strong>：用英语制定俱乐部<span class="english-word">rules</span></li>
+                        <li><strong>分享心得</strong>：用英语分享<span class="english-word">reading experience</span></li>
+                        <li><strong>互相学习</strong>：一起<span class="english-word">improve</span>英语水平</li>
+                    </ol>
+                    <p>创建属于你的<span class="english-word">Magic Reading Community</span>！</p>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="chapter-nav">
+            <a href="chapter06.html" class="">⬅️ 上一章</a>
+            <a href="index.html" class="back-link">📚 返回章节目录</a>
+            <a href="chapter08.html" class="">下一章 ➡️</a>
+        </div>
+    </div>
+    
+    <!-- 单词发音功能 Word Pronunciation Feature -->
+    <script src="../js/word-pronunciation.js"></script>
+    
+    <!-- 发音功能使用说明提示 -->
+    <div id="pronunciation-guide" style="position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); max-width: 300px; font-size: 0.9em; z-index: 1000; opacity: 0; transition: opacity 0.5s ease;">
+        <div style="display: flex; align-items: center; margin-bottom: 8px;">
+            <span style="font-size: 1.2em; margin-right: 8px;">🔊</span>
+            <strong>单词发音功能已启用！</strong>
+        </div>
+        <p style="margin: 5px 0; font-size: 0.85em;">点击任意单词卡即可听到标准英语发音</p>
+        <p style="margin: 5px 0; font-size: 0.85em;">Click any word card to hear pronunciation</p>
+        <button onclick="this.parentElement.style.opacity='0'" style="position: absolute; top: 5px; right: 8px; background: none; border: none; color: white; cursor: pointer; font-size: 1.1em;">×</button>
+    </div>
+    
+    <script>
+        // 显示发音功能提示
+        setTimeout(() => {
+            const guide = document.getElementById('pronunciation-guide');
+            if (guide) {
+                guide.style.opacity = '1';
+                // 5秒后自动隐藏
+                setTimeout(() => {
+                    guide.style.opacity = '0';
+                }, 5000);
+            }
+        }, 2000);
+    </script>
+</body>
+</html>

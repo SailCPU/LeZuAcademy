@@ -1,0 +1,55 @@
+# 生成输出缓存区
+output/
+*.pdf
+*.log
+
+# Python 环境
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+.env
+.venv/
+venv/
+ENV/
+
+# IDE 和编辑器
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 操作系统
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# 临时文件
+*.tmp
+*.temp
+*.bak
+*.orig
+
+# 日志文件
+*.log
+logs/*.log
+
+# 缓存文件
+*.cache
+.pytest_cache/
+
+# 构建产物
+build/
+dist/
+*.egg-info/
+
+# 浏览器缓存
+.sass-cache/
+node_modules/

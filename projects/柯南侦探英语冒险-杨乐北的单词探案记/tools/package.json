@@ -1,0 +1,30 @@
+{
+  "name": "modern-book-designer",
+  "version": "1.0.0",
+  "description": "现代Web技术书籍设计工具",
+  "main": "modern_book_generator.js",
+  "scripts": {
+    "build": "node modern_book_generator.js",
+    "dev": "node modern_book_generator.js && open ../output/modern/柯南侦探英语冒险-现代版.html",
+    "install-deps": "npm install",
+    "clean": "rm -rf ../output/modern/*"
+  },
+  "keywords": [
+    "book-design",
+    "typography",
+    "css",
+    "print",
+    "web-technology"
+  ],
+  "author": "Modern Book Designer",
+  "license": "MIT",
+  "dependencies": {
+    "jsdom": "^23.0.1"
+  },
+  "devDependencies": {
+    "puppeteer": "^21.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

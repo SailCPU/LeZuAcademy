@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>现代书籍设计器 - 前端版本</title>
+    
+    <!-- Modern Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 现代设计系统 CSS */
+        :root {
+            /* 色彩系统 */
+            --color-primary: #1a1a1a;
+            --color-secondary: #4a5568;
+            --color-accent: #3182ce;
+            --color-success: #38a169;
+            --color-warning: #d69e2e;
+            --color-error: #e53e3e;
+            --color-background: #ffffff;
+            --color-surface: #f7fafc;
+            --color-border: #e2e8f0;
+            
+            /* 字体系统 */
+            --font-sans: "Inter", -apple-system, sans-serif;
+            --font-serif: "Merriweather", Georgia, serif;
+            --font-mono: "JetBrains Mono", "SF Mono", monospace;
+            
+            /* 字号系统 */
+            --text-xs: 0.75rem;
+            --text-sm: 0.875rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 1.875rem;
+            --text-4xl: 2.25rem;
+            
+            /* 间距系统 */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.25rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-10: 2.5rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+            --space-20: 5rem;
+            
+            /* 阴影系统 */
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+            
+            /* 边框圆角 */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+        }
+        
+        /* 打印专用变量 */
+        @media print {
+            :root {
+                --text-xs: 10pt;
+                --text-sm: 11pt;
+                --text-base: 12pt;
+                --text-lg: 14pt;
+                --text-xl: 16pt;
+                --text-2xl: 20pt;
+                --text-3xl: 24pt;
+                --text-4xl: 28pt;
+            }
+        }
+        
+        /* 基础重置 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            font-size: var(--text-base);
+            line-height: 1.6;
+            font-family: var(--font-sans);
+            color: var(--color-primary);
+            background: var(--color-background);
+        }
+        
+        body {
+            margin: 0;
+            padding: var(--space-6);
+        }
+        
+        /* 工具界面样式 */
+        .designer-interface {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: var(--space-8);
+            min-height: 100vh;
+        }
+        
+        .sidebar {
+            background: var(--color-surface);
+            padding: var(--space-6);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-border);
+            height: fit-content;
+            position: sticky;
+            top: var(--space-6);
+        }
+        
+        .main-content {
+            background: white;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-border);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .toolbar {
+            background: var(--color-surface);
+            padding: var(--space-4);
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            gap: var(--space-3);
+            align-items: center;
+        }
+        
+        .preview-area {
+            padding: var(--space-8);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* 按钮样式 */
+        .btn {
+            padding: var(--space-2) var(--space-4);
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+        
+        .btn-primary {
+            background: var(--color-accent);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #2c5aa0;
+        }
+        
+        .btn-secondary {
+            background: var(--color-border);
+            color: var(--color-primary);
+        }
+        
+        .btn-secondary:hover {
+            background: #cbd5e0;
+        }
+        
+        /* 控制面板 */
+        .control-group {
+            margin-bottom: var(--space-6);
+        }
+        
+        .control-label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: var(--space-2);
+            color: var(--color-primary);
+        }
+        
+        .control-input {
+            width: 100%;
+            padding: var(--space-2);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            font-size: var(--text-sm);
+        }
+        
+        .control-select {
+            width: 100%;
+            padding: var(--space-2);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            font-size: var(--text-sm);
+            background: white;
+        }
+        
+        /* 状态指示器 */
+        .status {
+            padding: var(--space-2) var(--space-3);
+            border-radius: var(--radius-md);
+            font-size: var(--text-sm);
+            font-weight: 500;
+        }
+        
+        .status-success {
+            background: #f0fff4;
+            color: var(--color-success);
+            border: 1px solid #9ae6b4;
+        }
+        
+        .status-warning {
+            background: #fffbeb;
+            color: var(--color-warning);
+            border: 1px solid #f6d55c;
+        }
+        
+        .status-error {
+            background: #fed7d7;
+            color: var(--color-error);
+            border: 1px solid #fc8181;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .designer-interface {
+                grid-template-columns: 1fr;
+                gap: var(--space-4);
+            }
+            
+            .sidebar {
+                position: static;
+            }
+        }
+        
+        /* 打印隐藏 */
+        @media print {
+            .designer-interface {
+                display: block;
+            }
+            
+            .sidebar,
+            .toolbar {
+                display: none !important;
+            }
+            
+            .main-content {
+                border: none;
+                box-shadow: none;
+                border-radius: 0;
+            }
+            
+            .preview-area {
+                padding: 0;
+                max-width: none;
+            }
+        }
+        
+        /* 书籍预览样式 */
+        .book-preview {
+            background: white;
+            box-shadow: var(--shadow-lg);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            margin: var(--space-6) 0;
+        }
+        
+        .chapter-preview {
+            padding: var(--space-8);
+            border-bottom: 2px dashed var(--color-border);
+        }
+        
+        .chapter-preview:last-child {
+            border-bottom: none;
+        }
+        
+        /* 现代排版样式 */
+        .modern-typography h1,
+        .modern-typography h2,
+        .modern-typography h3,
+        .modern-typography h4 {
+            font-family: var(--font-serif);
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: var(--space-4);
+        }
+        
+        .modern-typography h1 { font-size: var(--text-4xl); }
+        .modern-typography h2 { font-size: var(--text-3xl); }
+        .modern-typography h3 { font-size: var(--text-2xl); }
+        .modern-typography h4 { font-size: var(--text-xl); }
+        
+        .modern-typography p {
+            margin-bottom: var(--space-4);
+            text-align: justify;
+            hyphens: auto;
+        }
+        
+        .modern-typography .lead {
+            font-size: var(--text-lg);
+            color: var(--color-secondary);
+            margin-bottom: var(--space-6);
+        }
+        
+        .modern-typography img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius-md);
+        }
+        
+        .modern-typography figure {
+            margin: var(--space-8) 0;
+            text-align: center;
+        }
+        
+        .modern-typography figcaption {
+            font-size: var(--text-sm);
+            color: var(--color-secondary);
+            margin-top: var(--space-2);
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="designer-interface">
+        <div class="sidebar">
+            <h2 style="margin-bottom: var(--space-6); font-size: var(--text-xl);">📚 现代书籍设计器</h2>
+            
+            <div class="control-group">
+                <label class="control-label">页面格式</label>
+                <select class="control-select" id="pageFormat">
+                    <option value="16K">16开本 (185×260mm)</option>
+                    <option value="A4">A4 (210×297mm)</option>
+                    <option value="A5">A5 (148×210mm)</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label class="control-label">字体方案</label>
+                <select class="control-select" id="fontScheme">
+                    <option value="modern">现代方案 (Inter + Merriweather)</option>
+                    <option value="classic">经典方案 (Georgia + Arial)</option>
+                    <option value="chinese">中文优化 (思源黑体)</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label class="control-label">主题色彩</label>
+                <input type="color" class="control-input" id="accentColor" value="#3182ce">
+            </div>
+            
+            <div class="control-group">
+                <label class="control-label">行距</label>
+                <input type="range" class="control-input" id="lineHeight" min="1.2" max="2.0" step="0.1" value="1.6">
+                <small>当前：<span id="lineHeightValue">1.6</span></small>
+            </div>
+            
+            <div class="control-group">
+                <button class="btn btn-primary" onclick="generateModernBook()">
+                    🚀 生成现代书籍
+                </button>
+            </div>
+            
+            <div class="control-group">
+                <button class="btn btn-secondary" onclick="exportToPDF()">
+                    📄 导出PDF
+                </button>
+            </div>
+            
+            <div class="control-group">
+                <button class="btn btn-secondary" onclick="resetStyles()">
+                    🔄 重置样式
+                </button>
+            </div>
+            
+            <div id="status" class="status status-success" style="margin-top: var(--space-6);">
+                ✅ 设计器已就绪
+            </div>
+            
+            <div style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--color-border);">
+                <h3 style="font-size: var(--text-sm); margin-bottom: var(--space-3); color: var(--color-secondary);">
+                    💡 特性说明
+                </h3>
+                <ul style="font-size: var(--text-xs); color: var(--color-secondary); line-height: 1.5;">
+                    <li>• 响应式设计系统</li>
+                    <li>• 专业印刷排版</li>
+                    <li>• 实时预览调整</li>
+                    <li>• 高质量PDF导出</li>
+                    <li>• 现代Web技术</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="toolbar">
+                <button class="btn btn-secondary" onclick="togglePreviewMode()">
+                    👁️ 预览模式
+                </button>
+                <button class="btn btn-secondary" onclick="togglePrintMode()">
+                    🖨️ 打印模式
+                </button>
+                <div style="margin-left: auto; font-size: var(--text-sm); color: var(--color-secondary);">
+                    Powered by Modern Web Technologies
+                </div>
+            </div>
+            
+            <div class="preview-area modern-typography" id="previewArea">
+                <div class="chapter-preview">
+                    <h1>第一章：现代书籍设计之道</h1>
+                    <p class="lead">
+                        欢迎来到现代书籍设计的世界！这里展示了如何使用最新的Web技术创建专业级的书籍排版。
+                    </p>
+                    <p>
+                        现代Web技术为我们提供了前所未有的排版能力。通过CSS Grid、Flexbox、自定义属性等技术，
+                        我们可以创建出媲美专业排版软件的效果，同时保持代码的简洁和可维护性。
+                    </p>
+                    <figure>
+                        <div style="width: 100%; height: 200px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; color: white; font-weight: 500;">
+                            现代设计示例图片
+                        </div>
+                        <figcaption>图1-1: 现代设计系统的视觉呈现</figcaption>
+                    </figure>
+                    <p>
+                        通过精心设计的组件系统，我们可以确保整本书的视觉一致性，
+                        同时为不同类型的内容提供最佳的呈现方式。
+                    </p>
+                </div>
+                
+                <div class="chapter-preview">
+                    <h2>设计系统核心理念</h2>
+                    <p>
+                        优秀的书籍设计基于以下几个核心理念：
+                    </p>
+                    <ul style="margin: var(--space-4) 0; padding-left: var(--space-6);">
+                        <li><strong>可读性至上</strong>：确保文字易于阅读，减少读者的视觉疲劳</li>
+                        <li><strong>视觉层次</strong>：通过字体大小、颜色、间距建立清晰的信息层次</li>
+                        <li><strong>一致性</strong>：保持整本书的设计语言统一</li>
+                        <li><strong>适应性</strong>：在不同设备和媒介上都能完美呈现</li>
+                    </ul>
+                    <blockquote style="border-left: 4px solid var(--color-accent); padding-left: var(--space-4); margin: var(--space-6) 0; font-style: italic; color: var(--color-secondary);">
+                        "好的设计是看不见的设计。" - 迪特·拉姆斯
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 现代书籍设计器JavaScript
+        class ModernBookDesigner {
+            constructor() {
+                this.config = {
+                    pageFormat: '16K',
+                    fontScheme: 'modern',
+                    accentColor: '#3182ce',
+                    lineHeight: 1.6
+                };
+                
+                this.init();
+            }
+            
+            init() {
+                this.bindEvents();
+                this.updateStatus('设计器已初始化', 'success');
+            }
+            
+            bindEvents() {
+                // 页面格式变化
+                document.getElementById('pageFormat').addEventListener('change', (e) => {
+                    this.config.pageFormat = e.target.value;
+                    this.updateStyles();
+                });
+                
+                // 字体方案变化
+                document.getElementById('fontScheme').addEventListener('change', (e) => {
+                    this.config.fontScheme = e.target.value;
+                    this.updateFonts();
+                });
+                
+                // 主题色变化
+                document.getElementById('accentColor').addEventListener('change', (e) => {
+                    this.config.accentColor = e.target.value;
+                    this.updateColors();
+                });
+                
+                // 行距变化
+                document.getElementById('lineHeight').addEventListener('input', (e) => {
+                    this.config.lineHeight = parseFloat(e.target.value);
+                    document.getElementById('lineHeightValue').textContent = e.target.value;
+                    this.updateLineHeight();
+                });
+            }
+            
+            updateStyles() {
+                const root = document.documentElement;
+                
+                // 更新页面格式
+                const formats = {
+                    '16K': { width: '185mm', height: '260mm' },
+                    'A4': { width: '210mm', height: '297mm' },
+                    'A5': { width: '148mm', height: '210mm' }
+                };
+                
+                const format = formats[this.config.pageFormat];
+                root.style.setProperty('--page-width', format.width);
+                root.style.setProperty('--page-height', format.height);
+                
+                this.updateStatus(`页面格式已更新为 ${this.config.pageFormat}`, 'success');
+            }
+            
+            updateFonts() {
+                const root = document.documentElement;
+                
+                const fontSchemes = {
+                    'modern': {
+                        sans: '"Inter", -apple-system, sans-serif',
+                        serif: '"Merriweather", Georgia, serif'
+                    },
+                    'classic': {
+                        sans: 'Arial, sans-serif',
+                        serif: 'Georgia, serif'
+                    },
+                    'chinese': {
+                        sans: '"Noto Sans SC", "PingFang SC", sans-serif',
+                        serif: '"Noto Serif SC", "Times New Roman", serif'
+                    }
+                };
+                
+                const scheme = fontSchemes[this.config.fontScheme];
+                root.style.setProperty('--font-sans', scheme.sans);
+                root.style.setProperty('--font-serif', scheme.serif);
+                
+                this.updateStatus(`字体方案已更新为 ${this.config.fontScheme}`, 'success');
+            }
+            
+            updateColors() {
+                const root = document.documentElement;
+                root.style.setProperty('--color-accent', this.config.accentColor);
+                
+                this.updateStatus('主题色彩已更新', 'success');
+            }
+            
+            updateLineHeight() {
+                const root = document.documentElement;
+                root.style.setProperty('--line-height-normal', this.config.lineHeight);
+                
+                // 应用到预览区域
+                const previewArea = document.getElementById('previewArea');
+                previewArea.style.lineHeight = this.config.lineHeight;
+                
+                this.updateStatus(`行距已更新为 ${this.config.lineHeight}`, 'success');
+            }
+            
+            updateStatus(message, type = 'success') {
+                const statusEl = document.getElementById('status');
+                statusEl.className = `status status-${type}`;
+                
+                const icons = {
+                    success: '✅',
+                    warning: '⚠️',
+                    error: '❌'
+                };
+                
+                statusEl.textContent = `${icons[type]} ${message}`;
+            }
+            
+            generateModernBook() {
+                this.updateStatus('正在生成现代书籍...', 'warning');
+                
+                // 模拟生成过程
+                setTimeout(() => {
+                    this.updateStatus('现代书籍生成完成！', 'success');
+                    this.loadBookContent();
+                }, 1000);
+            }
+            
+            loadBookContent() {
+                // 这里可以加载实际的书籍内容
+                // 现在显示示例内容
+                console.log('书籍内容已加载');
+            }
+        }
+        
+        // 全局函数
+        function generateModernBook() {
+            window.designer.generateModernBook();
+        }
+        
+        function exportToPDF() {
+            window.designer.updateStatus('正在导出PDF...', 'warning');
+            
+            // 打印对话框
+            setTimeout(() => {
+                window.print();
+                window.designer.updateStatus('PDF导出完成！', 'success');
+            }, 500);
+        }
+        
+        function resetStyles() {
+            window.designer = new ModernBookDesigner();
+            window.designer.updateStatus('样式已重置', 'success');
+        }
+        
+        function togglePreviewMode() {
+            const previewArea = document.getElementById('previewArea');
+            previewArea.classList.toggle('preview-mode');
+            window.designer.updateStatus('预览模式已切换', 'success');
+        }
+        
+        function togglePrintMode() {
+            document.body.classList.toggle('print-preview');
+            window.designer.updateStatus('打印模式已切换', 'success');
+        }
+        
+        // 初始化设计器
+        window.addEventListener('DOMContentLoaded', () => {
+            window.designer = new ModernBookDesigner();
+        });
+    </script>
+</body>
+</html>

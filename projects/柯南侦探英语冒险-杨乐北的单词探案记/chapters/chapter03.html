@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第3章：数字单词的密码破解 - 柯南侦探英语冒险：杨乐北的单词探案记</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', 'SimSun', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+            max-width: 210mm;
+            margin: 0 auto;
+        }
+        
+        .container {
+            max-width: 180mm;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        
+        .chapter-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffb3d9 0%, #ffd6f0 100%);
+            color: #333;
+            border-radius: 8px;
+        }
+        
+        .chapter-nav a {
+            color: #333;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.6);
+            transition: background 0.3s;
+        }
+        
+        .chapter-nav a:hover {
+            background: rgba(255,255,255,0.8);
+        }
+        
+        .chapter-nav a.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .back-link {
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        
+        .back-link:hover {
+            background: #218838;
+        }
+        
+        .chapter {
+            margin-bottom: 40px;
+            page-break-inside: avoid;
+        }
+        
+        .chapter-title {
+            color: #495057;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #6c757d;
+            padding-bottom: 10px;
+        }
+        
+        .section-title {
+            color: #495057;
+            font-size: 1.4em;
+            margin: 25px 0 15px 0;
+            border-left: 3px solid #6c757d;
+            padding-left: 15px;
+        }
+        
+        .magic-box {
+            background: #f3e5f5;
+            border: 2px solid #9c27b0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .story-box {
+            background: #fff3cd;
+            border: 2px solid #ffeaa7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .word-box {
+            background: #d4edda;
+            border: 2px solid #c3e6cb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .game-box {
+            background: #f8d7da;
+            border: 2px solid #f5c6cb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .adventure-box {
+            background: #d1ecf1;
+            border: 2px solid #bee5eb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .english-word {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .chinese-meaning {
+            color: #000000;
+            font-weight: bold;
+        }
+        
+        .magic {
+            color: #9c27b0;
+            font-weight: bold;
+        }
+        
+        .conan {
+            color: #e67e22;
+            font-weight: bold;
+        }
+        
+        .yang-lebei {
+            color: #3498db;
+            font-weight: bold;
+        }
+        
+        .yang-letian {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .yang-leda {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        
+        .adventure {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        
+        .word-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+                .word-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            user-select: none;
+        }
+        
+        .word-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-color: #007bff;
+        }
+        
+        .word-card .english {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 5px;
+        }
+        
+        .word-card .chinese {
+            color: #000000;
+            font-weight: bold;
+        }
+        
+        .word-card .example {
+            font-style: italic;
+            color: #666;
+            margin-top: 8px;
+            font-size: 0.9em;
+        }
+        
+        .mission-card {
+            background: linear-gradient(135deg, #ffb3d9 0%, #ffd6f0 100%);
+            color: #333;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .mission-card h4 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        @media print {
+            .chapter-nav, .back-link {
+                display: none;
+            }
+            
+            @page {
+                margin: 20mm 15mm 20mm 15mm;
+                size: A4 portrait;
+            }
+            
+            body {
+                margin: 0;
+                padding: 0;
+                font-size: 11pt;
+                line-height: 1.5;
+                background-color: white;
+                max-width: none;
+            }
+            
+            .container {
+                max-width: none;
+                margin: 0;
+                padding: 0;
+                background-color: white;
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">📖 返回总目录</a>
+        <a href="index.html" class="back-link">📚 返回章节目录</a>
+        
+        <div class="chapter-nav">
+            <a href="chapter02.html" class="">⬅️ 上一章</a>
+            <span>第3章：数字单词的密码破解</span>
+            <a href="chapter04.html" class="">下一章 ➡️</a>
+        </div>
+        
+                <div class="chapter">
+            <h3 class="chapter-title">🔢 第三章：数字单词的密码破解</h3>
+            
+            <div class="story-box">
+                <h4 class="section-title">📖 故事板块：神秘的数字魔法门</h4>
+                <p>
+                    这一天，<span class="yang-lebei">杨乐北</span>和柯南院长来到了魔法学院的<span class="english-word">secret room</span>。门上有一个奇怪的<span class="english-word">lock</span>，上面写着一串英文单词：<span class="english-word">one</span>、<span class="english-word">two</span>、<span class="english-word">three</span>、<span class="english-word">four</span>、<span class="english-word">five</span>、<span class="english-word">six</span>。
+                </p>
+                <p>
+                    "要想打开这扇门，必须按顺序念出这些<span class="english-word">magic numbers</span>的中文意思。"柯南院长说。
+                </p>
+                <p>
+                    <span class="yang-lebei">杨乐北</span>看着<span class="english-word">lock</span>，小声念道："<span class="english-word">one</span>、<span class="english-word">two</span>、<span class="english-word">three</span>……这些单词是什么意思呢？"
+                </p>
+                
+                <p>突然，<span class="english-word">secret room</span>的<span class="english-word">window</span>外传来熟悉的声音。</p>
+                
+                <p>"<span class="english-word">Sister</span>！我们又来了！"<span class="yang-letian">杨乐天</span>和<span class="yang-leda">杨乐达</span>趴在<span class="english-word">window</span>外喊道。</p>
+                
+                <p>"<span class="english-word">Boys</span>！你们怎么又跟来了？"柯南院长惊讶地说。</p>
+                
+                <p>"我们听说这里有<span class="english-word">numbers</span> <span class="english-word">magic</span>！"<span class="yang-letian">杨乐天</span>兴奋地说，"我们<span class="english-word">love</span> <span class="english-word">numbers</span>！"</p>
+                
+                <p>"<span class="english-word">Me too</span>！"<span class="yang-leda">杨乐达</span>说，"我会<span class="english-word">count</span> from <span class="english-word">one</span> to <span class="english-word">ten</span>！"</p>
+                
+                <p>"<span class="english-word">Really</span>？"<span class="yang-lebei">杨乐北</span>笑着问，"那你<span class="english-word">count</span>给我们听听！"</p>
+                
+                <p><span class="yang-leda">杨乐达</span>清清嗓子，开始<span class="english-word">count</span>："<span class="english-word">One</span>，<span class="english-word">two</span>，<span class="english-word">tree</span>，<span class="english-word">door</span>，<span class="english-word">hive</span>……"</p>
+                
+                <p>"<span class="english-word">Stop</span>！<span class="english-word">Stop</span>！"<span class="yang-letian">杨乐天</span>大笑，"<span class="english-word">Brother</span>！你说错了！不是<span class="english-word">tree</span>，是<span class="english-word">three</span>！"</p>
+                
+                <p>"<span class="english-word">Oops</span>！"<span class="yang-leda">杨乐达</span>脸红了，"我<span class="english-word">mixed up</span>了！<span class="english-word">Three</span>听起来像<span class="english-word">tree</span>！"</p>
+                
+                <p>"<span class="english-word">And</span>你说的<span class="english-word">door</span>应该是<span class="english-word">four</span>！"<span class="yang-lebei">杨乐北</span>也忍不住笑了。</p>
+                
+                <p>"<span class="english-word">Hive</span>应该是<span class="english-word">five</span>！"柯南院长补充道，"不过<span class="english-word">creative</span>的<span class="english-word">mistakes</span>很<span class="english-word">funny</span>！"</p>
+                
+                <p>"让我来<span class="english-word">try</span>！"<span class="yang-letian">杨乐天</span>说，"<span class="english-word">One</span>，<span class="english-word">two</span>，<span class="english-word">three</span>，<span class="english-word">four</span>，<span class="english-word">five</span>，<span class="english-word">six</span>，<span class="english-word">seven</span>，<span class="english-word">ate</span>，<span class="english-word">nine</span>，<span class="english-word">pen</span>！"</p>
+                
+                <p>"<span class="english-word">Haha</span>！<span class="english-word">Brother</span>！"<span class="yang-leda">杨乐达</span>笑道，"<span class="english-word">Ate</span>是吃的意思，应该是<span class="english-word">eight</span>！还有<span class="english-word">pen</span>是钢笔，应该是<span class="english-word">ten</span>！"</p>
+                
+                <p>"我们两个都<span class="english-word">need</span> <span class="english-word">practice</span>！"<span class="yang-letian">杨乐天</span>挠挠头说。</p>
+                
+                <p>"<span class="english-word">Don't worry</span>！"柯南院长说，"让我们一起<span class="english-word">solve</span>这个<span class="english-word">number</span> <span class="english-word">puzzle</span>！"</p>
+                
+                <p>他挥动<span class="english-word">magic wand</span>，让<span class="yang-letian">杨乐天</span>和<span class="yang-leda">杨乐达</span>也进入了<span class="english-word">secret room</span>。</p>
+                
+                <p>"<span class="english-word">Wow</span>！这个<span class="english-word">room</span>好<span class="english-word">mysterious</span>！"<span class="yang-letian">杨乐天</span>四处张望。</p>
+                
+                <p>"<span class="english-word">Look</span>！"<span class="yang-leda">杨乐达</span>指着<span class="english-word">lock</span>说，"这些<span class="english-word">numbers</span>在<span class="english-word">glowing</span>！"</p>
+                
+                <p>果然，<span class="english-word">lock</span>上的<span class="english-word">number</span> <span class="english-word">words</span>开始发出<span class="english-word">golden</span> <span class="english-word">light</span>。</p>
+                
+                <p>"这意味着<span class="english-word">magic</span>被<span class="english-word">activated</span>了！"柯南院长解释道，"现在我们需要按<span class="english-word">correct</span> <span class="english-word">order</span>念出这些<span class="english-word">numbers</span>。"</p>
+                
+                <p>"让我们<span class="english-word">together</span>来<span class="english-word">try</span>！"<span class="yang-lebei">杨乐北</span>建议道。</p>
+                
+                <p>他们站在<span class="english-word">lock</span>前，一起大声念道："<span class="english-word">One</span>！"</p>
+                
+                <p>第一个<span class="english-word">button</span>亮了起来！</p>
+                
+                <p>"<span class="english-word">Two</span>！"他们继续。</p>
+                
+                <p>第二个<span class="english-word">button</span>也亮了！</p>
+                
+                <p>"<span class="english-word">Three</span>！"但是<span class="yang-leda">杨乐达</span>又说成了"<span class="english-word">Tree</span>！"</p>
+                
+                <p><span class="english-word">Button</span>没有反应。</p>
+                
+                <p>"<span class="english-word">Oops</span>！我又说错了！"<span class="yang-leda">杨乐达</span>拍拍脑袋。</p>
+                
+                <p>"<span class="english-word">It's okay</span>！"<span class="yang-lebei">杨乐北</span>说，"让我们<span class="english-word">try again</span>！"</p>
+                
+                <p>"<span class="english-word">Three</span>！"这次他们一起正确地念道。</p>
+                
+                <p>第三个<span class="english-word">button</span>亮了！</p>
+                
+                <p>就在这时，<span class="english-word">secret room</span>里突然出现了一只<span class="english-word">mathematical</span> <span class="english-word">owl</span>！</p>
+                
+                <p>"<span class="english-word">Hello</span>！我是<span class="english-word">owl</span>教授！"<span class="english-word">owl</span>戴着一副<span class="english-word">glasses</span>，"我是<span class="english-word">numbers</span> <span class="english-word">expert</span>！"</p>
+                
+                <p>"<span class="english-word">Wow</span>！<span class="english-word">Smart</span> <span class="english-word">owl</span>！"<span class="yang-letian">杨乐天</span>兴奋地说。</p>
+                
+                <p>"我听说你们在<span class="english-word">learning</span> <span class="english-word">number</span> <span class="english-word">magic</span>！"<span class="english-word">owl</span>教授说，"但是要<span class="english-word">unlock</span>这扇门，你们需要<span class="english-word">complete</span>三个<span class="english-word">number</span> <span class="english-word">challenges</span>！"</p>
+                
+                <p>"<span class="english-word">What</span> <span class="english-word">challenges</span>？"<span class="yang-lebei">杨乐北</span>好奇地问。</p>
+                
+                <p>"<span class="english-word">First</span> <span class="english-word">challenge</span>：<span class="english-word">Counting</span> <span class="english-word">backwards</span>！"<span class="english-word">owl</span>教授说，"从<span class="english-word">ten</span>倒数到<span class="english-word">one</span>！"</p>
+                
+                <p>"这个<span class="english-word">easy</span>！"<span class="yang-letian">杨乐天</span>自信地说。</p>
+                
+                <p>"<span class="english-word">Ten</span>，<span class="english-word">nine</span>，<span class="english-word">ate</span>，<span class="english-word">seven</span>……"<span class="yang-letian">杨乐天</span>开始倒数，但又说成了<span class="english-word">ate</span>。</p>
+                
+                <p>"<span class="english-word">Brother</span>！又是<span class="english-word">ate</span>！"<span class="yang-leda">杨乐达</span>大笑，"应该是<span class="english-word">eight</span>！"</p>
+                
+                <p>"让我们<span class="english-word">together</span>来！"<span class="yang-lebei">杨乐北</span>说。</p>
+                
+                <p>他们一起倒数："<span class="english-word">Ten</span>，<span class="english-word">nine</span>，<span class="english-word">eight</span>，<span class="english-word">seven</span>，<span class="english-word">six</span>，<span class="english-word">five</span>，<span class="english-word">four</span>，<span class="english-word">three</span>，<span class="english-word">two</span>，<span class="english-word">one</span>！"</p>
+                
+                <p>"<span class="english-word">Excellent</span>！"<span class="english-word">owl</span>教授鼓掌，"<span class="english-word">Second</span> <span class="english-word">challenge</span>：<span class="english-word">Math</span> <span class="english-word">magic</span>！"</p>
+                
+                <p>他拿出一些<span class="english-word">magic</span> <span class="english-word">cards</span>，上面写着<span class="english-word">math</span> <span class="english-word">problems</span>。</p>
+                
+                <p>"<span class="english-word">Two</span> <span class="english-word">plus</span> <span class="english-word">three</span> <span class="english-word">equals</span>？"<span class="english-word">owl</span>教授问。</p>
+                
+                <p>"<span class="english-word">Five</span>！"<span class="yang-lebei">杨乐北</span>快速回答。</p>
+                
+                <p>"<span class="english-word">Ten</span> <span class="english-word">minus</span> <span class="english-word">four</span> <span class="english-word">equals</span>？"</p>
+                
+                <p>"<span class="english-word">Six</span>！"<span class="yang-letian">杨乐天</span>抢答。</p>
+                
+                <p>"<span class="english-word">Three</span> <span class="english-word">times</span> <span class="english-word">two</span> <span class="english-word">equals</span>？"</p>
+                
+                <p>"<span class="english-word">Six</span>！"<span class="yang-leda">杨乐达</span>也答对了。</p>
+                
+                <p>"<span class="english-word">Wonderful</span>！现在是<span class="english-word">third</span> <span class="english-word">challenge</span>：<span class="english-word">Number</span> <span class="english-word">riddles</span>！"<span class="english-word">owl</span>教授说。</p>
+                
+                <p>"<span class="english-word">I</span> <span class="english-word">am</span> <span class="english-word">thinking</span> <span class="english-word">of</span> <span class="english-word">a</span> <span class="english-word">number</span>。它是<span class="english-word">seven</span> <span class="english-word">plus</span> <span class="english-word">three</span>。<span class="english-word">What</span> <span class="english-word">number</span> <span class="english-word">is</span> <span class="english-word">it</span>？"</p>
+                
+                <p>"<span class="english-word">Ten</span>！"他们一起回答。</p>
+                
+                <p>"<span class="english-word">Perfect</span>！"<span class="english-word">owl</span>教授满意地点头，"你们已经<span class="english-word">mastered</span> <span class="english-word">basic</span> <span class="english-word">number</span> <span class="english-word">magic</span>！现在可以<span class="english-word">unlock</span>这扇门了！"</p>
+                
+                <p>他们继续念完剩下的<span class="english-word">numbers</span>："<span class="english-word">Four</span>，<span class="english-word">five</span>，<span class="english-word">six</span>！"</p>
+                
+                <p>随着最后一个<span class="english-word">button</span>亮起，<span class="english-word">magic</span>门慢慢打开了！</p>
+                
+                <p>"<span class="english-word">Amazing</span>！"<span class="yang-letian">杨乐天</span>和<span class="yang-leda">杨乐达</span>兴奋地跳了起来。</p>
+                
+                <p>门后面是一个<span class="english-word">incredible</span>的<span class="english-word">number</span> <span class="english-word">kingdom</span>！到处都是<span class="english-word">floating</span> <span class="english-word">numbers</span>和<span class="english-word">mathematical</span> <span class="english-word">creatures</span>。</p>
+                
+                <p>"欢迎来到<span class="english-word">Number</span> <span class="english-word">Kingdom</span>！"一个<span class="english-word">friendly</span>的声音说道。</p>
+                
+                <p>一个由<span class="english-word">numbers</span>组成的<span class="english-word">robot</span>向他们走来。他的身体是<span class="english-word">eight</span>，头是<span class="english-word">zero</span>，胳膊是<span class="english-word">one</span>和<span class="english-word">one</span>。</p>
+                
+                <p>"<span class="english-word">Hello</span>！我是<span class="english-word">Number Robot</span> 801！"<span class="english-word">robot</span>介绍自己，"我的<span class="english-word">name</span>代表我的<span class="english-word">shape</span>：<span class="english-word">eight</span>-<span class="english-word">zero</span>-<span class="english-word">one</span>！"</p>
+                
+                <p>"<span class="english-word">Cool</span>！"<span class="yang-leda">杨乐达</span>说，"你是<span class="english-word">living</span> <span class="english-word">numbers</span>！"</p>
+                
+                <p>"<span class="english-word">Exactly</span>！"<span class="english-word">Number Robot</span> 801说，"在这个<span class="english-word">kingdom</span>里，<span class="english-word">numbers</span>都是<span class="english-word">alive</span>！"</p>
+                
+                <p>突然，一群<span class="english-word">mischievous</span>的小<span class="english-word">numbers</span>跑了过来。</p>
+                
+                <p>"<span class="english-word">Help</span>！<span class="english-word">Help</span>！"小<span class="english-word">number</span> 2大喊，"我们被<span class="english-word">mixed up</span>了！我不知道我的<span class="english-word">position</span>了！"</p>
+                
+                <p>"<span class="english-word">Me too</span>！"小<span class="english-word">number</span> 5也说，"我<span class="english-word">forgot</span>我应该在<span class="english-word">counting</span> <span class="english-word">line</span>的哪里！"</p>
+                
+                <p>"<span class="english-word">Oh no</span>！"<span class="english-word">Number Robot</span> 801担心地说，"如果<span class="english-word">numbers</span>不在<span class="english-word">correct</span> <span class="english-word">order</span>，整个<span class="english-word">kingdom</span>的<span class="english-word">math</span> <span class="english-word">magic</span>就会<span class="english-word">broken</span>！"</p>
+                
+                <p>"我们<span class="english-word">must</span> <span class="english-word">help</span>他们！"<span class="yang-lebei">杨乐北</span>说。</p>
+                
+                <p>"<span class="english-word">But</span> <span class="english-word">how</span>？"<span class="yang-letian">杨乐天</span>问。</p>
+                
+                <p>"我们需要把这些<span class="english-word">numbers</span> <span class="english-word">arrange</span>在<span class="english-word">correct</span> <span class="english-word">order</span>！"柯南院长说，"从<span class="english-word">one</span>到<span class="english-word">ten</span>！"</p>
+                
+                <p>这时，小<span class="english-word">numbers</span>开始<span class="english-word">running around</span> <span class="english-word">chaotically</span>。</p>
+                
+                <p><span class="english-word">Number</span> 7跳到了<span class="english-word">number</span> 3的前面，<span class="english-word">number</span> 1躲到了<span class="english-word">number</span> 9的后面，<span class="english-word">number</span> 4在<span class="english-word">upside down</span>！</p>
+                
+                <p>"这个<span class="english-word">chaos</span>太<span class="english-word">confusing</span>了！"<span class="yang-leda">杨乐达</span>眼花缭乱。</p>
+                
+                <p>"让我们<span class="english-word">divide</span> <span class="english-word">and</span> <span class="english-word">conquer</span>！"<span class="yang-lebei">杨乐北</span>建议，"每个人负责找<span class="english-word">specific</span> <span class="english-word">numbers</span>！"</p>
+                
+                <p>"<span class="english-word">Good</span> <span class="english-word">idea</span>！"<span class="yang-letian">杨乐天</span>说，"我来找<span class="english-word">one</span>，<span class="english-word">two</span>，<span class="english-word">three</span>！"</p>
+                
+                <p>"我来找<span class="english-word">four</span>，<span class="english-word">five</span>，<span class="english-word">six</span>！"<span class="yang-leda">杨乐达</span>说。</p>
+                
+                <p>"我来找<span class="english-word">seven</span>，<span class="english-word">eight</span>，<span class="english-word">nine</span>，<span class="english-word">ten</span>！"<span class="yang-lebei">杨乐北</span>说。</p>
+                
+                <p>但是当<span class="yang-letian">杨乐天</span>去抓<span class="english-word">number</span> 1时，他却抓到了<span class="english-word">number</span> 11！</p>
+                
+                <p>"<span class="english-word">Oops</span>！这是<span class="english-word">eleven</span>，不是<span class="english-word">one</span>！"<span class="yang-letian">杨乐天</span>困惑地说。</p>
+                
+                <p>"<span class="english-word">They</span> <span class="english-word">look</span> <span class="english-word">similar</span>！"<span class="english-word">Number Robot</span> 801解释，"<span class="english-word">Eleven</span>有<span class="english-word">two</span> <span class="english-word">ones</span>，所以看起来像<span class="english-word">big</span> <span class="english-word">one</span>！"</p>
+                
+                <p><span class="yang-leda">杨乐达</span>去抓<span class="english-word">number</span> 6，但抓到了<span class="english-word">number</span> 9！</p>
+                
+                <p>"<span class="english-word">Hey</span>！<span class="english-word">Six</span>和<span class="english-word">nine</span> <span class="english-word">upside down</span>看起来一样！"<span class="yang-leda">杨乐达</span>发现。</p>
+                
+                <p>"<span class="english-word">Smart</span> <span class="english-word">observation</span>！"<span class="english-word">owl</span>教授说，"<span class="english-word">Six</span> <span class="english-word">upside down</span> <span class="english-word">becomes</span> <span class="english-word">nine</span>！"</p>
+                
+                <p>经过一番<span class="english-word">hilarious</span> <span class="english-word">chasing</span>和<span class="english-word">catching</span>，他们终于把所有的<span class="english-word">numbers</span>按<span class="english-word">correct</span> <span class="english-word">order</span>排好了。</p>
+                
+                <p>"<span class="english-word">One</span>，<span class="english-word">two</span>，<span class="english-word">three</span>，<span class="english-word">four</span>，<span class="english-word">five</span>，<span class="english-word">six</span>，<span class="english-word">seven</span>，<span class="english-word">eight</span>，<span class="english-word">nine</span>，<span class="english-word">ten</span>！"他们一起念道。</p>
+                
+                <p>突然，整个<span class="english-word">Number Kingdom</span>闪烁着<span class="english-word">brilliant</span> <span class="english-word">lights</span>！<span class="english-word">Math</span> <span class="english-word">magic</span>恢复了！</p>
+                
+                <p>"<span class="english-word">Thank you</span>！<span class="english-word">Thank you</span>！"小<span class="english-word">numbers</span>们开心地说，"你们<span class="english-word">saved</span>我们的<span class="english-word">kingdom</span>！"</p>
+                
+                <p>"<span class="english-word">As</span> <span class="english-word">a</span> <span class="english-word">reward</span>，"<span class="english-word">Number Robot</span> 801说，"我们给你们每个人一个<span class="english-word">special</span> <span class="english-word">number</span> <span class="english-word">power</span>！"</p>
+                
+                <p><span class="yang-lebei">杨乐北</span>获得了<span class="english-word">counting</span> <span class="english-word">power</span>，<span class="yang-letian">杨乐天</span>获得了<span class="english-word">addition</span> <span class="english-word">power</span>，<span class="yang-leda">杨乐达</span>获得了<span class="english-word">subtraction</span> <span class="english-word">power</span>。</p>
+                
+                <p>"<span class="english-word">Now</span>让我们<span class="english-word">test</span>你们的<span class="english-word">powers</span>！"<span class="english-word">owl</span>教授兴奋地说。</p>
+                
+                <p><span class="yang-lebei">杨乐北</span>试验她的<span class="english-word">counting</span> <span class="english-word">power</span>，她<span class="english-word">snap</span>手指，空中出现了<span class="english-word">floating</span> <span class="english-word">numbers</span>：1, 2, 3, 4, 5...一直到100！</p>
+                
+                <p>"<span class="english-word">Amazing</span>！"<span class="yang-letian">杨乐天</span>说，然后试验他的<span class="english-word">addition</span> <span class="english-word">power</span>。他想：3+4，突然空中出现了答案：7！</p>
+                
+                <p><span class="yang-leda">杨乐达</span>试验他的<span class="english-word">subtraction</span> <span class="english-word">power</span>，他想：10-3，空中立刻显示：7！</p>
+                
+                <p>"<span class="english-word">But</span>等一下！"<span class="yang-leda">杨乐达</span>说，"我想的是10-3=7，为什么答案和<span class="english-word">brother</span>的一样？"</p>
+                
+                <p>"<span class="english-word">Because</span> <span class="english-word">math</span> <span class="english-word">is</span> <span class="english-word">connected</span>！"<span class="english-word">owl</span>教授解释，"3+4=7，10-3=7，<span class="english-word">different</span> <span class="english-word">ways</span>，<span class="english-word">same</span> <span class="english-word">answer</span>！"</p>
+                
+                <p>"<span class="english-word">Cool</span>！<span class="english-word">Math</span> <span class="english-word">is</span> <span class="english-word">like</span> <span class="english-word">magic</span>！"<span class="yang-letian">杨乐天</span>感叹。</p>
+                
+                <p>突然，<span class="english-word">Number Kingdom</span>的<span class="english-word">alarm</span>响了起来！</p>
+                
+                <p>"<span class="english-word">What's</span> <span class="english-word">happening</span>？"<span class="yang-lebei">杨乐北</span>问。</p>
+                
+                <p>"<span class="english-word">Oh no</span>！"<span class="english-word">Number Robot</span> 801担心地说，"<span class="english-word">Fraction</span> <span class="english-word">Pirates</span>来了！他们<span class="english-word">want</span> <span class="english-word">to</span> <span class="english-word">steal</span>我们的<span class="english-word">whole</span> <span class="english-word">numbers</span>！"</p>
+                
+                <p>远处传来<span class="english-word">pirate</span>的声音："<span class="english-word">Ahoy</span>！我们是<span class="english-word">Half</span> <span class="english-word">Captain</span>和<span class="english-word">Quarter</span> <span class="english-word">Captain</span>！我们要把你们的<span class="english-word">whole</span> <span class="english-word">numbers</span> <span class="english-word">split</span> <span class="english-word">into</span> <span class="english-word">pieces</span>！"</p>
+                
+                <p>"<span class="english-word">We</span> <span class="english-word">must</span> <span class="english-word">protect</span>这些<span class="english-word">numbers</span>！"<span class="yang-lebei">杨乐北</span>勇敢地说。</p>
+                
+                <p>"<span class="english-word">But</span> <span class="english-word">how</span>？"<span class="yang-leda">杨乐达</span>紧张地问，"我们的<span class="english-word">powers</span>还不够<span class="english-word">strong</span>！"</p>
+                
+                <p>"让我们<span class="english-word">combine</span>我们的<span class="english-word">powers</span>！"<span class="yang-lebei">杨乐北</span>建议。</p>
+                
+                <p>这时，<span class="english-word">Fraction</span> <span class="english-word">Pirates</span>冲了进来。<span class="english-word">Half</span> <span class="english-word">Captain</span>看起来像是被切成<span class="english-word">half</span>的人，<span class="english-word">Quarter</span> <span class="english-word">Captain</span>只有<span class="english-word">quarter</span>的<span class="english-word">size</span>。</p>
+                
+                <p>"<span class="english-word">Surrender</span>你们的<span class="english-word">numbers</span>！"<span class="english-word">Half</span> <span class="english-word">Captain</span>大喊。</p>
+                
+                <p>"<span class="english-word">Never</span>！"<span class="yang-letian">杨乐天</span>勇敢地说，但立刻被<span class="english-word">pirate</span>的<span class="english-word">fraction</span> <span class="english-word">magic</span>击中，变成了<span class="english-word">half</span>的<span class="english-word">size</span>！</p>
+                
+                <p>"<span class="english-word">Brother</span>！"<span class="yang-leda">杨乐达</span>惊叫，然后也被击中，变成了<span class="english-word">quarter</span>的<span class="english-word">size</span>！</p>
+                
+                <p>"<span class="english-word">Now</span>我是<span class="english-word">half</span> <span class="english-word">Yang</span> <span class="english-word">Letian</span>！"小小的<span class="yang-letian">杨乐天</span>用<span class="english-word">squeaky</span> <span class="english-word">voice</span>说。</p>
+                
+                <p>"我是<span class="english-word">quarter</span> <span class="english-word">Yang</span> <span class="english-word">Leda</span>！"更小的<span class="yang-leda">杨乐达</span>说，声音像<span class="english-word">mouse</span>一样。</p>
+                
+                <p>"<span class="english-word">This</span> <span class="english-word">is</span> <span class="english-word">not</span> <span class="english-word">funny</span>！"<span class="yang-lebei">杨乐北</span>生气地说，"<span class="english-word">How</span> <span class="english-word">do</span> <span class="english-word">we</span> <span class="english-word">make</span> <span class="english-word">them</span> <span class="english-word">normal</span> <span class="english-word">again</span>？"</p>
+                
+                <p>"<span class="english-word">You</span> <span class="english-word">need</span> <span class="english-word">to</span> <span class="english-word">understand</span> <span class="english-word">fractions</span>！"<span class="english-word">owl</span>教授说，"<span class="english-word">Two</span> <span class="english-word">halves</span> <span class="english-word">make</span> <span class="english-word">one</span> <span class="english-word">whole</span>！<span class="english-word">Four</span> <span class="english-word">quarters</span> <span class="english-word">make</span> <span class="english-word">one</span> <span class="english-word">whole</span>！"</p>
+                
+                <p>"<span class="english-word">So</span>如果我找到<span class="english-word">another</span> <span class="english-word">half</span> <span class="english-word">Yang</span> <span class="english-word">Letian</span>......"<span class="yang-lebei">杨乐北</span>思考着。</p>
+                
+                <p>"<span class="english-word">Exactly</span>！"<span class="english-word">owl</span>教授说，"或者找到<span class="english-word">three</span> <span class="english-word">more</span> <span class="english-word">quarter</span> <span class="english-word">Yang</span> <span class="english-word">Ledas</span>！"</p>
+                
+                <p><span class="yang-lebei">杨乐北</span>用她的<span class="english-word">counting</span> <span class="english-word">power</span>，在空中创造了另一个<span class="english-word">half</span> <span class="english-word">Yang</span> <span class="english-word">Letian</span>！</p>
+                
+                <p>"<span class="english-word">Half</span> + <span class="english-word">half</span> = <span class="english-word">whole</span>！"她大声念道。</p>
+                
+                <p>两个<span class="english-word">half</span> <span class="english-word">Yang</span> <span class="english-word">Letians</span>合并了，<span class="yang-letian">杨乐天</span>恢复了<span class="english-word">normal</span> <span class="english-word">size</span>！</p>
+                
+                <p>"<span class="english-word">Wow</span>！<span class="english-word">I'm</span> <span class="english-word">whole</span> <span class="english-word">again</span>！"<span class="yang-letian">杨乐天</span>高兴地说。</p>
+                
+                <p>然后<span class="yang-lebei">杨乐北</span>用同样的方法创造了<span class="english-word">three</span> <span class="english-word">more</span> <span class="english-word">quarter</span> <span class="english-word">Yang</span> <span class="english-word">Ledas</span>。</p>
+                
+                <p>"<span class="english-word">Quarter</span> + <span class="english-word">quarter</span> + <span class="english-word">quarter</span> + <span class="english-word">quarter</span> = <span class="english-word">whole</span>！"</p>
+                
+                <p><span class="yang-leda">杨乐达</span>也恢复了！</p>
+                
+                <p>"<span class="english-word">Impossible</span>！"<span class="english-word">Fraction</span> <span class="english-word">Pirates</span>惊叫，"你们<span class="english-word">understand</span> <span class="english-word">fraction</span> <span class="english-word">magic</span>！"</p>
+                
+                <p>"<span class="english-word">Now</span> <span class="english-word">it's</span> <span class="english-word">our</span> <span class="english-word">turn</span>！"<span class="yang-letian">杨乐天</span>说，用他的<span class="english-word">addition</span> <span class="english-word">power</span>把<span class="english-word">Half</span> <span class="english-word">Captain</span>的另一<span class="english-word">half</span>加了回来。</p>
+                
+                <p><span class="yang-leda">杨乐达</span>用他的<span class="english-word">subtraction</span> <span class="english-word">power</span>从<span class="english-word">Quarter</span> <span class="english-word">Captain</span>身上减去了<span class="english-word">negative</span> <span class="english-word">three</span> <span class="english-word">quarters</span>，让他也变成了<span class="english-word">whole</span>。</p>
+                
+                <p>"<span class="english-word">We're</span> <span class="english-word">whole</span> <span class="english-word">again</span>！"<span class="english-word">pirates</span>惊喜地说，"<span class="english-word">Thank you</span>！我们一直<span class="english-word">wanted</span> <span class="english-word">to</span> <span class="english-word">be</span> <span class="english-word">complete</span>！"</p>
+                
+                <p>"<span class="english-word">Really</span>？"<span class="yang-lebei">杨乐北</span>惊讶地问。</p>
+                
+                <p>"<span class="english-word">Yes</span>！"前<span class="english-word">Half</span> <span class="english-word">Captain</span>说，"我们不是<span class="english-word">evil</span>，我们只是<span class="english-word">incomplete</span>，所以很<span class="english-word">angry</span>。<span class="english-word">Now</span> <span class="english-word">we're</span> <span class="english-word">happy</span>！"</p>
+                
+                <p>"我们可以<span class="english-word">be</span> <span class="english-word">friends</span>！"前<span class="english-word">Quarter</span> <span class="english-word">Captain</span>说。</p>
+                
+                <p>就这样，他们不仅拯救了<span class="english-word">Number Kingdom</span>，还把<span class="english-word">enemies</span>变成了<span class="english-word">friends</span>！</p>
+                
+                <p>"<span class="english-word">This</span> <span class="english-word">adventure</span> <span class="english-word">taught</span> <span class="english-word">us</span> <span class="english-word">so</span> <span class="english-word">much</span> <span class="english-word">about</span> <span class="english-word">numbers</span>！"<span class="yang-lebei">杨乐北</span>感慨地说。</p>
+                
+                <p>"<span class="english-word">And</span> <span class="english-word">teamwork</span>！"<span class="yang-letian">杨乐天</span>补充。</p>
+                
+                <p>"<span class="english-word">And</span> <span class="english-word">helping</span> <span class="english-word">others</span>！"<span class="yang-leda">杨乐达</span>也说。</p>
+                
+                <p>柯南院长满意地点头："你们已经成为了真正的<span class="english-word">Number</span> <span class="english-word">Wizards</span>！"</p>
+                
+                <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 15px 0; border: 2px dashed #f39c12;">
+                    <h5 style="color: #f39c12; margin-bottom: 10px;">🔍 魔法侦探任务</h5>
+                    <p><strong>你能猜出这些数字单词的意思吗？</strong></p>
+                    <p>💡 <span class="english-word">one</span> = ________（提示：第一个数字）</p>
+                    <p>💡 <span class="english-word">two</span> = ________（提示：第二个数字）</p>
+                    <p>💡 <span class="english-word">three</span> = ________（提示：第三个数字）</p>
+                    <p>💡 <span class="english-word">four</span> = ________（提示：第四个数字）</p>
+                    <p>💡 <span class="english-word">five</span> = ________（提示：第五个数字）</p>
+                    <p>💡 <span class="english-word">six</span> = ________（提示：第六个数字）</p>
+                    <p>💡 <span class="english-word">numbers</span> = ________（提示：数字的复数）</p>
+                    <p>💡 <span class="english-word">count</span> = ________（提示：数数）</p>
+                    <p>💡 <span class="english-word">from</span> = ________（提示：从...开始）</p>
+                    <p>💡 <span class="english-word">to</span> = ________（提示：到...）</p>
+                    <p>💡 <span class="english-word">ten</span> = ________（提示：第十个数字）</p>
+                    <p>💡 <span class="english-word">stop</span> = ________（提示：停止）</p>
+                    <p>💡 <span class="english-word">tree</span> = ________（提示：大树）</p>
+                    <p>💡 <span class="english-word">door</span> = ________（提示：门）</p>
+                    <p>💡 <span class="english-word">hive</span> = ________（提示：蜂房）</p>
+                    <p>💡 <span class="english-word">mixed up</span> = ________（提示：搞混了）</p>
+                    <p>💡 <span class="english-word">and</span> = ________（提示：和）</p>
+                    <p>💡 <span class="english-word">creative</span> = ________（提示：有创意的）</p>
+                    <p>💡 <span class="english-word">mistakes</span> = ________（提示：错误）</p>
+                    <p>💡 <span class="english-word">ate</span> = ________（提示：吃了）</p>
+                    <p>💡 <span class="english-word">nine</span> = ________（提示：第九个数字）</p>
+                    <p>💡 <span class="english-word">pen</span> = ________（提示：钢笔）</p>
+                    <p>💡 <span class="english-word">eight</span> = ________（提示：第八个数字）</p>
+                    <p>💡 <span class="english-word">need</span> = ________（提示：需要）</p>
+                    <p>💡 <span class="english-word">practice</span> = ________（提示：练习）</p>
+                    <p>💡 <span class="english-word">solve</span> = ________（提示：解决）</p>
+                    <p>💡 <span class="english-word">number</span> = ________（提示：数字）</p>
+                    <p>💡 <span class="english-word">puzzle</span> = ________（提示：谜题）</p>
+                    <p>💡 <span class="english-word">room</span> = ________（提示：房间）</p>
+                    <p>💡 <span class="english-word">mysterious</span> = ________（提示：神秘的）</p>
+                    <p>💡 <span class="english-word">look</span> = ________（提示：看）</p>
+                    <p>💡 <span class="english-word">glowing</span> = ________（提示：发光）</p>
+                    <p>💡 <span class="english-word">words</span> = ________（提示：单词）</p>
+                    <p>💡 <span class="english-word">golden</span> = ________（提示：金色的）</p>
+                    <p>💡 <span class="english-word">light</span> = ________（提示：光）</p>
+                    <p>💡 <span class="english-word">activated</span> = ________（提示：激活了）</p>
+                    <p>💡 <span class="english-word">correct</span> = ________（提示：正确的）</p>
+                    <p>💡 <span class="english-word">order</span> = ________（提示：顺序）</p>
+                    <p>💡 <span class="english-word">together</span> = ________（提示：一起）</p>
+                    <p>💡 <span class="english-word">try</span> = ________（提示：尝试）</p>
+                    <p>💡 <span class="english-word">button</span> = ________（提示：按钮）</p>
+                    <p>💡 <span class="english-word">try again</span> = ________（提示：再试一次）</p>
+                    <p>💡 <span class="english-word">mathematical</span> = ________（提示：数学的）</p>
+                    <p>💡 <span class="english-word">owl</span> = ________（提示：猫头鹰）</p>
+                    <p>💡 <span class="english-word">glasses</span> = ________（提示：眼镜）</p>
+                    <p>💡 <span class="english-word">expert</span> = ________（提示：专家）</p>
+                    <p>💡 <span class="english-word">smart</span> = ________（提示：聪明的）</p>
+                    <p>💡 <span class="english-word">learning</span> = ________（提示：学习）</p>
+                    <p>💡 <span class="english-word">unlock</span> = ________（提示：解锁）</p>
+                    <p>💡 <span class="english-word">complete</span> = ________（提示：完成）</p>
+                    <p>💡 <span class="english-word">challenges</span> = ________（提示：挑战）</p>
+                    <p>💡 <span class="english-word">what</span> = ________（提示：什么）</p>
+                    <p>💡 <span class="english-word">first</span> = ________（提示：第一）</p>
+                    <p>💡 <span class="english-word">challenge</span> = ________（提示：挑战）</p>
+                    <p>💡 <span class="english-word">counting</span> = ________（提示：数数）</p>
+                    <p>💡 <span class="english-word">backwards</span> = ________（提示：倒数）</p>
+                    <p>💡 <span class="english-word">easy</span> = ________（提示：容易的）</p>
+                    <p>💡 <span class="english-word">seven</span> = ________（提示：第七个数字）</p>
+                    <p>💡 <span class="english-word">excellent</span> = ________（提示：优秀的）</p>
+                    <p>💡 <span class="english-word">second</span> = ________（提示：第二）</p>
+                    <p>💡 <span class="english-word">math</span> = ________（提示：数学）</p>
+                    <p>💡 <span class="english-word">magic</span> = ________（提示：魔法）</p>
+                    <p>💡 <span class="english-word">cards</span> = ________（提示：卡片）</p>
+                    <p>💡 <span class="english-word">problems</span> = ________（提示：问题）</p>
+                    <p>💡 <span class="english-word">plus</span> = ________（提示：加）</p>
+                    <p>💡 <span class="english-word">equals</span> = ________（提示：等于）</p>
+                    <p>💡 <span class="english-word">five</span> = ________（提示：第五个数字）</p>
+                    <p>💡 <span class="english-word">minus</span> = ________（提示：减）</p>
+                    <p>💡 <span class="english-word">four</span> = ________（提示：第四个数字）</p>
+                    <p>💡 <span class="english-word">times</span> = ________（提示：乘以）</p>
+                    <p>💡 <span class="english-word">wonderful</span> = ________（提示：精彩的）</p>
+                    <p>💡 <span class="english-word">third</span> = ________（提示：第三）</p>
+                    <p>💡 <span class="english-word">riddles</span> = ________（提示：谜语）</p>
+                    <p>💡 <span class="english-word">thinking</span> = ________（提示：思考）</p>
+                    <p>💡 <span class="english-word">of</span> = ________（提示：关于）</p>
+                    <p>💡 <span class="english-word">a</span> = ________（提示：一个）</p>
+                    <p>💡 <span class="english-word">it</span> = ________（提示：它）</p>
+                    <p>💡 <span class="english-word">is</span> = ________（提示：是）</p>
+                    <p>💡 <span class="english-word">perfect</span> = ________（提示：完美的）</p>
+                    <p>💡 <span class="english-word">mastered</span> = ________（提示：掌握了）</p>
+                    <p>💡 <span class="english-word">basic</span> = ________（提示：基础的）</p>
+                    <p>💡 <span class="english-word">amazing</span> = ________（提示：令人惊奇的）</p>
+                    <p>💡 <span class="english-word">incredible</span> = ________（提示：不可思议的）</p>
+                    <p>💡 <span class="english-word">kingdom</span> = ________（提示：王国）</p>
+                    <p>💡 <span class="english-word">floating</span> = ________（提示：漂浮的）</p>
+                    <p>💡 <span class="english-word">creatures</span> = ________（提示：生物）</p>
+                    <p>💡 <span class="english-word">friendly</span> = ________（提示：友好的）</p>
+                    <p>💡 <span class="english-word">robot</span> = ________（提示：机器人）</p>
+                    <p>💡 <span class="english-word">zero</span> = ________（提示：零）</p>
+                    <p>💡 <span class="english-word">name</span> = ________（提示：名字）</p>
+                    <p>💡 <span class="english-word">shape</span> = ________（提示：形状）</p>
+                    <p>💡 <span class="english-word">cool</span> = ________（提示：酷的）</p>
+                    <p>💡 <span class="english-word">living</span> = ________（提示：活的）</p>
+                    <p>💡 <span class="english-word">exactly</span> = ________（提示：确切地）</p>
+                    <p>💡 <span class="english-word">alive</span> = ________（提示：活着的）</p>
+                    <p>💡 <span class="english-word">mischievous</span> = ________（提示：淘气的）</p>
+                    <p>💡 <span class="english-word">help</span> = ________（提示：帮助）</p>
+                    <p>💡 <span class="english-word">position</span> = ________（提示：位置）</p>
+                    <p>💡 <span class="english-word">me too</span> = ________（提示：我也是）</p>
+                    <p>💡 <span class="english-word">forgot</span> = ________（提示：忘记了）</p>
+                    <p>💡 <span class="english-word">line</span> = ________（提示：线）</p>
+                    <p>💡 <span class="english-word">oh no</span> = ________（提示：哦不）</p>
+                    <p>💡 <span class="english-word">broken</span> = ________（提示：坏了）</p>
+                    <p>💡 <span class="english-word">must</span> = ________（提示：必须）</p>
+                    <p>💡 <span class="english-word">but</span> = ________（提示：但是）</p>
+                    <p>💡 <span class="english-word">how</span> = ________（提示：怎么）</p>
+                    <p>💡 <span class="english-word">arrange</span> = ________（提示：安排）</p>
+                    <p>💡 <span class="english-word">running around</span> = ________（提示：到处跑）</p>
+                    <p>💡 <span class="english-word">chaotically</span> = ________（提示：混乱地）</p>
+                    <p>💡 <span class="english-word">upside down</span> = ________（提示：颠倒）</p>
+                    <p>💡 <span class="english-word">chaos</span> = ________（提示：混乱）</p>
+                    <p>💡 <span class="english-word">confusing</span> = ________（提示：令人困惑的）</p>
+                    <p>💡 <span class="english-word">divide</span> = ________（提示：分开）</p>
+                    <p>💡 <span class="english-word">conquer</span> = ________（提示：征服）</p>
+                    <p>💡 <span class="english-word">specific</span> = ________（提示：特定的）</p>
+                    <p>💡 <span class="english-word">good</span> = ________（提示：好的）</p>
+                    <p>💡 <span class="english-word">idea</span> = ________（提示：想法）</p>
+                    <p>💡 <span class="english-word">eleven</span> = ________（提示：十一）</p>
+                    <p>💡 <span class="english-word">oops</span> = ________（提示：哎呀）</p>
+                    <p>💡 <span class="english-word">they</span> = ________（提示：他们）</p>
+                    <p>💡 <span class="english-word">similar</span> = ________（提示：相似的）</p>
+                    <p>💡 <span class="english-word">ones</span> = ________（提示：一的复数）</p>
+                    <p>💡 <span class="english-word">big</span> = ________（提示：大的）</p>
+                    <p>💡 <span class="english-word">hey</span> = ________（提示：嘿）</p>
+                    <p>💡 <span class="english-word">becomes</span> = ________（提示：变成）</p>
+                    <p>💡 <span class="english-word">observation</span> = ________（提示：观察）</p>
+                    <p>💡 <span class="english-word">hilarious</span> = ________（提示：搞笑的）</p>
+                    <p>💡 <span class="english-word">chasing</span> = ________（提示：追逐）</p>
+                    <p>💡 <span class="english-word">catching</span> = ________（提示：抓住）</p>
+                    <p>💡 <span class="english-word">brilliant</span> = ________（提示：辉煌的）</p>
+                    <p>💡 <span class="english-word">lights</span> = ________（提示：灯光）</p>
+                    <p>💡 <span class="english-word">saved</span> = ________（提示：拯救了）</p>
+                    <p>💡 <span class="english-word">thank you</span> = ________（提示：谢谢你）</p>
+                    <p>💡 <span class="english-word">as</span> = ________（提示：作为）</p>
+                    <p>💡 <span class="english-word">reward</span> = ________（提示：奖励）</p>
+                    <p>💡 <span class="english-word">special</span> = ________（提示：特别的）</p>
+                    <p>💡 <span class="english-word">power</span> = ________（提示：力量）</p>
+                    <p>💡 <span class="english-word">addition</span> = ________（提示：加法）</p>
+                    <p>💡 <span class="english-word">subtraction</span> = ________（提示：减法）</p>
+                    <p>💡 <span class="english-word">now</span> = ________（提示：现在）</p>
+                    <p>💡 <span class="english-word">test</span> = ________（提示：测试）</p>
+                    <p>💡 <span class="english-word">powers</span> = ________（提示：力量的复数）</p>
+                    <p>💡 <span class="english-word">snap</span> = ________（提示：打响指）</p>
+                    <p>💡 <span class="english-word">connected</span> = ________（提示：连接的）</p>
+                    <p>💡 <span class="english-word">different</span> = ________（提示：不同的）</p>
+                    <p>💡 <span class="english-word">ways</span> = ________（提示：方法）</p>
+                    <p>💡 <span class="english-word">same</span> = ________（提示：相同的）</p>
+                    <p>💡 <span class="english-word">answer</span> = ________（提示：答案）</p>
+                    <p>💡 <span class="english-word">like</span> = ________（提示：像）</p>
+                    <p>💡 <span class="english-word">alarm</span> = ________（提示：警报）</p>
+                    <p>💡 <span class="english-word">what's happening</span> = ________（提示：发生了什么）</p>
+                    <p>💡 <span class="english-word">fraction</span> = ________（提示：分数）</p>
+                    <p>💡 <span class="english-word">pirates</span> = ________（提示：海盗）</p>
+                    <p>💡 <span class="english-word">want</span> = ________（提示：想要）</p>
+                    <p>💡 <span class="english-word">steal</span> = ________（提示：偷）</p>
+                    <p>💡 <span class="english-word">whole</span> = ________（提示：整个的）</p>
+                    <p>💡 <span class="english-word">ahoy</span> = ________（提示：海盗问候语）</p>
+                    <p>💡 <span class="english-word">half</span> = ________（提示：一半）</p>
+                    <p>💡 <span class="english-word">captain</span> = ________（提示：船长）</p>
+                    <p>💡 <span class="english-word">quarter</span> = ________（提示：四分之一）</p>
+                    <p>💡 <span class="english-word">split</span> = ________（提示：分裂）</p>
+                    <p>💡 <span class="english-word">into</span> = ________（提示：变成）</p>
+                    <p>💡 <span class="english-word">pieces</span> = ________（提示：碎片）</p>
+                    <p>💡 <span class="english-word">we</span> = ________（提示：我们）</p>
+                    <p>💡 <span class="english-word">protect</span> = ________（提示：保护）</p>
+                    <p>💡 <span class="english-word">strong</span> = ________（提示：强壮的）</p>
+                    <p>💡 <span class="english-word">combine</span> = ________（提示：结合）</p>
+                    <p>💡 <span class="english-word">size</span> = ________（提示：尺寸）</p>
+                    <p>💡 <span class="english-word">surrender</span> = ________（提示：投降）</p>
+                    <p>💡 <span class="english-word">never</span> = ________（提示：从不）</p>
+                    <p>💡 <span class="english-word">pirate</span> = ________（提示：海盗）</p>
+                    <p>💡 <span class="english-word">brother</span> = ________（提示：兄弟）</p>
+                    <p>💡 <span class="english-word">squeaky</span> = ________（提示：尖声的）</p>
+                    <p>💡 <span class="english-word">voice</span> = ________（提示：声音）</p>
+                    <p>💡 <span class="english-word">mouse</span> = ________（提示：老鼠）</p>
+                    <p>💡 <span class="english-word">this</span> = ________（提示：这个）</p>
+                    <p>💡 <span class="english-word">not</span> = ________（提示：不）</p>
+                    <p>💡 <span class="english-word">funny</span> = ________（提示：有趣的）</p>
+                    <p>💡 <span class="english-word">do</span> = ________（提示：做）</p>
+                    <p>💡 <span class="english-word">make</span> = ________（提示：使得）</p>
+                    <p>💡 <span class="english-word">them</span> = ________（提示：他们）</p>
+                    <p>💡 <span class="english-word">normal</span> = ________（提示：正常的）</p>
+                    <p>💡 <span class="english-word">again</span> = ________（提示：再次）</p>
+                    <p>💡 <span class="english-word">you</span> = ________（提示：你）</p>
+                    <p>💡 <span class="english-word">understand</span> = ________（提示：理解）</p>
+                    <p>💡 <span class="english-word">fractions</span> = ________（提示：分数的复数）</p>
+                    <p>💡 <span class="english-word">halves</span> = ________（提示：一半的复数）</p>
+                    <p>💡 <span class="english-word">one</span> = ________（提示：一）</p>
+                    <p>💡 <span class="english-word">quarters</span> = ________（提示：四分之一的复数）</p>
+                    <p>💡 <span class="english-word">so</span> = ________（提示：所以）</p>
+                    <p>💡 <span class="english-word">if</span> = ________（提示：如果）</p>
+                    <p>💡 <span class="english-word">find</span> = ________（提示：找到）</p>
+                    <p>💡 <span class="english-word">another</span> = ________（提示：另一个）</p>
+                    <p>💡 <span class="english-word">or</span> = ________（提示：或者）</p>
+                    <p>💡 <span class="english-word">three</span> = ________（提示：三）</p>
+                    <p>💡 <span class="english-word">more</span> = ________（提示：更多的）</p>
+                    <p>💡 <span class="english-word">use</span> = ________（提示：使用）</p>
+                    <p>💡 <span class="english-word">created</span> = ________（提示：创造了）</p>
+                    <p>💡 <span class="english-word">wow</span> = ________（提示：哇）</p>
+                    <p>💡 <span class="english-word">I'm</span> = ________（提示：我是）</p>
+                    <p>💡 <span class="english-word">then</span> = ________（提示：然后）</p>
+                    <p>💡 <span class="english-word">method</span> = ________（提示：方法）</p>
+                    <p>💡 <span class="english-word">impossible</span> = ________（提示：不可能的）</p>
+                    <p>💡 <span class="english-word">it's</span> = ________（提示：它是）</p>
+                    <p>💡 <span class="english-word">our</span> = ________（提示：我们的）</p>
+                    <p>💡 <span class="english-word">turn</span> = ________（提示：轮到）</p>
+                    <p>💡 <span class="english-word">his</span> = ________（提示：他的）</p>
+                    <p>💡 <span class="english-word">negative</span> = ________（提示：负的）</p>
+                    <p>💡 <span class="english-word">we're</span> = ________（提示：我们是）</p>
+                    <p>💡 <span class="english-word">wanted</span> = ________（提示：想要）</p>
+                    <p>💡 <span class="english-word">be</span> = ________（提示：是）</p>
+                    <p>💡 <span class="english-word">complete</span> = ________（提示：完整的）</p>
+                    <p>💡 <span class="english-word">really</span> = ________（提示：真的）</p>
+                    <p>💡 <span class="english-word">yes</span> = ________（提示：是的）</p>
+                    <p>💡 <span class="english-word">evil</span> = ________（提示：邪恶的）</p>
+                    <p>💡 <span class="english-word">incomplete</span> = ________（提示：不完整的）</p>
+                    <p>💡 <span class="english-word">angry</span> = ________（提示：生气的）</p>
+                    <p>💡 <span class="english-word">happy</span> = ________（提示：快乐的）</p>
+                    <p>💡 <span class="english-word">can</span> = ________（提示：可以）</p>
+                    <p>💡 <span class="english-word">friends</span> = ________（提示：朋友）</p>
+                    <p>💡 <span class="english-word">only</span> = ________（提示：只）</p>
+                    <p>💡 <span class="english-word">enemies</span> = ________（提示：敌人）</p>
+                    <p>💡 <span class="english-word">adventure</span> = ________（提示：冒险）</p>
+                    <p>💡 <span class="english-word">taught</span> = ________（提示：教会了）</p>
+                    <p>💡 <span class="english-word">us</span> = ________（提示：我们）</p>
+                    <p>💡 <span class="english-word">much</span> = ________（提示：很多）</p>
+                    <p>💡 <span class="english-word">about</span> = ________（提示：关于）</p>
+                    <p>💡 <span class="english-word">teamwork</span> = ________（提示：团队合作）</p>
+                    <p>💡 <span class="english-word">helping</span> = ________（提示：帮助）</p>
+                    <p>💡 <span class="english-word">others</span> = ________（提示：其他人）</p>
+                    <p>💡 <span class="english-word">wizards</span> = ________（提示：魔法师的复数）</p>
+                </div>
+            </div>
+
+            <div class="word-box">
+                <h4 class="section-title">🔢 数字示意图：数字王国展示</h4>
+                <p style="text-align: center; margin-bottom: 20px; color: #666;">欢迎来到神奇的数字王国！每个数字都有自己的魔法力量！</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 15px; margin: 20px 0;">
+                    <!-- 数字1-10的视觉展示 -->
+                    <div style="display: flex; flex-direction: column; align-items: center; background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(45deg, #FF6B6B, #FFE66D); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; color: white; margin-bottom: 8px;">1</div>
+                        <div style="font-size: 1.2em; font-weight: bold; color: #FF6B6B;">One</div>
+                        <div style="color: #000; font-weight: bold;">一</div>
+                        <div style="font-size: 0.8em; color: #666;">🍎 one apple</div>
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column; align-items: center; background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(45deg, #4ECDC4, #45B7D1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; color: white; margin-bottom: 8px;">2</div>
+                        <div style="font-size: 1.2em; font-weight: bold; color: #4ECDC4;">Two</div>
+                        <div style="color: #000; font-weight: bold;">二</div>
+                        <div style="font-size: 0.8em; color: #666;">👥 two people</div>
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column; align-items: center; background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(45deg, #96CEB4, #FFEAA7); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; color: white; margin-bottom: 8px;">3</div>
+                        <div style="font-size: 1.2em; font-weight: bold; color: #96CEB4;">Three</div>
+                        <div style="color: #000; font-weight: bold;">三</div>
+                        <div style="font-size: 0.8em; color: #666;">⭐ three stars</div>
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column; align-items: center; background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(45deg, #A29BFE, #FD79A8); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; color: white; margin-bottom: 8px;">4</div>
+                        <div style="font-size: 1.2em; font-weight: bold; color: #A29BFE;">Four</div>
+                        <div style="color: #000; font-weight: bold;">四</div>
+                        <div style="font-size: 0.8em; color: #666;">🍀 four leaves</div>
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column; align-items: center; background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(45deg, #FDCB6E, #E17055); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; color: white; margin-bottom: 8px;">5</div>
+                        <div style="font-size: 1.2em; font-weight: bold; color: #FDCB6E;">Five</div>
+                        <div style="color: #000; font-weight: bold;">五</div>
+                        <div style="font-size: 0.8em; color: #666;">✋ five fingers</div>
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column; align-items: center; background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(45deg, #74B9FF, #0984E3); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; color: white; margin-bottom: 8px;">6</div>
+                        <div style="font-size: 1.2em; font-weight: bold; color: #74B9FF;">Six</div>
+                        <div style="color: #000; font-weight: bold;">六</div>
+                        <div style="font-size: 0.8em; color: #666;">🎲 six on dice</div>
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column; align-items: center; background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(45deg, #00B894, #00CEC9); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; color: white; margin-bottom: 8px;">7</div>
+                        <div style="font-size: 1.2em; font-weight: bold; color: #00B894;">Seven</div>
+                        <div style="color: #000; font-weight: bold;">七</div>
+                        <div style="font-size: 0.8em; color: #666;">🌈 rainbow colors</div>
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column; align-items: center; background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(45deg, #E84393, #F39C12); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; color: white; margin-bottom: 8px;">8</div>
+                        <div style="font-size: 1.2em; font-weight: bold; color: #E84393;">Eight</div>
+                        <div style="color: #000; font-weight: bold;">八</div>
+                        <div style="font-size: 0.8em; color: #666;">🕷️ spider legs</div>
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column; align-items: center; background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(45deg, #6C5CE7, #A29BFE); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; color: white; margin-bottom: 8px;">9</div>
+                        <div style="font-size: 1.2em; font-weight: bold; color: #6C5CE7;">Nine</div>
+                        <div style="color: #000; font-weight: bold;">九</div>
+                        <div style="font-size: 0.8em; color: #666;">⚽ nine players</div>
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column; align-items: center; background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(45deg, #FF7675, #FDCB6E); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: bold; color: white; margin-bottom: 8px;">10</div>
+                        <div style="font-size: 1.2em; font-weight: bold; color: #FF7675;">Ten</div>
+                        <div style="color: #000; font-weight: bold;">十</div>
+                        <div style="font-size: 0.8em; color: #666;">🔟 perfect score</div>
+                    </div>
+                </div>
+                
+                <!-- 数学符号展示 -->
+                <div style="margin: 30px 0; text-align: center;">
+                    <h5 style="color: #495057; margin-bottom: 15px;">🧮 魔法数学符号 Magic Math Symbols</h5>
+                    <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; padding: 20px; background: #f8f9fa; border-radius: 12px;">
+                        <div style="display: flex; flex-direction: column; align-items: center; padding: 10px;">
+                            <div style="width: 50px; height: 50px; background: #28a745; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; font-weight: bold; margin-bottom: 5px;">+</div>
+                            <div style="font-weight: bold; color: #28a745;">Plus</div>
+                            <div style="color: #000; font-size: 0.9em;">加</div>
+                        </div>
+                        <div style="display: flex; flex-direction: column; align-items: center; padding: 10px;">
+                            <div style="width: 50px; height: 50px; background: #dc3545; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; font-weight: bold; margin-bottom: 5px;">−</div>
+                            <div style="font-weight: bold; color: #dc3545;">Minus</div>
+                            <div style="color: #000; font-size: 0.9em;">减</div>
+                        </div>
+                        <div style="display: flex; flex-direction: column; align-items: center; padding: 10px;">
+                            <div style="width: 50px; height: 50px; background: #007bff; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; font-weight: bold; margin-bottom: 5px;">×</div>
+                            <div style="font-weight: bold; color: #007bff;">Times</div>
+                            <div style="color: #000; font-size: 0.9em;">乘</div>
+                        </div>
+                        <div style="display: flex; flex-direction: column; align-items: center; padding: 10px;">
+                            <div style="width: 50px; height: 50px; background: #ffc107; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; font-weight: bold; margin-bottom: 5px;">÷</div>
+                            <div style="font-weight: bold; color: #ffc107;">Divided</div>
+                            <div style="color: #000; font-size: 0.9em;">除</div>
+                        </div>
+                        <div style="display: flex; flex-direction: column; align-items: center; padding: 10px;">
+                            <div style="width: 50px; height: 50px; background: #17a2b8; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; font-weight: bold; margin-bottom: 5px;">=</div>
+                            <div style="font-weight: bold; color: #17a2b8;">Equals</div>
+                            <div style="color: #000; font-size: 0.9em;">等于</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Number Robot 801 形象 -->
+                <div style="margin: 30px 0; text-align: center;">
+                    <h5 style="color: #495057; margin-bottom: 15px;">🤖 Number Robot 801 - 数字机器人</h5>
+                    <div style="display: flex; justify-content: center; align-items: center; padding: 20px; background: linear-gradient(135deg, #ffb3d9 0%, #ffd6f0 100%); border-radius: 15px; color: #333;">
+                        <div style="display: flex; flex-direction: column; align-items: center; margin: 0 20px;">
+                            <!-- 机器人头部 (0) -->
+                            <div style="width: 60px; height: 60px; background: #FFD700; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: bold; color: #333; margin-bottom: 10px; border: 3px solid #FFF;">0</div>
+                            <!-- 机器人身体 (8) -->
+                            <div style="width: 80px; height: 100px; background: #32CD32; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 40px; font-weight: bold; color: white; margin-bottom: 10px; border: 3px solid #FFF;">8</div>
+                            <!-- 机器人腿部 -->
+                            <div style="display: flex; gap: 20px;">
+                                <div style="width: 30px; height: 50px; background: #FF6347; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: bold; color: white; border: 2px solid #FFF;">1</div>
+                                <div style="width: 30px; height: 50px; background: #FF6347; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: bold; color: white; border: 2px solid #FFF;">1</div>
+                            </div>
+                        </div>
+                        <div style="margin-left: 20px; text-align: left;">
+                            <h6 style="color: #e74c3c; margin-bottom: 8px;">Hello! I am Number Robot 801!</h6>
+                            <p style="margin: 4px 0; font-size: 0.9em; color: #333;">Head: <span style="color: #FFD700; font-weight: bold;">ZERO</span> (0)</p>
+                            <p style="margin: 4px 0; font-size: 0.9em; color: #333;">Body: <span style="color: #32CD32; font-weight: bold;">EIGHT</span> (8)</p>
+                            <p style="margin: 4px 0; font-size: 0.9em; color: #333;">Legs: <span style="color: #FF6347; font-weight: bold;">ONE</span> (1) + <span style="color: #FF6347; font-weight: bold;">ONE</span> (1)</p>
+                            <p style="margin: 8px 0 0 0; font-style: italic; font-size: 0.85em; color: #666;">My shape tells my name: 8-0-1!</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 分数视觉图 -->
+                <div style="margin: 30px 0; text-align: center;">
+                    <h5 style="color: #495057; margin-bottom: 15px;">🥧 分数魔法 Fraction Magic</h5>
+                    <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; padding: 20px; background: #f1f3f4; border-radius: 12px;">
+                        <!-- 1/2 (Half) -->
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                            <div style="width: 80px; height: 80px; background: conic-gradient(#FF6B6B 0deg 180deg, #DDD 180deg 360deg); border-radius: 50%; margin-bottom: 10px; border: 3px solid #333;"></div>
+                            <div style="font-weight: bold; color: #FF6B6B; font-size: 1.1em;">Half</div>
+                            <div style="color: #000; font-weight: bold;">1/2</div>
+                            <div style="color: #666; font-size: 0.85em;">一半</div>
+                        </div>
+                        
+                        <!-- 1/4 (Quarter) -->
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                            <div style="width: 80px; height: 80px; background: conic-gradient(#4ECDC4 0deg 90deg, #DDD 90deg 360deg); border-radius: 50%; margin-bottom: 10px; border: 3px solid #333;"></div>
+                            <div style="font-weight: bold; color: #4ECDC4; font-size: 1.1em;">Quarter</div>
+                            <div style="color: #000; font-weight: bold;">1/4</div>
+                            <div style="color: #666; font-size: 0.85em;">四分之一</div>
+                        </div>
+                        
+                        <!-- 3/4 (Three Quarters) -->
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                            <div style="width: 80px; height: 80px; background: conic-gradient(#A29BFE 0deg 270deg, #DDD 270deg 360deg); border-radius: 50%; margin-bottom: 10px; border: 3px solid #333;"></div>
+                            <div style="font-weight: bold; color: #A29BFE; font-size: 1.1em;">Three Quarters</div>
+                            <div style="color: #000; font-weight: bold;">3/4</div>
+                            <div style="color: #666; font-size: 0.85em;">四分之三</div>
+                        </div>
+                        
+                        <!-- 1 (Whole) -->
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                            <div style="width: 80px; height: 80px; background: #00B894; border-radius: 50%; margin-bottom: 10px; border: 3px solid #333;"></div>
+                            <div style="font-weight: bold; color: #00B894; font-size: 1.1em;">Whole</div>
+                            <div style="color: #000; font-weight: bold;">1</div>
+                            <div style="color: #666; font-size: 0.85em;">整个</div>
+                        </div>
+                    </div>
+                    <p style="margin-top: 15px; color: #666; font-style: italic;">分数海盗的秘密：Two halves make one whole! 两个一半组成一个整体！</p>
+                </div>
+                
+                <!-- 互动提示 -->
+                <div style="background: linear-gradient(135deg, #ffb3d9 0%, #ffd6f0 100%); color: #333; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center;">
+                    <h5 style="color: #333; margin-bottom: 10px;">🎯 数字魔法练习 Number Magic Practice</h5>
+                    <p style="margin: 8px 0;">看着这些数字，大声说出对应的英文单词！</p>
+                    <p style="margin: 8px 0; font-style: italic;">Look at these numbers and say the English words out loud!</p>
+                    <p style="margin: 8px 0;">🎵 Try counting: "One, two, three, four, five, six, seven, eight, nine, ten!"</p>
+                    <p style="margin: 8px 0;">🤖 Be like Number Robot 801: Create your own number robot!</p>
+                </div>
+            </div>
+
+            <div class="word-box">
+                <h4 class="section-title">🔢 单词板块：数字魔法单词</h4>
+                <div class="word-list">
+                    <div class="word-card">
+                        <div class="english">one</div>
+                        <div class="example">I have one apple in my bag.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">two</div>
+                        <div class="example">There are two cats on the roof.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">three</div>
+                        <div class="example">I need three pencils for the test.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">four</div>
+                        <div class="example">The table has four legs.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">five</div>
+                        <div class="example">I wake up at five o'clock.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">six</div>
+                        <div class="example">My sister is six years old.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">seven</div>
+                        <div class="example">There are seven days in a week.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">eight</div>
+                        <div class="example">The spider has eight legs.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">nine</div>
+                        <div class="example">School starts at nine in the morning.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">ten</div>
+                        <div class="example">I can count from one to ten.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">eleven</div>
+                        <div class="example">The clock shows eleven thirty.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">twelve</div>
+                        <div class="example">There are twelve months in a year.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">thirteen</div>
+                        <div class="example">My birthday is on the thirteenth.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">fourteen</div>
+                        <div class="example">She will be fourteen next month.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">fifteen</div>
+                        <div class="example">The bus comes every fifteen minutes.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">sixteen</div>
+                        <div class="example">He learned to drive at sixteen.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">seventeen</div>
+                        <div class="example">The movie starts at seventeen thirty.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">eighteen</div>
+                        <div class="example">You can vote when you are eighteen.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">nineteen</div>
+                        <div class="example">The year nineteen ninety was special.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">twenty</div>
+                        <div class="example">I have twenty dollars in my wallet.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">thirty</div>
+                        <div class="example">The temperature is thirty degrees today.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">forty</div>
+                        <div class="example">My dad is forty years old.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">fifty</div>
+                        <div class="example">The speed limit is fifty here.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">sixty</div>
+                        <div class="example">Grandpa retired at sixty five.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">seventy</div>
+                        <div class="example">The old tree is seventy years old.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">eighty</div>
+                        <div class="example">My grandma is eighty but very healthy.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">ninety</div>
+                        <div class="example">The test score was ninety percent.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">hundred</div>
+                        <div class="example">One hundred people came to the party.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">thousand</div>
+                        <div class="example">This book costs a thousand dollars.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">million</div>
+                        <div class="example">There are over a million stars.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">first</div>
+                        <div class="example">She finished first in the race.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">second</div>
+                        <div class="example">This is my second attempt.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">third</div>
+                        <div class="example">He lives on the third floor.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">fourth</div>
+                        <div class="example">July is the fourth month of summer.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">fifth</div>
+                        <div class="example">Take the fifth exit on the highway.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">sixth</div>
+                        <div class="example">This is the sixth time I called you.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">seventh</div>
+                        <div class="example">My birthday is on the seventh.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">eighth</div>
+                        <div class="example">She is in the eighth grade now.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">ninth</div>
+                        <div class="example">This is the ninth book I read.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">tenth</div>
+                        <div class="example">Today is the tenth of March.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">plus</div>
+                        <div class="example">Two plus three equals five.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">minus</div>
+                        <div class="example">Ten minus four equals six.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">times</div>
+                        <div class="example">Three times four equals twelve.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">divided by</div>
+                        <div class="example">Eight divided by two equals four.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">equals</div>
+                        <div class="example">Five plus five equals ten.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">zero</div>
+                        <div class="example">The temperature dropped to zero degrees.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">half</div>
+                        <div class="example">I ate half of the pizza.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">quarter</div>
+                        <div class="example">It's a quarter past three.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">double</div>
+                        <div class="example">Can I have a double cheeseburger?</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">triple</div>
+                        <div class="example">He scored a triple in baseball.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">single</div>
+                        <div class="example">I need a single room for tonight.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">pair</div>
+                        <div class="example">I bought a new pair of shoes.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">dozen</div>
+                        <div class="example">I bought a dozen eggs today.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">score</div>
+                        <div class="example">What's the final score of the game?</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">billion</div>
+                        <div class="example">The population is over seven billion.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">percent</div>
+                        <div class="example">I got ninety percent on the test.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">fraction</div>
+                        <div class="example">Three fourths is a fraction.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">decimal</div>
+                        <div class="example">The decimal point separates whole numbers.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">number</div>
+                        <div class="example">What's your phone number?</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">count</div>
+                        <div class="example">Can you count to one hundred?</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">add</div>
+                        <div class="example">Please add these numbers together.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">subtract</div>
+                        <div class="example">Subtract five from ten.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">multiply</div>
+                        <div class="example">Multiply four by three.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">divide</div>
+                        <div class="example">Divide the cake into six pieces.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">calculate</div>
+                        <div class="example">I need to calculate the total cost.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">total</div>
+                        <div class="example">The total amount is fifty dollars.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">sum</div>
+                        <div class="example">The sum of two and three is five.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">difference</div>
+                        <div class="example">The difference between eight and three is five.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">product</div>
+                        <div class="example">The product of four and five is twenty.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">quotient</div>
+                        <div class="example">The quotient of twelve divided by three is four.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🔐 魔法密码：数字解锁游戏</h4>
+                <div class="mission-card">
+                    <h4>🗝️ 魔法任务：数字密码门</h4>
+                    <p>在纸上画一个魔法门，门上有六个按钮。每个按钮写一个英文数字单词（如<span class="english-word">one</span>、<span class="english-word">two</span>……）。</p>
+                    <p>让家人或小伙伴说出中文数字，你来按下对应的英文按钮，并大声念出来。</p>
+                    <p>全部答对，魔法门就会打开！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🎲 魔法骰子：数字咒语大比拼</h4>
+                <div class="mission-card">
+                    <h4>🎲 魔法任务：骰子咒语</h4>
+                    <p>准备一个骰子，每次掷出后，大声说出对应的英文数字单词。</p>
+                    <p>比如掷到3，就说<span class="english-word">three</span>！</p>
+                    <p>可以和家人比赛，看谁反应最快！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🤖 数字机器人训练营</h4>
+                <div class="mission-card">
+                    <h4>🤖 魔法任务：成为Number Robot 801的助手</h4>
+                    <p>学习故事中的数字机器人，用英语进行数学计算：</p>
+                    <ol>
+                        <li><strong>加法魔法</strong>：说"<span class="english-word">Two plus three equals five!</span>"</li>
+                        <li><strong>减法魔法</strong>：说"<span class="english-word">Ten minus four equals six!</span>"</li>
+                        <li><strong>倒数挑战</strong>：从<span class="english-word">ten</span>倒数到<span class="english-word">one</span></li>
+                        <li><strong>机器人介绍</strong>：用英语介绍自己是什么样的数字机器人</li>
+                    </ol>
+                    <p>例子："<span class="english-word">Hello! I am Number Robot 123! My shape is one-two-three!</span>"</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">😂 搞笑双胞胎数学课</h4>
+                <div class="mission-card">
+                    <h4>👦👦 魔法任务：模仿杨乐天和杨乐达的搞笑错误</h4>
+                    <p>学习双胞胎弟弟的搞笑数数方式，然后纠正错误：</p>
+                    <ol>
+                        <li><strong>杨乐达式数数</strong>：先说"<span class="english-word">One, two, tree, door, hive...</span>" 然后纠正</li>
+                        <li><strong>杨乐天式数数</strong>：先说"<span class="english-word">Seven, ate, nine, pen...</span>" 然后纠正</li>
+                        <li><strong>创意联想</strong>：想想为什么<span class="english-word">three</span>听起来像<span class="english-word">tree</span></li>
+                        <li><strong>搞笑表演</strong>：表演被分数魔法变小的样子</li>
+                    </ol>
+                    <p>记住：<span class="english-word">Creative mistakes</span>很<span class="english-word">funny</span>，但要学会正确的说法！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🏴‍☠️ 分数海盗大冒险</h4>
+                <div class="mission-card">
+                    <h4>⚔️ 魔法任务：打败分数海盗</h4>
+                    <p>像故事中一样，用分数知识打败海盗：</p>
+                    <ol>
+                        <li><strong>分数理解</strong>：学会说"<span class="english-word">Two halves make one whole!</span>"</li>
+                        <li><strong>拯救咒语</strong>：说"<span class="english-word">Half plus half equals whole!</span>"</li>
+                        <li><strong>四分之一魔法</strong>：说"<span class="english-word">Four quarters make one whole!</span>"</li>
+                        <li><strong>和解咒语</strong>：说"<span class="english-word">We can be friends!</span>"</li>
+                    </ol>
+                    <p>学会这些咒语，你就能把<span class="english-word">enemies</span>变成<span class="english-word">friends</span>！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🔢 数字王国救援队</h4>
+                <div class="mission-card">
+                    <h4>🏰 魔法任务：拯救混乱的数字王国</h4>
+                    <p>帮助小数字们找到正确的位置：</p>
+                    <ol>
+                        <li><strong>数字排队</strong>：把1-10的数字卡片按顺序排列</li>
+                        <li><strong>团队分工</strong>：像故事中一样分工合作寻找数字</li>
+                        <li><strong>混淆辨别</strong>：学会区分<span class="english-word">six</span>和<span class="english-word">nine</span></li>
+                        <li><strong>完成咒语</strong>：大声念出"<span class="english-word">One, two, three... ten!</span>"</li>
+                    </ol>
+                    <p>成功后，你就能看到<span class="english-word">brilliant lights</span>！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🎯 数字魔法力量测试</h4>
+                <div class="mission-card">
+                    <h4>⚡ 魔法任务：获得你的数字超能力</h4>
+                    <p>选择你想要的数字魔法力量：</p>
+                    <ol>
+                        <li><strong>Counting Power</strong>：快速数数到任何数字</li>
+                        <li><strong>Addition Power</strong>：心算加法题</li>
+                        <li><strong>Subtraction Power</strong>：心算减法题</li>
+                        <li><strong>Number Creating Power</strong>：创造新的数字组合</li>
+                    </ol>
+                    <p>测试你的能力：用英语说出5道简单的数学题和答案！</p>
+                    <p>例子："<span class="english-word">Three plus two equals five!</span>"</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🧮 数学猫头鹰教授的课堂</h4>
+                <div class="mission-card">
+                    <h4>🦉 魔法任务：通过猫头鹰教授的三个挑战</h4>
+                    <p>完成故事中猫头鹰教授的挑战：</p>
+                    <ol>
+                        <li><strong>倒数挑战</strong>：从<span class="english-word">ten</span>倒数到<span class="english-word">one</span></li>
+                        <li><strong>数学魔法</strong>：回答3道加减乘法题</li>
+                        <li><strong>数字谜语</strong>：解答数字谜题</li>
+                        <li><strong>创造谜语</strong>：自己编一个数字谜语</li>
+                    </ol>
+                    <p>全部通过后，你就是<span class="english-word">Number Wizard</span>了！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🎪 数字马戏团表演</h4>
+                <div class="mission-card">
+                    <h4>🎭 魔法任务：数字魔术表演</h4>
+                    <p>用学到的数字单词表演魔术：</p>
+                    <ol>
+                        <li><strong>消失魔术</strong>：让一个数字"消失"（藏起来）</li>
+                        <li><strong>变换魔术</strong>：把<span class="english-word">six</span>翻转变成<span class="english-word">nine</span></li>
+                        <li><strong>分身魔术</strong>：一个数字变成两个</li>
+                        <li><strong>组合魔术</strong>：两个小数字变成一个大数字</li>
+                    </ol>
+                    <p>表演时要用英语解说你的魔术！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🏆 数字魔法师毕业大考</h4>
+                <div class="mission-card">
+                    <h4>📜 魔法任务：终极数字挑战</h4>
+                    <p>完成所有挑战，成为真正的数字魔法师：</p>
+                    <ol>
+                        <li><strong>速度挑战</strong>：在30秒内数到20</li>
+                        <li><strong>计算挑战</strong>：用英语做5道数学题</li>
+                        <li><strong>记忆挑战</strong>：记住并背诵1-10的英文</li>
+                        <li><strong>创意挑战</strong>：编一个数字冒险故事</li>
+                        <li><strong>教学挑战</strong>：教会别人3个数字单词</li>
+                    </ol>
+                    <p>完成后获得"<span class="english-word">Number Wizard</span>"证书！</p>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #ffb3d9 0%, #ffd6f0 100%); color: #333; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: #333; margin-bottom: 15px;">🏆 数字魔法师证书</h5>
+                    <p style="margin: 8px 0; text-align: center; font-weight: bold;">恭喜你完成了数字魔法训练！</p>
+                    <p style="margin: 8px 0; text-align: center;">你现在是一名真正的：</p>
+                    <p style="margin: 8px 0; text-align: center; font-size: 1.2em; color: #e74c3c; font-weight: bold;">🔢 NUMBER WIZARD 🔢</p>
+                    <p style="margin: 8px 0; text-align: center;">你的数字魔法力量：</p>
+                    <p style="margin: 8px 0; text-align: center;">________________（写下你选择的数字力量）</p>
+                    <p style="margin: 8px 0; text-align: center;">你的机器人编号：</p>
+                    <p style="margin: 8px 0; text-align: center;">Number Robot ________（写下你的编号）</p>
+                    <p style="margin-top: 15px; font-style: italic; text-align: center;">🔮 记住：用你的数字魔法让数学变得有趣！🔮</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🔗 数字王国连连看</h4>
+                <div class="mission-card">
+                    <h4>🎯 魔法任务：数字配对大挑战</h4>
+                    <p>连接相关的数字概念：</p>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                        <p><strong>数字单词配对：</strong></p>
+                        <p>1️⃣ <span class="english-word">one</span> ↔ 一</p>
+                        <p>2️⃣ <span class="english-word">two</span> ↔ 二</p>
+                        <p>3️⃣ <span class="english-word">three</span> ↔ 三</p>
+                        <p>🔄 <span class="english-word">plus</span> ↔ 加</p>
+                        <p>➖ <span class="english-word">minus</span> ↔ 减</p>
+                        <p>✖️ <span class="english-word">times</span> ↔ 乘</p>
+                        <p>➗ <span class="english-word">divided by</span> ↔ 除以</p>
+                        <p>🟰 <span class="english-word">equals</span> ↔ 等于</p>
+                    </div>
+                    <p>挑战：创造你自己的数字配对游戏！</p>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="chapter-nav">
+            <a href="chapter02.html" class="">⬅️ 上一章</a>
+            <a href="index.html" class="back-link">📚 返回章节目录</a>
+            <a href="chapter04.html" class="">下一章 ➡️</a>
+        </div>
+    </div>
+    
+    <!-- 单词发音功能 Word Pronunciation Feature -->
+    <script src="../js/word-pronunciation.js"></script>
+    
+    <!-- 发音功能使用说明提示 -->
+    <div id="pronunciation-guide" style="position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); max-width: 300px; font-size: 0.9em; z-index: 1000; opacity: 0; transition: opacity 0.5s ease;">
+        <div style="display: flex; align-items: center; margin-bottom: 8px;">
+            <span style="font-size: 1.2em; margin-right: 8px;">🔊</span>
+            <strong>单词发音功能已启用！</strong>
+        </div>
+        <p style="margin: 5px 0; font-size: 0.85em;">点击任意单词卡即可听到标准英语发音</p>
+        <p style="margin: 5px 0; font-size: 0.85em;">Click any word card to hear pronunciation</p>
+        <button onclick="this.parentElement.style.opacity='0'" style="position: absolute; top: 5px; right: 8px; background: none; border: none; color: white; cursor: pointer; font-size: 1.1em;">×</button>
+    </div>
+    
+    <script>
+        // 显示发音功能提示
+        setTimeout(() => {
+            const guide = document.getElementById('pronunciation-guide');
+            if (guide) {
+                guide.style.opacity = '1';
+                // 5秒后自动隐藏
+                setTimeout(() => {
+                    guide.style.opacity = '0';
+                }, 5000);
+            }
+        }, 2000);
+    </script>
+</body>
+</html>

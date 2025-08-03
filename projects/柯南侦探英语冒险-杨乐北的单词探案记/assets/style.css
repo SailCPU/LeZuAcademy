@@ -1,0 +1,611 @@
+body {
+    font-family: 'Microsoft YaHei', 'SimSun', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+    color: #333;
+    max-width: 210mm;
+    margin: 0 auto;
+}
+
+.container {
+    max-width: 180mm;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+.cover-page {
+    text-align: center;
+    padding: 60px 40px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.cover-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="magic" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.3)"/><text x="10" y="15" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.3)">✨</text></pattern></defs><rect width="100" height="100" fill="url(%23magic)"/></svg>');
+    opacity: 0.3;
+}
+
+.cover-content {
+    position: relative;
+    z-index: 2;
+}
+
+.cover-title {
+    font-size: 2.8em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.cover-subtitle {
+    font-size: 1.3em;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.cover-image {
+    width: 200px;
+    height: 200px;
+    margin: 30px auto;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 80px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    border: 5px solid rgba(255,255,255,0.3);
+}
+
+.cover-author {
+    font-size: 1.2em;
+    margin-top: 20px;
+    opacity: 0.8;
+}
+
+.blank-page {
+    height: 100vh;
+    page-break-after: always;
+}
+
+.title {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.subtitle {
+    text-align: center;
+    color: #7f8c8d;
+    font-size: 1.2em;
+    margin-bottom: 40px;
+    font-style: italic;
+}
+
+.chapter {
+    margin-bottom: 40px;
+    page-break-inside: avoid;
+}
+
+.chapter-title {
+    color: #495057;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #6c757d;
+    padding-bottom: 10px;
+}
+
+.section-title {
+    color: #495057;
+    font-size: 1.4em;
+    margin: 25px 0 15px 0;
+    border-left: 3px solid #6c757d;
+    padding-left: 15px;
+}
+
+.magic-box {
+    background: #f3e5f5;
+    border: 2px solid #9c27b0;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.story-box {
+    background: #fff3cd;
+    border: 2px solid #ffeaa7;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.word-box {
+    background: #d4edda;
+    border: 2px solid #c3e6cb;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.game-box {
+    background: #f8d7da;
+    border: 2px solid #f5c6cb;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.adventure-box {
+    background: #d1ecf1;
+    border: 2px solid #bee5eb;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.highlight {
+    background: #fff3cd;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.english-word {
+    color: #e74c3c;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.chinese-meaning {
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.magic {
+    color: #9c27b0;
+    font-weight: bold;
+}
+
+.conan {
+    color: #e67e22;
+    font-weight: bold;
+}
+
+.yang-lebei {
+    color: #3498db;
+    font-weight: bold;
+}
+
+.yang-letian {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.yang-leda {
+    color: #f39c12;
+    font-weight: bold;
+}
+
+.adventure {
+    color: #f39c12;
+    font-weight: bold;
+}
+
+.word-icon {
+    width: 30px;
+    height: 30px;
+    margin: 0 5px;
+    vertical-align: middle;
+}
+
+.print-button {
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 20px auto;
+    display: block;
+}
+
+.print-instructions {
+    text-align: center;
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 2px solid #dee2e6;
+}
+
+.word-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.word-card {
+    background: white;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.word-card .english {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #e74c3c;
+    margin-bottom: 5px;
+}
+
+.word-card .chinese {
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.word-card .example {
+    font-style: italic;
+    color: #666;
+    margin-top: 8px;
+    font-size: 0.9em;
+}
+
+.mission-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 15px 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.mission-card h4 {
+    color: white;
+    margin-bottom: 10px;
+}
+
+/* 返回链接样式 */
+.back-link {
+    display: inline-block;
+    margin: 20px 0;
+    padding: 10px 20px;
+    background-color: #6c757d;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.back-link:hover {
+    background-color: #5a6268;
+}
+
+/* 章节导航 */
+.chapter-nav {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.chapter-nav a {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.chapter-nav a:hover {
+    background-color: #0056b3;
+}
+
+.chapter-nav .disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+@media print {
+    .print-button, .print-instructions, .back-link, .chapter-nav {
+        display: none;
+    }
+    
+    @page {
+        margin: 20mm 15mm 20mm 15mm;
+        size: A4 portrait;
+        @bottom-center {
+            content: counter(page);
+            font-size: 10pt;
+            color: #666;
+            font-family: 'Microsoft YaHei', serif;
+        }
+        @top-center {
+            content: "柯南侦探英语冒险：杨乐北的单词探案记";
+            font-size: 10pt;
+            color: #666;
+            font-family: 'Microsoft YaHei', serif;
+        }
+    }
+    
+    body {
+        counter-reset: page;
+        margin: 0;
+        padding: 0;
+        font-size: 11pt;
+        line-height: 1.5;
+        background-color: white;
+        max-width: none;
+    }
+    
+    .container {
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        background-color: white;
+        box-shadow: none;
+        border-radius: 0;
+    }
+    
+    .cover-page {
+        page-break-after: always;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-radius: 8pt;
+        padding: 40pt 20pt;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .cover-page::before {
+        display: none;
+    }
+    
+    .cover-title {
+        font-size: 22pt;
+        color: white;
+        margin-bottom: 15pt;
+        text-shadow: 2pt 2pt 4pt rgba(0,0,0,0.5);
+    }
+    
+    .cover-subtitle {
+        font-size: 12pt;
+        color: rgba(255,255,255,0.9);
+        margin-bottom: 20pt;
+    }
+    
+    .cover-image {
+        width: 120pt;
+        height: 120pt;
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        color: white;
+        font-size: 48pt;
+        margin: 20pt auto;
+        border: 3pt solid rgba(255,255,255,0.3);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8pt 24pt rgba(0,0,0,0.3);
+    }
+    
+    .cover-author {
+        font-size: 12pt;
+        color: rgba(255,255,255,0.8);
+        margin-top: 15pt;
+    }
+    
+    .blank-page {
+        page-break-after: always;
+        height: 100vh;
+    }
+    
+    .title {
+        font-size: 18pt;
+        margin-bottom: 8pt;
+        page-break-after: avoid;
+    }
+    
+    .subtitle {
+        font-size: 12pt;
+        margin-bottom: 20pt;
+        page-break-after: avoid;
+    }
+    
+    .chapter {
+        page-break-before: always;
+        margin-top: 15mm;
+        margin-bottom: 10mm;
+        position: relative;
+    }
+    
+    .chapter-title {
+        font-size: 16pt;
+        margin-bottom: 15pt;
+        page-break-after: avoid;
+        border-bottom: 1pt solid #6c757d;
+        padding-bottom: 8pt;
+    }
+    
+    .section-title {
+        font-size: 13pt;
+        margin: 20pt 0 10pt 0;
+        page-break-after: avoid;
+        border-left: 2pt solid #6c757d;
+        padding-left: 10pt;
+    }
+    
+    .magic-box, .story-box, .word-box, .game-box, .adventure-box {
+        border-radius: 4pt;
+        padding: 15pt;
+        margin: 10pt 0;
+        page-break-inside: avoid;
+        border: 2pt solid;
+    }
+    
+    .magic-box {
+        background: #f3e5f5;
+        border-color: #9c27b0;
+    }
+    
+    .story-box {
+        background: #fff3cd;
+        border-color: #ffeaa7;
+    }
+    
+    .word-box {
+        background: #d4edda;
+        border-color: #c3e6cb;
+    }
+    
+    .game-box {
+        background: #f8d7da;
+        border-color: #f5c6cb;
+    }
+    
+    .adventure-box {
+        background: #d1ecf1;
+        border-color: #bee5eb;
+    }
+    
+    .english-word {
+        color: #e74c3c;
+        font-weight: bold;
+        font-size: 1.1em;
+    }
+    
+    .chinese-meaning {
+        color: #27ae60;
+        font-weight: bold;
+    }
+    
+    .magic {
+        color: #9c27b0;
+        font-weight: bold;
+    }
+    
+    .conan {
+        color: #e67e22;
+        font-weight: bold;
+    }
+    
+    .yang-lebei {
+        color: #3498db;
+        font-weight: bold;
+    }
+    
+    .yang-letian {
+        color: #e74c3c;
+        font-weight: bold;
+    }
+    
+    .yang-leda {
+        color: #f39c12;
+        font-weight: bold;
+    }
+    
+    .adventure {
+        color: #f39c12;
+        font-weight: bold;
+    }
+    
+    .word-list {
+        display: block;
+    }
+    
+    .word-card {
+        background: white;
+        border: 2pt solid #e9ecef;
+        border-radius: 4pt;
+        padding: 10pt;
+        margin: 8pt 0;
+        box-shadow: 0 1pt 2pt rgba(0,0,0,0.1);
+    }
+    
+    .mission-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: 2pt solid #667eea;
+        border-radius: 4pt;
+        padding: 15pt;
+        margin: 10pt 0;
+    }
+    
+    .mission-card h4 {
+        color: white;
+    }
+    
+    p {
+        margin: 8pt 0;
+        text-align: justify;
+        orphans: 2;
+        widows: 2;
+    }
+    
+    ul, ol {
+        margin: 8pt 0;
+        padding-left: 20pt;
+    }
+    
+    li {
+        margin: 4pt 0;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 10pt 0;
+    }
+    
+    th, td {
+        border: 1pt solid #ccc;
+        padding: 6pt;
+        text-align: left;
+    }
+    
+    th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+    }
+    
+    /* 避免孤行和寡行 */
+    h1, h2, h3, h4, h5 {
+        page-break-after: avoid;
+    }
+    
+    /* 确保章节标题不会单独出现在页面底部 */
+    .chapter-title {
+        page-break-after: avoid;
+    }
+    
+    /* 确保内容框不会跨页断开 */
+    .magic-box, .story-box, .word-box, .game-box, .adventure-box {
+        page-break-inside: avoid;
+    }
+}

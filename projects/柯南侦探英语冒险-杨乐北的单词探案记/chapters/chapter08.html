@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第8章：魔法竞技场的挑战 - 柯南侦探英语冒险：杨乐北的单词探案记</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', 'SimSun', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+            max-width: 210mm;
+            margin: 0 auto;
+        }
+        
+        .container {
+            max-width: 180mm;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        
+        .chapter-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+        }
+        
+        .chapter-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.2);
+            transition: background 0.3s;
+        }
+        
+        .chapter-nav a:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .chapter-nav a.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .back-link {
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        
+        .back-link:hover {
+            background: #218838;
+        }
+        
+        .chapter {
+            margin-bottom: 40px;
+            page-break-inside: avoid;
+        }
+        
+        .chapter-title {
+            color: #495057;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #6c757d;
+            padding-bottom: 10px;
+        }
+        
+        .section-title {
+            color: #495057;
+            font-size: 1.4em;
+            margin: 25px 0 15px 0;
+            border-left: 3px solid #6c757d;
+            padding-left: 15px;
+        }
+        
+        .magic-box {
+            background: #f3e5f5;
+            border: 2px solid #9c27b0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .story-box {
+            background: #fff3cd;
+            border: 2px solid #ffeaa7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .word-box {
+            background: #d4edda;
+            border: 2px solid #c3e6cb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .game-box {
+            background: #f8d7da;
+            border: 2px solid #f5c6cb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .adventure-box {
+            background: #d1ecf1;
+            border: 2px solid #bee5eb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .english-word {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .chinese-meaning {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .magic {
+            color: #9c27b0;
+            font-weight: bold;
+        }
+        
+        .conan {
+            color: #e67e22;
+            font-weight: bold;
+        }
+        
+        .yang-lebei {
+            color: #3498db;
+            font-weight: bold;
+        }
+        
+        .yang-letian {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .yang-leda {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        
+        .adventure {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        
+        .word-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+                .word-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            user-select: none;
+        }
+        
+        .word-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-color: #007bff;
+        }
+        
+        .word-card .english {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 5px;
+        }
+        
+        .word-card .chinese {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .word-card .example {
+            font-style: italic;
+            color: #666;
+            margin-top: 8px;
+            font-size: 0.9em;
+        }
+        
+        .mission-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .mission-card h4 {
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        @media print {
+            .chapter-nav, .back-link {
+                display: none;
+            }
+            
+            @page {
+                margin: 20mm 15mm 20mm 15mm;
+                size: A4 portrait;
+            }
+            
+            body {
+                margin: 0;
+                padding: 0;
+                font-size: 11pt;
+                line-height: 1.5;
+                background-color: white;
+                max-width: none;
+            }
+            
+            .container {
+                max-width: none;
+                margin: 0;
+                padding: 0;
+                background-color: white;
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">📖 返回总目录</a>
+        <a href="index.html" class="back-link">📚 返回章节目录</a>
+        
+        <div class="chapter-nav">
+            <a href="chapter07.html" class="">⬅️ 上一章</a>
+            <span>第8章：魔法竞技场的挑战</span>
+            <a href="chapter09.html" class="">下一章 ➡️</a>
+        </div>
+        
+                <div class="chapter">
+            <h3 class="chapter-title">🏟️ 第八章：魔法竞技场的挑战</h3>
+            
+            <div class="story-box">
+                <h4 class="section-title">📖 故事板块：竞技场的魔法比赛</h4>
+                <p>
+                    柯南院长带着<span class="yang-lebei">杨乐北</span>来到热闹的<span class="english-word">arena</span>。这里正在举行一场魔法运动会，大家都在比拼<span class="english-word">sports</span>和<span class="english-word">games</span>。
+                </p>
+                <p>
+                    "只有学会运动和游戏单词，才能赢得比赛的胜利！"柯南院长鼓励道。
+                </p>
+                <p>
+                    <span class="yang-lebei">杨乐北</span>看到有<span class="english-word">run</span>、<span class="english-word">jump</span>、<span class="english-word">swim</span>、<span class="english-word">ball</span>、<span class="english-word">team</span>等项目。
+                </p>
+                
+                <p>突然，<span class="english-word">arena</span>的<span class="english-word">entrance</span>处传来一阵吵闹声。</p>
+                
+                <p>"<span class="english-word">Champions</span>来了！让一让！"<span class="yang-letian">杨乐天</span>大声喊着，穿着一身奇怪的<span class="english-word">sports</span> <span class="english-word">uniform</span>冲了进来。</p>
+                
+                <p>"我们是<span class="english-word">super</span> <span class="english-word">athletes</span>！"<span class="yang-leda">杨乐达</span>紧跟在后面，头上戴着一个自制的<span class="english-word">gold</span> <span class="english-word">medal</span>。</p>
+                
+                <p>柯南院长忍不住笑了："你们想参加哪个<span class="english-word">competition</span>？"</p>
+                
+                <p>"<span class="english-word">All</span>！"<span class="yang-letian">杨乐天</span>自信地说，"我们是<span class="english-word">all-around</span> <span class="english-word">champions</span>！"</p>
+                
+                <p>"<span class="english-word">Really</span>？"<span class="yang-lebei">杨乐北</span>疑惑地问，"你们会什么<span class="english-word">sports</span>？"</p>
+                
+                <p><span class="yang-leda">杨乐达</span>骄傲地说："<span class="english-word">Running</span>！<span class="english-word">Swimming</span>！<span class="english-word">Basketball</span>！<span class="english-word">Football</span>！<span class="english-word">Everything</span>！"</p>
+                
+                <p>这时，竞技场的<span class="english-word">coach</span> <span class="english-word">Thunder</span>走了过来。他是一位<span class="english-word">muscular</span>的老人，有着<span class="english-word">silver</span> <span class="english-word">hair</span>。</p>
+                
+                <p>"<span class="english-word">Welcome</span>，<span class="english-word">young</span> <span class="english-word">athletes</span>！"<span class="english-word">Coach</span> <span class="english-word">Thunder</span>说，"我听到有人说自己是<span class="english-word">all-around</span> <span class="english-word">champions</span>？"</p>
+                
+                <p>"<span class="english-word">Yes</span>！那就是我们！"双胞胎异口同声地回答。</p>
+                
+                <p><span class="english-word">Coach</span> <span class="english-word">Thunder</span>点点头："很好！那么，我们从<span class="english-word">running</span> <span class="english-word">race</span>开始吧！"</p>
+                
+                <p>比赛开始了！<span class="yang-letian">杨乐天</span>在<span class="english-word">starting</span> <span class="english-word">line</span>做着奇怪的<span class="english-word">warm-up</span> <span class="english-word">exercises</span>。</p>
+                
+                <p>"<span class="english-word">Ready</span>, <span class="english-word">set</span>, <span class="english-word">go</span>！"<span class="english-word">Coach</span> <span class="english-word">Thunder</span>吹响了<span class="english-word">whistle</span>。</p>
+                
+                <p><span class="yang-letian">杨乐天</span>飞快地<span class="english-word">sprint</span>出去，但是他跑错了<span class="english-word">direction</span>！</p>
+                
+                <p>"<span class="english-word">Hey</span>！<span class="english-word">Wrong</span> <span class="english-word">way</span>！"其他<span class="english-word">runners</span>大喊。</p>
+                
+                <p>"<span class="english-word">Oops</span>！"<span class="yang-letian">杨乐天</span>急忙<span class="english-word">turn</span> <span class="english-word">around</span>，但现在他已经是<span class="english-word">last</span> <span class="english-word">place</span>了！</p>
+                
+                <p>接下来是<span class="english-word">swimming</span> <span class="english-word">competition</span>。<span class="yang-leda">杨乐达</span>信心满满地走到<span class="english-word">pool</span>边。</p>
+                
+                <p>"我的<span class="english-word">swimming</span> <span class="english-word">style</span>很<span class="english-word">special</span>！"他说着，然后用了一个奇怪的<span class="english-word">diving</span> <span class="english-word">pose</span>。</p>
+                
+                <p><span class="english-word">Splash</span>！<span class="yang-leda">杨乐达</span>跳进<span class="english-word">pool</span>，但他游泳的姿势看起来像是在和<span class="english-word">water</span> <span class="english-word">fighting</span>！</p>
+                
+                <p>"那不是<span class="english-word">swimming</span>，"<span class="yang-lebei">杨乐北</span>忍不住说，"那是<span class="english-word">splashing</span>！"</p>
+                
+                <p>然后是<span class="english-word">basketball</span> <span class="english-word">game</span>。双胞胎组成了一个<span class="english-word">team</span>，但他们对<span class="english-word">rules</span>有些<span class="english-word">confused</span>。</p>
+                
+                <p><span class="yang-letian">杨乐天</span>拿着<span class="english-word">basketball</span>，试图<span class="english-word">kick</span>它像<span class="english-word">football</span>一样！</p>
+                
+                <p>"<span class="english-word">No</span>！<span class="english-word">Basketball</span>是用<span class="english-word">hands</span>，不是<span class="english-word">feet</span>！"<span class="english-word">referee</span>解释道。</p>
+                
+                <p>"<span class="english-word">Oh</span>！"<span class="yang-leda">杨乐达</span>恍然大悟，"那<span class="english-word">football</span>是用<span class="english-word">feet</span>吗？"</p>
+                
+                <p>"<span class="english-word">Exactly</span>！"<span class="english-word">referee</span>点头。</p>
+                
+                <p>在<span class="english-word">table</span> <span class="english-word">tennis</span> <span class="english-word">match</span>中，<span class="yang-letian">杨乐天</span>把<span class="english-word">paddle</span>当成了<span class="english-word">tennis</span> <span class="english-word">racket</span>，用力<span class="english-word">swing</span>！</p>
+                
+                <p><span class="english-word">Ping-pong</span> <span class="english-word">ball</span>飞得<span class="english-word">everywhere</span>！</p>
+                
+                <p>"<span class="english-word">Gentle</span>！<span class="english-word">Table</span> <span class="english-word">tennis</span>需要<span class="english-word">control</span>，不是<span class="english-word">power</span>！"<span class="english-word">Coach</span> <span class="english-word">Thunder</span>教导。</p>
+                
+                <p>最搞笑的是<span class="english-word">gymnastics</span> <span class="english-word">event</span>。<span class="yang-leda">杨乐达</span>试图做一个<span class="english-word">cartwheel</span>，但结果变成了<span class="english-word">somersault</span>！</p>
+                
+                <p>"<span class="english-word">Help</span>！我<span class="english-word">dizzy</span>了！"他<span class="english-word">spinning</span>着说。</p>
+                
+                <p>虽然双胞胎在各个<span class="english-word">events</span>中都出了<span class="english-word">mistakes</span>，但他们的<span class="english-word">enthusiasm</span>和<span class="english-word">effort</span>感动了大家。</p>
+                
+                <p><span class="english-word">Coach</span> <span class="english-word">Thunder</span>拍手说："<span class="english-word">Sports</span>不只是关于<span class="english-word">winning</span>，更重要的是<span class="english-word">participation</span>、<span class="english-word">teamwork</span>和<span class="english-word">fair</span> <span class="english-word">play</span>！"</p>
+                
+                <p>突然，竞技场中央出现了一个<span class="english-word">mysterious</span> <span class="english-word">portal</span>！从里面走出了<span class="english-word">Magic</span> <span class="english-word">Sports</span> <span class="english-word">King</span>——一位穿着<span class="english-word">rainbow</span> <span class="english-word">cape</span>的<span class="english-word">wizard</span>！</p>
+                
+                <p>"<span class="english-word">Greetings</span>，<span class="english-word">young</span> <span class="english-word">athletes</span>！"<span class="english-word">Magic</span> <span class="english-word">Sports</span> <span class="english-word">King</span>说，"我感受到了你们<span class="english-word">pure</span> <span class="english-word">love</span> for <span class="english-word">sports</span>！"</p>
+                
+                <p>"<span class="english-word">But</span>，"他继续说，"真正的<span class="english-word">magic</span> <span class="english-word">sports</span> <span class="english-word">challenge</span>现在开始！你们准备好了吗？"</p>
+                
+                <p>"<span class="english-word">What</span> <span class="english-word">kind</span> of <span class="english-word">challenge</span>？"<span class="yang-lebei">杨乐北</span>问。</p>
+                
+                <p><span class="english-word">Magic</span> <span class="english-word">Sports</span> <span class="english-word">King</span>挥动<span class="english-word">magic</span> <span class="english-word">wand</span>，竞技场变成了一个<span class="english-word">floating</span> <span class="english-word">stadium</span>！</p>
+                
+                <p>"<span class="english-word">Welcome</span> to the <span class="english-word">Ultimate</span> <span class="english-word">Magic</span> <span class="english-word">Sports</span> <span class="english-word">Championship</span>！"他宣布。</p>
+                
+                <p>第一个<span class="english-word">challenge</span>是<span class="english-word">Cloud</span> <span class="english-word">Jumping</span>！参赛者需要在<span class="english-word">floating</span> <span class="english-word">clouds</span>之间<span class="english-word">hop</span>！</p>
+                
+                <p><span class="yang-letian">杨乐天</span>兴奋地说："这个我<span class="english-word">can</span> <span class="english-word">do</span>！"但他第一跳就<span class="english-word">missed</span>了<span class="english-word">cloud</span>，幸好有<span class="english-word">safety</span> <span class="english-word">net</span>！</p>
+                
+                <p>"<span class="english-word">Concentration</span>！"<span class="english-word">Magic</span> <span class="english-word">Sports</span> <span class="english-word">King</span>提醒，"<span class="english-word">Magic</span> <span class="english-word">sports</span>需要<span class="english-word">focus</span>！"</p>
+                
+                <p>第二个<span class="english-word">challenge</span>是<span class="english-word">Rainbow</span> <span class="english-word">Cycling</span>！<span class="english-word">Bicycles</span>要在<span class="english-word">rainbow</span> <span class="english-word">tracks</span>上骑行！</p>
+                
+                <p><span class="yang-leda">杨乐达</span>尝试<span class="english-word">pedal</span>，但<span class="english-word">rainbow</span> <span class="english-word">track</span>太<span class="english-word">slippery</span>了！</p>
+                
+                <p>"<span class="english-word">Whoa</span>！"他<span class="english-word">sliding</span>下来，<span class="english-word">crash</span>在一堆<span class="english-word">soft</span> <span class="english-word">cushions</span>里。</p>
+                
+                <p>第三个<span class="english-word">challenge</span>是<span class="english-word">Team</span> <span class="english-word">Magic</span> <span class="english-word">Relay</span>！每个<span class="english-word">team</span> <span class="english-word">member</span>都要完成<span class="english-word">different</span> <span class="english-word">magical</span> <span class="english-word">tasks</span>。</p>
+                
+                <p><span class="yang-lebei">杨乐北</span>的任务是<span class="english-word">spell</span> <span class="english-word">casting</span>——用<span class="english-word">English</span>说出<span class="english-word">sports</span> <span class="english-word">words</span>来启动<span class="english-word">magic</span>！</p>
+                
+                <p>"<span class="english-word">Basketball</span>！<span class="english-word">Swimming</span>！<span class="english-word">Running</span>！"她大声说，<span class="english-word">magic</span> <span class="english-word">sparks</span>开始<span class="english-word">flying</span>！</p>
+                
+                <p><span class="yang-letian">杨乐天</span>的任务是<span class="english-word">Magic</span> <span class="english-word">Ball</span> <span class="english-word">Juggling</span>——同时<span class="english-word">juggle</span>三个<span class="english-word">glowing</span> <span class="english-word">balls</span>！</p>
+                
+                <p>"<span class="english-word">One</span>, <span class="english-word">two</span>, <span class="english-word">three</span>......"他数着，但<span class="english-word">balls</span>开始<span class="english-word">floating</span> <span class="english-word">away</span>！</p>
+                
+                <p><span class="yang-leda">杨乐达</span>的任务是<span class="english-word">Magical</span> <span class="english-word">Balance</span> <span class="english-word">Beam</span>——在一根会<span class="english-word">dancing</span>的<span class="english-word">beam</span>上保持<span class="english-word">balance</span>！</p>
+                
+                <p>"<span class="english-word">This</span> <span class="english-word">beam</span>有<span class="english-word">life</span>！"他惊叫，努力不<span class="english-word">fall</span> <span class="english-word">off</span>。</p>
+                
+                <p>虽然过程<span class="english-word">chaotic</span>，但三兄妹最终<span class="english-word">cooperated</span>成功完成了<span class="english-word">challenge</span>！</p>
+                
+                <p><span class="english-word">Magic</span> <span class="english-word">Sports</span> <span class="english-word">King</span>鼓掌说："<span class="english-word">Excellent</span>！你们展示了真正的<span class="english-word">sportsmanship</span>！"</p>
+                
+                <p>"<span class="english-word">What</span>'s <span class="english-word">sportsmanship</span>？"<span class="yang-letian">杨乐天</span>好奇地问。</p>
+                
+                <p>"<span class="english-word">Sportsmanship</span>是指<span class="english-word">respect</span>、<span class="english-word">fairness</span>、<span class="english-word">teamwork</span>和<span class="english-word">never</span> <span class="english-word">giving</span> <span class="english-word">up</span>！"<span class="english-word">Magic</span> <span class="english-word">Sports</span> <span class="english-word">King</span>解释。</p>
+                
+                <p>柯南院长骄傲地说："你们不仅学会了<span class="english-word">sports</span> <span class="english-word">vocabulary</span>，还学会了<span class="english-word">sportsmanship</span> <span class="english-word">values</span>！"</p>
+                
+                <p>最后，<span class="english-word">Magic</span> <span class="english-word">Sports</span> <span class="english-word">King</span>授予他们"<span class="english-word">Magic</span> <span class="english-word">Sports</span> <span class="english-word">Heroes</span>"的称号！</p>
+                
+                <p>"记住，"他说，"<span class="english-word">sports</span>是<span class="english-word">universal</span> <span class="english-word">language</span>，它可以<span class="english-word">connect</span> <span class="english-word">people</span> from <span class="english-word">all</span> <span class="english-word">over</span> the <span class="english-word">world</span>！"</p>
+                
+                <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 15px 0; border: 2px dashed #f39c12;">
+                    <h5 style="color: #f39c12; margin-bottom: 10px;">🔍 魔法侦探任务</h5>
+                    <p><strong>你能猜出这些运动和游戏单词的意思吗？</strong></p>
+                    <p>💡 <span class="english-word">arena</span> = ________（提示：比赛的场地）</p>
+                    <p>💡 <span class="english-word">sports</span> = ________（提示：运动的总称）</p>
+                    <p>💡 <span class="english-word">games</span> = ________（提示：大家一起玩的活动）</p>
+                    <p>💡 <span class="english-word">run</span> = ________（提示：用腿很快地移动）</p>
+                    <p>💡 <span class="english-word">jump</span> = ________（提示：双脚离地）</p>
+                    <p>💡 <span class="english-word">swim</span> = ________（提示：在水里活动）</p>
+                    <p>💡 <span class="english-word">ball</span> = ________（提示：圆圆的，可以踢、扔、拍）</p>
+                    <p>💡 <span class="english-word">team</span> = ________（提示：一群人一起合作）</p>
+                    <p>💡 <span class="english-word">entrance</span> = ________（提示：入口）</p>
+                    <p>💡 <span class="english-word">champions</span> = ________（提示：冠军的复数）</p>
+                    <p>💡 <span class="english-word">uniform</span> = ________（提示：制服）</p>
+                    <p>💡 <span class="english-word">super</span> = ________（提示：超级的）</p>
+                    <p>💡 <span class="english-word">athletes</span> = ________（提示：运动员的复数）</p>
+                    <p>💡 <span class="english-word">gold</span> = ________（提示：金色的）</p>
+                    <p>💡 <span class="english-word">medal</span> = ________（提示：奖牌）</p>
+                    <p>💡 <span class="english-word">competition</span> = ________（提示：比赛）</p>
+                    <p>💡 <span class="english-word">all</span> = ________（提示：全部）</p>
+                    <p>💡 <span class="english-word">all-around</span> = ________（提示：全能的）</p>
+                    <p>💡 <span class="english-word">really</span> = ________（提示：真的吗）</p>
+                    <p>💡 <span class="english-word">running</span> = ________（提示：跑步）</p>
+                    <p>💡 <span class="english-word">swimming</span> = ________（提示：游泳）</p>
+                    <p>💡 <span class="english-word">basketball</span> = ________（提示：篮球）</p>
+                    <p>💡 <span class="english-word">football</span> = ________（提示：足球）</p>
+                    <p>💡 <span class="english-word">everything</span> = ________（提示：一切）</p>
+                    <p>💡 <span class="english-word">coach</span> = ________（提示：教练）</p>
+                    <p>💡 <span class="english-word">thunder</span> = ________（提示：雷声）</p>
+                    <p>💡 <span class="english-word">muscular</span> = ________（提示：肌肉发达的）</p>
+                    <p>💡 <span class="english-word">silver</span> = ________（提示：银色的）</p>
+                    <p>💡 <span class="english-word">hair</span> = ________（提示：头发）</p>
+                    <p>💡 <span class="english-word">welcome</span> = ________（提示：欢迎）</p>
+                    <p>💡 <span class="english-word">young</span> = ________（提示：年轻的）</p>
+                    <p>💡 <span class="english-word">yes</span> = ________（提示：是的）</p>
+                    <p>💡 <span class="english-word">race</span> = ________（提示：赛跑）</p>
+                    <p>💡 <span class="english-word">starting</span> = ________（提示：开始）</p>
+                    <p>💡 <span class="english-word">line</span> = ________（提示：线）</p>
+                    <p>💡 <span class="english-word">warm-up</span> = ________（提示：热身）</p>
+                    <p>💡 <span class="english-word">exercises</span> = ________（提示：练习）</p>
+                    <p>💡 <span class="english-word">ready</span> = ________（提示：准备好）</p>
+                    <p>💡 <span class="english-word">set</span> = ________（提示：预备）</p>
+                    <p>💡 <span class="english-word">go</span> = ________（提示：开始）</p>
+                    <p>💡 <span class="english-word">whistle</span> = ________（提示：哨子）</p>
+                    <p>💡 <span class="english-word">sprint</span> = ________（提示：冲刺）</p>
+                    <p>💡 <span class="english-word">direction</span> = ________（提示：方向）</p>
+                    <p>💡 <span class="english-word">hey</span> = ________（提示：嘿）</p>
+                    <p>💡 <span class="english-word">wrong</span> = ________（提示：错误的）</p>
+                    <p>💡 <span class="english-word">way</span> = ________（提示：路）</p>
+                    <p>💡 <span class="english-word">runners</span> = ________（提示：跑步者）</p>
+                    <p>💡 <span class="english-word">oops</span> = ________（提示：哎呀）</p>
+                    <p>💡 <span class="english-word">turn</span> = ________（提示：转弯）</p>
+                    <p>💡 <span class="english-word">around</span> = ________（提示：转过来）</p>
+                    <p>💡 <span class="english-word">last</span> = ________（提示：最后的）</p>
+                    <p>💡 <span class="english-word">place</span> = ________（提示：地方，名次）</p>
+                    <p>💡 <span class="english-word">pool</span> = ________（提示：游泳池）</p>
+                    <p>💡 <span class="english-word">style</span> = ________（提示：风格）</p>
+                    <p>💡 <span class="english-word">special</span> = ________（提示：特别的）</p>
+                    <p>💡 <span class="english-word">diving</span> = ________（提示：跳水）</p>
+                    <p>💡 <span class="english-word">pose</span> = ________（提示：姿势）</p>
+                    <p>💡 <span class="english-word">splash</span> = ________（提示：溅水声）</p>
+                    <p>💡 <span class="english-word">water</span> = ________（提示：水）</p>
+                    <p>💡 <span class="english-word">fighting</span> = ________（提示：战斗）</p>
+                    <p>💡 <span class="english-word">splashing</span> = ________（提示：溅水）</p>
+                    <p>💡 <span class="english-word">game</span> = ________（提示：游戏）</p>
+                    <p>💡 <span class="english-word">rules</span> = ________（提示：规则）</p>
+                    <p>💡 <span class="english-word">confused</span> = ________（提示：困惑的）</p>
+                    <p>💡 <span class="english-word">kick</span> = ________（提示：踢）</p>
+                    <p>💡 <span class="english-word">no</span> = ________（提示：不）</p>
+                    <p>💡 <span class="english-word">hands</span> = ________（提示：手的复数）</p>
+                    <p>💡 <span class="english-word">feet</span> = ________（提示：脚的复数）</p>
+                    <p>💡 <span class="english-word">referee</span> = ________（提示：裁判）</p>
+                    <p>💡 <span class="english-word">oh</span> = ________（提示：哦）</p>
+                    <p>💡 <span class="english-word">exactly</span> = ________（提示：确切地）</p>
+                    <p>💡 <span class="english-word">table</span> = ________（提示：桌子）</p>
+                    <p>💡 <span class="english-word">tennis</span> = ________（提示：网球）</p>
+                    <p>💡 <span class="english-word">match</span> = ________（提示：比赛）</p>
+                    <p>💡 <span class="english-word">paddle</span> = ________（提示：球拍）</p>
+                    <p>💡 <span class="english-word">racket</span> = ________（提示：球拍）</p>
+                    <p>💡 <span class="english-word">swing</span> = ________（提示：挥拍）</p>
+                    <p>💡 <span class="english-word">ping-pong</span> = ________（提示：乒乓球）</p>
+                    <p>💡 <span class="english-word">everywhere</span> = ________（提示：到处）</p>
+                    <p>💡 <span class="english-word">gentle</span> = ________（提示：轻柔的）</p>
+                    <p>💡 <span class="english-word">control</span> = ________（提示：控制）</p>
+                    <p>💡 <span class="english-word">power</span> = ________（提示：力量）</p>
+                    <p>💡 <span class="english-word">gymnastics</span> = ________（提示：体操）</p>
+                    <p>💡 <span class="english-word">event</span> = ________（提示：项目）</p>
+                    <p>💡 <span class="english-word">cartwheel</span> = ________（提示：侧手翻）</p>
+                    <p>💡 <span class="english-word">somersault</span> = ________（提示：翻滚）</p>
+                    <p>💡 <span class="english-word">help</span> = ________（提示：帮助）</p>
+                    <p>💡 <span class="english-word">dizzy</span> = ________（提示：头晕的）</p>
+                    <p>💡 <span class="english-word">spinning</span> = ________（提示：旋转）</p>
+                    <p>💡 <span class="english-word">events</span> = ________（提示：项目的复数）</p>
+                    <p>💡 <span class="english-word">mistakes</span> = ________（提示：错误的复数）</p>
+                    <p>💡 <span class="english-word">enthusiasm</span> = ________（提示：热情）</p>
+                    <p>💡 <span class="english-word">effort</span> = ________（提示：努力）</p>
+                    <p>💡 <span class="english-word">winning</span> = ________（提示：获胜）</p>
+                    <p>💡 <span class="english-word">participation</span> = ________（提示：参与）</p>
+                    <p>💡 <span class="english-word">teamwork</span> = ________（提示：团队合作）</p>
+                    <p>💡 <span class="english-word">fair</span> = ________（提示：公平的）</p>
+                    <p>💡 <span class="english-word">play</span> = ________（提示：比赛，玩）</p>
+                    <p>💡 <span class="english-word">mysterious</span> = ________（提示：神秘的）</p>
+                    <p>💡 <span class="english-word">portal</span> = ________（提示：传送门）</p>
+                    <p>💡 <span class="english-word">magic</span> = ________（提示：魔法）</p>
+                    <p>💡 <span class="english-word">king</span> = ________（提示：国王）</p>
+                    <p>💡 <span class="english-word">rainbow</span> = ________（提示：彩虹）</p>
+                    <p>💡 <span class="english-word">cape</span> = ________（提示：斗篷）</p>
+                    <p>💡 <span class="english-word">wizard</span> = ________（提示：巫师）</p>
+                    <p>💡 <span class="english-word">greetings</span> = ________（提示：问候）</p>
+                    <p>💡 <span class="english-word">pure</span> = ________（提示：纯粹的）</p>
+                    <p>💡 <span class="english-word">love</span> = ________（提示：爱）</p>
+                    <p>💡 <span class="english-word">for</span> = ________（提示：为了）</p>
+                    <p>💡 <span class="english-word">but</span> = ________（提示：但是）</p>
+                    <p>💡 <span class="english-word">challenge</span> = ________（提示：挑战）</p>
+                    <p>💡 <span class="english-word">what</span> = ________（提示：什么）</p>
+                    <p>💡 <span class="english-word">kind</span> = ________（提示：种类）</p>
+                    <p>💡 <span class="english-word">of</span> = ________（提示：的）</p>
+                    <p>💡 <span class="english-word">wand</span> = ________（提示：魔法棒）</p>
+                    <p>💡 <span class="english-word">floating</span> = ________（提示：漂浮的）</p>
+                    <p>💡 <span class="english-word">stadium</span> = ________（提示：体育场）</p>
+                    <p>💡 <span class="english-word">ultimate</span> = ________（提示：终极的）</p>
+                    <p>💡 <span class="english-word">championship</span> = ________（提示：锦标赛）</p>
+                    <p>💡 <span class="english-word">cloud</span> = ________（提示：云朵）</p>
+                    <p>💡 <span class="english-word">jumping</span> = ________（提示：跳跃）</p>
+                    <p>💡 <span class="english-word">clouds</span> = ________（提示：云朵的复数）</p>
+                    <p>💡 <span class="english-word">hop</span> = ________（提示：单脚跳）</p>
+                    <p>💡 <span class="english-word">can</span> = ________（提示：可以）</p>
+                    <p>💡 <span class="english-word">do</span> = ________（提示：做）</p>
+                    <p>💡 <span class="english-word">missed</span> = ________（提示：错过了）</p>
+                    <p>💡 <span class="english-word">safety</span> = ________（提示：安全）</p>
+                    <p>💡 <span class="english-word">net</span> = ________（提示：网）</p>
+                    <p>💡 <span class="english-word">concentration</span> = ________（提示：专注）</p>
+                    <p>💡 <span class="english-word">focus</span> = ________（提示：专注）</p>
+                    <p>💡 <span class="english-word">cycling</span> = ________（提示：骑行）</p>
+                    <p>💡 <span class="english-word">bicycles</span> = ________（提示：自行车的复数）</p>
+                    <p>💡 <span class="english-word">tracks</span> = ________（提示：跑道的复数）</p>
+                    <p>💡 <span class="english-word">pedal</span> = ________（提示：踏板）</p>
+                    <p>💡 <span class="english-word">track</span> = ________（提示：跑道）</p>
+                    <p>💡 <span class="english-word">slippery</span> = ________（提示：滑的）</p>
+                    <p>💡 <span class="english-word">whoa</span> = ________（提示：哇）</p>
+                    <p>💡 <span class="english-word">sliding</span> = ________（提示：滑动）</p>
+                    <p>💡 <span class="english-word">crash</span> = ________（提示：撞击）</p>
+                    <p>💡 <span class="english-word">soft</span> = ________（提示：软的）</p>
+                    <p>💡 <span class="english-word">cushions</span> = ________（提示：垫子的复数）</p>
+                    <p>💡 <span class="english-word">relay</span> = ________（提示：接力）</p>
+                    <p>💡 <span class="english-word">member</span> = ________（提示：成员）</p>
+                    <p>💡 <span class="english-word">different</span> = ________（提示：不同的）</p>
+                    <p>💡 <span class="english-word">magical</span> = ________（提示：魔法的）</p>
+                    <p>💡 <span class="english-word">tasks</span> = ________（提示：任务的复数）</p>
+                    <p>💡 <span class="english-word">spell</span> = ________（提示：咒语）</p>
+                    <p>💡 <span class="english-word">casting</span> = ________（提示：施展）</p>
+                    <p>💡 <span class="english-word">english</span> = ________（提示：英语）</p>
+                    <p>💡 <span class="english-word">words</span> = ________（提示：单词的复数）</p>
+                    <p>💡 <span class="english-word">sparks</span> = ________（提示：火花的复数）</p>
+                    <p>💡 <span class="english-word">flying</span> = ________（提示：飞行）</p>
+                    <p>💡 <span class="english-word">juggling</span> = ________（提示：杂耍）</p>
+                    <p>💡 <span class="english-word">juggle</span> = ________（提示：杂耍）</p>
+                    <p>💡 <span class="english-word">glowing</span> = ________（提示：发光的）</p>
+                    <p>💡 <span class="english-word">balls</span> = ________（提示：球的复数）</p>
+                    <p>💡 <span class="english-word">one</span> = ________（提示：一）</p>
+                    <p>💡 <span class="english-word">two</span> = ________（提示：二）</p>
+                    <p>💡 <span class="english-word">three</span> = ________（提示：三）</p>
+                    <p>💡 <span class="english-word">away</span> = ________（提示：离开）</p>
+                    <p>💡 <span class="english-word">balance</span> = ________（提示：平衡）</p>
+                    <p>💡 <span class="english-word">beam</span> = ________（提示：平衡木）</p>
+                    <p>💡 <span class="english-word">dancing</span> = ________（提示：跳舞）</p>
+                    <p>💡 <span class="english-word">this</span> = ________（提示：这个）</p>
+                    <p>💡 <span class="english-word">life</span> = ________（提示：生命）</p>
+                    <p>💡 <span class="english-word">fall</span> = ________（提示：跌倒）</p>
+                    <p>💡 <span class="english-word">off</span> = ________（提示：从...掉下）</p>
+                    <p>💡 <span class="english-word">chaotic</span> = ________（提示：混乱的）</p>
+                    <p>💡 <span class="english-word">cooperated</span> = ________（提示：合作了）</p>
+                    <p>💡 <span class="english-word">excellent</span> = ________（提示：优秀的）</p>
+                    <p>💡 <span class="english-word">sportsmanship</span> = ________（提示：体育精神）</p>
+                    <p>💡 <span class="english-word">respect</span> = ________（提示：尊重）</p>
+                    <p>💡 <span class="english-word">fairness</span> = ________（提示：公平）</p>
+                    <p>💡 <span class="english-word">never</span> = ________（提示：从不）</p>
+                    <p>💡 <span class="english-word">giving</span> = ________（提示：给予）</p>
+                    <p>💡 <span class="english-word">up</span> = ________（提示：向上，放弃）</p>
+                    <p>💡 <span class="english-word">vocabulary</span> = ________（提示：词汇）</p>
+                    <p>💡 <span class="english-word">values</span> = ________（提示：价值观）</p>
+                    <p>💡 <span class="english-word">heroes</span> = ________（提示：英雄的复数）</p>
+                    <p>💡 <span class="english-word">universal</span> = ________（提示：通用的）</p>
+                    <p>💡 <span class="english-word">language</span> = ________（提示：语言）</p>
+                    <p>💡 <span class="english-word">connect</span> = ________（提示：连接）</p>
+                    <p>💡 <span class="english-word">people</span> = ________（提示：人们）</p>
+                    <p>💡 <span class="english-word">from</span> = ________（提示：从）</p>
+                    <p>💡 <span class="english-word">over</span> = ________（提示：遍布）</p>
+                    <p>💡 <span class="english-word">world</span> = ________（提示：世界）</p>
+                </div>
+            </div>
+
+            <div class="word-box">
+                <h4 class="section-title">🔢 单词板块：运动与游戏单词</h4>
+                <p>竞技场的魔法教练说："要想成为运动冠军，你必须掌握所有运动和游戏的魔法单词！"</p>
+                
+                <div class="word-list">
+                    <div class="word-card">
+                        <div class="english">arena</div>
+
+                        <div class="example">Welcome to the magic arena!</div>
+                </div>
+                    <div class="word-card">
+                        <div class="english">sports</div>
+
+                        <div class="example">I love playing sports.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">games</div>
+
+                        <div class="example">Let's play some fun games!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">run</div>
+
+                        <div class="example">I can run very fast.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">jump</div>
+
+                        <div class="example">Jump as high as you can!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">swim</div>
+
+                        <div class="example">I swim in the pool every day.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">ball</div>
+
+                        <div class="example">Catch the ball!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">team</div>
+
+                        <div class="example">Our team is very strong.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">play</div>
+
+                        <div class="example">Let's play basketball!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">game</div>
+
+                        <div class="example">We won the game!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">match</div>
+
+                        <div class="example">The football match is exciting.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">competition</div>
+
+                        <div class="example">I joined the swimming competition.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">race</div>
+
+                        <div class="example">Who will win the race?</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">win</div>
+
+                        <div class="example">Our team will win!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">lose</div>
+
+                        <div class="example">Don't worry if you lose.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">score</div>
+
+                        <div class="example">What's the final score?</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">goal</div>
+
+                        <div class="example">He scored a great goal!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">kick</div>
+
+                        <div class="example">Kick the ball to me!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">throw</div>
+
+                        <div class="example">Throw the ball high.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">catch</div>
+
+                        <div class="example">I can catch the flying ball.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">hit</div>
+
+                        <div class="example">Hit the baseball with the bat.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">shoot</div>
+
+                        <div class="example">Shoot the ball into the goal!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">pass</div>
+
+                        <div class="example">Pass the ball to your teammate.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">football</div>
+
+                        <div class="example">Football is my favorite sport.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">basketball</div>
+
+                        <div class="example">Let's play basketball together.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">volleyball</div>
+
+                        <div class="example">Volleyball is a team sport.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">tennis</div>
+
+                        <div class="example">I practice tennis every week.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">ping-pong</div>
+
+                        <div class="example">Ping-pong is very popular.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">badminton</div>
+
+                        <div class="example">Badminton is fun to play.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">baseball</div>
+
+                        <div class="example">Baseball is popular in America.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">golf</div>
+
+                        <div class="example">Golf requires precision.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">hockey</div>
+
+                        <div class="example">Ice hockey is exciting!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">cricket</div>
+
+                        <div class="example">Cricket is popular in England.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">rugby</div>
+
+                        <div class="example">Rugby players are very strong.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">swimming</div>
+
+                        <div class="example">Swimming is good exercise.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">running</div>
+
+                        <div class="example">I go running every morning.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">jogging</div>
+
+                        <div class="example">Jogging helps me stay healthy.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">walking</div>
+
+                        <div class="example">Walking is relaxing.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">hiking</div>
+
+                        <div class="example">I love hiking in the mountains.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">climbing</div>
+
+                        <div class="example">Rock climbing is challenging.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">cycling</div>
+
+                        <div class="example">Cycling is environmentally friendly.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">skating</div>
+
+                        <div class="example">Ice skating is beautiful.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">skiing</div>
+
+                        <div class="example">Skiing is exciting in winter.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">surfing</div>
+
+                        <div class="example">Surfing requires good balance.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">dancing</div>
+
+                        <div class="example">Dancing is artistic and fun.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">gymnastics</div>
+
+                        <div class="example">Gymnastics requires flexibility.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">yoga</div>
+
+                        <div class="example">Yoga helps relax the mind.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">martial arts</div>
+
+                        <div class="example">Martial arts teach discipline.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">boxing</div>
+
+                        <div class="example">Boxing builds strength.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">wrestling</div>
+
+                        <div class="example">Wrestling is an ancient sport.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">archery</div>
+
+                        <div class="example">Archery requires focus.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">fencing</div>
+
+                        <div class="example">Fencing is like a sword dance.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">track and field</div>
+
+                        <div class="example">Track and field includes many events.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">marathon</div>
+
+                        <div class="example">Running a marathon is challenging.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">sprint</div>
+
+                        <div class="example">Sprint races are very fast.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">relay</div>
+
+                        <div class="example">Relay races need teamwork.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">hurdles</div>
+
+                        <div class="example">Hurdles require jumping skills.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">long jump</div>
+
+                        <div class="example">Long jump needs good speed.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">high jump</div>
+
+                        <div class="example">High jump requires technique.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">pole vault</div>
+
+                        <div class="example">Pole vault is very technical.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">shot put</div>
+
+                        <div class="example">Shot put requires strength.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">discus</div>
+
+                        <div class="example">Throwing discus needs spinning.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">javelin</div>
+
+                        <div class="example">Javelin throwing requires precision.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">hammer throw</div>
+
+                        <div class="example">Hammer throw needs spinning power.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">coach</div>
+
+                        <div class="example">Our coach teaches us well.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">player</div>
+
+                        <div class="example">Every player tries their best.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">athlete</div>
+
+                        <div class="example">The athlete trains every day.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">captain</div>
+
+                        <div class="example">The captain leads the team.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">teammate</div>
+
+                        <div class="example">Help your teammates.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">opponent</div>
+
+                        <div class="example">Respect your opponent.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">referee</div>
+
+                        <div class="example">The referee makes fair decisions.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">judge</div>
+
+                        <div class="example">The judge scores the performance.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">spectator</div>
+
+                        <div class="example">Spectators cheer loudly.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">fan</div>
+
+                        <div class="example">I'm a big fan of this team.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">champion</div>
+
+                        <div class="example">She is the swimming champion.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">winner</div>
+
+                        <div class="example">Congratulations to the winner!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">loser</div>
+
+                        <div class="example">Even losers can learn.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">medal</div>
+
+                        <div class="example">He won a gold medal!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">trophy</div>
+
+                        <div class="example">The trophy is beautiful.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">prize</div>
+
+                        <div class="example">What's the first prize?</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">award</div>
+
+                        <div class="example">She received an award.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">stadium</div>
+
+                        <div class="example">The stadium is huge!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">gym</div>
+
+                        <div class="example">We exercise in the gym.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">court</div>
+
+                        <div class="example">The basketball court is big.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">field</div>
+
+                        <div class="example">Let's run on the field.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">track</div>
+
+                        <div class="example">The track is 400 meters long.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">pool</div>
+
+                        <div class="example">The pool is very clean.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">equipment</div>
+
+                        <div class="example">We need sports equipment.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">uniform</div>
+
+                        <div class="example">Wear your team uniform.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">practice</div>
+
+                        <div class="example">Practice makes perfect!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">training</div>
+
+                        <div class="example">Daily training is important.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">exercise</div>
+
+                        <div class="example">Exercise keeps us healthy.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">fitness</div>
+
+                        <div class="example">Fitness is very important.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">health</div>
+
+                        <div class="example">Sports improve our health.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">strong</div>
+
+                        <div class="example">Exercise makes you strong.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">fast</div>
+
+                        <div class="example">He is a fast runner.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">slow</div>
+                        <div class="example">Start slow, then speed up.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">quick</div>
+                        <div class="example">She has quick reflexes.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">skillful</div>
+                        <div class="example">He is a skillful player.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">talented</div>
+                        <div class="example">She is very talented.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">competitive</div>
+                        <div class="example">Sports are competitive.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">fair</div>
+                        <div class="example">Play fair and have fun!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">teamwork</div>
+                        <div class="example">Good teamwork wins games.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">spirit</div>
+                        <div class="example">Show good sportsmanship spirit.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">effort</div>
+
+                        <div class="example">Put in maximum effort!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">determination</div>
+
+                        <div class="example">Show determination to succeed.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">courage</div>
+                        <div class="example">It takes courage to try.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">confidence</div>
+
+                        <div class="example">Believe in yourself with confidence.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🏃 魔法运动接力赛</h4>
+                <div class="mission-card">
+                    <h4>🏅 魔法任务：运动单词接龙</h4>
+                    <p>和家人或小伙伴一起玩"运动单词接龙"：</p>
+                    <ol>
+                        <li>一个人说一个运动或游戏的中文名，另一个人说出英文单词。</li>
+                        <li>说错或说慢了要做一个运动动作！</li>
+                        <li>全部答对，获得"魔法运动冠军"称号！</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); color: #333; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: #333; margin-bottom: 15px;">🏃 运动接力挑战</h5>
+                    <p style="margin: 8px 0;">🏅 第1棒：说出3种球类运动的英文名</p>
+                    <p style="margin: 8px 0;">🏅 第2棒：说出5个运动动作的英文单词</p>
+                    <p style="margin: 8px 0;">🏅 第3棒：说出3个运动场地的英文名称</p>
+                    <p style="margin: 8px 0;">🏅 第4棒：说出5个运动相关人员的英文单词</p>
+                    <p style="margin: 8px 0;">🏅 终点：用一句话描述你最喜欢的运动</p>
+                    <p style="margin-top: 15px; font-style: italic;">⚡ 挑战：完成整个接力赛，成为魔法运动大师！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">⚽ 魔法球类大比拼</h4>
+                <div class="mission-card">
+                    <h4>🥇 魔法任务：球类游戏挑战</h4>
+                    <p>用"ball"玩各种球类游戏，比如扔球、踢球、拍球，每做一个动作就大声说出英文单词！</p>
+                    <p>比如："run and kick the ball!"、"jump and catch the ball!"</p>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: #333; margin-bottom: 15px;">⚽ 球类魔法组合技</h5>
+                    <p style="margin: 8px 0;">🏀 篮球技能："<span class="english-word">Shoot</span> the <span class="english-word">basketball</span> into the goal!"</p>
+                    <p style="margin: 8px 0;">⚽ 足球技能："<span class="english-word">Kick</span> the <span class="english-word">football</span> to your <span class="english-word">teammate</span>!"</p>
+                    <p style="margin: 8px 0;">🏐 排球技能："<span class="english-word">Hit</span> the <span class="english-word">volleyball</span> over the net!"</p>
+                    <p style="margin: 8px 0;">🎾 网球技能："<span class="english-word">Serve</span> the <span class="english-word">tennis</span> ball fast!"</p>
+                    <p style="margin: 8px 0;">🏓 乒乓球技能："<span class="english-word">Spin</span> the <span class="english-word">ping-pong</span> ball!"</p>
+                    <p style="margin-top: 15px; font-style: italic;">🌟 创造你自己的球类魔法组合技！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🏆 魔法奥运会</h4>
+                <div class="mission-card">
+                    <h4>🥇 魔法任务：举办家庭奥运会</h4>
+                    <p>在家里或院子里举办一场魔法奥运会，每个项目都要用英语来介绍：</p>
+                    <ol>
+                        <li><strong>田径项目：</strong>短跑（sprint）、跳远（long jump）、跳高（high jump）</li>
+                        <li><strong>球类项目：</strong>投篮（basketball）、踢球（football）、发球（tennis）</li>
+                        <li><strong>趣味项目：</strong>平衡（balance）、灵活（flexibility）、速度（speed）</li>
+                        <li><strong>团队项目：</strong>接力赛（relay race）、拔河（tug-of-war）</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: white; margin-bottom: 15px;">🏆 奥运会项目表</h5>
+                    <p style="margin: 8px 0;"><strong>开幕式：</strong>"Welcome to the magic Olympics!"</p>
+                    <p style="margin: 8px 0;"><strong>比赛项目：</strong></p>
+                    <p style="margin: 8px 0;">🏃 Track events: "<span class="english-word">sprint</span>, <span class="english-word">relay</span>, <span class="english-word">hurdles</span>"</p>
+                    <p style="margin: 8px 0;">🏐 Ball games: "<span class="english-word">basketball</span>, <span class="english-word">volleyball</span>, <span class="english-word">tennis</span>"</p>
+                    <p style="margin: 8px 0;">🎯 Field events: "<span class="english-word">long jump</span>, <span class="english-word">high jump</span>, <span class="english-word">shot put</span>"</p>
+                    <p style="margin: 8px 0;"><strong>颁奖典礼：</strong>"Congratulations to all <span class="english-word">athletes</span>!"</p>
+                    <p style="margin-top: 15px; font-style: italic;">🏅 每个人都是冠军！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🎭 魔法运动模仿秀</h4>
+                <div class="mission-card">
+                    <h4>🎪 魔法任务：运动明星表演赛</h4>
+                    <p>模仿不同运动项目的动作，让别人猜出是什么运动：</p>
+                    <ol>
+                        <li>抽取一张运动单词卡</li>
+                        <li>用动作表演这个运动，不能说话</li>
+                        <li>其他人用英语猜出运动名称</li>
+                        <li>猜对的人成为下一个表演者</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); color: #333; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: #333; margin-bottom: 15px;">🎭 表演提示</h5>
+                    <p style="margin: 8px 0;"><strong>游泳动作：</strong>做蛙泳的手臂动作</p>
+                    <p style="margin: 8px 0;"><strong>篮球动作：</strong>做投篮和运球的动作</p>
+                    <p style="margin: 8px 0;"><strong>网球动作：</strong>做挥拍击球的动作</p>
+                    <p style="margin: 8px 0;"><strong>跳高动作：</strong>做助跑和跳跃的动作</p>
+                    <p style="margin: 8px 0;"><strong>体操动作：</strong>做翻滚和平衡的动作</p>
+                    <p style="margin-top: 15px; font-style: italic;">🌟 表演技巧：动作要夸张，表情要到位！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🎯 魔法运动知识竞赛</h4>
+                <div class="mission-card">
+                    <h4>🧠 魔法任务：运动百科问答</h4>
+                    <p>回答关于运动的各种问题，展示你的运动知识：</p>
+                    <ol>
+                        <li>基础题：运动项目的英文名称</li>
+                        <li>进阶题：运动规则和技巧</li>
+                        <li>高级题：著名运动员和运动历史</li>
+                        <li>终极题：创造性运动组合</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: white; margin-bottom: 15px;">🎯 竞赛题目示例</h5>
+                    <p style="margin: 8px 0;"><strong>基础题：</strong></p>
+                    <p style="margin: 8px 0;">🔍 Q: 什么运动需要在water中进行？ A: ________</p>
+                    <p style="margin: 8px 0;">🔍 Q: 哪种ball是orange（橙色）的？ A: ________</p>
+                    <p style="margin: 8px 0;"><strong>进阶题：</strong></p>
+                    <p style="margin: 8px 0;">🔍 Q: 足球比赛中，谁负责make fair decisions？ A: ________</p>
+                    <p style="margin: 8px 0;">🔍 Q: 田径比赛中最长的race叫什么？ A: ________</p>
+                    <p style="margin: 8px 0;"><strong>高级题：</strong></p>
+                    <p style="margin: 8px 0;">🔍 Q: 奥运会的champion会获得什么颜色的medal？ A: ________</p>
+                    <p style="margin-top: 15px; font-style: italic;">🏆 你能全部答对吗？</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🔀 魔法运动组合创造</h4>
+                <div class="mission-card">
+                    <h4>🎨 魔法任务：发明新运动</h4>
+                    <p>结合不同的运动项目，创造出全新的魔法运动：</p>
+                    <ol>
+                        <li>选择两个或多个运动项目</li>
+                        <li>想象如何将它们结合</li>
+                        <li>给新运动起一个英文名字</li>
+                        <li>用英语解释游戏规则</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: #333; margin-bottom: 15px;">🎨 创意运动示例</h5>
+                    <p style="margin: 8px 0;"><strong>Swim-Basketball：</strong></p>
+                    <p style="margin: 8px 0;">在游泳池里打篮球，players必须在water中swim和shoot！</p>
+                    <p style="margin: 8px 0;"><strong>Jump-Tennis：</strong></p>
+                    <p style="margin: 8px 0;">打网球时必须不停地jump，球拍只能在空中使用！</p>
+                    <p style="margin: 8px 0;"><strong>Run-Puzzle：</strong></p>
+                    <p style="margin: 8px 0;">一边running一边solve puzzles，最快完成的team获胜！</p>
+                    <p style="margin: 8px 0;"><strong>你的创意运动：</strong></p>
+                    <p style="margin: 8px 0;">名称：________________</p>
+                    <p style="margin: 8px 0;">规则：________________</p>
+                    <p style="margin-top: 15px; font-style: italic;">🌈 让想象力自由发挥！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">📱 魔法运动播报员</h4>
+                <div class="mission-card">
+                    <h4>📺 魔法任务：体育新闻播报</h4>
+                    <p>成为魔法电视台的体育新闻播报员，用英语播报体育新闻：</p>
+                    <ol>
+                        <li>选择一个运动项目或比赛</li>
+                        <li>写一份简短的英语新闻稿</li>
+                        <li>用播报员的语调大声朗读</li>
+                        <li>可以加上手势和表情</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: white; margin-bottom: 15px;">📺 播报模板</h5>
+                    <p style="margin: 8px 0;"><strong>新闻开头：</strong></p>
+                    <p style="margin: 8px 0;">"Good evening! This is Sports News Magic."</p>
+                    <p style="margin: 8px 0;"><strong>新闻内容：</strong></p>
+                    <p style="margin: 8px 0;">"Today, the <span class="english-word">basketball</span> <span class="english-word">team</span> played an exciting <span class="english-word">game</span>..."</p>
+                    <p style="margin: 8px 0;">"The <span class="english-word">players</span> showed great <span class="english-word">teamwork</span> and <span class="english-word">spirit</span>..."</p>
+                    <p style="margin: 8px 0;">"The final <span class="english-word">score</span> was..."</p>
+                    <p style="margin: 8px 0;"><strong>新闻结尾：</strong></p>
+                    <p style="margin: 8px 0;">"Thank you for watching Sports News Magic!"</p>
+                    <p style="margin-top: 15px; font-style: italic;">🎤 播报技巧：声音要清晰，语调要生动！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">📝 魔法竞技场故事创作</h4>
+                <div class="mission-card">
+                    <h4>📚 魔法任务：编一个运动会冒险故事</h4>
+                    <p>用学到的运动和游戏单词，编一个属于你的魔法竞技场冒险故事，可以画出来，也可以写下来！</p>
+                    <p>比如："One day, my <span class="english-word">team</span> joined a magic <span class="english-word">games</span> in the <span class="english-word">arena</span>..."</p>
+                </div>
+                
+                <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                    <h5><strong>故事创作模板：</strong></h5>
+                    <p><strong>开头：</strong>One day, I joined a magic <span class="english-word">competition</span> in the <span class="english-word">arena</span>...</p>
+                    <p><strong>发展：</strong>My <span class="english-word">team</span> had to <span class="english-word">compete</span> in many different <span class="english-word">sports</span>...</p>
+                    <p><strong>高潮：</strong>The final <span class="english-word">race</span> was the most <span class="english-word">challenging</span>...</p>
+                    <p><strong>结尾：</strong>Finally, we learned that <span class="english-word">teamwork</span> is more important than <span class="english-word">winning</span>...</p>
+                    <p style="margin-top: 10px;"><strong>挑战：</strong>在你的故事中至少使用20个不同的运动单词！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🎯 魔法运动计划制定</h4>
+                <div class="mission-card">
+                    <h4>📋 魔法任务：制定个人运动计划</h4>
+                    <p>用学到的运动单词，为自己制定一个健康的运动计划：</p>
+                    <ol>
+                        <li>选择你喜欢的<span class="english-word">sports</span>（运动项目）</li>
+                        <li>决定每周<span class="english-word">practice</span>（练习）的时间</li>
+                        <li>设定你的<span class="english-word">goal</span>（目标）</li>
+                        <li>计划如何提高你的<span class="english-word">fitness</span>（体能）</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: #333; margin-bottom: 15px;">🎯 我的魔法运动计划</h5>
+                    <p style="margin: 8px 0;">🏃 <strong>My Favorite Sports:</strong> I like ________________</p>
+                    <p style="margin: 8px 0;">📅 <strong>Weekly Practice:</strong> I will practice _______ times a week</p>
+                    <p style="margin: 8px 0;">🎯 <strong>My Goal:</strong> I want to improve my ________________</p>
+                    <p style="margin: 8px 0;">💪 <strong>Fitness Plan:</strong> I will ________________ to stay healthy</p>
+                    <p style="margin: 8px 0;">🏆 <strong>Dream:</strong> I dream to become a ________________</p>
+                    <p style="margin: 8px 0;">🤝 <strong>Teamwork:</strong> I want to play with ________________</p>
+                    <p style="margin-top: 15px; font-style: italic;">💪 记住：坚持<span class="english-word">practice</span>，就能实现<span class="english-word">success</span>！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🏃‍♂️ 搞笑运动员大挑战</h4>
+                <div class="mission-card">
+                    <h4>😂 魔法任务：模仿双胞胎的搞笑体育时刻</h4>
+                    <p>重现杨乐天和杨乐达的体育场搞笑瞬间：</p>
+                    <ol>
+                        <li><strong>错误方向冲刺</strong>：学杨乐天跑错方向，然后说"<span class="english-word">Wrong way</span>！<span class="english-word">Oops</span>！"</li>
+                        <li><strong>奇怪游泳姿势</strong>：模仿杨乐达和水"打架"的游泳方式</li>
+                        <li><strong>运动混淆</strong>：像故事中一样把<span class="english-word">basketball</span>当<span class="english-word">football</span>踢</li>
+                        <li><strong>体操失误</strong>：尝试做<span class="english-word">cartwheel</span>但变成<span class="english-word">somersault</span></li>
+                    </ol>
+                    <p>记住：<span class="english-word">Mistakes</span>让<span class="english-word">sports</span>变得更<span class="english-word">fun</span>！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🏟️ 魔法竞技场探险</h4>
+                <div class="mission-card">
+                    <h4>🏆 魔法任务：Coach Thunder的训练营</h4>
+                    <p>体验Coach Thunder的专业训练：</p>
+                    <ol>
+                        <li><strong>运动规则学习</strong>：区分不同运动的<span class="english-word">rules</span>和使用的身体部位</li>
+                        <li><strong>体育口号</strong>：学会说"<span class="english-word">Ready, set, go</span>！"和其他<span class="english-word">sports commands</span></li>
+                        <li><strong>团队精神</strong>：练习<span class="english-word">teamwork</span>和<span class="english-word">fair play</span></li>
+                        <li><strong>运动装备</strong>：认识<span class="english-word">whistle</span>、<span class="english-word">paddle</span>、<span class="english-word">racket</span>等器材</li>
+                    </ol>
+                    <p>成为真正的<span class="english-word">athlete</span>！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">✨ 魔法运动会奇观</h4>
+                <div class="mission-card">
+                    <h4>🌈 魔法任务：体验Magic Sports King的奇幻挑战</h4>
+                    <p>参与超现实的魔法体育项目：</p>
+                    <ol>
+                        <li><strong>Cloud Jumping</strong>：在想象的<span class="english-word">floating clouds</span>间跳跃（用垫子模拟）</li>
+                        <li><strong>Rainbow Cycling</strong>：假装在<span class="english-word">rainbow tracks</span>上骑行</li>
+                        <li><strong>Magic Ball Juggling</strong>：用<span class="english-word">glowing balls</span>（发光球）练习<span class="english-word">juggling</span></li>
+                        <li><strong>Balance Beam Dancing</strong>：在"会跳舞的"<span class="english-word">balance beam</span>上保持平衡</li>
+                    </ol>
+                    <p>让<span class="english-word">imagination</span>和<span class="english-word">sports</span>完美结合！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🏅 运动精神学院</h4>
+                <div class="mission-card">
+                    <h4>🤝 魔法任务：学习真正的Sportsmanship</h4>
+                    <p>掌握体育精神的核心价值：</p>
+                    <ol>
+                        <li><strong>尊重对手</strong>：练习说"<span class="english-word">Good game</span>！"和"<span class="english-word">Well played</span>！"</li>
+                        <li><strong>团队合作</strong>：体验<span class="english-word">teamwork</span>和<span class="english-word">cooperation</span></li>
+                        <li><strong>公平竞争</strong>：理解<span class="english-word">fair play</span>和<span class="english-word">honesty</span></li>
+                        <li><strong>永不放弃</strong>：学会<span class="english-word">never giving up</span>精神</li>
+                    </ol>
+                    <p>体育不只是<span class="english-word">winning</span>，更是<span class="english-word">character building</span>！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🎯 个人运动挑战赛</h4>
+                <div class="mission-card">
+                    <h4>🏃 魔法任务：发现你的运动天赋</h4>
+                    <p>探索不同运动项目的魅力：</p>
+                    <ol>
+                        <li><strong>速度挑战</strong>：测试你的<span class="english-word">running</span>和<span class="english-word">sprinting</span>能力</li>
+                        <li><strong>技巧练习</strong>：尝试<span class="english-word">basketball</span>投篮和<span class="english-word">football</span>踢球</li>
+                        <li><strong>平衡测试</strong>：练习<span class="english-word">gymnastics</span>基本动作</li>
+                        <li><strong>协调训练</strong>：体验<span class="english-word">table tennis</span>和<span class="english-word">tennis</span></li>
+                    </ol>
+                    <p>找到你最喜欢的<span class="english-word">sport</span>！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🏆 Magic Sports Heroes毕业典礼</h4>
+                <div class="mission-card">
+                    <h4>👑 魔法任务：获得Magic Sports Hero称号</h4>
+                    <p>完成最终的运动英雄考验：</p>
+                    <ol>
+                        <li><strong>体育知识问答</strong>：回答关于<span class="english-word">sports rules</span>的英语问题</li>
+                        <li><strong>运动技能展示</strong>：演示3种不同<span class="english-word">sports</span>的基本动作</li>
+                        <li><strong>团队配合测试</strong>：完成<span class="english-word">team relay</span>挑战</li>
+                        <li><strong>体育精神演讲</strong>：用英语说明<span class="english-word">sportsmanship</span>的重要性</li>
+                        <li><strong>魔法咒语</strong>：用运动英语单词施展<span class="english-word">magic spells</span></li>
+                    </ol>
+                    <p>通过所有挑战，成为<span class="english-word">Official Magic Sports Hero</span>！</p>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); color: #333; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: #333; margin-bottom: 15px;">🏆 Magic Sports Hero证书</h5>
+                    <p style="margin: 8px 0; text-align: center; font-weight: bold;">恭喜你完成了魔法竞技场的所有挑战！</p>
+                    <p style="margin: 8px 0; text-align: center;">你现在是一名真正的：</p>
+                    <p style="margin: 8px 0; text-align: center; font-size: 1.2em; color: #d63384; font-weight: bold;">🏃‍♂️ MAGIC SPORTS HERO 🏆</p>
+                    <p style="margin: 8px 0; text-align: center;">你最擅长的运动：</p>
+                    <p style="margin: 8px 0; text-align: center;">________________（选择：Running / Swimming / Basketball / Football / Gymnastics / Tennis）</p>
+                    <p style="margin: 8px 0; text-align: center;">你的体育精神宣言：</p>
+                    <p style="margin: 8px 0; text-align: center;">________________</p>
+                    <p style="margin: 8px 0; text-align: center;">你想组建的运动队伍：</p>
+                    <p style="margin: 8px 0; text-align: center;">________________</p>
+                    <p style="margin-top: 15px; font-style: italic; text-align: center;">🌟 Sports is the universal language that connects people！🌟</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🌍 国际体育交流营</h4>
+                <div class="mission-card">
+                    <h4>🤝 魔法任务：建立国际运动友谊</h4>
+                    <p>体验<span class="english-word">sports</span>作为<span class="english-word">universal language</span>的魅力：</p>
+                    <div style="background: #e8f5e8; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                        <p><strong>国际体育项目：</strong></p>
+                        <p>🏀 <span class="english-word">Basketball</span>: 美国发明，全球流行</p>
+                        <p>⚽ <span class="english-word">Football</span>: 世界最受欢迎的运动</p>
+                        <p>🏸 <span class="english-word">Badminton</span>: 亚洲特别流行</p>
+                        <p>🏓 <span class="english-word">Table Tennis</span>: 中国的强项运动</p>
+                        <p>🏊 <span class="english-word">Swimming</span>: 奥运会核心项目</p>
+                    </div>
+                    <ol>
+                        <li><strong>文化交流</strong>：学习不同国家的<span class="english-word">traditional sports</span></li>
+                        <li><strong>友谊赛组织</strong>：用英语组织<span class="english-word">friendly matches</span></li>
+                        <li><strong>规则解释</strong>：向外国朋友介绍运动<span class="english-word">rules</span></li>
+                        <li><strong>团队建设</strong>：建立跨文化的<span class="english-word">sports teams</span></li>
+                    </ol>
+                    <p>用<span class="english-word">sports</span>连接世界，传播<span class="english-word">friendship</span>！</p>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="chapter-nav">
+            <a href="chapter07.html" class="">⬅️ 上一章</a>
+            <a href="index.html" class="back-link">📚 返回章节目录</a>
+            <a href="chapter09.html" class="">下一章 ➡️</a>
+        </div>
+    </div>
+    
+    <!-- 单词发音功能 Word Pronunciation Feature -->
+    <script src="../js/word-pronunciation.js"></script>
+    
+    <!-- 发音功能使用说明提示 -->
+    <div id="pronunciation-guide" style="position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); max-width: 300px; font-size: 0.9em; z-index: 1000; opacity: 0; transition: opacity 0.5s ease;">
+        <div style="display: flex; align-items: center; margin-bottom: 8px;">
+            <span style="font-size: 1.2em; margin-right: 8px;">🔊</span>
+            <strong>单词发音功能已启用！</strong>
+        </div>
+        <p style="margin: 5px 0; font-size: 0.85em;">点击任意单词卡即可听到标准英语发音</p>
+        <p style="margin: 5px 0; font-size: 0.85em;">Click any word card to hear pronunciation</p>
+        <button onclick="this.parentElement.style.opacity='0'" style="position: absolute; top: 5px; right: 8px; background: none; border: none; color: white; cursor: pointer; font-size: 1.1em;">×</button>
+    </div>
+    
+    <script>
+        // 显示发音功能提示
+        setTimeout(() => {
+            const guide = document.getElementById('pronunciation-guide');
+            if (guide) {
+                guide.style.opacity = '1';
+                // 5秒后自动隐藏
+                setTimeout(() => {
+                    guide.style.opacity = '0';
+                }, 5000);
+            }
+        }, 2000);
+    </script>
+</body>
+</html>

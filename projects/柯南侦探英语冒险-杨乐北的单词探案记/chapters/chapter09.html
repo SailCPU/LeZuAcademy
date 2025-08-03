@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第9章：魔法天气的预测 - 柯南侦探英语冒险：杨乐北的单词探案记</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', 'SimSun', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+            max-width: 210mm;
+            margin: 0 auto;
+        }
+        
+        .container {
+            max-width: 180mm;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        
+        .chapter-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+        }
+        
+        .chapter-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.2);
+            transition: background 0.3s;
+        }
+        
+        .chapter-nav a:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .chapter-nav a.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .back-link {
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        
+        .back-link:hover {
+            background: #218838;
+        }
+        
+        .chapter {
+            margin-bottom: 40px;
+            page-break-inside: avoid;
+        }
+        
+        .chapter-title {
+            color: #495057;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #6c757d;
+            padding-bottom: 10px;
+        }
+        
+        .section-title {
+            color: #495057;
+            font-size: 1.4em;
+            margin: 25px 0 15px 0;
+            border-left: 3px solid #6c757d;
+            padding-left: 15px;
+        }
+        
+        .magic-box {
+            background: #f3e5f5;
+            border: 2px solid #9c27b0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .story-box {
+            background: #fff3cd;
+            border: 2px solid #ffeaa7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .word-box {
+            background: #d4edda;
+            border: 2px solid #c3e6cb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .game-box {
+            background: #f8d7da;
+            border: 2px solid #f5c6cb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .adventure-box {
+            background: #d1ecf1;
+            border: 2px solid #bee5eb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .english-word {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .chinese-meaning {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .magic {
+            color: #9c27b0;
+            font-weight: bold;
+        }
+        
+        .conan {
+            color: #e67e22;
+            font-weight: bold;
+        }
+        
+        .yang-lebei {
+            color: #3498db;
+            font-weight: bold;
+        }
+        
+        .yang-letian {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .yang-leda {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        
+        .adventure {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        
+        .word-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+                .word-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            user-select: none;
+        }
+        
+        .word-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-color: #007bff;
+        }
+        
+        .word-card .english {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 5px;
+        }
+        
+        .word-card .chinese {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .word-card .example {
+            font-style: italic;
+            color: #666;
+            margin-top: 8px;
+            font-size: 0.9em;
+        }
+        
+        .mission-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .mission-card h4 {
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        @media print {
+            .chapter-nav, .back-link {
+                display: none;
+            }
+            
+            @page {
+                margin: 20mm 15mm 20mm 15mm;
+                size: A4 portrait;
+            }
+            
+            body {
+                margin: 0;
+                padding: 0;
+                font-size: 11pt;
+                line-height: 1.5;
+                background-color: white;
+                max-width: none;
+            }
+            
+            .container {
+                max-width: none;
+                margin: 0;
+                padding: 0;
+                background-color: white;
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">📖 返回总目录</a>
+        <a href="index.html" class="back-link">📚 返回章节目录</a>
+        
+        <div class="chapter-nav">
+            <a href="chapter08.html" class="">⬅️ 上一章</a>
+            <span>第9章：魔法天气的预测</span>
+            <a href="chapter10.html" class="">下一章 ➡️</a>
+        </div>
+        
+                <div class="chapter">
+            <h3 class="chapter-title">🌦️ 第九章：魔法天气的预测</h3>
+            
+            <div class="story-box">
+                <h4 class="section-title">📖 故事板块：天气预言水晶球</h4>
+                <p>
+                    柯南院长带着<span class="yang-lebei">杨乐北</span>来到魔法学院的<span class="english-word">weather tower</span>。塔顶有一颗神奇的<span class="english-word">crystal ball</span>，可以预测<span class="english-word">weather</span>。
+                </p>
+                <p>
+                    "只有学会天气和季节单词，才能读懂水晶球的预言！"柯南院长神秘地说。
+                </p>
+                <p>
+                    水晶球里出现了<span class="english-word">sunny</span>、<span class="english-word">rainy</span>、<span class="english-word">cloudy</span>、<span class="english-word">snowy</span>、<span class="english-word">windy</span>、<span class="english-word">spring</span>、<span class="english-word">summer</span>、<span class="english-word">autumn</span>、<span class="english-word">winter</span>等词语。
+                </p>
+                
+                <p>正当<span class="yang-lebei">杨乐北</span>专心研究<span class="english-word">crystal ball</span>时，熟悉的吵闹声又传来了。</p>
+                
+                <p>"<span class="english-word">Sister</span>！我们又来了！"<span class="yang-letian">杨乐天</span>和<span class="yang-leda">杨乐达</span>闯进了<span class="english-word">weather tower</span>。</p>
+                
+                <p>"这次我们是<span class="english-word">weather</span> <span class="english-word">scientists</span>！"<span class="yang-letian">杨乐天</span>兴奋地说，手里拿着一个自制的<span class="english-word">barometer</span>。</p>
+                
+                <p>"我们要研究<span class="english-word">human</span> <span class="english-word">body</span> <span class="english-word">temperature</span>！"<span class="yang-leda">杨乐达</span>补充道，戴着一个玩具<span class="english-word">stethoscope</span>。</p>
+                
+                <p>柯南院长好奇地问："<span class="english-word">Body</span> <span class="english-word">temperature</span>？那不是<span class="english-word">medical</span> <span class="english-word">science</span>吗？"</p>
+                
+                <p>"<span class="english-word">Exactly</span>！"<span class="yang-letian">杨乐天</span>骄傲地说，"我们想知道<span class="english-word">body</span>里面是什么样的！"</p>
+                
+                <p>突然，<span class="yang-leda">杨乐达</span>碰到了<span class="english-word">crystal ball</span>旁边的一个神秘<span class="english-word">microscope</span>！</p>
+                
+                <p>"<span class="english-word">Careful</span>！"柯南院长大喊，但已经太晚了。</p>
+                
+                <p><span class="english-word">FLASH</span>！一道强烈的<span class="english-word">light</span>闪过，整个<span class="english-word">tower</span>都被<span class="english-word">magical</span> <span class="english-word">energy</span>包围了！</p>
+                
+                <p>"<span class="english-word">Oh</span> <span class="english-word">no</span>！"柯南院长惊叫，"那是<span class="english-word">Professor</span> <span class="english-word">Micro</span>的<span class="english-word">shrinking</span> <span class="english-word">microscope</span>！"</p>
+                
+                <p>三兄妹感觉自己在快速<span class="english-word">shrinking</span>！周围的世界变得越来越<span class="english-word">huge</span>！</p>
+                
+                <p>"<span class="english-word">Help</span>！我们在<span class="english-word">shrinking</span>！"<span class="yang-lebei">杨乐北</span>大喊。</p>
+                
+                <p>"<span class="english-word">Don't</span> <span class="english-word">panic</span>！"柯南院长的声音从远处传来，"<span class="english-word">Microscope</span>会把你们<span class="english-word">transport</span>到<span class="english-word">body</span> <span class="english-word">inside</span>！你们要学会<span class="english-word">body</span> <span class="english-word">parts</span>的<span class="english-word">English</span> <span class="english-word">words</span>才能<span class="english-word">return</span>！"</p>
+                
+                <p><span class="english-word">WHOOSH</span>！三兄妹被<span class="english-word">sucked</span>进了一个<span class="english-word">mysterious</span> <span class="english-word">tunnel</span>！</p>
+                
+                <h4 class="section-title">🦠 特别冒险：身体内部的奇妙世界</h4>
+                
+                <p>当三兄妹睁开眼睛时，发现自己在一个<span class="english-word">amazing</span> <span class="english-word">red</span> <span class="english-word">tunnel</span>里！</p>
+                
+                <p>"<span class="english-word">Where</span> <span class="english-word">are</span> <span class="english-word">we</span>？"<span class="yang-leda">杨乐达</span>困惑地问。</p>
+                
+                <p>突然，一群<span class="english-word">cute</span> <span class="english-word">red</span> <span class="english-word">round</span>东西飘了过来！</p>
+                
+                <p>"<span class="english-word">Hello</span>！我们是<span class="english-word">Red</span> <span class="english-word">Blood</span> <span class="english-word">Cells</span>！"其中一个<span class="english-word">cheerful</span>的声音说，"<span class="english-word">Welcome</span> to the <span class="english-word">bloodstream</span>！"</p>
+                
+                <p>"<span class="english-word">Blood</span> <span class="english-word">Cells</span>？"<span class="yang-letian">杨乐天</span>惊讶地问。</p>
+                
+                <p>"<span class="english-word">Yes</span>！我是<span class="english-word">Ruby</span>，一个<span class="english-word">red</span> <span class="english-word">blood</span> <span class="english-word">cell</span>！我的<span class="english-word">job</span>是<span class="english-word">carry</span> <span class="english-word">oxygen</span>到<span class="english-word">body</span>的每个<span class="english-word">part</span>！"</p>
+                
+                <p><span class="yang-lebei">杨乐北</span>兴奋地说："<span class="english-word">Amazing</span>！我们真的在<span class="english-word">body</span> <span class="english-word">inside</span>！"</p>
+                
+                <p>"这里是<span class="english-word">blood</span> <span class="english-word">vessel</span>，"<span class="english-word">Ruby</span>解释，"<span class="english-word">Blood</span>在这里<span class="english-word">flows</span>，把<span class="english-word">nutrients</span>和<span class="english-word">oxygen</span> <span class="english-word">deliver</span>到<span class="english-word">organs</span>！"</p>
+                
+                <p>突然，<span class="english-word">alarm</span>声响起！"<span class="english-word">Alert</span>！<span class="english-word">Alert</span>！<span class="english-word">Virus</span> <span class="english-word">detected</span>！"</p>
+                
+                <p>一群威武的<span class="english-word">white</span> <span class="english-word">soldiers</span>冲了过来！</p>
+                
+                <p>"我们是<span class="english-word">White</span> <span class="english-word">Blood</span> <span class="english-word">Cells</span>！"领头的<span class="english-word">warrior</span>说，"我是<span class="english-word">Captain</span> <span class="english-word">Neutrophil</span>！我们<span class="english-word">protect</span> <span class="english-word">body</span> <span class="english-word">from</span> <span class="english-word">germs</span>！"</p>
+                
+                <p>"<span class="english-word">Germs</span>？"<span class="yang-leda">杨乐达</span>紧张地问。</p>
+                
+                <p>"<span class="english-word">Bad</span> <span class="english-word">bacteria</span>和<span class="english-word">viruses</span>！"<span class="english-word">Captain</span> <span class="english-word">Neutrophil</span>解释，"但是<span class="english-word">don't</span> <span class="english-word">worry</span>，我们会<span class="english-word">fight</span>它们！"</p>
+                
+                <p>就在这时，一群<span class="english-word">tiny</span> <span class="english-word">cute</span> <span class="english-word">creatures</span>跑了过来！</p>
+                
+                <p>"我们是<span class="english-word">Platelets</span>！"其中一个<span class="english-word">small</span> <span class="english-word">voice</span>说，"我们<span class="english-word">help</span> <span class="english-word">stop</span> <span class="english-word">bleeding</span>！"</p>
+                
+                <p><span class="yang-letian">杨乐天</span>惊叹："<span class="english-word">So</span> <span class="english-word">many</span> <span class="english-word">different</span> <span class="english-word">cells</span>在<span class="english-word">working</span>！"</p>
+                
+                <p>"<span class="english-word">Exactly</span>！"<span class="english-word">Ruby</span>说，"<span class="english-word">Body</span>是一个<span class="english-word">amazing</span> <span class="english-word">system</span>！每个<span class="english-word">cell</span>都有<span class="english-word">important</span> <span class="english-word">job</span>！"</p>
+                
+                <p>突然，一个<span class="english-word">emergency</span> <span class="english-word">signal</span>传来："<span class="english-word">Attention</span>！<span class="english-word">Stomach</span> <span class="english-word">needs</span> <span class="english-word">help</span>！<span class="english-word">Bad</span> <span class="english-word">food</span> <span class="english-word">detected</span>！"</p>
+                
+                <p>"我们必须去<span class="english-word">stomach</span>！"<span class="english-word">Captain</span> <span class="english-word">Neutrophil</span>说，"你们想<span class="english-word">join</span>我们的<span class="english-word">mission</span>吗？"</p>
+                
+                <p>"<span class="english-word">Yes</span>！"三兄妹异口同声地说。</p>
+                
+                <p>他们跟着<span class="english-word">cells</span>穿过了<span class="english-word">heart</span>（心脏），看到了强有力的<span class="english-word">pumping</span>！</p>
+                
+                <p>"<span class="english-word">Heart</span> <span class="english-word">pumps</span> <span class="english-word">blood</span>！"<span class="english-word">Ruby</span>解释，"<span class="english-word">Lub-dub</span>, <span class="english-word">lub-dub</span>！"</p>
+                
+                <p>经过<span class="english-word">lungs</span>（肺）时，他们感受到了<span class="english-word">fresh</span> <span class="english-word">oxygen</span>！</p>
+                
+                <p>"<span class="english-word">Lungs</span> <span class="english-word">breathe</span> <span class="english-word">in</span> <span class="english-word">oxygen</span>！"一个<span class="english-word">lung</span> <span class="english-word">cell</span>友好地说。</p>
+                
+                <p>到达<span class="english-word">stomach</span>时，他们发现一些<span class="english-word">harmful</span> <span class="english-word">bacteria</span>在制造麻烦！</p>
+                
+                <p>"<span class="english-word">Attack</span>！"<span class="english-word">White</span> <span class="english-word">Blood</span> <span class="english-word">Cells</span>勇敢地冲向<span class="english-word">bacteria</span>！</p>
+                
+                <p><span class="yang-lebei">杨乐北</span>想帮忙："我们能做什么？"</p>
+                
+                <p>"用<span class="english-word">English</span> <span class="english-word">body</span> <span class="english-word">words</span> <span class="english-word">cast</span> <span class="english-word">healing</span> <span class="english-word">spells</span>！"<span class="english-word">Ruby</span>建议。</p>
+                
+                <p>"<span class="english-word">Heart</span>！<span class="english-word">Lungs</span>！<span class="english-word">Stomach</span>！<span class="english-word">Strong</span>！"三兄妹大声喊道。</p>
+                
+                <p><span class="english-word">Magic</span> <span class="english-word">energy</span>开始<span class="english-word">glowing</span>，帮助<span class="english-word">immune</span> <span class="english-word">system</span> <span class="english-word">fight</span> <span class="english-word">bacteria</span>！</p>
+                
+                <p>"<span class="english-word">Amazing</span>！"<span class="english-word">Captain</span> <span class="english-word">Neutrophil</span>赞叹，"你们的<span class="english-word">knowledge</span> <span class="english-word">power</span>很<span class="english-word">strong</span>！"</p>
+                
+                <p>战斗结束后，一个<span class="english-word">wise</span> <span class="english-word">voice</span>响起："<span class="english-word">Well</span> <span class="english-word">done</span>，<span class="english-word">young</span> <span class="english-word">heroes</span>！"</p>
+                
+                <p>出现了一个<span class="english-word">majestic</span> <span class="english-word">figure</span>——<span class="english-word">Brain</span> <span class="english-word">Master</span>！</p>
+                
+                <p>"我是<span class="english-word">brain</span>的<span class="english-word">controller</span>，"他说，"你们已经<span class="english-word">learned</span> <span class="english-word">body</span> <span class="english-word">system</span>的<span class="english-word">secrets</span>！"</p>
+                
+                <p>"现在，<span class="english-word">time</span> to <span class="english-word">return</span>！"<span class="english-word">Brain</span> <span class="english-word">Master</span>挥动<span class="english-word">hand</span>。</p>
+                
+                <p><span class="english-word">FLASH</span>！三兄妹又被<span class="english-word">bright</span> <span class="english-word">light</span>包围，回到了<span class="english-word">normal</span> <span class="english-word">size</span>！</p>
+                
+                <p>柯南院长松了一口气："<span class="english-word">Welcome</span> <span class="english-word">back</span>！你们<span class="english-word">learned</span> <span class="english-word">important</span> <span class="english-word">body</span> <span class="english-word">knowledge</span>！"</p>
+                
+                <p>"<span class="english-word">Body</span>真是<span class="english-word">amazing</span>！"<span class="yang-leda">杨乐达</span>兴奋地说，"每个<span class="english-word">cell</span>都在<span class="english-word">hard</span> <span class="english-word">working</span>！"</p>
+                
+                <p>"而且我们学会了<span class="english-word">so</span> <span class="english-word">many</span> <span class="english-word">body</span> <span class="english-word">parts</span> <span class="english-word">English</span> <span class="english-word">words</span>！"<span class="yang-letian">杨乐天</span>补充。</p>
+                
+                <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 15px 0; border: 2px dashed #f39c12;">
+                    <h5 style="color: #f39c12; margin-bottom: 10px;">🔍 魔法侦探任务</h5>
+                    <p><strong>你能猜出这些身体和天气单词的意思吗？</strong></p>
+                    <p>💡 <span class="english-word">sunny</span> = ________（提示：有太阳的天气）</p>
+                    <p>💡 <span class="english-word">rainy</span> = ________（提示：下雨的天气）</p>
+                    <p>💡 <span class="english-word">cloudy</span> = ________（提示：有很多云的天气）</p>
+                    <p>💡 <span class="english-word">snowy</span> = ________（提示：下雪的天气）</p>
+                    <p>💡 <span class="english-word">windy</span> = ________（提示：风很大的天气）</p>
+                    <p>💡 <span class="english-word">spring</span> = ________（提示：一年四季的第一个）</p>
+                    <p>💡 <span class="english-word">summer</span> = ________（提示：一年中最热的季节）</p>
+                    <p>💡 <span class="english-word">autumn</span> = ________（提示：树叶变黄的季节）</p>
+                    <p>💡 <span class="english-word">winter</span> = ________（提示：一年中最冷的季节）</p>
+                    <p>💡 <span class="english-word">body</span> = ________（提示：身体）</p>
+                    <p>💡 <span class="english-word">heart</span> = ________（提示：心脏）</p>
+                    <p>💡 <span class="english-word">lungs</span> = ________（提示：肺）</p>
+                    <p>💡 <span class="english-word">stomach</span> = ________（提示：胃）</p>
+                    <p>💡 <span class="english-word">brain</span> = ________（提示：大脑）</p>
+                    <p>💡 <span class="english-word">blood</span> = ________（提示：血液）</p>
+                    <p>💡 <span class="english-word">cells</span> = ________（提示：细胞）</p>
+                    <p>💡 <span class="english-word">red blood cells</span> = ________（提示：红血球）</p>
+                    <p>💡 <span class="english-word">erythrocytes</span> = ________（提示：红细胞的科学名称）</p>
+                    <p>💡 <span class="english-word">white blood cells</span> = ________（提示：白血球）</p>
+                    <p>💡 <span class="english-word">platelets</span> = ________（提示：血小板）</p>
+                    <p>💡 <span class="english-word">working cells</span> = ________（提示：工作细胞）</p>
+                    <p>💡 <span class="english-word">round shape</span> = ________（提示：圆形形状）</p>
+                    <p>💡 <span class="english-word">oxygen</span> = ________（提示：氧气）</p>
+                    <p>💡 <span class="english-word">nutrients</span> = ________（提示：营养）</p>
+                    <p>💡 <span class="english-word">bacteria</span> = ________（提示：细菌）</p>
+                    <p>💡 <span class="english-word">virus</span> = ________（提示：病毒）</p>
+                    <p>💡 <span class="english-word">immune system</span> = ________（提示：免疫系统）</p>
+                    <p>💡 <span class="english-word">organs</span> = ________（提示：器官）</p>
+                    <p>💡 <span class="english-word">bloodstream</span> = ________（提示：血流）</p>
+                    <p>💡 <span class="english-word">blood vessel</span> = ________（提示：血管）</p>
+                    <p>💡 <span class="english-word">temperature</span> = ________（提示：温度）</p>
+                    <p>💡 <span class="english-word">microscope</span> = ________（提示：显微镜）</p>
+                    <p>💡 <span class="english-word">medical</span> = ________（提示：医学的）</p>
+                    <p>💡 <span class="english-word">stethoscope</span> = ________（提示：听诊器）</p>
+                    <p>💡 <span class="english-word">barometer</span> = ________（提示：气压计）</p>
+                    <p>💡 <span class="english-word">shrinking</span> = ________（提示：缩小）</p>
+                    <p>💡 <span class="english-word">transport</span> = ________（提示：运输）</p>
+                    <p>💡 <span class="english-word">carry</span> = ________（提示：携带）</p>
+                    <p>💡 <span class="english-word">deliver</span> = ________（提示：传送）</p>
+                    <p>💡 <span class="english-word">protect</span> = ________（提示：保护）</p>
+                    <p>💡 <span class="english-word">fight</span> = ________（提示：战斗）</p>
+                    <p>💡 <span class="english-word">healing</span> = ________（提示：治疗）</p>
+                    <p>💡 <span class="english-word">pumping</span> = ________（提示：泵送）</p>
+                    <p>💡 <span class="english-word">breathe</span> = ________（提示：呼吸）</p>
+                    <p>💡 <span class="english-word">bleeding</span> = ________（提示：出血）</p>
+                </div>
+            </div>
+
+            <div class="word-box">
+                <h4 class="section-title">🔢 单词板块：天气与季节单词</h4>
+                <p>魔法天气预言师说："要想掌握天气魔法，你必须学会所有天气和季节的神秘单词！"</p>
+                
+                <div class="word-list">
+                    <div class="word-card">
+                        <div class="english">sunny</div>
+
+                        <div class="example">It's a sunny day today!</div>
+                </div>
+                    <div class="word-card">
+                        <div class="english">rainy</div>
+
+                        <div class="example">I like rainy days.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">cloudy</div>
+
+                        <div class="example">The sky is cloudy today.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">snowy</div>
+
+                        <div class="example">It's a snowy winter.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">windy</div>
+
+                        <div class="example">It's very windy outside.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">spring</div>
+
+                        <div class="example">Spring is beautiful.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">summer</div>
+
+                        <div class="example">Summer is hot and sunny.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">autumn</div>
+
+                        <div class="example">Autumn leaves are colorful.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">winter</div>
+
+                        <div class="example">Winter is cold and snowy.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">weather</div>
+
+                        <div class="example">How's the weather today?</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">temperature</div>
+
+                        <div class="example">The temperature is 25 degrees.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">hot</div>
+
+                        <div class="example">It's very hot in summer.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">cold</div>
+
+                        <div class="example">Winter is very cold.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">warm</div>
+
+                        <div class="example">Spring weather is warm.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">cool</div>
+
+                        <div class="example">Autumn is cool and comfortable.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">freezing</div>
+
+                        <div class="example">It's freezing outside!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">boiling</div>
+
+                        <div class="example">It's boiling hot today.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">mild</div>
+
+                        <div class="example">The weather is mild today.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">humid</div>
+
+                        <div class="example">Summer is hot and humid.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">dry</div>
+
+                        <div class="example">The desert is very dry.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">wet</div>
+
+                        <div class="example">My clothes are wet from rain.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">rain</div>
+
+                        <div class="example">The rain is falling softly.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">snow</div>
+
+                        <div class="example">Snow is white and beautiful.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">wind</div>
+
+                        <div class="example">The wind is blowing strongly.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">sun</div>
+
+                        <div class="example">The sun is shining brightly.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">moon</div>
+
+                        <div class="example">The moon is beautiful tonight.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">stars</div>
+
+                        <div class="example">I can see many stars tonight.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">sky</div>
+
+                        <div class="example">The sky is blue and clear.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">cloud</div>
+
+                        <div class="example">White clouds float in the sky.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">fog</div>
+
+                        <div class="example">Heavy fog covers the city.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">mist</div>
+
+                        <div class="example">Morning mist is romantic.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">hail</div>
+
+                        <div class="example">Hail can damage cars.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">thunder</div>
+
+                        <div class="example">Thunder is very loud.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">lightning</div>
+
+                        <div class="example">Lightning lights up the sky.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">storm</div>
+
+                        <div class="example">The storm is coming.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">hurricane</div>
+
+                        <div class="example">Hurricane brings strong winds.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">tornado</div>
+
+                        <div class="example">A tornado is very dangerous.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">typhoon</div>
+
+                        <div class="example">Typhoons occur in summer.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">blizzard</div>
+
+                        <div class="example">The blizzard blocked all roads.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">drizzle</div>
+
+                        <div class="example">Light drizzle is falling.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">shower</div>
+
+                        <div class="example">A quick shower passed by.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">downpour</div>
+
+                        <div class="example">The downpour soaked everyone.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">rainbow</div>
+
+                        <div class="example">A rainbow appears after rain.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">sunrise</div>
+
+                        <div class="example">Sunrise is very beautiful.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">sunset</div>
+
+                        <div class="example">We watched the sunset together.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">dawn</div>
+
+                        <div class="example">Dawn breaks in the east.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">dusk</div>
+
+                        <div class="example">Dusk is peaceful and quiet.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">breeze</div>
+
+                        <div class="example">A gentle breeze blows.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">gale</div>
+
+                        <div class="example">The gale knocked down trees.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">frost</div>
+
+                        <div class="example">Frost covers the grass.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">ice</div>
+
+                        <div class="example">Ice forms on the lake.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">snowflake</div>
+
+                        <div class="example">Each snowflake is unique.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">icicle</div>
+
+                        <div class="example">Icicles hang from the roof.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">snowman</div>
+
+                        <div class="example">Children build a snowman.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">sunshine</div>
+
+                        <div class="example">Sunshine makes me happy.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">shade</div>
+
+                        <div class="example">We sit in the shade.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">shadow</div>
+
+                        <div class="example">My shadow follows me.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">forecast</div>
+
+                        <div class="example">The weather forecast is accurate.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">predict</div>
+
+                        <div class="example">Can you predict tomorrow's weather?</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">climate</div>
+
+                        <div class="example">This region has a warm climate.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">season</div>
+
+                        <div class="example">Which season do you like best?</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">month</div>
+
+                        <div class="example">January is the first month.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">January</div>
+
+                        <div class="example">January is cold and snowy.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">February</div>
+
+                        <div class="example">February has 28 days.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">March</div>
+
+                        <div class="example">March is the beginning of spring.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">April</div>
+
+                        <div class="example">April showers bring May flowers.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">May</div>
+
+                        <div class="example">May is beautiful and warm.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">June</div>
+
+                        <div class="example">June is the start of summer.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">July</div>
+
+                        <div class="example">July is very hot.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">August</div>
+
+                        <div class="example">August is the hottest month.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">September</div>
+
+                        <div class="example">September brings autumn.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">October</div>
+
+                        <div class="example">October leaves are colorful.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">November</div>
+
+                        <div class="example">November is getting cold.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">December</div>
+
+                        <div class="example">December brings winter snow.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">umbrella</div>
+
+                        <div class="example">Take an umbrella, it might rain.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">raincoat</div>
+
+                        <div class="example">A raincoat keeps you dry.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">boots</div>
+
+                        <div class="example">Rain boots protect your feet.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">coat</div>
+
+                        <div class="example">Wear a warm coat in winter.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">scarf</div>
+
+                        <div class="example">A scarf keeps your neck warm.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">gloves</div>
+
+                        <div class="example">Gloves keep your hands warm.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">hat</div>
+
+                        <div class="example">A hat protects from the sun.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">sunglasses</div>
+
+                        <div class="example">Sunglasses protect your eyes.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">comfortable</div>
+
+                        <div class="example">The weather is comfortable today.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">pleasant</div>
+
+                        <div class="example">What a pleasant day!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">terrible</div>
+
+                        <div class="example">The weather is terrible today.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">lovely</div>
+
+                        <div class="example">What a lovely spring day!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">awful</div>
+
+                        <div class="example">The storm was awful.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">perfect</div>
+
+                        <div class="example">Perfect weather for a picnic!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">change</div>
+
+                        <div class="example">The weather can change quickly.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">improve</div>
+
+                        <div class="example">The weather will improve tomorrow.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">worsen</div>
+
+                        <div class="example">The storm will worsen tonight.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🌦️ 魔法天气预报员</h4>
+                <div class="mission-card">
+                    <h4>🌈 魔法任务：天气单词表演</h4>
+                    <p>和家人或小伙伴一起玩"天气预报"游戏：</p>
+                    <ol>
+                        <li>抽一张天气或季节单词卡，用动作和表情表演出来。</li>
+                        <li>其他人猜出是什么天气或季节，并说出英文单词。</li>
+                        <li>全部答对，获得"魔法天气预报员"称号！</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: white; margin-bottom: 15px;">📺 天气预报节目</h5>
+                    <p style="margin: 8px 0;"><strong>节目开头：</strong>"Good morning! This is Magic Weather News!"</p>
+                    <p style="margin: 8px 0;"><strong>今日天气：</strong>"Today is <span class="english-word">sunny</span> and <span class="english-word">warm</span>."</p>
+                    <p style="margin: 8px 0;"><strong>明日预报：</strong>"Tomorrow will be <span class="english-word">cloudy</span> with some <span class="english-word">rain</span>."</p>
+                    <p style="margin: 8px 0;"><strong>穿衣建议：</strong>"Don't forget your <span class="english-word">umbrella</span>!"</p>
+                    <p style="margin: 8px 0;"><strong>节目结尾：</strong>"Have a wonderful day!"</p>
+                    <p style="margin-top: 15px; font-style: italic;">🎤 播报技巧：加上手势指向天空和地图！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🌈 魔法四季变换</h4>
+                <div class="mission-card">
+                    <h4>🔄 魔法任务：四季轮回表演</h4>
+                    <p>用身体动作和道具，表演四季的变化过程：</p>
+                    <ol>
+                        <li><strong>春天（Spring）：</strong>做花朵绽放的动作，说"Spring is warm and beautiful!"</li>
+                        <li><strong>夏天（Summer）：</strong>做游泳和晒太阳的动作，说"Summer is hot and sunny!"</li>
+                        <li><strong>秋天（Autumn）：</strong>做树叶飘落的动作，说"Autumn is cool and colorful!"</li>
+                        <li><strong>冬天（Winter）：</strong>做打雪仗的动作，说"Winter is cold and snowy!"</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); color: #333; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: #333; margin-bottom: 15px;">🔄 四季魔法变身</h5>
+                    <p style="margin: 8px 0;">🌸 <strong>Spring Magic:</strong> 伸展双臂像花朵绽放</p>
+                    <p style="margin: 8px 0;">☀️ <strong>Summer Magic:</strong> 做游泳动作，假装很热擦汗</p>
+                    <p style="margin: 8px 0;">🍂 <strong>Autumn Magic:</strong> 手臂摆动像树叶飘落</p>
+                    <p style="margin: 8px 0;">❄️ <strong>Winter Magic:</strong> 抱紧身体假装很冷发抖</p>
+                    <p style="margin: 8px 0;"><strong>终极挑战：</strong>一分钟内变换四季！</p>
+                    <p style="margin-top: 15px; font-style: italic;">🌟 表演技巧：每个季节都要配上对应的英语介绍！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🎯 魔法天气侦探</h4>
+                <div class="mission-card">
+                    <h4>🔍 魔法任务：天气线索推理</h4>
+                    <p>根据给出的线索，推理出正确的天气情况：</p>
+                    <ol>
+                        <li>听取天气线索描述</li>
+                        <li>推理出对应的天气单词</li>
+                        <li>说出完整的英语句子</li>
+                        <li>解释你的推理过程</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: white; margin-bottom: 15px;">🔍 天气侦探案例</h5>
+                    <p style="margin: 8px 0;"><strong>案例1：</strong></p>
+                    <p style="margin: 8px 0;">🔍 线索：地面湿湿的，人们都撑着伞</p>
+                    <p style="margin: 8px 0;">🔍 答案：It's ________ today!</p>
+                    <p style="margin: 8px 0;"><strong>案例2：</strong></p>
+                    <p style="margin: 8px 0;">🔍 线索：天空很蓝，太阳很亮，很热</p>
+                    <p style="margin: 8px 0;">🔍 答案：It's ________ and ________!</p>
+                    <p style="margin: 8px 0;"><strong>案例3：</strong></p>
+                    <p style="margin: 8px 0;">🔍 线索：地上白茫茫的，孩子们在堆雪人</p>
+                    <p style="margin: 8px 0;">🔍 答案：It's ________ today!</p>
+                    <p style="margin-top: 15px; font-style: italic;">🏆 侦探技巧：仔细观察所有线索！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🎨 魔法天气艺术家</h4>
+                <div class="mission-card">
+                    <h4>🖌️ 魔法任务：画出天气的表情</h4>
+                    <p>给不同的天气画上表情和特征，让它们变成有生命的角色：</p>
+                    <ol>
+                        <li>画一个太阳先生（Mr. Sun），给它画上微笑的表情</li>
+                        <li>画一朵云小姐（Miss Cloud），给它画上不同的心情</li>
+                        <li>画雨滴宝宝（Baby Rain），给它们画上可爱的脸</li>
+                        <li>为每个角色配上英语台词</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); color: #333; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: #333; margin-bottom: 15px;">🎨 天气角色台词</h5>
+                    <p style="margin: 8px 0;">☀️ <strong>Mr. Sun说：</strong>"Hello! I make the day <span class="english-word">sunny</span> and <span class="english-word">bright</span>!"</p>
+                    <p style="margin: 8px 0;">☁️ <strong>Miss Cloud说：</strong>"I float in the <span class="english-word">sky</span> and make it <span class="english-word">cloudy</span>!"</p>
+                    <p style="margin: 8px 0;">🌧️ <strong>Baby Rain说：</strong>"We fall from clouds to make everything <span class="english-word">wet</span>!"</p>
+                    <p style="margin: 8px 0;">❄️ <strong>Snow Princess说：</strong>"I turn the world <span class="english-word">white</span> and <span class="english-word">beautiful</span>!"</p>
+                    <p style="margin: 8px 0;">🌪️ <strong>Wind Wizard说：</strong>"I blow strong and make the day <span class="english-word">windy</span>!"</p>
+                    <p style="margin-top: 15px; font-style: italic;">🎭 创作技巧：给每个角色设计独特的性格！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">📅 魔法天气日记</h4>
+                <div class="mission-card">
+                    <h4>📖 魔法任务：英语天气观察日记</h4>
+                    <p>连续一周观察天气，用英语记录天气日记：</p>
+                    <ol>
+                        <li>每天观察并记录天气情况</li>
+                        <li>用英语描述看到的天气现象</li>
+                        <li>记录自己的感受和活动</li>
+                        <li>一周后总结天气变化规律</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: #333; margin-bottom: 15px;">📅 天气日记模板</h5>
+                    <p style="margin: 8px 0;"><strong>Monday:</strong> Today is ________. The temperature is ________.</p>
+                    <p style="margin: 8px 0;"><strong>Tuesday:</strong> It's ________ and ________. I feel ________.</p>
+                    <p style="margin: 8px 0;"><strong>Wednesday:</strong> The weather is ________. I can see ________.</p>
+                    <p style="margin: 8px 0;"><strong>Thursday:</strong> ________ is falling from the sky.</p>
+                    <p style="margin: 8px 0;"><strong>Friday:</strong> The wind is ________. I wear my ________.</p>
+                    <p style="margin: 8px 0;"><strong>Saturday:</strong> Perfect weather for ________!</p>
+                    <p style="margin: 8px 0;"><strong>Sunday:</strong> This week the weather was ________.</p>
+                    <p style="margin-top: 15px; font-style: italic;">📊 观察技巧：注意天气的细微变化！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🎭 魔法天气情景剧</h4>
+                <div class="mission-card">
+                    <h4>🎪 魔法任务：天气主题表演</h4>
+                    <p>和小伙伴一起创作并表演天气主题的情景剧：</p>
+                    <ol>
+                        <li><strong>剧本1：</strong>雨天的冒险（Rainy Day Adventure）</li>
+                        <li><strong>剧本2：</strong>雪天的快乐（Snowy Day Fun）</li>
+                        <li><strong>剧本3：</strong>夏日海滩（Summer Beach）</li>
+                        <li><strong>剧本4：</strong>春天的花园（Spring Garden）</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: white; margin-bottom: 15px;">🎭 情景剧台词示例</h5>
+                    <p style="margin: 8px 0;"><strong>雨天冒险：</strong></p>
+                    <p style="margin: 8px 0;">👧 "Oh no! It's <span class="english-word">raining</span>! I need my <span class="english-word">umbrella</span>!"</p>
+                    <p style="margin: 8px 0;">👦 "Don't worry! <span class="english-word">Rain</span> is fun! Let's splash in puddles!"</p>
+                    <p style="margin: 8px 0;"><strong>雪天快乐：</strong></p>
+                    <p style="margin: 8px 0;">👧 "Look! It's <span class="english-word">snowing</span>! Let's build a <span class="english-word">snowman</span>!"</p>
+                    <p style="margin: 8px 0;">👦 "Great idea! <span class="english-word">Winter</span> is so much fun!"</p>
+                    <p style="margin-top: 15px; font-style: italic;">🌟 表演技巧：用道具增加真实感！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🌡️ 魔法温度感应器</h4>
+                <div class="mission-card">
+                    <h4>🔥 魔法任务：温度感知挑战</h4>
+                    <p>用身体感受不同的温度，并用英语描述感受：</p>
+                    <ol>
+                        <li>模拟极热天气，说"It's boiling hot!"</li>
+                        <li>模拟寒冷天气，说"It's freezing cold!"</li>
+                        <li>模拟温暖天气，说"It's warm and comfortable!"</li>
+                        <li>模拟凉爽天气，说"It's cool and pleasant!"</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); color: #333; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: #333; margin-bottom: 15px;">🌡️ 温度表演指南</h5>
+                    <p style="margin: 8px 0;">🔥 <strong>Boiling Hot:</strong> 大声喊"I'm melting!"，用手扇风</p>
+                    <p style="margin: 8px 0;">🧊 <strong>Freezing Cold:</strong> 抱紧身体发抖，说"Brrr!"</p>
+                    <p style="margin: 8px 0;">🌞 <strong>Warm:</strong> 伸展身体，做深呼吸，微笑</p>
+                    <p style="margin: 8px 0;">🍃 <strong>Cool:</strong> 轻松摆动，表现舒适的样子</p>
+                    <p style="margin: 8px 0;"><strong>终极挑战：</strong>一分钟内表演所有温度感受！</p>
+                    <p style="margin-top: 15px; font-style: italic;">🎭 表演技巧：表情和动作要夸张！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🗣️ 魔法天气对话</h4>
+                <div class="mission-card">
+                    <h4>💬 魔法任务：用天气单词对话</h4>
+                    <p>用学到的天气和季节单词，和小伙伴进行简单的英语对话：</p>
+                    <p>比如："How is the weather today?" "It is <span class="english-word">sunny</span>!"</p>
+                    <p>"Which season do you like best?" "I like <span class="english-word">spring</span>."</p>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: #333; margin-bottom: 15px;">💬 天气对话大全</h5>
+                    <p style="margin: 8px 0;"><strong>基础对话：</strong></p>
+                    <p style="margin: 8px 0;">A: "How's the weather?" B: "It's <span class="english-word">sunny</span> and <span class="english-word">warm</span>."</p>
+                    <p style="margin: 8px 0;"><strong>季节对话：</strong></p>
+                    <p style="margin: 8px 0;">A: "What season is it?" B: "It's <span class="english-word">spring</span>. I love <span class="english-word">spring</span>!"</p>
+                    <p style="margin: 8px 0;"><strong>预测对话：</strong></p>
+                    <p style="margin: 8px 0;">A: "Will it rain tomorrow?" B: "Yes, bring your <span class="english-word">umbrella</span>!"</p>
+                    <p style="margin: 8px 0;"><strong>穿衣对话：</strong></p>
+                    <p style="margin: 8px 0;">A: "What should I wear?" B: "Wear a <span class="english-word">coat</span>, it's <span class="english-word">cold</span>!"</p>
+                    <p style="margin-top: 15px; font-style: italic;">🗣️ 对话技巧：轮流问答，练习更多组合！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">📝 魔法天气故事创作</h4>
+                <div class="mission-card">
+                    <h4>📚 魔法任务：编一个天气冒险故事</h4>
+                    <p>用学到的天气和季节单词，编一个属于你的魔法天气冒险故事，可以画出来，也可以写下来！</p>
+                    <p>比如："One day, the <span class="english-word">weather</span> changed from <span class="english-word">sunny</span> to <span class="english-word">rainy</span>..."</p>
+                </div>
+                
+                <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                    <h5><strong>天气故事创作模板：</strong></h5>
+                    <p><strong>开头：</strong>One <span class="english-word">sunny</span> morning in <span class="english-word">spring</span>...</p>
+                    <p><strong>发展：</strong>Suddenly, the <span class="english-word">weather</span> started to <span class="english-word">change</span>...</p>
+                    <p><strong>高潮：</strong>A big <span class="english-word">storm</span> came with <span class="english-word">thunder</span> and <span class="english-word">lightning</span>...</p>
+                    <p><strong>结尾：</strong>After the storm, a beautiful <span class="english-word">rainbow</span> appeared...</p>
+                    <p style="margin-top: 10px;"><strong>挑战：</strong>在你的故事中至少使用15个不同的天气单词！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🎯 魔法天气计划师</h4>
+                <div class="mission-card">
+                    <h4>📋 魔法任务：制定天气活动计划</h4>
+                    <p>根据不同的天气情况，制定相应的活动计划：</p>
+                    <ol>
+                        <li>晴天计划：适合<span class="english-word">sunny</span>天气的活动</li>
+                        <li>雨天计划：适合<span class="english-word">rainy</span>天气的活动</li>
+                        <li>雪天计划：适合<span class="english-word">snowy</span>天气的活动</li>
+                        <li>四季计划：每个<span class="english-word">season</span>的特色活动</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: #333; margin-bottom: 15px;">🎯 我的天气活动计划</h5>
+                    <p style="margin: 8px 0;">☀️ <strong>Sunny Day Plan:</strong> I will ________________</p>
+                    <p style="margin: 8px 0;">🌧️ <strong>Rainy Day Plan:</strong> I will ________________</p>
+                    <p style="margin: 8px 0;">❄️ <strong>Snowy Day Plan:</strong> I will ________________</p>
+                    <p style="margin: 8px 0;">🌸 <strong>Spring Plan:</strong> In spring, I want to ________________</p>
+                    <p style="margin: 8px 0;">☀️ <strong>Summer Plan:</strong> In summer, I will ________________</p>
+                    <p style="margin: 8px 0;">🍂 <strong>Autumn Plan:</strong> In autumn, I plan to ________________</p>
+                    <p style="margin: 8px 0;">❄️ <strong>Winter Plan:</strong> In winter, I hope to ________________</p>
+                    <p style="margin-top: 15px; font-style: italic;">📅 计划技巧：考虑安全和天气用品！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🦠 身体内部大冒险</h4>
+                <div class="mission-card">
+                    <h4>🔬 魔法任务：模拟微缩进入人体的奇妙旅程</h4>
+                    <p>重现故事中的身体内部冒险：</p>
+                    <ol>
+                        <li><strong>缩小体验</strong>：假装被<span class="english-word">shrinking microscope</span>缩小，说"<span class="english-word">We're shrinking</span>！"</li>
+                        <li><strong>血流漂流</strong>：模拟在<span class="english-word">bloodstream</span>中游泳，学会说"<span class="english-word">Welcome to bloodstream</span>！"</li>
+                        <li><strong>细胞角色扮演</strong>：扮演不同的<span class="english-word">cells</span>（<span class="english-word">red blood cells</span>、<span class="english-word">white blood cells</span>、<span class="english-word">platelets</span>）</li>
+                        <li><strong>器官探索</strong>："参观"<span class="english-word">heart</span>、<span class="english-word">lungs</span>、<span class="english-word">stomach</span>、<span class="english-word">brain</span></li>
+                    </ol>
+                    <p>感受<span class="english-word">body</span>内部的<span class="english-word">amazing</span>世界！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🩸 红血球Ruby的工作日</h4>
+                
+                <!-- 红细胞显微镜图片展示区域 -->
+                <div style="text-align: center; margin: 25px 0; padding: 20px; background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%); border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.2);">
+                    <h5 style="color: white; margin-bottom: 15px; font-size: 1.2em; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">🔬 真实的红细胞显微镜图片 Real Red Blood Cells</h5>
+                    <div style="display: inline-block; padding: 10px; background: rgba(255,255,255,0.9); border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                        <img src="../assets/images/erythrocytes__020.jpg" alt="红细胞显微镜图片" style="width: 300px; height: 200px; border-radius: 10px; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.2);" />
+                    </div>
+                    <p style="color: white; margin-top: 12px; font-style: italic; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); font-size: 0.9em;">
+                        这些就是真实的<span style="color: #ffeb3b; font-weight: bold;">red blood cells (erythrocytes)</span>！
+                        它们在你的<span style="color: #ffeb3b; font-weight: bold;">bloodstream</span>中<span style="color: #ffeb3b; font-weight: bold;">transport oxygen</span>
+                    </p>
+                </div>
+                
+                <div class="mission-card">
+                    <h4>❤️ 魔法任务：体验红血球的氧气运输工作</h4>
+                    <p>看着上面的真实红细胞图片，你能看到它们的<span class="english-word">round shape</span>！现在模拟红血球Ruby的日常工作：</p>
+                    <ol>
+                        <li><strong>氧气收集</strong>：在"<span class="english-word">lungs</span>"收集<span class="english-word">oxygen</span>，说"<span class="english-word">I carry oxygen</span>！"</li>
+                        <li><strong>血管之旅</strong>：穿过<span class="english-word">blood vessels</span>，运送<span class="english-word">oxygen</span>到各个<span class="english-word">organs</span></li>
+                        <li><strong>营养传递</strong>：同时<span class="english-word">deliver nutrients</span>到身体各部分</li>
+                        <li><strong>废物清理</strong>：带走<span class="english-word">waste</span>和<span class="english-word">carbon dioxide</span></li>
+                    </ol>
+                    <p>成为最<span class="english-word">hardworking</span>的<span class="english-word">red blood cell</span>！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">⚔️ 白血球战士训练营</h4>
+                <div class="mission-card">
+                    <h4>🛡️ 魔法任务：成为Captain Neutrophil的战友</h4>
+                    <p>参加白血球的防御训练：</p>
+                    <ol>
+                        <li><strong>敌人识别</strong>：学会识别<span class="english-word">bacteria</span>、<span class="english-word">virus</span>、<span class="english-word">germs</span></li>
+                        <li><strong>战斗训练</strong>：练习说"<span class="english-word">Alert! Virus detected</span>！"和"<span class="english-word">Attack</span>！"</li>
+                        <li><strong>保护任务</strong>：<span class="english-word">Protect body from germs</span>的各种策略</li>
+                        <li><strong>团队配合</strong>：与其他<span class="english-word">immune system</span>成员<span class="english-word">cooperate</span></li>
+                    </ol>
+                    <p>守护<span class="english-word">body</span>的<span class="english-word">health</span>！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🩹 血小板急救队</h4>
+                <div class="mission-card">
+                    <h4>🚑 魔法任务：学习血小板的止血技能</h4>
+                    <p>体验血小板的重要工作：</p>
+                    <ol>
+                        <li><strong>紧急响应</strong>：听到"<span class="english-word">bleeding detected</span>！"立即行动</li>
+                        <li><strong>快速聚集</strong>：多个<span class="english-word">platelets</span>快速<span class="english-word">gather</span>到伤口处</li>
+                        <li><strong>凝血过程</strong>：形成<span class="english-word">blood clot</span>来<span class="english-word">stop bleeding</span></li>
+                        <li><strong>伤口愈合</strong>：帮助<span class="english-word">wound healing</span>过程</li>
+                    </ol>
+                    <p>虽然<span class="english-word">tiny</span>但非常<span class="english-word">important</span>！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🧠 Brain Master的指挥中心</h4>
+                <div class="mission-card">
+                    <h4>🎛️ 魔法任务：体验大脑的控制功能</h4>
+                    <p>参观Brain Master的指挥中心：</p>
+                    <ol>
+                        <li><strong>神经传递</strong>：发送<span class="english-word">nerve signals</span>到身体各部分</li>
+                        <li><strong>记忆存储</strong>：学习<span class="english-word">memory storage</span>和<span class="english-word">recall</span></li>
+                        <li><strong>思考过程</strong>：体验<span class="english-word">thinking</span>和<span class="english-word">decision making</span></li>
+                        <li><strong>身体协调</strong>：控制<span class="english-word">movement</span>和<span class="english-word">coordination</span></li>
+                    </ol>
+                    <p><span class="english-word">Brain</span>是<span class="english-word">body</span>的<span class="english-word">master controller</span>！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">💓 心脏泵站大作战</h4>
+                <div class="mission-card">
+                    <h4>🫀 魔法任务：感受心脏的强大力量</h4>
+                    <p>体验心脏的泵血工作：</p>
+                    <ol>
+                        <li><strong>心跳节奏</strong>：跟着"<span class="english-word">lub-dub, lub-dub</span>"的节奏运动</li>
+                        <li><strong>血液循环</strong>：理解<span class="english-word">blood circulation</span>的重要性</li>
+                        <li><strong>压力调节</strong>：学习<span class="english-word">blood pressure</span>的概念</li>
+                        <li><strong>运动影响</strong>：了解<span class="english-word">exercise</span>对<span class="english-word">heart</span>的好处</li>
+                    </ol>
+                    <p><span class="english-word">Heart</span>一天<span class="english-word">pumps</span>约10万次！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🫁 肺部呼吸实验室</h4>
+                <div class="mission-card">
+                    <h4>💨 魔法任务：探索呼吸的奥秘</h4>
+                    <p>在肺部实验室学习呼吸：</p>
+                    <ol>
+                        <li><strong>氧气吸入</strong>：练习深<span class="english-word">breathe in oxygen</span></li>
+                        <li><strong>二氧化碳排出</strong>：<span class="english-word">breathe out carbon dioxide</span></li>
+                        <li><strong>气体交换</strong>：了解<span class="english-word">gas exchange</span>过程</li>
+                        <li><strong>肺活量测试</strong>：测试你的<span class="english-word">lung capacity</span></li>
+                    </ol>
+                    <p><span class="english-word">Fresh oxygen</span>是生命的源泉！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🏆 身体系统大师认证</h4>
+                <div class="mission-card">
+                    <h4>🎓 魔法任务：获得Body System Master证书</h4>
+                    <p>完成最终的身体系统挑战：</p>
+                    <ol>
+                        <li><strong>器官识别</strong>：正确说出<span class="english-word">heart</span>、<span class="english-word">lungs</span>、<span class="english-word">stomach</span>、<span class="english-word">brain</span>的功能</li>
+                        <li><strong>细胞分类</strong>：区分<span class="english-word">red blood cells</span>、<span class="english-word">white blood cells</span>、<span class="english-word">platelets</span></li>
+                        <li><strong>系统协作</strong>：解释<span class="english-word">immune system</span>如何<span class="english-word">protect</span>身体</li>
+                        <li><strong>健康维护</strong>：制定保持<span class="english-word">body health</span>的计划</li>
+                        <li><strong>医学英语</strong>：熟练使用<span class="english-word">medical vocabulary</span></li>
+                    </ol>
+                    <p>成为<span class="english-word">Official Body System Master</span>！</p>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%); color: white; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: white; margin-bottom: 15px;">🏆 Body System Master证书</h5>
+                    <p style="margin: 8px 0; text-align: center; font-weight: bold;">恭喜你完成了身体内部的奇妙冒险！</p>
+                    <p style="margin: 8px 0; text-align: center;">你现在是一名真正的：</p>
+                    <p style="margin: 8px 0; text-align: center; font-size: 1.2em; color: #fff566; font-weight: bold;">🦠 BODY SYSTEM MASTER 🫀</p>
+                    <p style="margin: 8px 0; text-align: center;">你最感兴趣的身体系统：</p>
+                    <p style="margin: 8px 0; text-align: center;">________________（选择：Heart / Lungs / Brain / Immune System / Blood / Digestive）</p>
+                    <p style="margin: 8px 0; text-align: center;">你想成为的细胞类型：</p>
+                    <p style="margin: 8px 0; text-align: center;">________________</p>
+                    <p style="margin: 8px 0; text-align: center;">你的健康宣言：</p>
+                    <p style="margin: 8px 0; text-align: center;">________________</p>
+                    <p style="margin-top: 15px; font-style: italic; text-align: center;">🌟 Every cell in your body is working hard for you！🌟</p>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="chapter-nav">
+            <a href="chapter08.html" class="">⬅️ 上一章</a>
+            <a href="index.html" class="back-link">📚 返回章节目录</a>
+            <a href="chapter10.html" class="">下一章 ➡️</a>
+        </div>
+    </div>
+    
+    <!-- 单词发音功能 Word Pronunciation Feature -->
+    <script src="../js/word-pronunciation.js"></script>
+    
+    <!-- 发音功能使用说明提示 -->
+    <div id="pronunciation-guide" style="position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); max-width: 300px; font-size: 0.9em; z-index: 1000; opacity: 0; transition: opacity 0.5s ease;">
+        <div style="display: flex; align-items: center; margin-bottom: 8px;">
+            <span style="font-size: 1.2em; margin-right: 8px;">🔊</span>
+            <strong>单词发音功能已启用！</strong>
+        </div>
+        <p style="margin: 5px 0; font-size: 0.85em;">点击任意单词卡即可听到标准英语发音</p>
+        <p style="margin: 5px 0; font-size: 0.85em;">Click any word card to hear pronunciation</p>
+        <button onclick="this.parentElement.style.opacity='0'" style="position: absolute; top: 5px; right: 8px; background: none; border: none; color: white; cursor: pointer; font-size: 1.1em;">×</button>
+    </div>
+    
+    <script>
+        // 显示发音功能提示
+        setTimeout(() => {
+            const guide = document.getElementById('pronunciation-guide');
+            if (guide) {
+                guide.style.opacity = '1';
+                // 5秒后自动隐藏
+                setTimeout(() => {
+                    guide.style.opacity = '0';
+                }, 5000);
+            }
+        }, 2000);
+    </script>
+</body>
+</html>

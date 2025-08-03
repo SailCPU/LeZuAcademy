@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第2章：颜色单词的魔法咒语 - 柯南侦探英语冒险：杨乐北的单词探案记</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', 'SimSun', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+            max-width: 210mm;
+            margin: 0 auto;
+        }
+        
+        .container {
+            max-width: 180mm;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        
+        .chapter-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffb3d9 0%, #ffd6f0 100%);
+            color: #333;
+            border-radius: 8px;
+        }
+        
+        .chapter-nav a {
+            color: #333;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.6);
+            transition: background 0.3s;
+        }
+        
+        .chapter-nav a:hover {
+            background: rgba(255,255,255,0.8);
+        }
+        
+        .chapter-nav a.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .back-link {
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        
+        .back-link:hover {
+            background: #218838;
+        }
+        
+        .chapter {
+            margin-bottom: 40px;
+            page-break-inside: avoid;
+        }
+        
+        .chapter-title {
+            color: #495057;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #6c757d;
+            padding-bottom: 10px;
+        }
+        
+        .section-title {
+            color: #495057;
+            font-size: 1.4em;
+            margin: 25px 0 15px 0;
+            border-left: 3px solid #6c757d;
+            padding-left: 15px;
+        }
+        
+        .magic-box {
+            background: #f3e5f5;
+            border: 2px solid #9c27b0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .story-box {
+            background: #fff3cd;
+            border: 2px solid #ffeaa7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .word-box {
+            background: #d4edda;
+            border: 2px solid #c3e6cb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .game-box {
+            background: #f8d7da;
+            border: 2px solid #f5c6cb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .adventure-box {
+            background: #d1ecf1;
+            border: 2px solid #bee5eb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .english-word {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .chinese-meaning {
+            color: #000000;
+            font-weight: bold;
+        }
+        
+        .magic {
+            color: #9c27b0;
+            font-weight: bold;
+        }
+        
+        .conan {
+            color: #e67e22;
+            font-weight: bold;
+        }
+        
+        .yang-lebei {
+            color: #3498db;
+            font-weight: bold;
+        }
+        
+        .yang-letian {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .yang-leda {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        
+        .adventure {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        
+        .word-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .word-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            user-select: none;
+        }
+        
+        .word-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-color: #007bff;
+        }
+        
+        .word-card .english {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 5px;
+        }
+        
+        .word-card .chinese {
+            color: #000000;
+            font-weight: bold;
+        }
+        
+        .word-card .example {
+            font-style: italic;
+            color: #666;
+            margin-top: 8px;
+            font-size: 0.9em;
+        }
+        
+        .mission-card {
+            background: linear-gradient(135deg, #ffb3d9 0%, #ffd6f0 100%);
+            color: #333;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .mission-card h4 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        @media print {
+            .chapter-nav, .back-link {
+                display: none;
+            }
+            
+            @page {
+                margin: 20mm 15mm 20mm 15mm;
+                size: A4 portrait;
+            }
+            
+            body {
+                margin: 0;
+                padding: 0;
+                font-size: 11pt;
+                line-height: 1.5;
+                background-color: white;
+                max-width: none;
+            }
+            
+            .container {
+                max-width: none;
+                margin: 0;
+                padding: 0;
+                background-color: white;
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">📖 返回总目录</a>
+        <a href="index.html" class="back-link">📚 返回章节目录</a>
+        
+        <div class="chapter-nav">
+            <a href="chapter01.html" class="">⬅️ 上一章</a>
+            <span>第2章：颜色单词的魔法咒语</span>
+            <a href="chapter03.html" class="">下一章 ➡️</a>
+        </div>
+        
+                <div class="chapter">
+            <h3 class="chapter-title">✨ 第二章：颜色单词的魔法咒语</h3>
+            
+            <div class="story-box">
+                <h4 class="section-title">📖 故事板块：彩虹魔法考验</h4>
+                <p>
+                    第二天清晨，<span class="yang-lebei">杨乐北</span>走进了魔法学院的<span class="english-word">garden</span>。突然，天上出现了一道美丽的<span class="english-word">rainbow</span>，每一节都闪烁着不同的颜色。
+                </p>
+                <p>
+                    柯南院长微笑着说："要想通过彩虹魔法考验，你必须念出每种颜色的<span class="english-word">magic word</span>，让彩虹变得更亮！"
+                </p>
+                <p>
+                    <span class="yang-lebei">杨乐北</span>看着彩虹，发现上面写着：<span class="english-word">red</span>、<span class="english-word">blue</span>、<span class="english-word">yellow</span>、<span class="english-word">green</span>、<span class="english-word">purple</span>、<span class="english-word">pink</span>。
+                </p>
+                <p>
+                    "你能猜出这些<span class="english-word">magic words</span>代表什么颜色吗？"柯南院长神秘地问。
+                </p>
+                
+                <p>这时，<span class="yang-letian">杨乐天</span>和<span class="yang-leda">杨乐达</span>又趴在<span class="english-word">window</span>上偷看。</p>
+                
+                <p>"<span class="english-word">Sister</span>！我们也<span class="english-word">want</span>看<span class="english-word">rainbow</span>！"<span class="yang-letian">杨乐天</span>大声喊道。</p>
+                
+                <p>"<span class="english-word">Me too</span>！我也<span class="english-word">want</span>看！"<span class="yang-leda">杨乐达</span>也跟着喊道。</p>
+                
+                <p>"<span class="english-word">Come in</span>，<span class="english-word">boys</span>！"柯南院长笑着说，"你们也可以<span class="english-word">learn</span>颜色<span class="english-word">magic</span>！"</p>
+                
+                <p><span class="yang-letian">杨乐天</span>和<span class="yang-leda">杨乐达</span>兴奋地从<span class="english-word">window</span>爬了进来。</p>
+                
+                <p>"<span class="english-word">Now</span>，让我们<span class="english-word">start</span>颜色<span class="english-word">magic</span>考验！"柯南院长说。</p>
+                
+                <p>"<span class="english-word">Red</span>！"<span class="yang-lebei">杨乐北</span>指着彩虹的第一节说道。</p>
+                
+                <p>突然，一个<span class="english-word">red</span>的<span class="english-word">apple</span>从天上掉了下来！</p>
+                
+                <p>"<span class="english-word">Wow</span>！太<span class="english-word">amazing</span>了！"<span class="yang-letian">杨乐天</span>兴奋地说。</p>
+                
+                <p>"<span class="english-word">Blue</span>！"<span class="yang-lebei">杨乐北</span>继续念道。</p>
+                
+                <p>一朵<span class="english-word">blue</span>的<span class="english-word">flower</span>在空中绽放！</p>
+                
+                <p>"<span class="english-word">Yellow</span>！"<span class="yang-leda">杨乐达</span>也忍不住跟着念道。</p>
+                
+                <p>一个<span class="english-word">yellow</span>的<span class="english-word">star</span>在天空中闪烁！</p>
+                
+                <p>"<span class="english-word">Green</span>！"<span class="yang-lebei">杨乐北</span>继续。</p>
+                
+                <p>一片<span class="english-word">green</span>的<span class="english-word">leaf</span>飘落下来！</p>
+                
+                <p>"<span class="english-word">Purple</span>！"<span class="yang-letian">杨乐天</span>也加入了。</p>
+                
+                <p>一串<span class="english-word">purple</span>的<span class="english-word">grapes</span>出现在空中！</p>
+                
+                <p>"<span class="english-word">Pink</span>！"<span class="yang-leda">杨乐达</span>最后念道。</p>
+                
+                <p>一朵<span class="english-word">pink</span>的<span class="english-word">rose</span>在<span class="english-word">garden</span>里盛开！</p>
+                
+                <p>"<span class="english-word">Perfect</span>！"柯南院长鼓掌说，"你们<span class="english-word">all</span>都<span class="english-word">learn</span>得很好！"</p>
+                
+                <p>"<span class="english-word">Thank you</span>，柯南院长！"<span class="yang-lebei">杨乐北</span>高兴地说。</p>
+                
+                <p>"<span class="english-word">You're welcome</span>！"柯南院长说，"<span class="english-word">Now</span>让我们<span class="english-word">play</span>一个<span class="english-word">color</span> <span class="english-word">game</span>！"</p>
+                
+                <p>突然，<span class="english-word">garden</span>里传来<span class="english-word">strange</span>的<span class="english-word">sound</span>。</p>
+                
+                <p>"<span class="english-word">What</span> <span class="english-word">is</span> <span class="english-word">that</span>？"<span class="yang-lebei">杨乐北</span>好奇地问。</p>
+                
+                <p>"<span class="english-word">Look</span>！"<span class="yang-letian">杨乐天</span>指着<span class="english-word">garden</span>说，"有一只<span class="english-word">colorful</span>的<span class="english-word">butterfly</span>！"</p>
+                
+                <p>一只<span class="english-word">beautiful</span>的<span class="english-word">butterfly</span>飞到了<span class="english-word">rainbow</span>旁边。</p>
+                
+                <p>"<span class="english-word">Hello</span>！我是<span class="english-word">butterfly</span>贝蒂！"<span class="english-word">butterfly</span>用英语说道。</p>
+                
+                <p>"<span class="english-word">Wow</span>！会说话的<span class="english-word">butterfly</span>！"<span class="yang-leda">杨乐达</span>兴奋地说。</p>
+                
+                <p>"<span class="english-word">I</span> <span class="english-word">love</span> <span class="english-word">colors</span>！"<span class="english-word">butterfly</span>说，"<span class="english-word">Can</span> <span class="english-word">you</span> <span class="english-word">help</span> <span class="english-word">me</span> <span class="english-word">find</span> <span class="english-word">my</span> <span class="english-word">favorite</span> <span class="english-word">color</span>？"</p>
+                
+                <p>"<span class="english-word">Of course</span>！"<span class="yang-lebei">杨乐北</span>说，"<span class="english-word">What</span> <span class="english-word">is</span> <span class="english-word">your</span> <span class="english-word">favorite</span> <span class="english-word">color</span>？"</p>
+                
+                <p>"<span class="english-word">I</span> <span class="english-word">like</span> <span class="english-word">orange</span>！"<span class="english-word">butterfly</span>说。</p>
+                
+                <p>"<span class="english-word">Orange</span>！"<span class="yang-lebei">杨乐北</span>念道。</p>
+                
+                <p>突然，一个<span class="english-word">orange</span>的<span class="english-word">orange</span>出现在空中！</p>
+                
+                <p>"<span class="english-word">Perfect</span>！"<span class="english-word">butterfly</span>开心地说，"<span class="english-word">Thank you</span>！"</p>
+                
+                <p>"<span class="english-word">You're welcome</span>！"<span class="yang-lebei">杨乐北</span>说。</p>
+                
+                <p>这时，一只<span class="english-word">brown</span>的<span class="english-word">bear</span>从<span class="english-word">forest</span>里走了出来。</p>
+                
+                <p>"<span class="english-word">Hello</span>！我是<span class="english-word">bear</span>布鲁！"<span class="english-word">bear</span>用英语说道。</p>
+                
+                <p>"<span class="english-word">Hello</span>，布鲁！"<span class="yang-letian">杨乐天</span>说。</p>
+                
+                <p>"<span class="english-word">I</span> <span class="english-word">am</span> <span class="english-word">tired</span>！"<span class="english-word">bear</span>说，"<span class="english-word">Can</span> <span class="english-word">you</span> <span class="english-word">give</span> <span class="english-word">me</span> <span class="english-word">some</span> <span class="english-word">honey</span>？"</p>
+                
+                <p>"<span class="english-word">Of course</span>！"柯南院长说，"<span class="english-word">Here</span> <span class="english-word">is</span> <span class="english-word">some</span> <span class="english-word">sweet</span> <span class="english-word">honey</span>！"</p>
+                
+                <p>柯南院长变出了一罐<span class="english-word">golden</span>的<span class="english-word">honey</span>。</p>
+                
+                <p>"<span class="english-word">Thank you</span>！"<span class="english-word">bear</span>感激地说，"<span class="english-word">This</span> <span class="english-word">honey</span> <span class="english-word">is</span> <span class="english-word">delicious</span>！"</p>
+                
+                <p>"<span class="english-word">You're welcome</span>！"柯南院长说。</p>
+                
+                <p>"<span class="english-word">Now</span> <span class="english-word">I</span> <span class="english-word">must</span> <span class="english-word">sleep</span>！"<span class="english-word">bear</span>说，"<span class="english-word">Goodbye</span>，<span class="english-word">friends</span>！"</p>
+                
+                <p>"<span class="english-word">Goodbye</span>，布鲁！"<span class="yang-leda">杨乐达</span>挥手说。</p>
+                
+                <p>就在这时，<span class="yang-letian">杨乐天</span>突然大声喊道："<span class="english-word">Sister</span>！我们也<span class="english-word">want</span>学<span class="english-word">color</span> <span class="english-word">magic</span>！"</p>
+                
+                <p>"<span class="english-word">Me too</span>！"<span class="yang-leda">杨乐达</span>跟着喊，"但是我们不知道什么<span class="english-word">color</span>最<span class="english-word">powerful</span>！"</p>
+                
+                <p>柯南院长笑着说："让我来<span class="english-word">show</span>你们一个<span class="english-word">special</span> <span class="english-word">color</span> <span class="english-word">magic</span>！"</p>
+                
+                <p>他挥动<span class="english-word">magic wand</span>，念道："<span class="english-word">Colorful</span> <span class="english-word">twins</span> <span class="english-word">magic</span>！"</p>
+                
+                <p>突然，<span class="yang-letian">杨乐天</span>的衣服变成了<span class="english-word">bright</span> <span class="english-word">red</span>，<span class="yang-leda">杨乐达</span>的衣服变成了<span class="english-word">bright</span> <span class="english-word">blue</span>！</p>
+                
+                <p>"<span class="english-word">Wow</span>！我们变成了<span class="english-word">colorful</span> <span class="english-word">twins</span>！"<span class="yang-letian">杨乐天</span>兴奋地看着自己的<span class="english-word">red</span>衣服。</p>
+                
+                <p>"<span class="english-word">Look</span>！我是<span class="english-word">blue</span> <span class="english-word">boy</span>！"<span class="yang-leda">杨乐达</span>开心地转圈圈。</p>
+                
+                <p>这时，一只<span class="english-word">wise</span>的<span class="english-word">owl</span>飞到了<span class="english-word">garden</span>里。</p>
+                
+                <p>"<span class="english-word">Hello</span>！我是<span class="english-word">owl</span>奥利弗！"<span class="english-word">owl</span>用英语说道，"我听说这里有<span class="english-word">color</span> <span class="english-word">magic</span>的<span class="english-word">problem</span>。"</p>
+                
+                <p>"<span class="english-word">What</span> <span class="english-word">problem</span>？"<span class="yang-lebei">杨乐北</span>好奇地问。</p>
+                
+                <p>"<span class="english-word">Well</span>，"<span class="english-word">owl</span>说，"魔法<span class="english-word">forest</span>里的<span class="english-word">flowers</span>都失去了<span class="english-word">colors</span>！它们都变成了<span class="english-word">gray</span>！"</p>
+                
+                <p>"<span class="english-word">Oh no</span>！"<span class="yang-lebei">杨乐北</span>惊讶地说，"我们<span class="english-word">must</span> <span class="english-word">help</span>它们！"</p>
+                
+                <p>"<span class="english-word">Yes</span>！"<span class="yang-letian">杨乐天</span>挥舞着手臂说，"我们是<span class="english-word">colorful</span> <span class="english-word">magic</span> <span class="english-word">team</span>！"</p>
+                
+                <p>"<span class="english-word">Right</span>！"<span class="yang-leda">杨乐达</span>也跟着说，"但是我<span class="english-word">forgot</span>怎么<span class="english-word">spell</span> <span class="english-word">colors</span>了！"</p>
+                
+                <p><span class="yang-lebei">杨乐北</span>笑着说："<span class="english-word">Don't worry</span>，我来<span class="english-word">teach</span>你们！"</p>
+                
+                <p>于是，他们一起来到了魔法<span class="english-word">forest</span>。果然，所有的<span class="english-word">flowers</span>都是<span class="english-word">gray</span>的，看起来很<span class="english-word">sad</span>。</p>
+                
+                <p>"<span class="english-word">Poor</span> <span class="english-word">flowers</span>！"<span class="yang-letian">杨乐天</span>说，"我们<span class="english-word">must</span> <span class="english-word">make</span>它们<span class="english-word">happy</span>！"</p>
+                
+                <p>"<span class="english-word">Let's</span> <span class="english-word">try</span>！"<span class="yang-lebei">杨乐北</span>说，"我们<span class="english-word">together</span>念<span class="english-word">color</span> <span class="english-word">spells</span>！"</p>
+                
+                <p>他们面对第一朵<span class="english-word">gray</span> <span class="english-word">flower</span>，一起喊道："<span class="english-word">Red</span> <span class="english-word">rose</span> <span class="english-word">magic</span>！"</p>
+                
+                <p>突然，<span class="english-word">flower</span>变成了<span class="english-word">beautiful</span> <span class="english-word">red</span>！</p>
+                
+                <p>"<span class="english-word">It</span> <span class="english-word">works</span>！"<span class="yang-leda">杨乐达</span>兴奋地跳起来，但是不小心摔了一跤！</p>
+                
+                <p>"<span class="english-word">Oops</span>！"<span class="yang-leda">杨乐达</span>爬起来，身上沾满了<span class="english-word">dirt</span>，现在他变成了<span class="english-word">brown</span> <span class="english-word">boy</span>！</p>
+                
+                <p>"<span class="english-word">Haha</span>！<span class="english-word">Brother</span>，你现在是<span class="english-word">brown</span>！"<span class="yang-letian">杨乐天</span>笑得直不起腰。</p>
+                
+                <p>"<span class="english-word">Not</span> <span class="english-word">funny</span>！"<span class="yang-leda">杨乐达</span>假装生气，但也忍不住笑了，"我现在是<span class="english-word">chocolate</span> <span class="english-word">boy</span>！"</p>
+                
+                <p>柯南院长挥动<span class="english-word">magic wand</span>，帮<span class="yang-leda">杨乐达</span>清理干净，他又变回了<span class="english-word">blue</span> <span class="english-word">boy</span>。</p>
+                
+                <p>他们继续给<span class="english-word">flowers</span>施魔法。面对第二朵<span class="english-word">flower</span>，他们喊道："<span class="english-word">Yellow</span> <span class="english-word">sunflower</span> <span class="english-word">magic</span>！"</p>
+                
+                <p><span class="english-word">Flower</span>变成了<span class="english-word">bright</span> <span class="english-word">yellow</span>，就像<span class="english-word">sunshine</span>一样！</p>
+                
+                <p>"<span class="english-word">Beautiful</span>！"<span class="yang-lebei">杨乐北</span>赞叹道。</p>
+                
+                <p>但是<span class="yang-letian">杨乐天</span>突然说："等等！我觉得这朵<span class="english-word">flower</span>太<span class="english-word">bright</span>了，让我眯着眼睛看！"</p>
+                
+                <p>他做了一个<span class="english-word">funny</span>的表情，眯着眼睛看<span class="english-word">flower</span>，结果走路时撞到了一棵<span class="english-word">tree</span>！</p>
+                
+                <p>"<span class="english-word">Bonk</span>！"<span class="yang-letian">杨乐天</span>被撞得头上起了一个<span class="english-word">bump</span>。</p>
+                
+                <p>"<span class="english-word">Silly</span> <span class="english-word">brother</span>！"<span class="yang-leda">杨乐达</span>赶紧跑过去<span class="english-word">help</span>他，"<span class="english-word">Are</span> <span class="english-word">you</span> <span class="english-word">okay</span>？"</p>
+                
+                <p>"<span class="english-word">I'm</span> <span class="english-word">fine</span>！"<span class="yang-letian">杨乐天</span>揉着头说，"但是现在我看到<span class="english-word">stars</span>！不是<span class="english-word">yellow</span> <span class="english-word">stars</span>，是<span class="english-word">colorful</span> <span class="english-word">stars</span>！"</p>
+                
+                <p>"<span class="english-word">That's</span> <span class="english-word">because</span>你撞到了头！"<span class="yang-lebei">杨乐北</span>笑着说。</p>
+                
+                <p>柯南院长用<span class="english-word">magic</span>治好了<span class="yang-letian">杨乐天</span>的<span class="english-word">bump</span>。</p>
+                
+                <p>他们继续魔法冒险。面对第三朵<span class="english-word">flower</span>，他们喊道："<span class="english-word">Blue</span> <span class="english-word">forget-me-not</span> <span class="english-word">magic</span>！"</p>
+                
+                <p><span class="english-word">Flower</span>变成了<span class="english-word">lovely</span> <span class="english-word">blue</span>！</p>
+                
+                <p>"<span class="english-word">Perfect</span>！"<span class="yang-leda">杨乐达</span>说，"这个<span class="english-word">blue</span>和我的衣服<span class="english-word">same</span>！"</p>
+                
+                <p>这时，一只<span class="english-word">mischievous</span>的<span class="english-word">squirrel</span>从<span class="english-word">tree</span>上跳下来。</p>
+                
+                <p>"<span class="english-word">Hello</span>！我是<span class="english-word">squirrel</span>斯奎里！"<span class="english-word">squirrel</span>说，"我<span class="english-word">love</span> <span class="english-word">playing</span> <span class="english-word">tricks</span>！"</p>
+                
+                <p>"<span class="english-word">What</span> <span class="english-word">kind</span> <span class="english-word">of</span> <span class="english-word">tricks</span>？"<span class="yang-letian">杨乐天</span>好奇地问。</p>
+                
+                <p>"<span class="english-word">Watch</span> <span class="english-word">this</span>！"<span class="english-word">squirrel</span>说着，从<span class="english-word">bag</span>里拿出一些<span class="english-word">magic</span> <span class="english-word">nuts</span>。</p>
+                
+                <p>"<span class="english-word">Green</span> <span class="english-word">nut</span> <span class="english-word">magic</span>！"<span class="english-word">squirrel</span>扔了一个<span class="english-word">green</span> <span class="english-word">nut</span>到空中。</p>
+                
+                <p>突然，<span class="yang-letian">杨乐天</span>的头发变成了<span class="english-word">green</span>！</p>
+                
+                <p>"<span class="english-word">My</span> <span class="english-word">hair</span>！"<span class="yang-letian">杨乐天</span>惊叫道，看着镜子里的自己，"我现在看起来像<span class="english-word">broccoli</span>！"</p>
+                
+                <p><span class="yang-leda">杨乐达</span>大笑："<span class="english-word">Haha</span>！<span class="english-word">Brother</span> <span class="english-word">broccoli</span>！"</p>
+                
+                <p>"<span class="english-word">Purple</span> <span class="english-word">nut</span> <span class="english-word">magic</span>！"<span class="english-word">squirrel</span>又扔了一个<span class="english-word">purple</span> <span class="english-word">nut</span>。</p>
+                
+                <p>这次<span class="yang-leda">杨乐达</span>的<span class="english-word">shoes</span>变成了<span class="english-word">purple</span>！</p>
+                
+                <p>"<span class="english-word">Now</span>我有<span class="english-word">purple</span> <span class="english-word">shoes</span>！"<span class="yang-leda">杨乐达</span>看着自己的脚，"我觉得我是<span class="english-word">grape</span> <span class="english-word">feet</span>！"</p>
+                
+                <p>"<span class="english-word">Grape</span> <span class="english-word">feet</span>和<span class="english-word">broccoli</span> <span class="english-word">head</span>！"<span class="yang-lebei">杨乐北</span>忍不住笑了，"你们是<span class="english-word">vegetable</span> <span class="english-word">twins</span>！"</p>
+                
+                <p>"<span class="english-word">We</span> <span class="english-word">are</span> <span class="english-word">healthy</span> <span class="english-word">boys</span>！"<span class="yang-letian">杨乐天</span>骄傲地说，"<span class="english-word">Eat</span> <span class="english-word">vegetables</span> <span class="english-word">every</span> <span class="english-word">day</span>！"</p>
+                
+                <p>"<span class="english-word">Right</span>！"<span class="yang-leda">杨乐达</span>补充，"但是我们还是<span class="english-word">prefer</span> <span class="english-word">ice</span> <span class="english-word">cream</span>！"</p>
+                
+                <p>柯南院长用<span class="english-word">magic</span>把他们变回了<span class="english-word">normal</span>。</p>
+                
+                <p>"<span class="english-word">Thank</span> <span class="english-word">you</span>，斯奎里！"<span class="yang-lebei">杨乐北</span>对<span class="english-word">squirrel</span>说，"但是我们还有<span class="english-word">more</span> <span class="english-word">flowers</span>要<span class="english-word">save</span>！"</p>
+                
+                <p>"<span class="english-word">Of</span> <span class="english-word">course</span>！"<span class="english-word">squirrel</span>说，"我<span class="english-word">will</span> <span class="english-word">help</span>你们！"</p>
+                
+                <p>他们继续前进，来到了一片<span class="english-word">special</span> <span class="english-word">flower</span> <span class="english-word">field</span>。这里有许多<span class="english-word">different</span> <span class="english-word">kinds</span>的<span class="english-word">flowers</span>，但都是<span class="english-word">gray</span>的。</p>
+                
+                <p>"<span class="english-word">Let's</span> <span class="english-word">work</span> <span class="english-word">together</span>！"<span class="yang-lebei">杨乐北</span>建议道。</p>
+                
+                <p>他们决定每个人负责一种<span class="english-word">color</span>：</p>
+                
+                <p><span class="yang-lebei">杨乐北</span>负责<span class="english-word">pink</span>：她喊道："<span class="english-word">Pink</span> <span class="english-word">cherry</span> <span class="english-word">blossom</span> <span class="english-word">magic</span>！"</p>
+                
+                <p><span class="yang-letian">杨乐天</span>负责<span class="english-word">orange</span>：他喊道："<span class="english-word">Orange</span> <span class="english-word">marigold</span> <span class="english-word">magic</span>！"</p>
+                
+                <p><span class="yang-leda">杨乐达</span>负责<span class="english-word">white</span>：他喊道："<span class="english-word">White</span> <span class="english-word">lily</span> <span class="english-word">magic</span>！"</p>
+                
+                <p>但是<span class="yang-leda">杨乐达</span>念错了，他说成了："<span class="english-word">White</span> <span class="english-word">silly</span> <span class="english-word">magic</span>！"</p>
+                
+                <p>结果所有的<span class="english-word">white</span> <span class="english-word">flowers</span>都开始<span class="english-word">giggling</span>！</p>
+                
+                <p>"<span class="english-word">Hee</span> <span class="english-word">hee</span> <span class="english-word">hee</span>！"<span class="english-word">flowers</span>笑得前俯后仰。</p>
+                
+                <p>"<span class="english-word">Oops</span>！"<span class="yang-leda">杨乐达</span>脸红了，"我说成了<span class="english-word">silly</span>而不是<span class="english-word">lily</span>！"</p>
+                
+                <p>"<span class="english-word">It's</span> <span class="english-word">okay</span>！"<span class="yang-lebei">杨乐北</span>安慰他，"<span class="english-word">happy</span> <span class="english-word">flowers</span>也很<span class="english-word">good</span>！"</p>
+                
+                <p>"<span class="english-word">Let</span> <span class="english-word">me</span> <span class="english-word">try</span> <span class="english-word">again</span>！"<span class="yang-leda">杨乐达</span>深吸一口气，大声喊道："<span class="english-word">White</span> <span class="english-word">lily</span> <span class="english-word">magic</span>！"</p>
+                
+                <p>这次成功了！<span class="english-word">flowers</span>变成了<span class="english-word">pure</span> <span class="english-word">white</span>，还继续<span class="english-word">giggling</span>，因为它们记得刚才的<span class="english-word">funny</span> <span class="english-word">mistake</span>。</p>
+                
+                <p>突然，<span class="english-word">flower</span> <span class="english-word">field</span>的中央出现了一朵<span class="english-word">huge</span> <span class="english-word">rainbow</span> <span class="english-word">flower</span>！</p>
+                
+                <p>"<span class="english-word">Wow</span>！"所有人都惊叹道。</p>
+                
+                <p><span class="english-word">Rainbow</span> <span class="english-word">flower</span>开口说话了："<span class="english-word">Thank</span> <span class="english-word">you</span>，<span class="english-word">brave</span> <span class="english-word">children</span>！你们<span class="english-word">saved</span>我们<span class="english-word">all</span>！"</p>
+                
+                <p>"<span class="english-word">You're</span> <span class="english-word">welcome</span>！"<span class="yang-lebei">杨乐北</span>说。</p>
+                
+                <p>"<span class="english-word">As</span> <span class="english-word">a</span> <span class="english-word">reward</span>，"<span class="english-word">rainbow</span> <span class="english-word">flower</span>说，"我给你们每个人一个<span class="english-word">special</span> <span class="english-word">color</span> <span class="english-word">power</span>！"</p>
+                
+                <p><span class="english-word">Rainbow</span> <span class="english-word">flower</span>发出七彩光芒，<span class="yang-lebei">杨乐北</span>获得了<span class="english-word">pink</span> <span class="english-word">power</span>，<span class="yang-letian">杨乐天</span>获得了<span class="english-word">orange</span> <span class="english-word">power</span>，<span class="yang-leda">杨乐达</span>获得了<span class="english-word">white</span> <span class="english-word">power</span>。</p>
+                
+                <p>"<span class="english-word">Now</span>你们可以随时使用<span class="english-word">color</span> <span class="english-word">magic</span>了！"<span class="english-word">rainbow</span> <span class="english-word">flower</span>说。</p>
+                
+                <p><span class="yang-letian">杨乐天</span>立刻试验他的<span class="english-word">orange</span> <span class="english-word">power</span>，结果把一块<span class="english-word">rock</span>变成了<span class="english-word">orange</span> <span class="english-word">jelly</span>！</p>
+                
+                <p>"<span class="english-word">Oops</span>！"<span class="yang-letian">杨乐天</span>说，"我想变<span class="english-word">orange</span>，但是变成了果冻！"</p>
+                
+                <p><span class="yang-leda">杨乐达</span>试验他的<span class="english-word">white</span> <span class="english-word">power</span>，结果把<span class="yang-letian">杨乐天</span>的头发变成了<span class="english-word">white</span>！</p>
+                
+                <p>"<span class="english-word">Now</span>你看起来像<span class="english-word">grandpa</span>！"<span class="yang-leda">杨乐达</span>笑道。</p>
+                
+                <p>"<span class="english-word">I</span> <span class="english-word">need</span> <span class="english-word">practice</span>！"<span class="yang-letian">杨乐天</span>摸着自己的<span class="english-word">white</span>头发说。</p>
+                
+                <p><span class="yang-lebei">杨乐北</span>用她的<span class="english-word">pink</span> <span class="english-word">power</span>把<span class="yang-letian">杨乐天</span>的头发变回了<span class="english-word">normal</span>。</p>
+                
+                <p>"<span class="english-word">Thank</span> <span class="english-word">you</span>，<span class="english-word">sister</span>！"<span class="yang-letian">杨乐天</span>说，"你的<span class="english-word">magic</span>最<span class="english-word">reliable</span>！"</p>
+                
+                <p>就这样，他们成功拯救了魔法<span class="english-word">forest</span>的所有<span class="english-word">flowers</span>，并且学会了更多<span class="english-word">color</span> <span class="english-word">words</span>。双胞胎弟弟虽然经常犯<span class="english-word">silly</span> <span class="english-word">mistakes</span>，但是他们的<span class="english-word">enthusiasm</span>和<span class="english-word">teamwork</span>让整个冒险变得更加<span class="english-word">fun</span>和<span class="english-word">memorable</span>！</p>
+                
+                <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 15px 0; border: 2px dashed #f39c12;">
+                    <h5 style="color: #f39c12; margin-bottom: 10px;">🔍 魔法侦探任务</h5>
+                    <p><strong>你能猜出这些英文单词的意思吗？</strong></p>
+                    <p>💡 <span class="english-word">red</span> = ________（提示：苹果的颜色）</p>
+                    <p>💡 <span class="english-word">blue</span> = ________（提示：天空的颜色）</p>
+                    <p>💡 <span class="english-word">yellow</span> = ________（提示：小鸭子的颜色）</p>
+                    <p>💡 <span class="english-word">green</span> = ________（提示：草地的颜色）</p>
+                    <p>💡 <span class="english-word">purple</span> = ________（提示：葡萄的颜色）</p>
+                    <p>💡 <span class="english-word">pink</span> = ________（提示：小猪的颜色）</p>
+                    <p>💡 <span class="english-word">orange</span> = ________（提示：橙子的颜色）</p>
+                    <p>💡 <span class="english-word">brown</span> = ________（提示：巧克力的颜色）</p>
+                    <p>💡 <span class="english-word">rainbow</span> = ________（提示：雨后天空的彩色弧线）</p>
+                    <p>💡 <span class="english-word">garden</span> = ________（提示：种花种树的地方）</p>
+                    <p>💡 <span class="english-word">apple</span> = ________（提示：红色的水果）</p>
+                    <p>💡 <span class="english-word">flower</span> = ________（提示：美丽的花）</p>
+                    <p>💡 <span class="english-word">star</span> = ________（提示：天空中闪烁的星星）</p>
+                    <p>💡 <span class="english-word">leaf</span> = ________（提示：树上的叶子）</p>
+                    <p>💡 <span class="english-word">grapes</span> = ________（提示：紫色的水果）</p>
+                    <p>💡 <span class="english-word">rose</span> = ________（提示：美丽的花）</p>
+                    <p>💡 <span class="english-word">butterfly</span> = ________（提示：会飞的美丽昆虫）</p>
+                    <p>💡 <span class="english-word">bear</span> = ________（提示：棕色的熊）</p>
+                    <p>💡 <span class="english-word">honey</span> = ________（提示：蜜蜂做的甜食）</p>
+                    <p>💡 <span class="english-word">strange</span> = ________（提示：奇怪的声音）</p>
+                    <p>💡 <span class="english-word">sound</span> = ________（提示：声音）</p>
+                    <p>💡 <span class="english-word">colorful</span> = ________（提示：彩色的）</p>
+                    <p>💡 <span class="english-word">beautiful</span> = ________（提示：美丽的）</p>
+                    <p>💡 <span class="english-word">help</span> = ________（提示：帮助）</p>
+                    <p>💡 <span class="english-word">find</span> = ________（提示：找到）</p>
+                    <p>💡 <span class="english-word">my</span> = ________（提示：我的）</p>
+                    <p>💡 <span class="english-word">favorite</span> = ________（提示：最喜欢的）</p>
+                    <p>💡 <span class="english-word">your</span> = ________（提示：你的）</p>
+                    <p>💡 <span class="english-word">forest</span> = ________（提示：森林）</p>
+                    <p>💡 <span class="english-word">tired</span> = ________（提示：累了）</p>
+                    <p>💡 <span class="english-word">sweet</span> = ________（提示：甜的）</p>
+                    <p>💡 <span class="english-word">golden</span> = ________（提示：金色的）</p>
+                    <p>💡 <span class="english-word">sleep</span> = ________（提示：睡觉）</p>
+                    <p>💡 <span class="english-word">parrot</span> = ________（提示：鹦鹉）</p>
+                    <p>💡 <span class="english-word">speak</span> = ________（提示：说话）</p>
+                    <p>💡 <span class="english-word">languages</span> = ________（提示：语言）</p>
+                    <p>💡 <span class="english-word">really</span> = ________（提示：真的吗）</p>
+                    <p>💡 <span class="english-word">listen</span> = ________（提示：听）</p>
+                    <p>💡 <span class="english-word">learning</span> = ________（提示：学习）</p>
+                    <p>💡 <span class="english-word">powerful</span> = ________（提示：强大的）</p>
+                    <p>💡 <span class="english-word">show</span> = ________（提示：展示）</p>
+                    <p>💡 <span class="english-word">twins</span> = ________（提示：双胞胎）</p>
+                    <p>💡 <span class="english-word">bright</span> = ________（提示：明亮的）</p>
+                    <p>💡 <span class="english-word">wise</span> = ________（提示：聪明的）</p>
+                    <p>💡 <span class="english-word">problem</span> = ________（提示：问题）</p>
+                    <p>💡 <span class="english-word">well</span> = ________（提示：嗯，好吧）</p>
+                    <p>💡 <span class="english-word">colors</span> = ________（提示：颜色的复数）</p>
+                    <p>💡 <span class="english-word">gray</span> = ________（提示：灰色）</p>
+                    <p>💡 <span class="english-word">team</span> = ________（提示：团队）</p>
+                    <p>💡 <span class="english-word">right</span> = ________（提示：对的）</p>
+                    <p>💡 <span class="english-word">forgot</span> = ________（提示：忘记了）</p>
+                    <p>💡 <span class="english-word">spell</span> = ________（提示：拼写）</p>
+                    <p>💡 <span class="english-word">don't worry</span> = ________（提示：别担心）</p>
+                    <p>💡 <span class="english-word">teach</span> = ________（提示：教）</p>
+                    <p>💡 <span class="english-word">poor</span> = ________（提示：可怜的）</p>
+                    <p>💡 <span class="english-word">make</span> = ________（提示：使得）</p>
+                    <p>💡 <span class="english-word">let's</span> = ________（提示：让我们）</p>
+                    <p>💡 <span class="english-word">try</span> = ________（提示：尝试）</p>
+                    <p>💡 <span class="english-word">together</span> = ________（提示：一起）</p>
+                    <p>💡 <span class="english-word">spells</span> = ________（提示：咒语的复数）</p>
+                    <p>💡 <span class="english-word">it</span> = ________（提示：它）</p>
+                    <p>💡 <span class="english-word">works</span> = ________（提示：有效果）</p>
+                    <p>💡 <span class="english-word">oops</span> = ________（提示：哎呀）</p>
+                    <p>💡 <span class="english-word">dirt</span> = ________（提示：泥土）</p>
+                    <p>💡 <span class="english-word">haha</span> = ________（提示：哈哈）</p>
+                    <p>💡 <span class="english-word">not</span> = ________（提示：不）</p>
+                    <p>💡 <span class="english-word">funny</span> = ________（提示：有趣的）</p>
+                    <p>💡 <span class="english-word">chocolate</span> = ________（提示：巧克力）</p>
+                    <p>💡 <span class="english-word">sunflower</span> = ________（提示：向日葵）</p>
+                    <p>💡 <span class="english-word">sunshine</span> = ________（提示：阳光）</p>
+                    <p>💡 <span class="english-word">tree</span> = ________（提示：树）</p>
+                    <p>💡 <span class="english-word">bonk</span> = ________（提示：撞击声）</p>
+                    <p>💡 <span class="english-word">bump</span> = ________（提示：肿块）</p>
+                    <p>💡 <span class="english-word">silly</span> = ________（提示：愚蠢的）</p>
+                    <p>💡 <span class="english-word">are you okay</span> = ________（提示：你还好吗）</p>
+                    <p>💡 <span class="english-word">I'm fine</span> = ________（提示：我很好）</p>
+                    <p>💡 <span class="english-word">stars</span> = ________（提示：星星的复数）</p>
+                    <p>💡 <span class="english-word">that's because</span> = ________（提示：那是因为）</p>
+                    <p>💡 <span class="english-word">forget-me-not</span> = ________（提示：勿忘我花）</p>
+                    <p>💡 <span class="english-word">lovely</span> = ________（提示：可爱的）</p>
+                    <p>💡 <span class="english-word">same</span> = ________（提示：相同的）</p>
+                    <p>💡 <span class="english-word">mischievous</span> = ________（提示：淘气的）</p>
+                    <p>💡 <span class="english-word">squirrel</span> = ________（提示：松鼠）</p>
+                    <p>💡 <span class="english-word">playing</span> = ________（提示：玩耍）</p>
+                    <p>💡 <span class="english-word">tricks</span> = ________（提示：恶作剧）</p>
+                    <p>💡 <span class="english-word">what kind of</span> = ________（提示：什么样的）</p>
+                    <p>💡 <span class="english-word">watch this</span> = ________（提示：看这个）</p>
+                    <p>💡 <span class="english-word">nuts</span> = ________（提示：坚果）</p>
+                    <p>💡 <span class="english-word">nut</span> = ________（提示：坚果）</p>
+                    <p>💡 <span class="english-word">hair</span> = ________（提示：头发）</p>
+                    <p>💡 <span class="english-word">broccoli</span> = ________（提示：西兰花）</p>
+                    <p>💡 <span class="english-word">shoes</span> = ________（提示：鞋子）</p>
+                    <p>💡 <span class="english-word">grape</span> = ________（提示：葡萄）</p>
+                    <p>💡 <span class="english-word">feet</span> = ________（提示：脚的复数）</p>
+                    <p>💡 <span class="english-word">head</span> = ________（提示：头）</p>
+                    <p>💡 <span class="english-word">vegetable</span> = ________（提示：蔬菜）</p>
+                    <p>💡 <span class="english-word">we are</span> = ________（提示：我们是）</p>
+                    <p>💡 <span class="english-word">healthy</span> = ________（提示：健康的）</p>
+                    <p>💡 <span class="english-word">boys</span> = ________（提示：男孩们）</p>
+                    <p>💡 <span class="english-word">eat</span> = ________（提示：吃）</p>
+                    <p>💡 <span class="english-word">vegetables</span> = ________（提示：蔬菜的复数）</p>
+                    <p>💡 <span class="english-word">every</span> = ________（提示：每个）</p>
+                    <p>💡 <span class="english-word">day</span> = ________（提示：天）</p>
+                    <p>💡 <span class="english-word">prefer</span> = ________（提示：更喜欢）</p>
+                    <p>💡 <span class="english-word">ice cream</span> = ________（提示：冰淇淋）</p>
+                    <p>💡 <span class="english-word">normal</span> = ________（提示：正常的）</p>
+                    <p>💡 <span class="english-word">more</span> = ________（提示：更多的）</p>
+                    <p>💡 <span class="english-word">save</span> = ________（提示：拯救）</p>
+                    <p>💡 <span class="english-word">of course</span> = ________（提示：当然）</p>
+                    <p>💡 <span class="english-word">will</span> = ________（提示：将要）</p>
+                    <p>💡 <span class="english-word">special</span> = ________（提示：特别的）</p>
+                    <p>💡 <span class="english-word">flower field</span> = ________（提示：花田）</p>
+                    <p>💡 <span class="english-word">different</span> = ________（提示：不同的）</p>
+                    <p>💡 <span class="english-word">kinds</span> = ________（提示：种类）</p>
+                    <p>💡 <span class="english-word">work</span> = ________（提示：工作）</p>
+                    <p>💡 <span class="english-word">cherry blossom</span> = ________（提示：樱花）</p>
+                    <p>💡 <span class="english-word">marigold</span> = ________（提示：万寿菊）</p>
+                    <p>💡 <span class="english-word">lily</span> = ________（提示：百合花）</p>
+                    <p>💡 <span class="english-word">giggling</span> = ________（提示：咯咯笑）</p>
+                    <p>💡 <span class="english-word">hee hee hee</span> = ________（提示：嘻嘻嘻）</p>
+                    <p>💡 <span class="english-word">it's okay</span> = ________（提示：没关系）</p>
+                    <p>💡 <span class="english-word">happy</span> = ________（提示：快乐的）</p>
+                    <p>💡 <span class="english-word">let me try again</span> = ________（提示：让我再试一次）</p>
+                    <p>💡 <span class="english-word">pure</span> = ________（提示：纯净的）</p>
+                    <p>💡 <span class="english-word">mistake</span> = ________（提示：错误）</p>
+                    <p>💡 <span class="english-word">huge</span> = ________（提示：巨大的）</p>
+                    <p>💡 <span class="english-word">brave</span> = ________（提示：勇敢的）</p>
+                    <p>💡 <span class="english-word">children</span> = ________（提示：孩子们）</p>
+                    <p>💡 <span class="english-word">saved</span> = ________（提示：拯救了）</p>
+                    <p>💡 <span class="english-word">you're welcome</span> = ________（提示：不客气）</p>
+                    <p>💡 <span class="english-word">as a reward</span> = ________（提示：作为奖励）</p>
+                    <p>💡 <span class="english-word">power</span> = ________（提示：力量）</p>
+                    <p>💡 <span class="english-word">now</span> = ________（提示：现在）</p>
+                    <p>💡 <span class="english-word">rock</span> = ________（提示：岩石）</p>
+                    <p>💡 <span class="english-word">jelly</span> = ________（提示：果冻）</p>
+                    <p>💡 <span class="english-word">grandpa</span> = ________（提示：爷爷）</p>
+                    <p>💡 <span class="english-word">I need</span> = ________（提示：我需要）</p>
+                    <p>💡 <span class="english-word">practice</span> = ________（提示：练习）</p>
+                    <p>💡 <span class="english-word">reliable</span> = ________（提示：可靠的）</p>
+                    <p>💡 <span class="english-word">mistakes</span> = ________（提示：错误的复数）</p>
+                    <p>💡 <span class="english-word">enthusiasm</span> = ________（提示：热情）</p>
+                    <p>💡 <span class="english-word">teamwork</span> = ________（提示：团队合作）</p>
+                    <p>💡 <span class="english-word">fun</span> = ________（提示：有趣的）</p>
+                    <p>💡 <span class="english-word">memorable</span> = ________（提示：难忘的）</p>
+                </div>
+            </div>
+
+            <div class="word-box">
+                <h4 class="section-title">🎨 颜色示意图：彩虹魔法色彩表</h4>
+                <p style="text-align: center; margin-bottom: 20px; color: #666;">点击下面的颜色块，学习对应的英文单词！</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0;">
+                    <!-- 基础颜色 -->
+                    <div style="display: flex; align-items: center; background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="width: 60px; height: 60px; background: #FF0000; border-radius: 50%; margin-right: 15px; box-shadow: 0 2px 6px rgba(255,0,0,0.3);"></div>
+                        <div>
+                            <div style="font-size: 1.3em; font-weight: bold; color: #FF0000;">Red</div>
+                            <div style="color: #000000; font-weight: bold;">红色</div>
+                            <div style="font-size: 0.85em; color: #666; font-style: italic;">like an apple 🍎</div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="width: 60px; height: 60px; background: #87CEEB; border-radius: 50%; margin-right: 15px; box-shadow: 0 2px 6px rgba(135,206,235,0.3);"></div>
+                        <div>
+                            <div style="font-size: 1.3em; font-weight: bold; color: #0066FF;">Blue</div>
+                            <div style="color: #000000; font-weight: bold;">蓝色</div>
+                            <div style="font-size: 0.85em; color: #666; font-style: italic;">like the sky ☁️</div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="width: 60px; height: 60px; background: #FFD700; border-radius: 50%; margin-right: 15px; box-shadow: 0 2px 6px rgba(255,215,0,0.3);"></div>
+                        <div>
+                            <div style="font-size: 1.3em; font-weight: bold; color: #FFD700;">Yellow</div>
+                            <div style="color: #000000; font-weight: bold;">黄色</div>
+                            <div style="font-size: 0.85em; color: #666; font-style: italic;">like the sun ☀️</div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="width: 60px; height: 60px; background: #00CC00; border-radius: 50%; margin-right: 15px; box-shadow: 0 2px 6px rgba(0,204,0,0.3);"></div>
+                        <div>
+                            <div style="font-size: 1.3em; font-weight: bold; color: #00CC00;">Green</div>
+                            <div style="color: #000000; font-weight: bold;">绿色</div>
+                            <div style="font-size: 0.85em; color: #666; font-style: italic;">like the grass 🌱</div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="width: 60px; height: 60px; background: #9900CC; border-radius: 50%; margin-right: 15px; box-shadow: 0 2px 6px rgba(153,0,204,0.3);"></div>
+                        <div>
+                            <div style="font-size: 1.3em; font-weight: bold; color: #9900CC;">Purple</div>
+                            <div style="color: #000000; font-weight: bold;">紫色</div>
+                            <div style="font-size: 0.85em; color: #666; font-style: italic;">like grapes 🍇</div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="width: 60px; height: 60px; background: #FF69B4; border-radius: 50%; margin-right: 15px; box-shadow: 0 2px 6px rgba(255,105,180,0.3);"></div>
+                        <div>
+                            <div style="font-size: 1.3em; font-weight: bold; color: #FF69B4;">Pink</div>
+                            <div style="color: #000000; font-weight: bold;">粉色</div>
+                            <div style="font-size: 0.85em; color: #666; font-style: italic;">like a rose 🌹</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 更多颜色 -->
+                    <div style="display: flex; align-items: center; background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="width: 60px; height: 60px; background: #FF8C00; border-radius: 50%; margin-right: 15px; box-shadow: 0 2px 6px rgba(255,140,0,0.3);"></div>
+                        <div>
+                            <div style="font-size: 1.3em; font-weight: bold; color: #FF8C00;">Orange</div>
+                            <div style="color: #000000; font-weight: bold;">橙色</div>
+                            <div style="font-size: 0.85em; color: #666; font-style: italic;">like an orange 🍊</div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="width: 60px; height: 60px; background: #8B4513; border-radius: 50%; margin-right: 15px; box-shadow: 0 2px 6px rgba(139,69,19,0.3);"></div>
+                        <div>
+                            <div style="font-size: 1.3em; font-weight: bold; color: #8B4513;">Brown</div>
+                            <div style="color: #000000; font-weight: bold;">棕色</div>
+                            <div style="font-size: 0.85em; color: #666; font-style: italic;">like a bear 🐻</div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="width: 60px; height: 60px; background: #000000; border-radius: 50%; margin-right: 15px; box-shadow: 0 2px 6px rgba(0,0,0,0.3);"></div>
+                        <div>
+                            <div style="font-size: 1.3em; font-weight: bold; color: #000000;">Black</div>
+                            <div style="color: #000000; font-weight: bold;">黑色</div>
+                            <div style="font-size: 0.85em; color: #666; font-style: italic;">like the night 🌙</div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="width: 60px; height: 60px; background: #FFFFFF; border: 2px solid #ddd; border-radius: 50%; margin-right: 15px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);"></div>
+                        <div>
+                            <div style="font-size: 1.3em; font-weight: bold; color: #FFFFFF; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">White</div>
+                            <div style="color: #000000; font-weight: bold;">白色</div>
+                            <div style="font-size: 0.85em; color: #666; font-style: italic;">like snow ❄️</div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="width: 60px; height: 60px; background: #808080; border-radius: 50%; margin-right: 15px; box-shadow: 0 2px 6px rgba(128,128,128,0.3);"></div>
+                        <div>
+                            <div style="font-size: 1.3em; font-weight: bold; color: #808080;">Gray</div>
+                            <div style="color: #000000; font-weight: bold;">灰色</div>
+                            <div style="font-size: 0.85em; color: #666; font-style: italic;">like clouds ☁️</div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(45deg, #FFD700, #FFA500); border-radius: 50%; margin-right: 15px; box-shadow: 0 2px 6px rgba(255,215,0,0.4);"></div>
+                        <div>
+                            <div style="font-size: 1.3em; font-weight: bold; color: #FFD700;">Gold</div>
+                            <div style="color: #000000; font-weight: bold;">金色</div>
+                            <div style="font-size: 0.85em; color: #666; font-style: italic;">like magic honey ✨</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 彩虹示意图 -->
+                <div style="margin: 30px 0; text-align: center;">
+                    <h5 style="color: #495057; margin-bottom: 15px;">🌈 Magic Rainbow - 魔法彩虹</h5>
+                    <div style="display: flex; justify-content: center; align-items: center; height: 80px; background: linear-gradient(90deg, #FF0000 0%, #FF8C00 14.3%, #FFD700 28.6%, #00CC00 42.9%, #87CEEB 57.1%, #9900CC 71.4%, #FF69B4 85.7%, #FF0000 100%); border-radius: 40px; margin: 0 auto; max-width: 600px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+                        <div style="color: white; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.7); font-size: 1.2em;">R-O-Y-G-B-I-V</div>
+                    </div>
+                    <p style="margin-top: 10px; color: #666; font-style: italic;">每种颜色都有魔法力量！Every color has magic power!</p>
+                </div>
+                
+                <!-- 互动提示 -->
+                <div style="background: linear-gradient(135deg, #ffb3d9 0%, #ffd6f0 100%); color: #333; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center;">
+                    <h5 style="color: #333; margin-bottom: 10px;">🎯 魔法练习 Magic Practice</h5>
+                    <p style="margin: 8px 0;">看着这些颜色，大声说出对应的英文单词！</p>
+                    <p style="margin: 8px 0; font-style: italic;">Look at these colors and say the English words out loud!</p>
+                    <p style="margin: 8px 0;">🎵 Try singing: "Red, blue, yellow, green, purple, pink, orange too!"</p>
+                </div>
+            </div>
+
+            <div class="word-box">
+                <h4 class="section-title">📚 单词板块：颜色魔法单词库</h4>
+                
+                <!-- 基础颜色 -->
+                <div style="margin-bottom: 25px;">
+                    <h5 style="color: #495057; font-size: 1.2em; margin-bottom: 15px; border-left: 3px solid #e74c3c; padding-left: 10px;">🎨 基础颜色 Basic Colors</h5>
+                    <div class="word-list">
+                        <div class="word-card">
+                            <div class="english" style="color: #FF0000;">red</div>
+                            <div class="chinese">红色</div>
+                            <div class="example">I like the red apple. 我喜欢红苹果。</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english" style="color: #0066FF;">blue</div>
+                            <div class="chinese">蓝色</div>
+                            <div class="example">The sky is blue today. 今天天空是蓝色的。</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english" style="color: #FFD700;">yellow</div>
+                            <div class="chinese">黄色</div>
+                            <div class="example">The sun is yellow and bright. 太阳是黄色的，很明亮。</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english" style="color: #00CC00;">green</div>
+                            <div class="chinese">绿色</div>
+                            <div class="example">The grass is green in spring. 春天的草是绿色的。</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english" style="color: #FF8C00;">orange</div>
+                            <div class="chinese">橙色</div>
+                            <div class="example">I eat an orange every day. 我每天吃一个橙子。</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english" style="color: #9900CC;">purple</div>
+                            <div class="chinese">紫色</div>
+                            <div class="example">She has a purple dress. 她有一件紫色连衣裙。</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english" style="color: #FF69B4;">pink</div>
+                            <div class="chinese">粉色</div>
+                            <div class="example">The flowers are pink and beautiful. 花朵是粉色的，很美丽。</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english" style="color: #8B4513;">brown</div>
+                            <div class="chinese">棕色</div>
+                            <div class="example">The bear is brown and cute. 熊是棕色的，很可爱。</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 黑白灰 -->
+                <div style="margin-bottom: 25px;">
+                    <h5 style="color: #495057; font-size: 1.2em; margin-bottom: 15px; border-left: 3px solid #6c757d; padding-left: 10px;">⚫ 黑白灰 Black, White & Gray</h5>
+                    <div class="word-list">
+                        <div class="word-card">
+                            <div class="english" style="color: #000000;">black</div>
+                            <div class="chinese">黑色</div>
+                            <div class="example">The cat is black and white. 这只猫是黑白相间的。</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english" style="color: #FFFFFF; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">white</div>
+                            <div class="chinese">白色</div>
+                            <div class="example">The snow is white and cold. 雪是白色的，很冷。</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english" style="color: #808080;">gray</div>
+                            <div class="chinese">灰色</div>
+                            <div class="example">The clouds are gray today. 今天云朵是灰色的。</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 金属色 -->
+                <div style="margin-bottom: 25px;">
+                    <h5 style="color: #495057; font-size: 1.2em; margin-bottom: 15px; border-left: 3px solid #ffd700; padding-left: 10px;">✨ 金属色 Metallic Colors</h5>
+                    <div class="word-list">
+                        <div class="word-card">
+                            <div class="english" style="color: #FFD700;">gold</div>
+                            <div class="chinese">金色；黄金</div>
+                            <div class="example">The ring is made of gold. 这个戒指是金制的。</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english" style="color: #C0C0C0;">silver</div>
+                            <div class="chinese">银色；银子</div>
+                            <div class="example">She wears a silver watch. 她戴着一块银手表。</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 深浅颜色 -->
+                <div style="margin-bottom: 25px;">
+                    <h5 style="color: #495057; font-size: 1.2em; margin-bottom: 15px; border-left: 3px solid #3498db; padding-left: 10px;">🌈 深浅颜色 Light & Dark Colors</h5>
+                    <div class="word-list">
+                        <div class="word-card">
+                            <div class="english" style="color: #87CEEB;">light blue</div>
+                            <div class="chinese">浅蓝色</div>
+                            <div class="example">The baby wears light blue clothes. 婴儿穿着浅蓝色的衣服。</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english" style="color: #003366;">dark blue</div>
+                            <div class="chinese">深蓝色</div>
+                            <div class="example">The ocean is dark blue. 海洋是深蓝色的。</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english" style="color: #90EE90;">light green</div>
+                            <div class="chinese">浅绿色</div>
+                            <div class="example">The leaves are light green. 叶子是浅绿色的。</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english" style="color: #006400;">dark green</div>
+                            <div class="chinese">深绿色</div>
+                            <div class="example">The forest is dark green. 森林是深绿色的。</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english" style="color: #FFB6C1;">light red</div>
+                            <div class="chinese">浅红色</div>
+                            <div class="example">The roses are light red. 玫瑰是浅红色的。</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english" style="color: #8B0000;">dark red</div>
+                            <div class="chinese">深红色</div>
+                            <div class="example">The wine is dark red. 酒是深红色的。</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 故事魔法词汇 -->
+                <div style="margin-bottom: 25px;">
+                    <h5 style="color: #495057; font-size: 1.2em; margin-bottom: 15px; border-left: 3px solid #9c27b0; padding-left: 10px;">🪄 故事魔法词汇 Story Magic Words</h5>
+                    <div class="word-list">
+                        <div class="word-card">
+                            <div class="english" style="background: linear-gradient(90deg, #FF0000 0%, #FF8C00 16.6%, #FFD700 33.3%, #00CC00 50%, #0066FF 66.6%, #9900CC 83.3%, #FF69B4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">rainbow</div>
+                            <div class="chinese">彩虹</div>
+                            <div class="example">I see a beautiful rainbow in the sky. 我看到天空中有一道美丽的彩虹。</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english" style="background: linear-gradient(90deg, #FF0000 0%, #FF8C00 25%, #FFD700 50%, #00CC00 75%, #0066FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">colorful</div>
+                            <div class="chinese">多彩的；绚丽的</div>
+                            <div class="example">The butterfly is colorful. 蝴蝶是多彩的。</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english">bright</div>
+                            <div class="chinese">明亮的；鲜艳的</div>
+                            <div class="example">The light is very bright. 灯光非常明亮。</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english">beautiful</div>
+                            <div class="chinese">美丽的</div>
+                            <div class="example">The flower is beautiful. 花朵很美丽。</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english">magic</div>
+                            <div class="chinese">魔法；魔术</div>
+                            <div class="example">The rainbow has magic power. 彩虹有魔法力量。</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english">garden</div>
+                            <div class="chinese">花园；园子</div>
+                            <div class="example">I love playing in the garden. 我喜欢在花园里玩耍。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+            <div class="game-box">
+                <h4 class="section-title">🌈 魔法画师：彩虹咒语绘画</h4>
+                <div class="mission-card">
+                    <h4>🎨 魔法任务：画出你的彩虹</h4>
+                    <p>用彩笔画一条属于你的<span class="english-word">rainbow</span>，并在每个颜色旁边写下对应的英文单词。</p>
+                    <p>比如：<span class="english-word">red</span>、<span class="english-word">blue</span>、<span class="english-word">yellow</span>……</p>
+                    <p>你还可以给每种颜色起一个魔法名字！</p>
+                </div>
+            </div>
+
+
+            <div class="game-box">
+                <h4 class="section-title">🧙‍♂️ 魔法咒语表演秀</h4>
+                <div class="mission-card">
+                    <h4>🗣️ 魔法任务：颜色咒语口令</h4>
+                    <p>和家人或小伙伴一起玩"颜色咒语"游戏：</p>
+                    <ol>
+                        <li>一个人说中文颜色，另一个人要立刻说出英文单词。</li>
+                        <li>说错或说慢了就要表演一个小魔法动作！</li>
+                    </ol>
+                    <p>你能成为最快的魔法咒语大师吗？</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🐿️ 搞笑双胞胎挑战赛</h4>
+                <div class="mission-card">
+                    <h4>😂 魔法任务：模仿杨乐天和杨乐达</h4>
+                    <p>学习双胞胎弟弟的搞笑行为，练习英语口语：</p>
+                    <ol>
+                        <li><strong>杨乐天挑战</strong>：学他撞到树时说的话："<span class="english-word">Oops! I see colorful stars!</span>"</li>
+                        <li><strong>杨乐达挑战</strong>：学他说错单词时的样子："<span class="english-word">White silly magic!</span> 然后大笑</li>
+                        <li><strong>双胞胎合作</strong>：两个人一起说："<span class="english-word">We are vegetable twins!</span>"</li>
+                        <li><strong>搞笑表演</strong>：用英语介绍自己是什么颜色的boy或girl</li>
+                    </ol>
+                    <p>记住：犯错误不要紧，重要的是<span class="english-word">have fun</span>！</p>
+                </div>
+                
+                <!-- 故事中的物品词汇 -->
+                <div style="margin-bottom: 25px;">
+                    <h5 style="color: #495057; font-size: 1.2em; margin-bottom: 15px; border-left: 3px solid #28a745; padding-left: 10px;">🍎 故事中的物品 Story Objects</h5>
+                    <div class="word-list">
+                        <div class="word-card">
+                            <div class="english">apple</div>
+                            <div class="chinese">苹果</div>
+                            <div class="example">I eat a red apple every day. 我每天吃一个红苹果。</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english">flower</div>
+                            <div class="chinese">花；花朵</div>
+                            <div class="example">The flower is very beautiful. 这朵花很美丽。</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english">star</div>
+                            <div class="chinese">星星</div>
+                            <div class="example">I can see many stars at night. 我晚上可以看到许多星星。</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english">leaf</div>
+                            <div class="chinese">叶子</div>
+                            <div class="example">The leaf falls from the tree. 叶子从树上掉下来。</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english">grapes</div>
+                            <div class="chinese">葡萄</div>
+                            <div class="example">I like eating purple grapes. 我喜欢吃紫葡萄。</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english">rose</div>
+                            <div class="chinese">玫瑰</div>
+                            <div class="example">The rose smells very sweet. 玫瑰闻起来很香。</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 基础动词 -->
+                <div style="margin-bottom: 25px;">
+                    <h5 style="color: #495057; font-size: 1.2em; margin-bottom: 15px; border-left: 3px solid #f39c12; padding-left: 10px;">🎯 基础动词 Basic Verbs</h5>
+                    <div class="word-list">
+                        <div class="word-card">
+                            <div class="english">start</div>
+                            <div class="chinese">开始；启动</div>
+                            <div class="example">Let's start the game now. 我们现在开始游戏吧。</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english">perfect</div>
+                            <div class="chinese">完美的；完全的</div>
+                            <div class="example">Your work is perfect! 你的作品很完美！</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english">all</div>
+                            <div class="chinese">所有的；全部</div>
+                            <div class="example">All students are here. 所有学生都在这里。</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english">color</div>
+                            <div class="chinese">颜色；色彩</div>
+                            <div class="example">I like bright colors. 我喜欢明亮的颜色。</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 扩展形容词 -->
+                <div style="margin-bottom: 25px;">
+                    <h5 style="color: #495057; font-size: 1.2em; margin-bottom: 15px; border-left: 3px solid #e91e63; padding-left: 10px;">⭐ 扩展形容词 Extended Adjectives</h5>
+                    <div class="word-list">
+                        <div class="word-card">
+                            <div class="english">beautiful</div>
+                            <div class="chinese">美丽的</div>
+                            <div class="example">The sunset is beautiful today. 今天的日落很美丽。</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english">bright</div>
+                            <div class="chinese">明亮的；鲜艳的</div>
+                            <div class="example">The light is very bright. 灯光非常明亮。</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english">dark</div>
+                            <div class="chinese">黑暗的；深色的</div>
+                            <div class="example">The room is dark at night. 房间在夜里很黑暗。</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english">light</div>
+                            <div class="chinese">轻的；浅色的</div>
+                            <div class="example">The box is light and easy to carry. 这个盒子很轻，容易搬运。</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english">heavy</div>
+                            <div class="chinese">重的</div>
+                            <div class="example">This bag is too heavy for me. 这个包对我来说太重了。</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english">same</div>
+                            <div class="chinese">相同的</div>
+                            <div class="example">We wear the same clothes. 我们穿着相同的衣服。</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="english">different</div>
+                            <div class="chinese">不同的</div>
+                            <div class="example">These two books are different. 这两本书是不同的。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🌈 魔法画师：彩虹咒语绘画</h4>
+                <div class="mission-card">
+                    <h4>🎨 魔法任务：画出你的彩虹</h4>
+                    <p>用彩笔画一条属于你的<span class="english-word">rainbow</span>，并在每个颜色旁边写下对应的英文单词。</p>
+                    <p>比如：<span class="english-word">red</span>、<span class="english-word">blue</span>、<span class="english-word">yellow</span>……</p>
+                    <p>你还可以给每种颜色起一个魔法名字！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🧙‍♂️ 魔法咒语表演秀</h4>
+                <div class="mission-card">
+                    <h4>🗣️ 魔法任务：颜色咒语口令</h4>
+                    <p>和家人或小伙伴一起玩"颜色咒语"游戏：</p>
+                    <ol>
+                        <li>一个人说中文颜色，另一个人要立刻说出英文单词。</li>
+                        <li>说错或说慢了就要表演一个小魔法动作！</li>
+                    </ol>
+                    <p>你能成为最快的魔法咒语大师吗？</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🐿️ 搞笑双胞胎挑战赛</h4>
+                <div class="mission-card">
+                    <h4>😂 魔法任务：模仿杨乐天和杨乐达</h4>
+                    <p>学习双胞胎弟弟的搞笑行为，练习英语口语：</p>
+                    <ol>
+                        <li><strong>杨乐天挑战</strong>：学他撞到树时说的话："<span class="english-word">Oops! I see colorful stars!</span>"</li>
+                        <li><strong>杨乐达挑战</strong>：学他说错单词时的样子："<span class="english-word">White silly magic!</span> 然后大笑</li>
+                        <li><strong>双胞胎合作</strong>：两个人一起说："<span class="english-word">We are vegetable twins!</span>"</li>
+                        <li><strong>搞笑表演</strong>：用英语介绍自己是什么颜色的boy或girl</li>
+                    </ol>
+                    <p>记住：犯错误不要紧，重要的是<span class="english-word">have fun</span>！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🌈 彩虹花拯救任务</h4>
+                <div class="mission-card">
+                    <h4>🌸 魔法任务：创造你的彩虹花园</h4>
+                    <p>就像杨乐北他们拯救魔法森林一样，你也来创造一个彩虹花园：</p>
+                    <ol>
+                        <li><strong>选择你的flower power</strong>：从故事中选择一种颜色魔法力量</li>
+                        <li><strong>设计你的花园</strong>：画出或写出你想要的<span class="english-word">colorful flowers</span></li>
+                        <li><strong>编写咒语</strong>：为每种花创造一个英语魔法咒语</li>
+                        <li><strong>拯救任务</strong>：想象你要拯救什么，用英语描述你的冒险</li>
+                    </ol>
+                    <p>例子：我有<span class="english-word">pink power</span>，我的咒语是"<span class="english-word">Pink rose magic, make everything beautiful!</span>"</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🥜 松鼠斯奎里的恶作剧游戏</h4>
+                <div class="mission-card">
+                    <h4>🐿️ 魔法任务：颜色变换恶作剧</h4>
+                    <p>像松鼠斯奎里一样，用英语玩颜色恶作剧游戏：</p>
+                    <ol>
+                        <li><strong>恶作剧咒语</strong>：说"<span class="english-word">Green nut magic!</span>"然后指着家里的一样东西</li>
+                        <li><strong>想象游戏</strong>：如果你有魔法坚果，你会把什么变成什么颜色？</li>
+                        <li><strong>搞笑描述</strong>：用英语描述如果你的<span class="english-word">hair</span>变成<span class="english-word">green</span>会怎么样</li>
+                        <li><strong>道歉魔法</strong>：学会说"<span class="english-word">Sorry! Let me fix that!</span>"</li>
+                    </ol>
+                    <p>记住：真正的恶作剧是要让大家都<span class="english-word">happy</span>的！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🎭 颜色角色扮演</h4>
+                <div class="mission-card">
+                    <h4>🎪 魔法任务：成为颜色大使</h4>
+                    <p>选择一种颜色，成为这种颜色的大使：</p>
+                    <ol>
+                        <li><strong>自我介绍</strong>：用英语介绍自己是哪种颜色的大使</li>
+                        <li><strong>颜色故事</strong>：讲述你这种颜色的<span class="english-word">magic power</span></li>
+                        <li><strong>找朋友</strong>：说出什么东西是你这种颜色的</li>
+                        <li><strong>团队合作</strong>：和其他颜色大使一起创造<span class="english-word">rainbow magic</span></li>
+                    </ol>
+                    <p>例子："<span class="english-word">Hello! I am the red ambassador. My magic power is making everything warm and exciting!</span>"</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🏆 颜色魔法毕业考试</h4>
+                <div class="mission-card">
+                    <h4>📝 魔法任务：终极颜色挑战</h4>
+                    <p>完成所有挑战，成为真正的颜色魔法师：</p>
+                    <ol>
+                        <li><strong>快速反应</strong>：看到颜色立刻说出英文单词</li>
+                        <li><strong>咒语创作</strong>：为每种颜色编一个魔法咒语</li>
+                        <li><strong>故事续写</strong>：续写杨乐北他们的下一个冒险</li>
+                        <li><strong>教学任务</strong>：教会一个朋友或家人5个颜色单词</li>
+                        <li><strong>创意表演</strong>：表演一个颜色魔法秀</li>
+                    </ol>
+                    <p>完成后你就可以获得"<span class="english-word">Color Magic Master</span>"称号！</p>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); color: #333; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: #333; margin-bottom: 15px;">🎉 颜色魔法师证书</h5>
+                    <p style="margin: 8px 0; text-align: center; font-weight: bold;">恭喜你完成了颜色魔法训练！</p>
+                    <p style="margin: 8px 0; text-align: center;">你现在是一名真正的：</p>
+                    <p style="margin: 8px 0; text-align: center; font-size: 1.2em; color: #e74c3c; font-weight: bold;">🌈 COLOR MAGIC MASTER 🌈</p>
+                    <p style="margin: 8px 0; text-align: center;">你的魔法力量：</p>
+                    <p style="margin: 8px 0; text-align: center;">________________（写下你选择的颜色力量）</p>
+                    <p style="margin-top: 15px; font-style: italic; text-align: center;">✨ 记住：用你的颜色魔法让世界更美好！✨</p>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="chapter-nav">
+            <a href="chapter01.html" class="">⬅️ 上一章</a>
+            <a href="index.html" class="back-link">📚 返回章节目录</a>
+            <a href="chapter03.html" class="">下一章 ➡️</a>
+        </div>
+    </div>
+    
+    <!-- 单词发音功能 Word Pronunciation Feature -->
+    <script src="../js/word-pronunciation.js"></script>
+    
+    <!-- 发音功能使用说明提示 -->
+    <div id="pronunciation-guide" style="position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); max-width: 300px; font-size: 0.9em; z-index: 1000; opacity: 0; transition: opacity 0.5s ease;">
+        <div style="display: flex; align-items: center; margin-bottom: 8px;">
+            <span style="font-size: 1.2em; margin-right: 8px;">🔊</span>
+            <strong>单词发音功能已启用！</strong>
+        </div>
+        <p style="margin: 5px 0; font-size: 0.85em;">点击任意单词卡即可听到标准英语发音</p>
+        <p style="margin: 5px 0; font-size: 0.85em;">Click any word card to hear pronunciation</p>
+        <button onclick="this.parentElement.style.opacity='0'" style="position: absolute; top: 5px; right: 8px; background: none; border: none; color: white; cursor: pointer; font-size: 1.1em;">×</button>
+    </div>
+    
+    <script>
+        // 显示发音功能提示
+        setTimeout(() => {
+            const guide = document.getElementById('pronunciation-guide');
+            if (guide) {
+                guide.style.opacity = '1';
+                // 5秒后自动隐藏
+                setTimeout(() => {
+                    guide.style.opacity = '0';
+                }, 5000);
+            }
+        }, 2000);
+    </script>
+</body>
+</html>

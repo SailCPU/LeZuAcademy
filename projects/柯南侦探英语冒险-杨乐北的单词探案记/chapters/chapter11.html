@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第11章：最终魔法考试 - 柯南侦探英语冒险：杨乐北的单词探案记</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', 'SimSun', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+            max-width: 210mm;
+            margin: 0 auto;
+        }
+        
+        .container {
+            max-width: 180mm;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        
+        .chapter-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+        }
+        
+        .chapter-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.2);
+            transition: background 0.3s;
+        }
+        
+        .chapter-nav a:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .chapter-nav a.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .back-link {
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        
+        .back-link:hover {
+            background: #218838;
+        }
+        
+        .chapter {
+            margin-bottom: 40px;
+            page-break-inside: avoid;
+        }
+        
+        .chapter-title {
+            color: #495057;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #6c757d;
+            padding-bottom: 10px;
+        }
+        
+        .section-title {
+            color: #495057;
+            font-size: 1.4em;
+            margin: 25px 0 15px 0;
+            border-left: 3px solid #6c757d;
+            padding-left: 15px;
+        }
+        
+        .magic-box {
+            background: #f3e5f5;
+            border: 2px solid #9c27b0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .story-box {
+            background: #fff3cd;
+            border: 2px solid #ffeaa7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .word-box {
+            background: #d4edda;
+            border: 2px solid #c3e6cb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .game-box {
+            background: #f8d7da;
+            border: 2px solid #f5c6cb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .adventure-box {
+            background: #d1ecf1;
+            border: 2px solid #bee5eb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .english-word {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .chinese-meaning {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .magic {
+            color: #9c27b0;
+            font-weight: bold;
+        }
+        
+        .conan {
+            color: #e67e22;
+            font-weight: bold;
+        }
+        
+        .yang-lebei {
+            color: #3498db;
+            font-weight: bold;
+        }
+        
+        .yang-letian {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .yang-leda {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        
+        .adventure {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        
+        .word-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+                .word-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            user-select: none;
+        }
+        
+        .word-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-color: #007bff;
+        }
+        
+        .word-card .english {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 5px;
+        }
+        
+        .word-card .chinese {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .word-card .example {
+            font-style: italic;
+            color: #666;
+            margin-top: 8px;
+            font-size: 0.9em;
+        }
+        
+        .mission-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .mission-card h4 {
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        @media print {
+            .chapter-nav, .back-link {
+                display: none;
+            }
+            
+            @page {
+                margin: 20mm 15mm 20mm 15mm;
+                size: A4 portrait;
+            }
+            
+            body {
+                margin: 0;
+                padding: 0;
+                font-size: 11pt;
+                line-height: 1.5;
+                background-color: white;
+                max-width: none;
+            }
+            
+            .container {
+                max-width: none;
+                margin: 0;
+                padding: 0;
+                background-color: white;
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">📖 返回总目录</a>
+        <a href="index.html" class="back-link">📚 返回章节目录</a>
+        
+        <div class="chapter-nav">
+            <a href="chapter10.html" class="">⬅️ 上一章</a>
+            <span>第11章：最终魔法考试</span>
+            <a href="appendix.html" class="">下一章 ➡️</a>
+        </div>
+        
+                <div class="chapter">
+            <h3 class="chapter-title">🎓 第十一章：最终魔法考试</h3>
+            
+            <div class="story-box">
+                <h4 class="section-title">📖 故事板块：魔法学院的终极挑战</h4>
+                <p>
+                    经过长时间的学习，<span class="yang-lebei">杨乐北</span>终于迎来了<span class="english-word">final exam</span>。但是让他<span class="english-word">surprised</span>的是，<span class="yang-letian">杨乐天</span>和<span class="yang-leda">杨乐达</span>也来到了<span class="english-word">exam room</span>！
+                </p>
+                <p>
+                    "我们也要参加<span class="english-word">graduation</span> <span class="english-word">exam</span>！"<span class="yang-letian">杨乐天</span>兴奋地说，"我们一直在偷偷<span class="english-word">study</span>呢！"
+                </p>
+                <p>
+                    "<span class="english-word">Really</span>？"<span class="yang-lebei">杨乐北</span>惊讶地看着他的两个弟弟，"你们什么时候开始学<span class="english-word">English</span>的？"
+                </p>
+                <p>
+                    "<span class="english-word">Since</span>你开始<span class="english-word">adventure</span>以后！"<span class="yang-leda">杨乐达</span>自豪地说，"我们跟着你一起<span class="english-word">learning</span>！"
+                </p>
+                <p>
+                    柯南院长微笑着说："<span class="english-word">Excellent</span>！这确实是一场<span class="english-word">special</span>的<span class="english-word">graduation</span>考试。你们三兄妹必须<span class="english-word">cooperate</span>，通过所有<span class="english-word">challenges</span>，才能获得魔法学院的<span class="english-word">diploma</span>！"
+                </p>
+                
+                <h4 class="section-title">🎯 第一关：单词魔法阵</h4>
+                <p>
+                    考试开始了！三兄妹走进一个巨大的<span class="english-word">magic circle</span>，地面上浮现出各种<span class="english-word">English words</span>：<span class="english-word">success</span>、<span class="english-word">achievement</span>、<span class="english-word">dream</span>、<span class="english-word">goal</span>、<span class="english-word">future</span>...
+                </p>
+                <p>
+                    "你们必须按照<span class="english-word">correct</span>的<span class="english-word">order</span>踩这些单词！"柯南院长解释道，"从<span class="english-word">learning</span>开始，到<span class="english-word">success</span>结束！"
+                </p>
+                <p>
+                    <span class="yang-lebei">杨乐北</span>思考了一下："<span class="english-word">Learning</span> → <span class="english-word">practice</span> → <span class="english-word">improvement</span> → <span class="english-word">achievement</span> → <span class="english-word">success</span>！"
+                </p>
+                <p>
+                    三兄妹手拉手，一起踩过这些<span class="english-word">magic words</span>。每踩一个单词，就有<span class="english-word">beautiful</span>的<span class="english-word">light</span>闪烁！
+                </p>
+                <p>
+                    "第一关<span class="english-word">passed</span>！"柯南院长高兴地说。
+                </p>
+                
+                <h4 class="section-title">🏆 第二关：技能展示台</h4>
+                <p>
+                    接下来，他们来到了<span class="english-word">skill demonstration</span>区域。这里有三个<span class="english-word">different</span>的<span class="english-word">stations</span>。
+                </p>
+                <p>
+                    "<span class="english-word">Each</span> <span class="english-word">brother</span>要在<span class="english-word">different</span> <span class="english-word">station</span>展示自己的<span class="english-word">special</span> <span class="english-word">ability</span>！"柯南院长宣布。
+                </p>
+                <p>
+                    <span class="yang-lebei">杨乐北</span>走向<span class="english-word">vocabulary</span> <span class="english-word">station</span>，需要用<span class="english-word">English</span>解释各种复杂的概念。"<span class="english-word">Achievement</span> <span class="english-word">means</span> <span class="english-word">success</span> <span class="english-word">in</span> <span class="english-word">reaching</span> <span class="english-word">your</span> <span class="english-word">goals</span>！"他自信地回答。
+                </p>
+                <p>
+                    <span class="yang-letian">杨乐天</span>选择了<span class="english-word">creativity</span> <span class="english-word">station</span>，用学到的单词编了一首<span class="english-word">funny</span>的<span class="english-word">song</span>："<span class="english-word">Study</span>, <span class="english-word">study</span>, <span class="english-word">every</span> <span class="english-word">day</span>, <span class="english-word">learning</span> <span class="english-word">English</span> <span class="english-word">in</span> <span class="english-word">a</span> <span class="english-word">fun</span> <span class="english-word">way</span>！"
+                </p>
+                <p>
+                    <span class="yang-leda">杨乐达</span>来到<span class="english-word">problem-solving</span> <span class="english-word">station</span>，面对一个<span class="english-word">English</span> <span class="english-word">puzzle</span>："<span class="english-word">If</span> <span class="english-word">practice</span> <span class="english-word">makes</span> <span class="english-word">perfect</span>, <span class="english-word">and</span> <span class="english-word">nobody</span> <span class="english-word">is</span> <span class="english-word">perfect</span>, <span class="english-word">then</span> <span class="english-word">why</span> <span class="english-word">practice</span>？"他想了想："<span class="english-word">Because</span> <span class="english-word">practice</span> <span class="english-word">makes</span> <span class="english-word">us</span> <span class="english-word">better</span>，<span class="english-word">not</span> <span class="english-word">perfect</span>！"
+                </p>
+                <p>
+                    "三个<span class="english-word">excellent</span> <span class="english-word">performances</span>！"柯南院长鼓掌，"第二关也<span class="english-word">passed</span>！"
+                </p>
+                
+                <h4 class="section-title">🌟 第三关：团队合作挑战</h4>
+                <p>
+                    最后一关最<span class="english-word">challenging</span>！三兄妹必须<span class="english-word">together</span>创作一个<span class="english-word">complete</span>的<span class="english-word">English story</span>，使用所有学过的<span class="english-word">vocabulary</span>。
+                </p>
+                <p>
+                    "我们的<span class="english-word">story</span>是什么？"<span class="yang-lebei">杨乐北</span>问。
+                </p>
+                <p>
+                    "<span class="english-word">Three</span> <span class="english-word">brothers</span> <span class="english-word">learning</span> <span class="english-word">English</span> <span class="english-word">magic</span>！"<span class="yang-letian">杨乐天</span>建议。
+                </p>
+                <p>
+                    他们开始<span class="english-word">cooperate</span>：<span class="yang-lebei">杨乐北</span>负责<span class="english-word">grammar</span>和<span class="english-word">structure</span>，<span class="yang-letian">杨乐天</span>负责<span class="english-word">creative</span> <span class="english-word">ideas</span>，<span class="yang-leda">杨乐达</span>负责<span class="english-word">logical</span> <span class="english-word">connections</span>。
+                </p>
+                <p>
+                    经过<span class="english-word">teamwork</span>，他们创作了一个<span class="english-word">wonderful</span>的<span class="english-word">adventure</span> <span class="english-word">story</span>，讲述了三个<span class="english-word">brothers</span>如何通过<span class="english-word">persistence</span>、<span class="english-word">cooperation</span>和<span class="english-word">determination</span>，<span class="english-word">achieve</span>了他们的<span class="english-word">dreams</span>！
+                </p>
+                
+                <h4 class="section-title">🎉 意外的惊喜</h4>
+                <p>
+                    就在这时，<span class="english-word">magic chamber</span>的门突然打开，爸爸妈妈走了进来！
+                </p>
+                <p>
+                    "我们来<span class="english-word">celebrate</span>你们的<span class="english-word">graduation</span>！"妈妈高兴地说，她手里拿着一个大大的<span class="english-word">cake</span>。
+                </p>
+                <p>
+                    "你们都学会了这么多<span class="english-word">English</span>！"爸爸<span class="english-word">proud</span>地说，"我们为你们感到<span class="english-word">proud</span>！"
+                </p>
+                <p>
+                    "这是一个<span class="english-word">family</span> <span class="english-word">celebration</span>！"柯南院长微笑着说，"你们不仅学会了<span class="english-word">English</span>，更重要的是学会了<span class="english-word">cooperation</span>、<span class="english-word">persistence</span>和<span class="english-word">love</span>！"
+                </p>
+                
+                <h4 class="section-title">🏅 隆重的毕业典礼</h4>
+                <p>
+                    柯南院长拿出三份<span class="english-word">beautiful</span>的<span class="english-word">diplomas</span>："我现在宣布，<span class="yang-lebei">杨乐北</span>、<span class="yang-letian">杨乐天</span>、<span class="yang-leda">杨乐达</span>，你们都<span class="english-word">successfully</span> <span class="english-word">graduated</span>从魔法英语学院！"
+                </p>
+                <p>
+                    "<span class="english-word">Congratulations</span>！"所有人一起鼓掌。
+                </p>
+                <p>
+                    三兄妹激动地接过<span class="english-word">diplomas</span>，上面写着：
+                </p>
+                <p>
+                    📜 "<span class="english-word">Certificate</span> <span class="english-word">of</span> <span class="english-word">Excellence</span> <span class="english-word">in</span> <span class="english-word">English</span> <span class="english-word">Magic</span> - <span class="english-word">Awarded</span> <span class="english-word">for</span> <span class="english-word">outstanding</span> <span class="english-word">achievement</span>, <span class="english-word">dedication</span>, <span class="english-word">and</span> <span class="english-word">teamwork</span>!"
+                </p>
+                <p>
+                    "<span class="english-word">Now</span>你们是<span class="english-word">official</span> <span class="english-word">English</span> <span class="english-word">wizards</span>！"柯南院长自豪地说，"记住，<span class="english-word">learning</span> <span class="english-word">never</span> <span class="english-word">ends</span>。这只是你们<span class="english-word">amazing</span> <span class="english-word">journey</span>的<span class="english-word">beginning</span>！"
+                </p>
+                <p>
+                    三兄妹紧紧拥抱在一起，他们知道这是一个<span class="english-word">new</span> <span class="english-word">beginning</span>，他们的<span class="english-word">English</span> <span class="english-word">adventure</span>将会<span class="english-word">continue</span>，他们的<span class="english-word">dreams</span>将会<span class="english-word">come</span> <span class="english-word">true</span>！
+                </p>
+                <p>
+                    "我们<span class="english-word">promise</span>会<span class="english-word">keep</span> <span class="english-word">practicing</span>！"<span class="yang-lebei">杨乐北</span>说。
+                </p>
+                <p>
+                    "我们要用<span class="english-word">English</span>去<span class="english-word">explore</span> <span class="english-word">the</span> <span class="english-word">world</span>！"<span class="yang-letian">杨乐天</span>兴奋地喊道。
+                </p>
+                <p>
+                    "我们要帮助<span class="english-word">more</span> <span class="english-word">people</span> <span class="english-word">learn</span> <span class="english-word">English</span>！"<span class="yang-leda">杨乐达</span>决心满满地说。
+                </p>
+                <p>
+                    在<span class="english-word">celebration</span>的欢声笑语中，这个<span class="english-word">magical</span> <span class="english-word">English</span> <span class="english-word">adventure</span>达到了<span class="english-word">perfect</span>的<span class="english-word">conclusion</span>。但是，每个人都知道，真正的<span class="english-word">adventure</span>才刚刚开始！
+                </p>
+                <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 15px 0; border: 2px dashed #f39c12;">
+                    <h5 style="color: #f39c12; margin-bottom: 10px;">🔍 魔法侦探任务</h5>
+                    <p><strong>你能猜出这些毕业和成功单词的意思吗？</strong></p>
+                    <p>💡 <span class="english-word">final exam</span> = ________（提示：最后的考试）</p>
+                    <p>💡 <span class="english-word">graduation</span> = ________（提示：毕业典礼）</p>
+                    <p>💡 <span class="english-word">congratulations</span> = ________（提示：祝贺的话）</p>
+                    <p>💡 <span class="english-word">success</span> = ________（提示：成功）</p>
+                    <p>💡 <span class="english-word">achievement</span> = ________（提示：成就）</p>
+                    <p>💡 <span class="english-word">future</span> = ________（提示：未来）</p>
+                    <p>💡 <span class="english-word">dream</span> = ________（提示：梦想）</p>
+                    <p>💡 <span class="english-word">goal</span> = ________（提示：目标）</p>
+                </div>
+            </div>
+
+            <div class="word-box">
+                <h4 class="section-title">🔢 单词板块：毕业与成功单词</h4>
+                <p>魔法学院院长说："祝贺你完成了英语学习的魔法旅程！这些成功的单词将伴随你走向更美好的未来！"</p>
+                
+                <div class="word-list">
+                    <div class="word-card">
+                        <div class="english">exam</div>
+                        <div class="chinese">考试</div>
+                        <div class="example">I passed my English exam!</div>
+                </div>
+                    <div class="word-card">
+                        <div class="english">test</div>
+                        <div class="chinese">测试</div>
+                        <div class="example">The test was not difficult.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">quiz</div>
+                        <div class="chinese">小测验</div>
+                        <div class="example">We have a quiz every Friday.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">final exam</div>
+                        <div class="chinese">期末考试</div>
+                        <div class="example">The final exam is coming soon.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">grade</div>
+                        <div class="chinese">成绩，年级</div>
+                        <div class="example">I got a good grade in English.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">score</div>
+                        <div class="chinese">分数，得分</div>
+                        <div class="example">My score is 95 points.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">result</div>
+                        <div class="chinese">结果</div>
+                        <div class="example">The test result is excellent!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">pass</div>
+                        <div class="chinese">通过，合格</div>
+                        <div class="example">I will pass all my exams.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">fail</div>
+                        <div class="chinese">失败，不合格</div>
+                        <div class="example">Don't worry if you fail, try again!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">graduation</div>
+                        <div class="chinese">毕业</div>
+                        <div class="example">Graduation day is very special.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">graduate</div>
+                        <div class="chinese">毕业，毕业生</div>
+                        <div class="example">I will graduate from school.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">diploma</div>
+                        <div class="chinese">毕业证书</div>
+                        <div class="example">I received my diploma today.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">certificate</div>
+                        <div class="chinese">证书</div>
+                        <div class="example">This certificate shows my English level.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">degree</div>
+                        <div class="chinese">学位</div>
+                        <div class="example">She has a university degree.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">congratulations</div>
+                        <div class="chinese">祝贺</div>
+                        <div class="example">Congratulations on your success!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">celebrate</div>
+                        <div class="chinese">庆祝</div>
+                        <div class="example">Let's celebrate your achievement!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">party</div>
+                        <div class="chinese">派对，聚会</div>
+                        <div class="example">We had a graduation party.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">success</div>
+                        <div class="chinese">成功</div>
+                        <div class="example">Success comes with hard work.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">successful</div>
+                        <div class="chinese">成功的</div>
+                        <div class="example">You are a successful student!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">succeed</div>
+                        <div class="chinese">成功</div>
+                        <div class="example">I know you will succeed.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">achievement</div>
+                        <div class="chinese">成就，成绩</div>
+                        <div class="example">Learning English is a great achievement.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">accomplish</div>
+                        <div class="chinese">实现，完成</div>
+                        <div class="example">I accomplished all my goals.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">complete</div>
+                        <div class="chinese">完成</div>
+                        <div class="example">I completed all the lessons.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">finish</div>
+                        <div class="chinese">完成，结束</div>
+                        <div class="example">I finished reading the book.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">progress</div>
+                        <div class="chinese">进步，进展</div>
+                        <div class="example">Your English progress is amazing!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">improve</div>
+                        <div class="chinese">改善，提高</div>
+                        <div class="example">My English skills improved a lot.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">improvement</div>
+                        <div class="chinese">改善，提高</div>
+                        <div class="example">I can see great improvement.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">develop</div>
+                        <div class="chinese">发展，培养</div>
+                        <div class="example">I developed good study habits.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">development</div>
+                        <div class="chinese">发展</div>
+                        <div class="example">Personal development is important.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">skill</div>
+                        <div class="chinese">技能</div>
+                        <div class="example">English is a useful skill.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">ability</div>
+                        <div class="chinese">能力</div>
+                        <div class="example">I have the ability to learn English.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">talent</div>
+                        <div class="chinese">天赋，才能</div>
+                        <div class="example">Everyone has talent for languages.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">knowledge</div>
+                        <div class="chinese">知识</div>
+                        <div class="example">Knowledge is power.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">wisdom</div>
+                        <div class="chinese">智慧</div>
+                        <div class="example">Learning brings wisdom.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">experience</div>
+                        <div class="chinese">经验，经历</div>
+                        <div class="example">This was a great learning experience.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">lesson</div>
+                        <div class="chinese">课程</div>
+                        <div class="example">Each lesson taught me something new.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">education</div>
+                        <div class="chinese">教育</div>
+                        <div class="example">Education opens many doors.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">learning</div>
+                        <div class="chinese">学习</div>
+                        <div class="example">Learning is a lifelong journey.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">study</div>
+                        <div class="chinese">学习，研究</div>
+                        <div class="example">I love to study English.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">practice</div>
+                        <div class="chinese">练习</div>
+                        <div class="example">Practice makes perfect!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">effort</div>
+                        <div class="chinese">努力</div>
+                        <div class="example">Your effort paid off!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">hard work</div>
+                        <div class="chinese">勤奋工作</div>
+                        <div class="example">Hard work leads to success.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">dedication</div>
+                        <div class="chinese">奉献，专注</div>
+                        <div class="example">Your dedication is inspiring.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">determination</div>
+                        <div class="chinese">决心</div>
+                        <div class="example">Determination helps you succeed.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">persistence</div>
+                        <div class="chinese">坚持</div>
+                        <div class="example">Persistence is the key to learning.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">patience</div>
+                        <div class="chinese">耐心</div>
+                        <div class="example">Learning requires patience.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">courage</div>
+                        <div class="chinese">勇气</div>
+                        <div class="example">It takes courage to try new things.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">confidence</div>
+                        <div class="chinese">信心</div>
+                        <div class="example">I have confidence in my English.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">motivation</div>
+                        <div class="chinese">动机，动力</div>
+                        <div class="example">Find your motivation to learn.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">inspiration</div>
+                        <div class="chinese">灵感，激励</div>
+                        <div class="example">You are an inspiration to others.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">goal</div>
+                        <div class="chinese">目标</div>
+                        <div class="example">Set clear goals for yourself.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">target</div>
+                        <div class="chinese">目标</div>
+                        <div class="example">You reached your target!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">objective</div>
+                        <div class="chinese">目标，目的</div>
+                        <div class="example">The objective is to learn English well.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">aim</div>
+                        <div class="chinese">目标，旨在</div>
+                        <div class="example">Aim high and work hard!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">dream</div>
+                        <div class="chinese">梦想</div>
+                        <div class="example">Follow your dreams!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">wish</div>
+                        <div class="chinese">愿望，希望</div>
+                        <div class="example">My wish is to speak English fluently.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">hope</div>
+                        <div class="chinese">希望</div>
+                        <div class="example">I hope you continue learning.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">future</div>
+                        <div class="chinese">未来</div>
+                        <div class="example">The future is bright!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">opportunity</div>
+                        <div class="chinese">机会</div>
+                        <div class="example">English opens many opportunities.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">chance</div>
+                        <div class="chinese">机会，机率</div>
+                        <div class="example">Give yourself a chance to succeed.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">possibility</div>
+                        <div class="chinese">可能性</div>
+                        <div class="example">There are endless possibilities!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">potential</div>
+                        <div class="chinese">潜力</div>
+                        <div class="example">You have great potential!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">career</div>
+                        <div class="chinese">职业</div>
+                        <div class="example">English helps in any career.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">job</div>
+                        <div class="chinese">工作</div>
+                        <div class="example">A good job requires good English.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">profession</div>
+                        <div class="chinese">职业，专业</div>
+                        <div class="example">Choose a profession you love.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">adventure</div>
+                        <div class="chinese">冒险，奇遇</div>
+                        <div class="example">Learning is an adventure!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">journey</div>
+                        <div class="chinese">旅程</div>
+                        <div class="example">This learning journey was amazing.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">path</div>
+                        <div class="chinese">道路</div>
+                        <div class="example">You chose the right path.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">step</div>
+                        <div class="chinese">步骤</div>
+                        <div class="example">Every step brings you closer to success.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">challenge</div>
+                        <div class="chinese">挑战</div>
+                        <div class="example">Every challenge makes you stronger.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">difficulty</div>
+                        <div class="chinese">困难</div>
+                        <div class="example">Overcome every difficulty!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">obstacle</div>
+                        <div class="chinese">障碍</div>
+                        <div class="example">No obstacle can stop you!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">problem</div>
+                        <div class="chinese">问题</div>
+                        <div class="example">Every problem has a solution.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">solution</div>
+                        <div class="chinese">解决方案</div>
+                        <div class="example">You found the perfect solution!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">answer</div>
+                        <div class="chinese">答案</div>
+                        <div class="example">You found all the right answers.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">mistake</div>
+                        <div class="chinese">错误</div>
+                        <div class="example">Learn from every mistake.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">error</div>
+                        <div class="chinese">错误</div>
+                        <div class="example">Errors help us learn better.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">correction</div>
+                        <div class="chinese">纠正</div>
+                        <div class="example">Make corrections and improve.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">reward</div>
+                        <div class="chinese">奖励</div>
+                        <div class="example">Your hard work deserves a reward.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">prize</div>
+                        <div class="chinese">奖品</div>
+                        <div class="example">You won the first prize!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">award</div>
+                        <div class="chinese">奖励</div>
+                        <div class="example">This award recognizes your effort.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">honor</div>
+                        <div class="chinese">荣誉</div>
+                        <div class="example">It's an honor to graduate.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">recognition</div>
+                        <div class="chinese">认可</div>
+                        <div class="example">Your work deserves recognition.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">respect</div>
+                        <div class="chinese">尊重</div>
+                        <div class="example">You earned everyone's respect.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">pride</div>
+                        <div class="chinese">自豪</div>
+                        <div class="example">I feel pride in your achievement.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">proud</div>
+                        <div class="chinese">自豪的</div>
+                        <div class="example">I'm proud of your progress!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">happy</div>
+                        <div class="chinese">快乐的</div>
+                        <div class="example">Learning makes me happy.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">joy</div>
+                        <div class="chinese">喜悦</div>
+                        <div class="example">There's joy in learning new things.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">satisfaction</div>
+                        <div class="chinese">满意</div>
+                        <div class="example">I feel great satisfaction.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">fulfillment</div>
+                        <div class="chinese">满足感</div>
+                        <div class="example">Learning brings fulfillment.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">memory</div>
+                        <div class="chinese">记忆</div>
+                        <div class="example">This will be a wonderful memory.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">remember</div>
+                        <div class="chinese">记得</div>
+                        <div class="example">I will remember all these words.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">forget</div>
+                        <div class="chinese">忘记</div>
+                        <div class="example">Never forget to practice!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">continue</div>
+                        <div class="chinese">继续</div>
+                        <div class="example">Continue your English journey!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">keep</div>
+                        <div class="chinese">保持</div>
+                        <div class="example">Keep practicing every day.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">maintain</div>
+                        <div class="chinese">维持</div>
+                        <div class="example">Maintain your good habits.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">grow</div>
+                        <div class="chinese">成长</div>
+                        <div class="example">You will continue to grow.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">change</div>
+                        <div class="chinese">改变</div>
+                        <div class="example">Learning changes your life.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">transform</div>
+                        <div class="chinese">转变</div>
+                        <div class="example">Education transforms people.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">become</div>
+                        <div class="chinese">成为</div>
+                        <div class="example">You will become fluent in English.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">achieve</div>
+                        <div class="chinese">实现</div>
+                        <div class="example">You can achieve anything!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">reach</div>
+                        <div class="chinese">达到</div>
+                        <div class="example">You reached your goal!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">believe</div>
+                        <div class="chinese">相信</div>
+                        <div class="example">Believe in yourself!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">trust</div>
+                        <div class="chinese">信任</div>
+                        <div class="example">Trust in your abilities.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">wonderful</div>
+                        <div class="chinese">精彩的，美妙的</div>
+                        <div class="example">This was a wonderful journey!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">amazing</div>
+                        <div class="chinese">令人惊异的</div>
+                        <div class="example">Your progress is amazing!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">excellent</div>
+                        <div class="chinese">优秀的</div>
+                        <div class="example">Excellent work!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">outstanding</div>
+                        <div class="chinese">杰出的</div>
+                        <div class="example">Your performance is outstanding!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">brilliant</div>
+                        <div class="chinese">卓越的，明亮的</div>
+                        <div class="example">You are brilliant!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">fantastic</div>
+                        <div class="chinese">极好的</div>
+                        <div class="example">Fantastic job!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">perfect</div>
+                        <div class="chinese">完美的</div>
+                        <div class="example">Nobody is perfect, but you try your best!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">special</div>
+                        <div class="chinese">特别的</div>
+                        <div class="example">You are very special!</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">unique</div>
+                        <div class="chinese">独特的</div>
+                        <div class="example">Everyone is unique and special.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">important</div>
+                        <div class="chinese">重要的</div>
+                        <div class="example">Learning is very important.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">valuable</div>
+                        <div class="chinese">有价值的</div>
+                        <div class="example">English is a valuable skill.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">useful</div>
+                        <div class="chinese">有用的</div>
+                        <div class="example">These words are very useful.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">helpful</div>
+                        <div class="chinese">有帮助的</div>
+                        <div class="example">This book is very helpful.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">powerful</div>
+                        <div class="chinese">强大的</div>
+                        <div class="example">Knowledge is powerful.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">magic</div>
+                        <div class="chinese">魔法</div>
+                        <div class="example">Learning English is like magic!</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🎓 魔法毕业典礼</h4>
+                <div class="mission-card">
+                    <h4>🏆 魔法任务：毕业演讲大挑战</h4>
+                    <p>用学到的所有单词，准备一场魔法学院的毕业演讲：</p>
+                    <ol>
+                        <li>用英语介绍自己的学习经历。</li>
+                        <li>感谢柯南院长的教导。</li>
+                        <li>分享自己的<span class="english-word">dream</span>和<span class="english-word">goal</span>。</li>
+                        <li>获得"魔法学院优秀毕业生"称号！</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: white; margin-bottom: 15px;">🎤 毕业演讲模板</h5>
+                    <p style="margin: 8px 0;"><strong>开场：</strong>"Good morning, everyone! Today is my <span class="english-word">graduation</span> day!"</p>
+                    <p style="margin: 8px 0;"><strong>学习经历：</strong>"During this <span class="english-word">journey</span>, I learned many <span class="english-word">skills</span>..."</p>
+                    <p style="margin: 8px 0;"><strong>感谢：</strong>"I want to thank my teacher for the <span class="english-word">knowledge</span> and <span class="english-word">wisdom</span>..."</p>
+                    <p style="margin: 8px 0;"><strong>成就：</strong>"I'm <span class="english-word">proud</span> of my <span class="english-word">achievement</span> and <span class="english-word">progress</span>..."</p>
+                    <p style="margin: 8px 0;"><strong>未来：</strong>"My <span class="english-word">dream</span> is to continue learning and reach my <span class="english-word">goals</span>..."</p>
+                    <p style="margin: 8px 0;"><strong>结尾：</strong>"Thank you for this <span class="english-word">wonderful</span> <span class="english-word">experience</span>!"</p>
+                    <p style="margin-top: 15px; font-style: italic;">🎯 挑战：在演讲中使用至少30个学过的单词！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🏆 魔法成就展示</h4>
+                <div class="mission-card">
+                    <h4>📊 魔法任务：制作成就证书</h4>
+                    <p>设计并制作你的英语学习成就证书：</p>
+                    <ol>
+                        <li>列出你掌握的所有<span class="english-word">skills</span></li>
+                        <li>记录你的学习<span class="english-word">progress</span></li>
+                        <li>设定未来的<span class="english-word">goals</span></li>
+                        <li>获得家人的<span class="english-word">recognition</span></li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); color: #333; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: #333; margin-bottom: 15px;">🏆 我的成就证书</h5>
+                    <p style="margin: 8px 0;"><strong>Name:</strong> ________________</p>
+                    <p style="margin: 8px 0;"><strong>Achievement:</strong> I <span class="english-word">successfully</span> completed the English Magic Academy!</p>
+                    <p style="margin: 8px 0;"><strong>Skills Learned:</strong> I can ________________</p>
+                    <p style="margin: 8px 0;"><strong>Progress Made:</strong> My English <span class="english-word">improved</span> from _______ to _______</p>
+                    <p style="margin: 8px 0;"><strong>Best Memory:</strong> My most <span class="english-word">wonderful</span> memory is ________________</p>
+                    <p style="margin: 8px 0;"><strong>Future Goal:</strong> In the <span class="english-word">future</span>, I will ________________</p>
+                    <p style="margin: 8px 0;"><strong>Date:</strong> ________________</p>
+                    <p style="margin-top: 15px; font-style: italic;">✨ 记住：你的<span class="english-word">effort</span>和<span class="english-word">dedication</span>值得<span class="english-word">celebration</span>！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">📝 魔法学习日记</h4>
+                <div class="mission-card">
+                    <h4>📚 魔法任务：完整学习回顾</h4>
+                    <p>回顾整个学习过程，用学到的单词写一篇完整的学习日记：</p>
+                    <ol>
+                        <li>描述每个章节的<span class="english-word">experience</span></li>
+                        <li>记录遇到的<span class="english-word">challenges</span>和<span class="english-word">solutions</span></li>
+                        <li>分享最<span class="english-word">valuable</span>的<span class="english-word">lessons</span></li>
+                        <li>表达对未来的<span class="english-word">hope</span>和<span class="english-word">determination</span></li>
+                    </ol>
+                </div>
+                
+                <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                    <h5><strong>学习日记模板：</strong></h5>
+                    <p><strong>开始：</strong>When I first started this <span class="english-word">journey</span>, I felt...</p>
+                    <p><strong>第1-3章：</strong>In the beginning <span class="english-word">lessons</span>, I learned...</p>
+                    <p><strong>第4-6章：</strong>The middle chapters taught me...</p>
+                    <p><strong>第7-9章：</strong>As I <span class="english-word">progressed</span>, I discovered...</p>
+                    <p><strong>第10章：</strong>Now I feel <span class="english-word">confident</span> and <span class="english-word">proud</span> because...</p>
+                    <p><strong>未来：</strong>I will <span class="english-word">continue</span> to <span class="english-word">practice</span> and <span class="english-word">achieve</span>...</p>
+                    <p style="margin-top: 10px;"><strong>挑战：</strong>使用来自所有10个章节的单词，写出500字的英语日记！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🌟 魔法未来规划</h4>
+                <div class="mission-card">
+                    <h4>🚀 魔法任务：制定终生学习计划</h4>
+                    <p>用学到的单词，制定一个详细的终生英语学习计划：</p>
+                    <ol>
+                        <li>短期<span class="english-word">goals</span>（1个月内）</li>
+                        <li>中期<span class="english-word">targets</span>（6个月内）</li>
+                        <li>长期<span class="english-word">dreams</span>（1年以上）</li>
+                        <li>具体的<span class="english-word">steps</span>和<span class="english-word">methods</span></li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: #333; margin-bottom: 15px;">🚀 我的未来学习计划</h5>
+                    <p style="margin: 8px 0;">📅 <strong>1-Month Goal:</strong> I will <span class="english-word">practice</span> _______ every day</p>
+                    <p style="margin: 8px 0;">📅 <strong>6-Month Target:</strong> I want to <span class="english-word">improve</span> my _______</p>
+                    <p style="margin: 8px 0;">📅 <strong>1-Year Dream:</strong> I hope to <span class="english-word">achieve</span> _______</p>
+                    <p style="margin: 8px 0;">📚 <strong>Learning Method:</strong> I will use _______ to <span class="english-word">develop</span> my skills</p>
+                    <p style="margin: 8px 0;">👥 <strong>Support System:</strong> I will ask _______ to help me</p>
+                    <p style="margin: 8px 0;">🎯 <strong>Success Measure:</strong> I will know I <span class="english-word">succeeded</span> when _______</p>
+                    <p style="margin: 8px 0;">💪 <strong>Motivation:</strong> When I feel <span class="english-word">difficult</span>, I will remember _______</p>
+                    <p style="margin-top: 15px; font-style: italic;">🌟 记住：<span class="english-word">persistence</span>和<span class="english-word">patience</span>是成功的关键！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🎨 魔法回忆画册</h4>
+                <div class="mission-card">
+                    <h4>📖 魔法任务：制作学习回忆册</h4>
+                    <p>创建一本图文并茂的英语学习回忆册：</p>
+                    <ol>
+                        <li>为每个章节画一幅图配上英语<span class="english-word">memory</span></li>
+                        <li>收集最喜欢的<span class="english-word">words</span>和<span class="english-word">phrases</span></li>
+                        <li>记录学习中的<span class="english-word">funny</span>时刻</li>
+                        <li>添加家人朋友的<span class="english-word">congratulations</span></li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); color: #333; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: #333; margin-bottom: 15px;">📖 回忆册内容建议</h5>
+                    <p style="margin: 8px 0;">📝 <strong>Chapter 1:</strong> 画出魔法学院，写上"My first <span class="english-word">lesson</span>"</p>
+                    <p style="margin: 8px 0;">🏠 <strong>Chapter 2:</strong> 画出家庭，写上"I learned about <span class="english-word">family</span>"</p>
+                    <p style="margin: 8px 0;">🦋 <strong>Chapter 3:</strong> 画出动物，写上"<span class="english-word">Animals</span> are my friends"</p>
+                    <p style="margin: 8px 0;">🏫 <strong>Chapter 4:</strong> 画出学校，写上"<span class="english-word">School</span> is <span class="english-word">wonderful</span>"</p>
+                    <p style="margin: 8px 0;">🗺️ <strong>Chapter 5:</strong> 画出地图，写上"I can <span class="english-word">explore</span> places"</p>
+                    <p style="margin: 8px 0;">📚 <strong>其他章节：</strong>继续记录每个章节的<span class="english-word">special</span>时刻</p>
+                    <p style="margin-top: 15px; font-style: italic;">🎨 创作技巧：用彩色笔画图，用漂亮的字写英语！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">👨‍🏫 魔法小老师</h4>
+                <div class="mission-card">
+                    <h4>📢 魔法任务：教别人学英语</h4>
+                    <p>现在你已经是英语小<span class="english-word">expert</span>了，试着教别人学英语：</p>
+                    <ol>
+                        <li>选择最<span class="english-word">important</span>的50个单词</li>
+                        <li>设计<span class="english-word">fun</span>的游戏来教这些单词</li>
+                        <li>帮助弟弟妹妹或朋友<span class="english-word">learn</span></li>
+                        <li>分享你的学习<span class="english-word">experience</span>和<span class="english-word">methods</span></li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: white; margin-bottom: 15px;">👨‍🏫 小老师指南</h5>
+                    <p style="margin: 8px 0;"><strong>准备阶段：</strong></p>
+                    <p style="margin: 8px 0;">📋 选择<span class="english-word">simple</span>而<span class="english-word">useful</span>的单词</p>
+                    <p style="margin: 8px 0;">🎮 设计<span class="english-word">interesting</span>的游戏</p>
+                    <p style="margin: 8px 0;"><strong>教学阶段：</strong></p>
+                    <p style="margin: 8px 0;">😊 保持<span class="english-word">patient</span>和<span class="english-word">encouraging</span></p>
+                    <p style="margin: 8px 0;">🎉 庆祝每一个小<span class="english-word">progress</span></p>
+                    <p style="margin: 8px 0;"><strong>分享技巧：</strong></p>
+                    <p style="margin: 8px 0;">💡 "学英语很<span class="english-word">fun</span>，不要害怕<span class="english-word">mistakes</span>！"</p>
+                    <p style="margin: 8px 0;">💡 "每天<span class="english-word">practice</span>一点点，就会有大<span class="english-word">improvement</span>！"</p>
+                    <p style="margin-top: 15px; font-style: italic;">👩‍🎓 教别人是最好的学习方法之一！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🎉 魔法毕业派对</h4>
+                <div class="mission-card">
+                    <h4>🎊 魔法任务：庆祝你的成功</h4>
+                    <p>和家人或小伙伴一起举办一场"魔法毕业派对"：</p>
+                    <ol>
+                        <li>用英语介绍你的学习成果。</li>
+                        <li>表演学到的魔法咒语。</li>
+                        <li>分享你的<span class="english-word">achievement</span>。</li>
+                        <li>获得"<span class="english-word">congratulations</span>"和掌声！</li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); color: #333; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: #333; margin-bottom: 15px;">🎉 毕业派对计划</h5>
+                    <p style="margin: 8px 0;"><strong>派对活动：</strong></p>
+                    <p style="margin: 8px 0;">🎤 英语才艺表演：唱英语歌、讲英语故事</p>
+                    <p style="margin: 8px 0;">🎮 英语游戏时间：单词接龙、英语问答</p>
+                    <p style="margin: 8px 0;">🏆 颁奖典礼：展示你的<span class="english-word">certificate</span>和<span class="english-word">achievements</span></p>
+                    <p style="margin: 8px 0;">📸 拍照留念：记录这个<span class="english-word">special</span>的<span class="english-word">moment</span></p>
+                    <p style="margin: 8px 0;"><strong>派对台词：</strong></p>
+                    <p style="margin: 8px 0;">"Thank you for coming to my <span class="english-word">graduation</span> <span class="english-word">party</span>!"</p>
+                    <p style="margin: 8px 0;">"I'm so <span class="english-word">happy</span> to share my <span class="english-word">success</span> with you!"</p>
+                    <p style="margin-top: 15px; font-style: italic;">🎊 享受这个<span class="english-word">wonderful</span>的庆祝时刻！</p>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🌈 魔法新开始</h4>
+                <div class="mission-card">
+                    <h4>🆕 魔法任务：制定新学习计划</h4>
+                    <p>毕业不是结束，而是新的开始！制定你的下一步学习计划：</p>
+                    <ol>
+                        <li>选择新的英语学习<span class="english-word">materials</span></li>
+                        <li>找到新的学习<span class="english-word">partners</span>或<span class="english-word">communities</span></li>
+                        <li>设定更高的<span class="english-word">challenges</span>和<span class="english-word">goals</span></li>
+                        <li>保持学习的<span class="english-word">enthusiasm</span>和<span class="english-word">curiosity</span></li>
+                    </ol>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: #333; margin-bottom: 15px;">🌈 新旅程规划</h5>
+                    <p style="margin: 8px 0;">📚 <strong>Next Learning Resource:</strong> I will use _______ to continue learning</p>
+                    <p style="margin: 8px 0;">👥 <strong>Learning Community:</strong> I will join _______ to practice with others</p>
+                    <p style="margin: 8px 0;">🎯 <strong>New Challenge:</strong> My next <span class="english-word">challenge</span> is to _______</p>
+                    <p style="margin: 8px 0;">📈 <strong>Skill Development:</strong> I want to <span class="english-word">improve</span> my _______</p>
+                    <p style="margin: 8px 0;">🌟 <strong>Long-term Vision:</strong> In 2 years, I see myself _______</p>
+                    <p style="margin: 8px 0;">💝 <strong>Learning Promise:</strong> I promise to <span class="english-word">never</span> stop learning!</p>
+                    <p style="margin-top: 15px; font-style: italic;">🚀 记住：学习是一生的<span class="english-word">adventure</span>，<span class="english-word">enjoy</span>每一步！</p>
+                </div>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 12px; margin: 30px 0; text-align: center; box-shadow: 0 8px 16px rgba(0,0,0,0.3);">
+                <h3 style="color: white; margin-bottom: 20px;">🎓✨ 恭喜毕业！Congratulations! ✨🎓</h3>
+                <p style="font-size: 18px; margin: 15px 0;">你已经完成了柯南侦探英语冒险的魔法旅程！</p>
+                <p style="font-size: 18px; margin: 15px 0;">You have successfully completed the Detective Conan English Adventure!</p>
+                <p style="margin: 15px 0;">从魔法学院到竞技场，从天气预测到时间旅行，</p>
+                <p style="margin: 15px 0;">你掌握了约<strong>800个</strong>英语单词和无数有趣的表达！</p>
+                <p style="margin: 15px 0; font-style: italic;">"Learning English is like discovering magic - </p>
+                <p style="margin: 15px 0; font-style: italic;">每一个新单词都是通向更广阔世界的钥匙！"</p>
+                <div style="margin: 25px 0;">
+                    <p style="font-size: 20px; font-weight: bold;">🌟 Remember: The journey never ends! 🌟</p>
+                    <p style="font-size: 16px;">记住：学习的旅程永不止步！</p>
+                </div>
+                <p style="margin: 15px 0;">愿英语为你打开通往世界的大门，</p>
+                <p style="margin: 15px 0;">May English open the doors to the world for you!</p>
+                <p style="font-size: 18px; font-weight: bold; margin-top: 25px;">Keep practicing, keep dreaming, keep achieving!</p>
+                <p style="font-size: 18px; font-weight: bold;">继续练习，继续梦想，继续成就！</p>
+            </div>
+        </div>
+        
+        <div class="chapter-nav">
+            <a href="chapter10.html" class="">⬅️ 上一章</a>
+            <a href="index.html" class="back-link">📚 返回章节目录</a>
+            <a href="appendix.html" class="">下一章 ➡️</a>
+        </div>
+    </div>
+    
+    <!-- 单词发音功能 Word Pronunciation Feature -->
+    <script src="../js/word-pronunciation.js"></script>
+    
+    <!-- 发音功能使用说明提示 -->
+    <div id="pronunciation-guide" style="position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); max-width: 300px; font-size: 0.9em; z-index: 1000; opacity: 0; transition: opacity 0.5s ease;">
+        <div style="display: flex; align-items: center; margin-bottom: 8px;">
+            <span style="font-size: 1.2em; margin-right: 8px;">🔊</span>
+            <strong>单词发音功能已启用！</strong>
+        </div>
+        <p style="margin: 5px 0; font-size: 0.85em;">点击任意单词卡即可听到标准英语发音</p>
+        <p style="margin: 5px 0; font-size: 0.85em;">Click any word card to hear pronunciation</p>
+        <button onclick="this.parentElement.style.opacity='0'" style="position: absolute; top: 5px; right: 8px; background: none; border: none; color: white; cursor: pointer; font-size: 1.1em;">×</button>
+    </div>
+    
+    <script>
+        // 显示发音功能提示
+        setTimeout(() => {
+            const guide = document.getElementById('pronunciation-guide');
+            if (guide) {
+                guide.style.opacity = '1';
+                // 5秒后自动隐藏
+                setTimeout(() => {
+                    guide.style.opacity = '0';
+                }, 5000);
+            }
+        }, 2000);
+    </script>
+</body>
+</html>

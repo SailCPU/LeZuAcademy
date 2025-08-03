@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第{{CHAPTER_NUM}}章：{{CHAPTER_TITLE}} - 柯南侦探英语冒险</title>
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">📖 返回目录</a>
+        
+        <div class="chapter-nav">
+            <a href="{{PREV_CHAPTER}}" class="{{PREV_CLASS}}">⬅️ 上一章</a>
+            <span>第{{CHAPTER_NUM}}章：{{CHAPTER_TITLE}}</span>
+            <a href="{{NEXT_CHAPTER}}" class="{{NEXT_CLASS}}">下一章 ➡️</a>
+        </div>
+        
+        <!-- 章节内容将在这里 -->
+        {{CHAPTER_CONTENT}}
+        
+        <div class="chapter-nav">
+            <a href="{{PREV_CHAPTER}}" class="{{PREV_CLASS}}">⬅️ 上一章</a>
+            <a href="../index.html" class="back-link">📖 返回目录</a>
+            <a href="{{NEXT_CHAPTER}}" class="{{NEXT_CLASS}}">下一章 ➡️</a>
+        </div>
+    </div>
+    
+    <!-- 单词发音功能 Word Pronunciation Feature -->
+    <script src="../js/word-pronunciation.js"></script>
+    
+    <!-- 发音功能使用说明提示 -->
+    <div id="pronunciation-guide" style="position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); max-width: 300px; font-size: 0.9em; z-index: 1000; opacity: 0; transition: opacity 0.5s ease;">
+        <div style="display: flex; align-items: center; margin-bottom: 8px;">
+            <span style="font-size: 1.2em; margin-right: 8px;">🔊</span>
+            <strong>单词发音功能已启用！</strong>
+        </div>
+        <p style="margin: 5px 0; font-size: 0.85em;">点击任意单词卡即可听到标准英语发音</p>
+        <p style="margin: 5px 0; font-size: 0.85em;">Click any word card to hear pronunciation</p>
+        <button onclick="this.parentElement.style.opacity='0'" style="position: absolute; top: 5px; right: 8px; background: none; border: none; color: white; cursor: pointer; font-size: 1.1em;">×</button>
+    </div>
+    
+    <script>
+        // 显示发音功能提示
+        setTimeout(() => {
+            const guide = document.getElementById('pronunciation-guide');
+            if (guide) {
+                guide.style.opacity = '1';
+                // 5秒后自动隐藏
+                setTimeout(() => {
+                    guide.style.opacity = '0';
+                }, 5000);
+            }
+        }, 2000);
+    </script>
+</body>
+</html>

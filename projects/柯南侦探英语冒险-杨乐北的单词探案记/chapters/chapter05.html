@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第5章：魔法生物的语言 - 柯南侦探英语冒险：杨乐北的单词探案记</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', 'SimSun', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+            max-width: 210mm;
+            margin: 0 auto;
+        }
+        
+        .container {
+            max-width: 180mm;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        
+        .chapter-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+        }
+        
+        .chapter-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.2);
+            transition: background 0.3s;
+        }
+        
+        .chapter-nav a:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .chapter-nav a.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .back-link {
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        
+        .back-link:hover {
+            background: #218838;
+        }
+        
+        .chapter {
+            margin-bottom: 40px;
+            page-break-inside: avoid;
+        }
+        
+        .chapter-title {
+            color: #495057;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #6c757d;
+            padding-bottom: 10px;
+        }
+        
+        .section-title {
+            color: #495057;
+            font-size: 1.4em;
+            margin: 25px 0 15px 0;
+            border-left: 3px solid #6c757d;
+            padding-left: 15px;
+        }
+        
+        .magic-box {
+            background: #f3e5f5;
+            border: 2px solid #9c27b0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .story-box {
+            background: #fff3cd;
+            border: 2px solid #ffeaa7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .word-box {
+            background: #d4edda;
+            border: 2px solid #c3e6cb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .game-box {
+            background: #f8d7da;
+            border: 2px solid #f5c6cb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .adventure-box {
+            background: #d1ecf1;
+            border: 2px solid #bee5eb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .english-word {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .chinese-meaning {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .magic {
+            color: #9c27b0;
+            font-weight: bold;
+        }
+        
+        .conan {
+            color: #e67e22;
+            font-weight: bold;
+        }
+        
+        .yang-lebei {
+            color: #3498db;
+            font-weight: bold;
+        }
+        
+        .yang-letian {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .yang-leda {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        
+        .adventure {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        
+        .word-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+                .word-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            user-select: none;
+        }
+        
+        .word-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-color: #007bff;
+        }
+        
+        .word-card .english {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 5px;
+        }
+        
+        .word-card .chinese {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .word-card .example {
+            font-style: italic;
+            color: #666;
+            margin-top: 8px;
+            font-size: 0.9em;
+        }
+        
+        .mission-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .mission-card h4 {
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        @media print {
+            .chapter-nav, .back-link {
+                display: none;
+            }
+            
+            @page {
+                margin: 20mm 15mm 20mm 15mm;
+                size: A4 portrait;
+            }
+            
+            body {
+                margin: 0;
+                padding: 0;
+                font-size: 11pt;
+                line-height: 1.5;
+                background-color: white;
+                max-width: none;
+            }
+            
+            .container {
+                max-width: none;
+                margin: 0;
+                padding: 0;
+                background-color: white;
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">📖 返回总目录</a>
+        <a href="index.html" class="back-link">📚 返回章节目录</a>
+        
+        <div class="chapter-nav">
+            <a href="chapter04.html" class="">⬅️ 上一章</a>
+            <span>第5章：魔法生物的语言</span>
+            <a href="chapter06.html" class="">下一章 ➡️</a>
+        </div>
+        
+                <div class="chapter">
+            <h3 class="chapter-title">🦄 第五章：魔法生物的语言</h3>
+            
+            <div class="story-box">
+                <h4 class="section-title">📖 故事板块：神奇动物的魔法考验</h4>
+                
+                <div style="text-align: center; margin: 20px 0; background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%); padding: 20px; border-radius: 15px;">
+                    <div style="font-size: 80px; margin: 10px 0;">🌳</div>
+                    <p style="font-size: 14px; color: #666; margin-top: 10px;">🌲 神奇的魔法森林</p>
+                </div>
+                
+                <p>
+                    柯南院长带着<span class="yang-lebei">杨乐北</span>来到魔法学院的<span class="english-word">forest</span>。这里住着许多神奇的<span class="english-word">animals</span>，有会说话的<span class="english-word">cat</span>、会飞的<span class="english-word">dog</span>、还有会唱歌的<span class="english-word">bird</span>。
+                </p>
+                <p>
+                    "要想和这些魔法生物成为朋友，你必须学会它们的<span class="english-word">language</span>。"柯南院长微笑着说。
+                </p>
+                <p>
+                    一只<span class="english-word">rabbit</span>跳到<span class="yang-lebei">杨乐北</span>面前，眨着大眼睛说："<span class="english-word">Can you guess my name in English?</span>"
+                </p>
+                
+                <p>"你是<span class="english-word">rabbit</span>！"<span class="yang-lebei">杨乐北</span>开心地回答。</p>
+                
+                <p>突然，从森林里传来了熟悉的声音："<span class="english-word">Sister</span>！<span class="english-word">Wait for us</span>！"</p>
+                
+                <div style="text-align: center; margin: 20px 0; background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%); padding: 20px; border-radius: 15px;">
+                    <div style="font-size: 60px; margin: 10px 0;">🦝🐿️🦔</div>
+                    <p style="font-size: 14px; color: #666; margin-top: 10px;">🌿 森林里的小动物们</p>
+                </div>
+                
+                <p><span class="yang-letian">杨乐天</span>和<span class="yang-leda">杨乐达</span>从树丛中跳了出来，身上还有叶子。</p>
+                
+                <p>"我们是<span class="english-word">jungle</span> <span class="english-word">explorers</span>！"<span class="yang-letian">杨乐天</span>得意地说，但脚下一滑，撞到了一棵树。</p>
+                
+                <p>"<span class="english-word">Ouch</span>！"<span class="yang-letian">杨乐天</span>揉着头说，"这棵<span class="english-word">tree</span>好硬啊！"</p>
+                
+                <p>就在这时，一只聪明的<span class="english-word">parrot</span>飞了过来，停在树枝上说："<span class="english-word">Hello</span>！我是<span class="english-word">Professor</span> <span class="english-word">Polly</span>！欢迎来到<span class="english-word">Animal</span> <span class="english-word">Language</span> <span class="english-word">School</span>！"</p>
+                
+                <p>"<span class="english-word">Wow</span>！会说话的<span class="english-word">parrot</span>！"<span class="yang-leda">杨乐达</span>兴奋地说。</p>
+                
+                <p>"<span class="english-word">Of course</span>！"<span class="english-word">Professor</span> <span class="english-word">Polly</span>说，"在这个<span class="english-word">magical</span> <span class="english-word">forest</span>里，所有的<span class="english-word">animals</span>都会说<span class="english-word">English</span>！"</p>
+                
+                <p>"但是有个<span class="english-word">problem</span>，"小<span class="english-word">rabbit</span>担心地说，"<span class="english-word">Evil</span> <span class="english-word">Wizard</span> <span class="english-word">Silence</span>用<span class="english-word">magic</span>把很多<span class="english-word">animals</span>的<span class="english-word">voices</span>偷走了！"</p>
+                
+                <p>"<span class="english-word">What</span>？"<span class="yang-lebei">杨乐北</span>惊讶地说。</p>
+                
+                <p>"现在森林里的很多<span class="english-word">animals</span>都不能<span class="english-word">speak</span>了！"<span class="english-word">Professor</span> <span class="english-word">Polly</span>解释道，"只有学会他们的<span class="english-word">English</span> <span class="english-word">names</span>，才能帮他们找回<span class="english-word">voices</span>！"</p>
+                
+                <p>"我们<span class="english-word">must</span> <span class="english-word">help</span>他们！"<span class="yang-lebei">杨乐北</span>坚定地说。</p>
+                
+                <p>"<span class="english-word">Me too</span>！"<span class="yang-letian">杨乐天</span>说，"我<span class="english-word">love</span> <span class="english-word">animals</span>！"</p>
+                
+                <p>"我也<span class="english-word">want</span> <span class="english-word">to</span> <span class="english-word">help</span>！"<span class="yang-leda">杨乐达</span>补充道。</p>
+                
+                <p>"<span class="english-word">Great</span>！"<span class="english-word">Professor</span> <span class="english-word">Polly</span>说，"但是<span class="english-word">first</span>，你们需要<span class="english-word">learn</span>所有<span class="english-word">animals</span>的<span class="english-word">English</span> <span class="english-word">names</span>！"</p>
+                
+                <p>突然，一只失去声音的<span class="english-word">cat</span>走了过来，只能用嘴型做出"<span class="english-word">meow</span>"的动作，但发不出声音。</p>
+                
+                <div style="text-align: center; margin: 20px 0; background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%); padding: 20px; border-radius: 15px;">
+                    <div style="font-size: 60px; margin: 10px 0;">😿🐱</div>
+                    <p style="font-size: 14px; color: #666; margin-top: 10px;">😿 失去声音的小猫咪</p>
+                </div>
+                
+                <p>"<span class="english-word">Poor</span> <span class="english-word">cat</span>！"<span class="yang-leda">杨乐达</span>同情地说，"她不能<span class="english-word">meow</span>了！"</p>
+                
+                <p>"让我<span class="english-word">try</span>！"<span class="yang-letian">杨乐天</span>走向<span class="english-word">cat</span>，大声说："<span class="english-word">Cat</span>！你是<span class="english-word">cat</span>！"</p>
+                
+                <p>奇迹发生了！<span class="english-word">cat</span>突然能说话了："<span class="english-word">Meow</span>！<span class="english-word">Thank you</span>！我的<span class="english-word">voice</span>回来了！"</p>
+                
+                <div style="text-align: center; margin: 20px 0; background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%); padding: 20px; border-radius: 15px;">
+                    <div style="font-size: 60px; margin: 10px 0;">😸🐱✨</div>
+                    <p style="font-size: 14px; color: #666; margin-top: 10px;">😸 恢复声音的快乐小猫</p>
+                </div>
+                
+                <p>"<span class="english-word">Amazing</span>！"<span class="yang-lebei">杨乐北</span>惊叹道。</p>
+                
+                <p>"这就是<span class="english-word">Animal</span> <span class="english-word">Name</span> <span class="english-word">Magic</span>！"<span class="english-word">Professor</span> <span class="english-word">Polly</span>解释，"当你们正确说出<span class="english-word">animal</span>的<span class="english-word">English</span> <span class="english-word">name</span>时，<span class="english-word">magic</span>就会<span class="english-word">work</span>！"</p>
+                
+                <p>就在这时，森林深处传来了悲伤的哭声。</p>
+                
+                <p>"那是<span class="english-word">dog</span> <span class="english-word">family</span>！"<span class="english-word">cat</span>说，"他们全家都失去了<span class="english-word">voice</span>！"</p>
+                
+                <p>"我们<span class="english-word">go</span> <span class="english-word">help</span>他们！"<span class="yang-lebei">杨乐北</span>说。</p>
+                
+                <p>他们跟着<span class="english-word">cat</span>走到森林深处，看到一只大<span class="english-word">dog</span>和三只小<span class="english-word">puppies</span>都在无声地哭泣。</p>
+                
+                <p>"<span class="english-word">Don't worry</span>！"<span class="yang-leda">杨乐达</span>安慰地说，"我们来<span class="english-word">help</span>你们！"</p>
+                
+                <p>但是当<span class="yang-leda">杨乐达</span>说"<span class="english-word">Dog</span>！你们是<span class="english-word">dogs</span>！"的时候，什么都没有发生。</p>
+                
+                <p>"<span class="english-word">Strange</span>！"<span class="english-word">Professor</span> <span class="english-word">Polly</span>困惑地说，"为什么<span class="english-word">magic</span>不<span class="english-word">work</span>？"</p>
+                
+                <p>小<span class="english-word">rabbit</span>突然想起了什么："<span class="english-word">Oh</span>！我<span class="english-word">remember</span>！小<span class="english-word">dogs</span>有<span class="english-word">special</span> <span class="english-word">name</span>！"</p>
+                
+                <p>"<span class="english-word">What</span> <span class="english-word">special</span> <span class="english-word">name</span>？"<span class="yang-letian">杨乐天</span>好奇地问。</p>
+                
+                <p>"小<span class="english-word">dogs</span>叫<span class="english-word">puppies</span>！"<span class="english-word">cat</span>解释道。</p>
+                
+                <p>"<span class="english-word">Puppies</span>！"<span class="yang-lebei">杨乐北</span>大声说，"你们是<span class="english-word">puppies</span>！"</p>
+                
+                <p>三只小<span class="english-word">puppies</span>立刻恢复了声音："<span class="english-word">Woof</span>！<span class="english-word">Woof</span>！<span class="english-word">Thank you</span>！"</p>
+                
+                <p>"现在轮到<span class="english-word">mama</span> <span class="english-word">dog</span>了！"<span class="yang-leda">杨乐达</span>说，"<span class="english-word">Dog</span>！你是<span class="english-word">dog</span>！"</p>
+                
+                <p><span class="english-word">Mama</span> <span class="english-word">dog</span>也恢复了声音："<span class="english-word">Woof</span>！<span class="english-word">Thank you so much</span>！"</p>
+                
+                <p>突然，森林里响起了邪恶的笑声："<span class="english-word">Haha</span>！谁在破坏我的<span class="english-word">silence</span> <span class="english-word">magic</span>？"</p>
+                
+                <p>一个穿着黑色斗篷的<span class="english-word">wizard</span>出现了，他就是<span class="english-word">Evil</span> <span class="english-word">Wizard</span> <span class="english-word">Silence</span>！</p>
+                
+                <p>"是你们这些<span class="english-word">little</span> <span class="english-word">troublemakers</span>！"<span class="english-word">Wizard</span> <span class="english-word">Silence</span>生气地说。</p>
+                
+                <p>"我们不是<span class="english-word">troublemakers</span>！"<span class="yang-letian">杨乐天</span>勇敢地说，"我们是<span class="english-word">animal</span> <span class="english-word">helpers</span>！"</p>
+                
+                <p>"<span class="english-word">Hmph</span>！"<span class="english-word">Wizard</span> <span class="english-word">Silence</span>说，"如果你们这么<span class="english-word">smart</span>，那就接受我的<span class="english-word">challenge</span>！"</p>
+                
+                <p>他挥动魔法棒，森林里突然出现了许多奇怪的<span class="english-word">creatures</span>——有些看起来像<span class="english-word">cat</span>但有翅膀，有些像<span class="english-word">dog</span>但有鱼尾。</p>
+                
+                <p>"这些是<span class="english-word">magical</span> <span class="english-word">hybrid</span> <span class="english-word">animals</span>！"<span class="english-word">Wizard</span> <span class="english-word">Silence</span>得意地说，"你们能说出它们的<span class="english-word">names</span>吗？"</p>
+                
+                <p>"<span class="english-word">Challenge</span> <span class="english-word">accepted</span>！"<span class="yang-lebei">杨乐北</span>说。</p>
+                
+                <p><span class="yang-letian">杨乐天</span>指着一个<span class="english-word">cat</span>和<span class="english-word">bird</span>的组合说："<span class="english-word">Cat-bird</span>！"</p>
+                
+                <p>但是什么都没有发生。</p>
+                
+                <p>"<span class="english-word">Wrong</span>！"<span class="english-word">Wizard</span> <span class="english-word">Silence</span>大笑，"你们不知道它们的<span class="english-word">real</span> <span class="english-word">names</span>！"</p>
+                
+                <p>"<span class="english-word">Wait</span>！"<span class="english-word">Professor</span> <span class="english-word">Polly</span>想起了什么，"我<span class="english-word">remember</span>！在<span class="english-word">magical</span> <span class="english-word">world</span>里，<span class="english-word">animals</span>有<span class="english-word">different</span> <span class="english-word">names</span>！"</p>
+                
+                <p>"<span class="english-word">Tell</span> <span class="english-word">us</span>！"<span class="yang-leda">杨乐达</span>急忙问。</p>
+                
+                <p>"有翅膀的<span class="english-word">cat</span>叫<span class="english-word">flying</span> <span class="english-word">cat</span>，有鱼尾的<span class="english-word">dog</span>叫<span class="english-word">sea</span> <span class="english-word">dog</span>！"<span class="english-word">Professor</span> <span class="english-word">Polly</span>解释。</p>
+                
+                <p>"<span class="english-word">Flying</span> <span class="english-word">cat</span>！"<span class="yang-lebei">杨乐北</span>指着有翅膀的<span class="english-word">cat</span>说。</p>
+                
+                <p>那只<span class="english-word">flying</span> <span class="english-word">cat</span>立刻恢复了声音："<span class="english-word">Meow-chirp</span>！<span class="english-word">Thank you</span>！"</p>
+                
+                <p>"<span class="english-word">Sea</span> <span class="english-word">dog</span>！"<span class="yang-letian">杨乐天</span>指着有鱼尾的<span class="english-word">dog</span>说。</p>
+                
+                <p>"<span class="english-word">Woof-splash</span>！"<span class="english-word">sea</span> <span class="english-word">dog</span>也恢复了声音。</p>
+                
+                <p>"<span class="english-word">Impossible</span>！"<span class="english-word">Wizard</span> <span class="english-word">Silence</span>生气地说。</p>
+                
+                <p>就在这时，<span class="yang-leda">杨乐达</span>注意到了一只奇怪的<span class="english-word">animal</span>——它看起来像<span class="english-word">rabbit</span>，但是有<span class="english-word">elephant</span>的鼻子。</p>
+                
+                <p>"那个是什么？"<span class="yang-leda">杨乐达</span>好奇地问。</p>
+                
+                <p>"<span class="english-word">Elephant-rabbit</span>？"<span class="yang-letian">杨乐天</span>猜测道，但还是没有反应。</p>
+                
+                <p>"让我<span class="english-word">think</span>......"<span class="yang-lebei">杨乐北</span>仔细观察，"<span class="english-word">Maybe</span>....<span class="english-word">bunny</span> <span class="english-word">elephant</span>？"</p>
+                
+                <p>还是没有反应。</p>
+                
+                <p>"<span class="english-word">Wait</span>！"小<span class="english-word">rabbit</span>突然说，"我想起来了！有<span class="english-word">elephant</span>鼻子的<span class="english-word">rabbit</span>叫<span class="english-word">trunk</span> <span class="english-word">bunny</span>！"</p>
+                
+                <p>"<span class="english-word">Trunk</span> <span class="english-word">bunny</span>！"<span class="yang-leda">杨乐达</span>兴奋地说。</p>
+                
+                <p>"<span class="english-word">Squeak-trumpet</span>！"<span class="english-word">trunk</span> <span class="english-word">bunny</span>发出了奇特的声音。</p>
+                
+                <p>随着越来越多的<span class="english-word">magical</span> <span class="english-word">animals</span>恢复声音，<span class="english-word">Wizard</span> <span class="english-word">Silence</span>的力量变得越来越弱。</p>
+                
+                <p>"<span class="english-word">No</span>！我的<span class="english-word">silent</span> <span class="english-word">magic</span>！"他惊慌地说。</p>
+                
+                <p>最后，当所有的<span class="english-word">animals</span>都恢复了声音时，<span class="english-word">Wizard</span> <span class="english-word">Silence</span>突然变成了一只普通的<span class="english-word">owl</span>。</p>
+                
+                <p>"<span class="english-word">What</span> <span class="english-word">happened</span>？"<span class="yang-letian">杨乐天</span>惊讶地问。</p>
+                
+                <p>"原来他也是被<span class="english-word">evil</span> <span class="english-word">magic</span>控制的<span class="english-word">animal</span>！"<span class="english-word">Professor</span> <span class="english-word">Polly</span>解释，"现在他<span class="english-word">free</span>了！"</p>
+                
+                <p>那只<span class="english-word">owl</span>感激地说："<span class="english-word">Thank you</span>！我被<span class="english-word">dark</span> <span class="english-word">magic</span>控制了好久！现在我<span class="english-word">remember</span>我的<span class="english-word">real</span> <span class="english-word">name</span>——我是<span class="english-word">Oliver</span> <span class="english-word">the</span> <span class="english-word">Owl</span>！"</p>
+                
+                <p>"现在森林里又充满了<span class="english-word">happy</span> <span class="english-word">animal</span> <span class="english-word">sounds</span>了！"小<span class="english-word">rabbit</span>开心地说。</p>
+                
+                <p>所有的<span class="english-word">animals</span>都围过来感谢他们："<span class="english-word">Thank you</span>，<span class="english-word">brave</span> <span class="english-word">children</span>！"</p>
+                
+                <p>"你们现在是<span class="english-word">official</span> <span class="english-word">Animal</span> <span class="english-word">Language</span> <span class="english-word">Masters</span>！"<span class="english-word">Professor</span> <span class="english-word">Polly</span>宣布。</p>
+                
+                <p>"<span class="english-word">Really</span>？"<span class="yang-leda">杨乐达</span>兴奋地问。</p>
+                
+                <p>"<span class="english-word">Yes</span>！而且作为<span class="english-word">reward</span>，我们每个<span class="english-word">animal</span>都会教你们一个<span class="english-word">special</span> <span class="english-word">animal</span> <span class="english-word">skill</span>！"小<span class="english-word">rabbit</span>说。</p>
+                
+                <p><span class="english-word">Cat</span>教<span class="yang-lebei">杨乐北</span>如何像<span class="english-word">cat</span>一样轻巧地走路，<span class="english-word">dog</span>教<span class="yang-letian">杨乐天</span>如何忠诚地守护朋友，<span class="english-word">rabbit</span>教<span class="yang-leda">杨乐达</span>如何快速地跳跃。</p>
+                
+                <p>"<span class="english-word">This</span> <span class="english-word">is</span> <span class="english-word">the</span> <span class="english-word">best</span> <span class="english-word">adventure</span> <span class="english-word">ever</span>！"<span class="yang-letian">杨乐天</span>开心地说。</p>
+                
+                <p>"<span class="english-word">And</span> <span class="english-word">we</span> <span class="english-word">learned</span> <span class="english-word">so</span> <span class="english-word">many</span> <span class="english-word">animal</span> <span class="english-word">names</span>！"<span class="yang-leda">杨乐达</span>补充道。</p>
+                
+                <p>柯南院长这时也出现了："你们做得<span class="english-word">wonderful</span>！现在你们真正理解了<span class="english-word">animals</span>的<span class="english-word">language</span>！"</p>
+                
+                <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 15px 0; border: 2px dashed #f39c12;">
+                    <h5 style="color: #f39c12; margin-bottom: 10px;">🔍 魔法侦探任务</h5>
+                    <p><strong>你能猜出这些动物单词的意思吗？</strong></p>
+                    <p>💡 <span class="english-word">cat</span> = ________（提示：会捉老鼠的动物）</p>
+                    <p>💡 <span class="english-word">dog</span> = ________（提示：会看家的动物）</p>
+                    <p>💡 <span class="english-word">bird</span> = ________（提示：会飞的动物）</p>
+                    <p>💡 <span class="english-word">rabbit</span> = ________（提示：喜欢吃胡萝卜）</p>
+                    <p>💡 <span class="english-word">fish</span> = ________（提示：生活在水里）</p>
+                    <p>💡 <span class="english-word">horse</span> = ________（提示：能跑很快，常用来骑）</p>
+                    <p>💡 <span class="english-word">jungle</span> = ________（提示：热带丛林）</p>
+                    <p>💡 <span class="english-word">explorers</span> = ________（提示：探险者）</p>
+                    <p>💡 <span class="english-word">tree</span> = ________（提示：大树）</p>
+                    <p>💡 <span class="english-word">parrot</span> = ________（提示：鹦鹉）</p>
+                    <p>💡 <span class="english-word">professor</span> = ________（提示：教授）</p>
+                    <p>💡 <span class="english-word">school</span> = ________（提示：学校）</p>
+                    <p>💡 <span class="english-word">magical</span> = ________（提示：魔法的）</p>
+                    <p>💡 <span class="english-word">forest</span> = ________（提示：森林）</p>
+                    <p>💡 <span class="english-word">animals</span> = ________（提示：动物的复数）</p>
+                    <p>💡 <span class="english-word">English</span> = ________（提示：英语）</p>
+                    <p>💡 <span class="english-word">problem</span> = ________（提示：问题）</p>
+                    <p>💡 <span class="english-word">evil</span> = ________（提示：邪恶的）</p>
+                    <p>💡 <span class="english-word">wizard</span> = ________（提示：巫师）</p>
+                    <p>💡 <span class="english-word">silence</span> = ________（提示：沉默）</p>
+                    <p>💡 <span class="english-word">magic</span> = ________（提示：魔法）</p>
+                    <p>💡 <span class="english-word">voices</span> = ________（提示：声音的复数）</p>
+                    <p>💡 <span class="english-word">speak</span> = ________（提示：说话）</p>
+                    <p>💡 <span class="english-word">names</span> = ________（提示：名字的复数）</p>
+                    <p>💡 <span class="english-word">must</span> = ________（提示：必须）</p>
+                    <p>💡 <span class="english-word">help</span> = ________（提示：帮助）</p>
+                    <p>💡 <span class="english-word">love</span> = ________（提示：喜爱）</p>
+                    <p>💡 <span class="english-word">want</span> = ________（提示：想要）</p>
+                    <p>💡 <span class="english-word">great</span> = ________（提示：太棒了）</p>
+                    <p>💡 <span class="english-word">first</span> = ________（提示：首先）</p>
+                    <p>💡 <span class="english-word">learn</span> = ________（提示：学习）</p>
+                    <p>💡 <span class="english-word">poor</span> = ________（提示：可怜的）</p>
+                    <p>💡 <span class="english-word">meow</span> = ________（提示：猫叫声）</p>
+                    <p>💡 <span class="english-word">try</span> = ________（提示：尝试）</p>
+                    <p>💡 <span class="english-word">voice</span> = ________（提示：声音）</p>
+                    <p>💡 <span class="english-word">amazing</span> = ________（提示：令人惊奇的）</p>
+                    <p>💡 <span class="english-word">work</span> = ________（提示：工作、起作用）</p>
+                    <p>💡 <span class="english-word">family</span> = ________（提示：家庭）</p>
+                    <p>💡 <span class="english-word">go</span> = ________（提示：去）</p>
+                    <p>💡 <span class="english-word">puppies</span> = ________（提示：小狗的复数）</p>
+                    <p>💡 <span class="english-word">don't worry</span> = ________（提示：别担心）</p>
+                    <p>💡 <span class="english-word">strange</span> = ________（提示：奇怪的）</p>
+                    <p>💡 <span class="english-word">remember</span> = ________（提示：记得）</p>
+                    <p>💡 <span class="english-word">special</span> = ________（提示：特别的）</p>
+                    <p>💡 <span class="english-word">what</span> = ________（提示：什么）</p>
+                    <p>💡 <span class="english-word">woof</span> = ________（提示：狗叫声）</p>
+                    <p>💡 <span class="english-word">mama</span> = ________（提示：妈妈）</p>
+                    <p>💡 <span class="english-word">thank you so much</span> = ________（提示：非常感谢）</p>
+                    <p>💡 <span class="english-word">haha</span> = ________（提示：哈哈笑声）</p>
+                    <p>💡 <span class="english-word">little</span> = ________（提示：小的）</p>
+                    <p>💡 <span class="english-word">troublemakers</span> = ________（提示：捣蛋鬼）</p>
+                    <p>💡 <span class="english-word">helpers</span> = ________（提示：帮助者）</p>
+                    <p>💡 <span class="english-word">smart</span> = ________（提示：聪明的）</p>
+                    <p>💡 <span class="english-word">challenge</span> = ________（提示：挑战）</p>
+                    <p>💡 <span class="english-word">creatures</span> = ________（提示：生物）</p>
+                    <p>💡 <span class="english-word">hybrid</span> = ________（提示：混合的）</p>
+                    <p>💡 <span class="english-word">accepted</span> = ________（提示：接受）</p>
+                    <p>💡 <span class="english-word">wrong</span> = ________（提示：错误的）</p>
+                    <p>💡 <span class="english-word">real</span> = ________（提示：真的）</p>
+                    <p>💡 <span class="english-word">wait</span> = ________（提示：等等）</p>
+                    <p>💡 <span class="english-word">world</span> = ________（提示：世界）</p>
+                    <p>💡 <span class="english-word">different</span> = ________（提示：不同的）</p>
+                    <p>💡 <span class="english-word">tell</span> = ________（提示：告诉）</p>
+                    <p>💡 <span class="english-word">us</span> = ________（提示：我们）</p>
+                    <p>💡 <span class="english-word">flying</span> = ________（提示：飞的）</p>
+                    <p>💡 <span class="english-word">sea</span> = ________（提示：大海）</p>
+                    <p>💡 <span class="english-word">impossible</span> = ________（提示：不可能的）</p>
+                    <p>💡 <span class="english-word">elephant</span> = ________（提示：大象）</p>
+                    <p>💡 <span class="english-word">think</span> = ________（提示：思考）</p>
+                    <p>💡 <span class="english-word">maybe</span> = ________（提示：也许）</p>
+                    <p>💡 <span class="english-word">bunny</span> = ________（提示：小兔子）</p>
+                    <p>💡 <span class="english-word">trunk</span> = ________（提示：象鼻）</p>
+                    <p>💡 <span class="english-word">silent</span> = ________（提示：安静的）</p>
+                    <p>💡 <span class="english-word">happened</span> = ________（提示：发生了）</p>
+                    <p>💡 <span class="english-word">free</span> = ________（提示：自由的）</p>
+                    <p>💡 <span class="english-word">dark</span> = ________（提示：黑暗的）</p>
+                    <p>💡 <span class="english-word">oliver</span> = ________（提示：奥利弗（人名））</p>
+                    <p>💡 <span class="english-word">the</span> = ________（提示：这个）</p>
+                    <p>💡 <span class="english-word">happy</span> = ________（提示：快乐的）</p>
+                    <p>💡 <span class="english-word">sounds</span> = ________（提示：声音的复数）</p>
+                    <p>💡 <span class="english-word">brave</span> = ________（提示：勇敢的）</p>
+                    <p>💡 <span class="english-word">children</span> = ________（提示：孩子们）</p>
+                    <p>💡 <span class="english-word">official</span> = ________（提示：正式的）</p>
+                    <p>💡 <span class="english-word">masters</span> = ________（提示：大师的复数）</p>
+                    <p>💡 <span class="english-word">really</span> = ________（提示：真的吗）</p>
+                    <p>💡 <span class="english-word">yes</span> = ________（提示：是的）</p>
+                    <p>💡 <span class="english-word">reward</span> = ________（提示：奖励）</p>
+                    <p>💡 <span class="english-word">skill</span> = ________（提示：技能）</p>
+                    <p>💡 <span class="english-word">this</span> = ________（提示：这个）</p>
+                    <p>💡 <span class="english-word">is</span> = ________（提示：是）</p>
+                    <p>💡 <span class="english-word">best</span> = ________（提示：最好的）</p>
+                    <p>💡 <span class="english-word">adventure</span> = ________（提示：冒险）</p>
+                    <p>💡 <span class="english-word">ever</span> = ________（提示：曾经）</p>
+                    <p>💡 <span class="english-word">and</span> = ________（提示：和）</p>
+                    <p>💡 <span class="english-word">we</span> = ________（提示：我们）</p>
+                    <p>💡 <span class="english-word">learned</span> = ________（提示：学会了）</p>
+                    <p>💡 <span class="english-word">so</span> = ________（提示：如此）</p>
+                    <p>💡 <span class="english-word">many</span> = ________（提示：许多）</p>
+                    <p>💡 <span class="english-word">wonderful</span> = ________（提示：精彩的）</p>
+                    <p>💡 <span class="english-word">language</span> = ________（提示：语言）</p>
+                </div>
+            </div>
+
+            <div class="word-box">
+                <h4 class="section-title">🔢 单词板块：魔法动物单词</h4>
+                
+                <div style="text-align: center; margin: 20px 0; background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); padding: 25px; border-radius: 15px;">
+                    <div style="font-size: 80px; margin: 10px 0;">🦁🐯🐻🦊</div>
+                    <p style="font-size: 16px; color: #666; margin-top: 10px; font-weight: bold;">🦁 奇妙的动物王国</p>
+                </div>
+                
+                <div class="word-list">
+                    <div class="word-card">
+                        <div class="english">cat</div>
+                        <div class="chinese">猫</div>
+                        <div style="text-align: center; margin: 10px 0; font-size: 40px;">🐱</div>
+                        <div class="example">The cat is sleeping on the sofa.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">dog</div>
+                        <div class="chinese">狗</div>
+                        <div style="text-align: center; margin: 10px 0; font-size: 40px;">🐶</div>
+                        <div class="example">My dog loves to play fetch.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">bird</div>
+                        <div class="chinese">鸟</div>
+                        <div style="text-align: center; margin: 10px 0; font-size: 40px;">🐦</div>
+                        <div class="example">The bird is singing in the tree.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">rabbit</div>
+                        <div class="chinese">兔子</div>
+                        <div style="text-align: center; margin: 10px 0; font-size: 40px;">🐰</div>
+                        <div class="example">The rabbit is eating carrots.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">fish</div>
+                        <div class="chinese">鱼</div>
+                        <div style="text-align: center; margin: 10px 0; font-size: 40px;">🐟</div>
+                        <div class="example">The fish is swimming in the pond.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">horse</div>
+                        <div class="chinese">马</div>
+                        <div style="text-align: center; margin: 10px 0; font-size: 40px;">🐴</div>
+                        <div class="example">The horse is running in the field.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">cow</div>
+                        <div class="example">The cow gives us milk every day.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">pig</div>
+                        <div class="example">The pig is rolling in the mud.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">sheep</div>
+                        <div class="example">The sheep have soft white wool.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">goat</div>
+                        <div class="example">The goat is climbing the mountain.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">chicken</div>
+                        <div class="example">The chicken laid a fresh egg.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">duck</div>
+                        <div class="example">The duck is swimming in the lake.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">goose</div>
+                        <div class="example">The goose is flying south for winter.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">turkey</div>
+                        <div class="example">We eat turkey on Thanksgiving Day.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">mouse</div>
+                        <div class="example">The mouse is hiding in the hole.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">rat</div>
+                        <div class="example">The rat is looking for food.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">hamster</div>
+                        <div class="example">My hamster loves to run on the wheel.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">guinea pig</div>
+                        <div class="example">The guinea pig is eating vegetables.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">parrot</div>
+                        <div class="example">The parrot can speak many words.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">canary</div>
+                        <div class="example">The canary sings beautifully every morning.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">owl</div>
+                        <div class="example">The owl hunts at night.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">eagle</div>
+                        <div class="example">The eagle soars high in the sky.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">hawk</div>
+                        <div class="example">The hawk has sharp eyes.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">sparrow</div>
+                        <div class="example">The sparrow is building a nest.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">pigeon</div>
+                        <div class="example">The pigeon is eating breadcrumbs.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">crow</div>
+                        <div class="example">The crow is very intelligent.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">robin</div>
+                        <div class="example">The robin has a red chest.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">swan</div>
+                        <div class="example">The swan glides gracefully on the water.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">peacock</div>
+                        <div class="example">The peacock shows off its colorful feathers.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">penguin</div>
+                        <div class="example">The penguin lives in Antarctica.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">ostrich</div>
+                        <div class="example">The ostrich is the largest bird.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">flamingo</div>
+                        <div class="example">The flamingo stands on one leg.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">tiger</div>
+                        <div class="example">The tiger has black and orange stripes.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">lion</div>
+                        <div class="example">The lion is the king of animals.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">bear</div>
+                        <div class="example">The bear sleeps all winter long.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">wolf</div>
+                        <div class="example">The wolf howls at the moon.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">fox</div>
+                        <div class="example">The fox is very clever and cunning.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">deer</div>
+                        <div class="example">The deer runs quickly through the forest.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">elephant</div>
+                        <div class="example">The elephant has a long trunk.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">giraffe</div>
+                        <div class="example">The giraffe has the longest neck.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">zebra</div>
+                        <div class="example">The zebra has black and white stripes.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">monkey</div>
+                        <div class="example">The monkey swings from tree to tree.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">gorilla</div>
+                        <div class="example">The gorilla is very strong and powerful.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">chimpanzee</div>
+                        <div class="example">The chimpanzee is very smart.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">orangutan</div>
+                        <div class="example">The orangutan has long red hair.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">kangaroo</div>
+                        <div class="example">The kangaroo carries its baby in a pouch.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">koala</div>
+                        <div class="example">The koala sleeps in eucalyptus trees.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">panda</div>
+                        <div class="example">The panda loves to eat bamboo.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">polar bear</div>
+                        <div class="example">The polar bear lives in the Arctic.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">dolphin</div>
+                        <div class="example">The dolphin is very friendly and smart.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">whale</div>
+                        <div class="example">The whale is the largest animal on Earth.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">shark</div>
+                        <div class="example">The shark has very sharp teeth.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">octopus</div>
+                        <div class="example">The octopus has eight long arms.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">squid</div>
+                        <div class="example">The squid can change its color quickly.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">jellyfish</div>
+                        <div class="example">The jellyfish floats in the ocean.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">starfish</div>
+                        <div class="example">The starfish has five pointed arms.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">crab</div>
+                        <div class="example">The crab walks sideways on the beach.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">lobster</div>
+                        <div class="example">The lobster has large claws.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">shrimp</div>
+                        <div class="example">The shrimp is small but delicious.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">clam</div>
+                        <div class="example">The clam hides inside its shell.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">oyster</div>
+                        <div class="example">The oyster can make beautiful pearls.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">mussel</div>
+                        <div class="example">The mussel attaches to rocks underwater.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">snail</div>
+                        <div class="example">The snail moves very slowly.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">slug</div>
+                        <div class="example">The slug leaves a slimy trail.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">ant</div>
+                        <div class="example">The ant works hard all day long.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">bee</div>
+                        <div class="example">The bee makes sweet honey.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">butterfly</div>
+                        <div class="example">The butterfly has colorful wings.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">moth</div>
+                        <div class="example">The moth flies around the light.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">dragonfly</div>
+                        <div class="example">The dragonfly hovers over the pond.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">grasshopper</div>
+                        <div class="example">The grasshopper can jump very high.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">cricket</div>
+                        <div class="example">The cricket chirps at night.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">spider</div>
+                        <div class="example">The spider spins a web to catch flies.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">scorpion</div>
+                        <div class="example">The scorpion has a poisonous tail.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">centipede</div>
+                        <div class="example">The centipede has many tiny legs.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">millipede</div>
+                        <div class="example">The millipede curls up when scared.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">worm</div>
+                        <div class="example">The worm helps make soil healthy.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">snake</div>
+                        <div class="example">The snake slithers through the grass.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">lizard</div>
+                        <div class="example">The lizard basks in the warm sun.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">turtle</div>
+                        <div class="example">The turtle carries its house on its back.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">tortoise</div>
+                        <div class="example">The tortoise moves very slowly but steadily.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">crocodile</div>
+                        <div class="example">The crocodile has a powerful jaw.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">alligator</div>
+                        <div class="example">The alligator lives in the swamp.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">frog</div>
+                        <div class="example">The frog jumps from lily pad to lily pad.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">toad</div>
+                        <div class="example">The toad has bumpy skin.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">salamander</div>
+                        <div class="example">The salamander can regrow its tail.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">newt</div>
+                        <div class="example">The newt lives both in water and on land.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">tadpole</div>
+                        <div class="example">The tadpole will grow into a frog.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🎲 魔法动物配对游戏</h4>
+                <div class="mission-card">
+                    <h4>🦄 魔法任务：动物配对大挑战</h4>
+                    <p>把每个英文动物单词和它的中文意思连起来，看谁配得又快又准！</p>
+                    <ol>
+                        <li>家人或小伙伴说中文动物名，你说出英文单词。</li>
+                        <li>说错或说慢了要学动物叫一声！</li>
+                        <li>全部配对成功，获得"魔法动物之友"称号！</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🗣️ 魔法动物模仿秀</h4>
+                <div class="mission-card">
+                    <h4>🎤 魔法任务：动物声音大比拼</h4>
+                    <p>和小伙伴一起玩"动物模仿秀"：</p>
+                    <ol>
+                        <li>抽一张动物单词卡，模仿它的叫声和动作。</li>
+                        <li>其他人猜出你模仿的是什么动物，并说出英文单词。</li>
+                        <li>猜对得一分，看谁是"魔法动物模仿王"！</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">📝 魔法动物故事创作</h4>
+                <div class="mission-card">
+                    <h4>📚 魔法任务：编一个动物冒险故事</h4>
+                    <p>用学到的动物单词，编一个属于你的魔法动物冒险故事，可以画出来，也可以写下来！</p>
+                    <p>比如："One day, a <span class="english-word">cat</span> and a <span class="english-word">dog</span> went to the magic forest..."</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🧙‍♂️ 动物名字魔法恢复术</h4>
+                <div class="mission-card">
+                    <h4>✨ 魔法任务：拯救失声的动物朋友</h4>
+                    <p>模拟故事中的情节，帮助失去声音的动物恢复说话能力：</p>
+                    <ol>
+                        <li><strong>失声模拟</strong>：家人或朋友假装是失去声音的动物，只能做动作不能发声</li>
+                        <li><strong>魔法咒语</strong>：你要大声说出正确的英文动物名称</li>
+                        <li><strong>声音恢复</strong>：说对了，动物就能"恢复"叫声和说话</li>
+                        <li><strong>特殊挑战</strong>：记住<span class="english-word">puppies</span>是小狗，<span class="english-word">bunny</span>是小兔子</li>
+                    </ol>
+                    <p>成功拯救5只动物，你就是<span class="english-word">Animal Voice Wizard</span>！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">👨‍👨‍👧‍👦 双胞胎搞笑动物课堂</h4>
+                <div class="mission-card">
+                    <h4>😂 魔法任务：模仿杨乐天和杨乐达的搞笑时刻</h4>
+                    <p>重现故事中双胞胎弟弟的搞笑情节：</p>
+                    <ol>
+                        <li><strong>丛林探险者</strong>：学杨乐天说"我们是<span class="english-word">jungle explorers</span>！"然后假装撞树</li>
+                        <li><strong>动物混淆</strong>：故意说错动物名字，比如把<span class="english-word">elephant</span>说成其他动物</li>
+                        <li><strong>创意猜测</strong>：像故事中一样创造搞笑的混合动物名称</li>
+                        <li><strong>纠错游戏</strong>：互相纠正错误的发音，学会正确说法</li>
+                    </ol>
+                    <p>记住：<span class="english-word">Creative mistakes</span>很<span class="english-word">funny</span>，但要学会<span class="english-word">correct</span>的说法！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🧠 Professor Polly的智力挑战</h4>
+                <div class="mission-card">
+                    <h4>🦜 魔法任务：通过鹦鹉教授的动物语言考试</h4>
+                    <p>接受Professor Polly的三重挑战：</p>
+                    <ol>
+                        <li><strong>基础动物识别</strong>：快速说出10种常见动物的英文名</li>
+                        <li><strong>动物家族挑战</strong>：区分成年和幼崽名称（<span class="english-word">dog</span> vs <span class="english-word">puppy</span>）</li>
+                        <li><strong>混合动物创造</strong>：发明新的混合动物名称，如<span class="english-word">flying cat</span></li>
+                        <li><strong>动物叫声匹配</strong>：正确模仿各种动物的叫声</li>
+                    </ol>
+                    <p>全部通过获得"<span class="english-word">Animal Language Master</span>"证书！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🌟 邪恶巫师Silence的挑战</h4>
+                <div class="mission-card">
+                    <h4>⚔️ 魔法任务：对抗沉默巫师的魔法试炼</h4>
+                    <p>重现故事中的终极对决：</p>
+                    <ol>
+                        <li><strong>混合生物挑战</strong>：创造并命名奇特的混合动物</li>
+                        <li><strong>声音恢复任务</strong>：帮助所有"失声"的混合动物</li>
+                        <li><strong>团队合作</strong>：像三兄妹一样分工合作</li>
+                        <li><strong>善恶转换</strong>：理解Silence巫师其实是被控制的Oliver猫头鹰</li>
+                    </ol>
+                    <p>挑战成功，你就能把<span class="english-word">enemies</span>变成<span class="english-word">friends</span>！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🎯 动物技能学习营</h4>
+                <div class="mission-card">
+                    <h4>🏃‍♀️ 魔法任务：学习动物的特殊技能</h4>
+                    <p>像故事中的奖励一样，学习动物技能：</p>
+                    <ol>
+                        <li><strong>Cat Walking</strong>：学会像猫一样轻巧地走路（踮脚尖走路）</li>
+                        <li><strong>Dog Loyalty</strong>：练习像狗一样忠诚地守护朋友</li>
+                        <li><strong>Rabbit Jumping</strong>：学兔子一样快速跳跃</li>
+                        <li><strong>Bird Flying</strong>：张开双臂模仿鸟儿飞翔</li>
+                    </ol>
+                    <p>掌握所有技能，成为真正的<span class="english-word">Animal Skills Master</span>！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🎨 魔法动物艺术创作</h4>
+                <div class="mission-card">
+                    <h4>🖌️ 魔法任务：创造你的动物语言艺术</h4>
+                    <p>用艺术表达动物语言的魅力：</p>
+                    <ol>
+                        <li><strong>动物肖像画</strong>：画出你最喜欢的动物，标上英文名</li>
+                        <li><strong>魔法森林地图</strong>：画出Professor Polly的动物语言学校</li>
+                        <li><strong>混合动物设计</strong>：设计自己的<span class="english-word">hybrid animals</span></li>
+                        <li><strong>动物名牌制作</strong>：为家里的宠物或玩具动物制作英文名牌</li>
+                    </ol>
+                    <p>创作完成，建立你的<span class="english-word">Animal Art Gallery</span>！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🏆 动物语言大师认证考试</h4>
+                <div class="mission-card">
+                    <h4>📜 魔法任务：获得官方动物语言大师称号</h4>
+                    <p>完成最终考验，获得认证：</p>
+                    <ol>
+                        <li><strong>速度测试</strong>：30秒内说出20种动物的英文名</li>
+                        <li><strong>声音模仿</strong>：模仿10种不同动物的叫声</li>
+                        <li><strong>故事复述</strong>：用英语复述拯救动物的故事</li>
+                        <li><strong>创新挑战</strong>：发明3种新的混合动物并命名</li>
+                        <li><strong>教学测试</strong>：教会别人5个动物单词</li>
+                    </ol>
+                    <p>全部通过获得"<span class="english-word">Official Animal Language Master</span>"证书！</p>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #52c41a 0%, #389e0d 100%); color: white; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: white; margin-bottom: 15px;">🏆 动物语言大师证书</h5>
+                    <p style="margin: 8px 0; text-align: center; font-weight: bold;">恭喜你完成了动物语言学习！</p>
+                    <p style="margin: 8px 0; text-align: center;">你现在是一名真正的：</p>
+                    <p style="margin: 8px 0; text-align: center; font-size: 1.2em; color: #fff566; font-weight: bold;">🦄 ANIMAL LANGUAGE MASTER 🦄</p>
+                    <p style="margin: 8px 0; text-align: center;">你最喜欢的动物技能：</p>
+                    <p style="margin: 8px 0; text-align: center;">________________（选择：Cat Walking / Dog Loyalty / Rabbit Jumping / Bird Flying）</p>
+                    <p style="margin: 8px 0; text-align: center;">你创造的混合动物：</p>
+                    <p style="margin: 8px 0; text-align: center;">________________（写下你发明的动物名字）</p>
+                    <p style="margin-top: 15px; font-style: italic; text-align: center;">🌟 记住：动物是我们的朋友，用你的语言魔法保护它们！🌟</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🔮 魔法动物召唤仪式</h4>
+                <div class="mission-card">
+                    <h4>🌈 魔法任务：召唤你的专属魔法动物伙伴</h4>
+                    <p>完成特殊仪式，找到你的动物伙伴：</p>
+                    <div style="background: #f6ffed; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                        <p><strong>召唤咒语（大声念出）：</strong></p>
+                        <p>"<span class="english-word">Animals of the magical forest, hear my call!</span>"</p>
+                        <p>"<span class="english-word">I speak your language, I know you all!</span>"</p>
+                        <p>"<span class="english-word">Cat, dog, rabbit, and bird so free,</span>"</p>
+                        <p>"<span class="english-word">Which magical animal will come to me?</span>"</p>
+                    </div>
+                    <ol>
+                        <li><strong>选择测试</strong>：回答关于你的性格和喜好</li>
+                        <li><strong>技能匹配</strong>：根据你最擅长的动物技能</li>
+                        <li><strong>叫声识别</strong>：听声音猜出你的伙伴动物</li>
+                        <li><strong>名字确认</strong>：正确说出它的英文名字</li>
+                    </ol>
+                    <p>找到伙伴后，为它取一个特别的英文名字！</p>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="chapter-nav">
+            <a href="chapter04.html" class="">⬅️ 上一章</a>
+            <a href="index.html" class="back-link">📚 返回章节目录</a>
+            <a href="chapter06.html" class="">下一章 ➡️</a>
+        </div>
+    </div>
+    
+    <!-- 单词发音功能 Word Pronunciation Feature -->
+    <script src="../js/word-pronunciation.js"></script>
+    
+    <!-- 发音功能使用说明提示 -->
+    <div id="pronunciation-guide" style="position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); max-width: 300px; font-size: 0.9em; z-index: 1000; opacity: 0; transition: opacity 0.5s ease;">
+        <div style="display: flex; align-items: center; margin-bottom: 8px;">
+            <span style="font-size: 1.2em; margin-right: 8px;">🔊</span>
+            <strong>单词发音功能已启用！</strong>
+        </div>
+        <p style="margin: 5px 0; font-size: 0.85em;">点击任意单词卡即可听到标准英语发音</p>
+        <p style="margin: 5px 0; font-size: 0.85em;">Click any word card to hear pronunciation</p>
+        <button onclick="this.parentElement.style.opacity='0'" style="position: absolute; top: 5px; right: 8px; background: none; border: none; color: white; cursor: pointer; font-size: 1.1em;">×</button>
+    </div>
+    
+    <script>
+        // 显示发音功能提示
+        setTimeout(() => {
+            const guide = document.getElementById('pronunciation-guide');
+            if (guide) {
+                guide.style.opacity = '1';
+                // 5秒后自动隐藏
+                setTimeout(() => {
+                    guide.style.opacity = '0';
+                }, 5000);
+            }
+        }, 2000);
+    </script>
+</body>
+</html>

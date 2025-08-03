@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第6章：魔法地图的探索 - 柯南侦探英语冒险：杨乐北的单词探案记</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', 'SimSun', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+            max-width: 210mm;
+            margin: 0 auto;
+        }
+        
+        .container {
+            max-width: 180mm;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        
+        .chapter-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+        }
+        
+        .chapter-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.2);
+            transition: background 0.3s;
+        }
+        
+        .chapter-nav a:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .chapter-nav a.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .back-link {
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        
+        .back-link:hover {
+            background: #218838;
+        }
+        
+        .chapter {
+            margin-bottom: 40px;
+            page-break-inside: avoid;
+        }
+        
+        .chapter-title {
+            color: #495057;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #6c757d;
+            padding-bottom: 10px;
+        }
+        
+        .section-title {
+            color: #495057;
+            font-size: 1.4em;
+            margin: 25px 0 15px 0;
+            border-left: 3px solid #6c757d;
+            padding-left: 15px;
+        }
+        
+        .magic-box {
+            background: #f3e5f5;
+            border: 2px solid #9c27b0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .story-box {
+            background: #fff3cd;
+            border: 2px solid #ffeaa7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .word-box {
+            background: #d4edda;
+            border: 2px solid #c3e6cb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .game-box {
+            background: #f8d7da;
+            border: 2px solid #f5c6cb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .adventure-box {
+            background: #d1ecf1;
+            border: 2px solid #bee5eb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .english-word {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .chinese-meaning {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .magic {
+            color: #9c27b0;
+            font-weight: bold;
+        }
+        
+        .conan {
+            color: #e67e22;
+            font-weight: bold;
+        }
+        
+        .yang-lebei {
+            color: #3498db;
+            font-weight: bold;
+        }
+        
+        .yang-letian {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .yang-leda {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        
+        .adventure {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        
+        .word-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+                .word-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            user-select: none;
+        }
+        
+        .word-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-color: #007bff;
+        }
+        
+        .word-card .english {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 5px;
+        }
+        
+        .word-card .chinese {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .word-card .example {
+            font-style: italic;
+            color: #666;
+            margin-top: 8px;
+            font-size: 0.9em;
+        }
+        
+        .mission-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .mission-card h4 {
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        @media print {
+            .chapter-nav, .back-link {
+                display: none;
+            }
+            
+            @page {
+                margin: 20mm 15mm 20mm 15mm;
+                size: A4 portrait;
+            }
+            
+            body {
+                margin: 0;
+                padding: 0;
+                font-size: 11pt;
+                line-height: 1.5;
+                background-color: white;
+                max-width: none;
+            }
+            
+            .container {
+                max-width: none;
+                margin: 0;
+                padding: 0;
+                background-color: white;
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">📖 返回总目录</a>
+        <a href="index.html" class="back-link">📚 返回章节目录</a>
+        
+        <div class="chapter-nav">
+            <a href="chapter05.html" class="">⬅️ 上一章</a>
+            <span>第6章：魔法地图的探索</span>
+            <a href="chapter07.html" class="">下一章 ➡️</a>
+        </div>
+        
+                <div class="chapter">
+            <h3 class="chapter-title">🗺️ 第六章：魔法地图的探索</h3>
+            
+            <div class="story-box">
+                <h4 class="section-title">📖 故事板块：神秘的魔法地图</h4>
+                <p>
+                    这一天，<span class="yang-lebei">杨乐北</span>在图书馆发现了一张会发光的<span class="english-word">map</span>。柯南院长告诉她："这是一张魔法地图，只有学会地图上的单词，才能找到隐藏的宝藏！"
+                </p>
+                <p>
+                    地图上画着<span class="english-word">school</span>、<span class="english-word">library</span>、<span class="english-word">garden</span>、<span class="english-word">forest</span>、<span class="english-word">river</span>、<span class="english-word">bridge</span>等神秘地点。
+                </p>
+                <p>
+                    "你能根据提示，猜出这些单词的意思吗？"柯南院长神秘地笑了。
+                </p>
+                
+                <p>就在<span class="yang-lebei">杨乐北</span>仔细研究<span class="english-word">map</span>的时候，<span class="english-word">library</span>的<span class="english-word">window</span>外传来了吵闹声。</p>
+                
+                <p>"<span class="english-word">Sister</span>！我们<span class="english-word">found</span>你了！"<span class="yang-letian">杨乐天</span>和<span class="yang-leda">杨乐达</span>从<span class="english-word">window</span>外探头进来。</p>
+                
+                <p>"我们是<span class="english-word">treasure</span> <span class="english-word">hunters</span>！"<span class="yang-letian">杨乐天</span>兴奋地说，手里拿着一个自制的<span class="english-word">compass</span>。</p>
+                
+                <p>"<span class="english-word">Look</span>！我们还有<span class="english-word">map</span>！"<span class="yang-leda">杨乐达</span>展示着一张画满涂鸦的纸，"这是我们画的<span class="english-word">treasure</span> <span class="english-word">map</span>！"</p>
+                
+                <p>柯南院长看了看他们的"<span class="english-word">map</span>"，忍不住笑了："这个很<span class="english-word">creative</span>！但是你们的<span class="english-word">map</span>上写的是什么呢？"</p>
+                
+                <p><span class="yang-letian">杨乐天</span>指着他们的<span class="english-word">map</span>说："这里是<span class="english-word">school</span>，这里是<span class="english-word">library</span>，这里是......"他停了一下，困惑地看着自己画的东西，"这里是<span class="english-word">pool</span>！"</p>
+                
+                <p>"<span class="english-word">Pool</span>？"<span class="yang-lebei">杨乐北</span>疑惑地问，"<span class="english-word">School</span>里没有<span class="english-word">pool</span>啊？"</p>
+                
+                <p>"<span class="english-word">Oh</span>！"<span class="yang-leda">杨乐达</span>恍然大悟，"<span class="english-word">Brother</span>，你画错了！那个不是<span class="english-word">pool</span>，是<span class="english-word">playground</span>！"</p>
+                
+                <p>"<span class="english-word">Oops</span>！"<span class="yang-letian">杨乐天</span>脸红了，"我把<span class="english-word">playground</span>画得像<span class="english-word">pool</span>了！"</p>
+                
+                <p>突然，<span class="yang-lebei">杨乐北</span>手中的魔法<span class="english-word">map</span>开始发出<span class="english-word">bright</span> <span class="english-word">light</span>！</p>
+                
+                <p>"<span class="english-word">Wow</span>！<span class="english-word">Magic</span>！"双胞胎弟弟同时惊叫。</p>
+                
+                <p>柯南院长惊喜地说："<span class="english-word">Amazing</span>！<span class="english-word">Map</span>被<span class="english-word">activated</span>了！这说明有人需要我们的<span class="english-word">help</span>！"</p>
+                
+                <p><span class="english-word">Map</span>上出现了一行<span class="english-word">glowing</span> <span class="english-word">words</span>："<span class="english-word">Help</span>！<span class="english-word">Lost</span> <span class="english-word">children</span> <span class="english-word">need</span> <span class="english-word">directions</span> <span class="english-word">home</span>！"</p>
+                
+                <p>"有<span class="english-word">children</span>迷路了！"<span class="yang-lebei">杨乐北</span>担心地说。</p>
+                
+                <p>"我们<span class="english-word">must</span> <span class="english-word">help</span>他们！"<span class="yang-letian">杨乐天</span>勇敢地说。</p>
+                
+                <p>"<span class="english-word">But</span> <span class="english-word">how</span>？"<span class="yang-leda">杨乐达</span>问。</p>
+                
+                <p>"看<span class="english-word">map</span>！"柯南院长指着发光的地图，"<span class="english-word">Map</span>会<span class="english-word">guide</span>我们到需要<span class="english-word">help</span>的地方！"</p>
+                
+                <p><span class="english-word">Map</span>上<span class="english-word">school</span>的位置开始<span class="english-word">blinking</span>。</p>
+                
+                <p>"<span class="english-word">First</span> <span class="english-word">clue</span>在<span class="english-word">school</span>！"<span class="yang-lebei">杨乐北</span>说。</p>
+                
+                <p>他们一起前往<span class="english-word">school</span>，在<span class="english-word">playground</span>上发现了一个小<span class="english-word">girl</span>正在哭泣。</p>
+                
+                <p>"<span class="english-word">Little girl</span>，<span class="english-word">what's wrong</span>？"<span class="yang-lebei">杨乐北</span>温柔地问。</p>
+                
+                <p>"我<span class="english-word">lost</span>了！"小<span class="english-word">girl</span>哭着说，"我不知道<span class="english-word">home</span>在哪里！"</p>
+                
+                <p>"<span class="english-word">Don't cry</span>！"<span class="yang-letian">杨乐天</span>安慰她，"我们<span class="english-word">help</span>你<span class="english-word">find</span> <span class="english-word">home</span>！"</p>
+                
+                <p>"<span class="english-word">Yes</span>！我们是<span class="english-word">direction</span> <span class="english-word">experts</span>！"<span class="yang-leda">杨乐达</span>自信地说，但立刻又困惑地问，"<span class="english-word">Direction</span>是什么意思来着？"</p>
+                
+                <p>"<span class="english-word">Direction</span>是<span class="english-word">way</span>的意思！"<span class="yang-lebei">杨乐北</span>解释道。</p>
+                
+                <p>"<span class="english-word">Oh</span>！那我们是<span class="english-word">way</span> <span class="english-word">experts</span>！"<span class="yang-leda">杨乐达</span>高兴地说。</p>
+                
+                <p>"你的<span class="english-word">home</span>附近有什么<span class="english-word">landmarks</span>吗？"柯南院长问小<span class="english-word">girl</span>。</p>
+                
+                <p>"<span class="english-word">Landmarks</span>？"小<span class="english-word">girl</span>不理解。</p>
+                
+                <p>"就是<span class="english-word">special</span> <span class="english-word">places</span>，比如<span class="english-word">park</span>、<span class="english-word">store</span>、<span class="english-word">restaurant</span>什么的。"<span class="yang-lebei">杨乐北</span>解释。</p>
+                
+                <p>"<span class="english-word">Oh</span>！我<span class="english-word">remember</span>！我<span class="english-word">home</span>附近有一个<span class="english-word">big</span> <span class="english-word">supermarket</span>！"小<span class="english-word">girl</span>说。</p>
+                
+                <p>"<span class="english-word">Great</span>！"<span class="yang-letian">杨乐天</span>说，然后看着魔法<span class="english-word">map</span>，"但是<span class="english-word">map</span>上有很多<span class="english-word">supermarkets</span>！哪一个呢？"</p>
+                
+                <p>"还有其他<span class="english-word">clues</span>吗？"<span class="yang-leda">杨乐达</span>问。</p>
+                
+                <p>小<span class="english-word">girl</span>想了想："还有一个<span class="english-word">beautiful</span> <span class="english-word">garden</span>，里面有很多<span class="english-word">flowers</span>！"</p>
+                
+                <p>"<span class="english-word">Garden</span> <span class="english-word">with</span> <span class="english-word">flowers</span>，<span class="english-word">near</span> <span class="english-word">supermarket</span>......"<span class="yang-lebei">杨乐北</span>研究着<span class="english-word">map</span>。</p>
+                
+                <p>突然，<span class="yang-letian">杨乐天</span>指着<span class="english-word">map</span>上的一个地方说："<span class="english-word">Look</span>！这里有<span class="english-word">garden</span>和<span class="english-word">supermarket</span>，而且它们很<span class="english-word">close</span>！"</p>
+                
+                <p>"<span class="english-word">But</span> <span class="english-word">how</span> <span class="english-word">do</span> <span class="english-word">we</span> <span class="english-word">get</span> <span class="english-word">there</span>？"<span class="yang-leda">杨乐达</span>问。</p>
+                
+                <p>柯南院长笑着说："这就需要我们<span class="english-word">learn</span> <span class="english-word">directions</span>了！"</p>
+                
+                <p>就在这时，魔法<span class="english-word">map</span>上出现了一个<span class="english-word">glowing</span> <span class="english-word">path</span>，显示着从<span class="english-word">school</span>到目标<span class="english-word">location</span>的<span class="english-word">route</span>。</p>
+                
+                <p>"<span class="english-word">Amazing</span>！<span class="english-word">Magic</span> <span class="english-word">GPS</span>！"<span class="yang-letian">杨乐天</span>兴奋地说。</p>
+                
+                <p>"<span class="english-word">GPS</span>？"小<span class="english-word">girl</span>好奇地问。</p>
+                
+                <p>"<span class="english-word">GPS</span>是<span class="english-word">Global</span> <span class="english-word">Positioning</span> <span class="english-word">System</span>，就是<span class="english-word">navigation</span> <span class="english-word">system</span>！"<span class="yang-leda">杨乐达</span>得意地解释，"我从<span class="english-word">TV</span>上<span class="english-word">learned</span>的！"</p>
+                
+                <p>"<span class="english-word">Wow</span>，<span class="english-word">brother</span>，你<span class="english-word">so</span> <span class="english-word">smart</span>！"<span class="yang-letian">杨乐天</span>佩服地说。</p>
+                
+                <p>按照<span class="english-word">map</span>的指引，他们开始了<span class="english-word">journey</span>。</p>
+                
+                <p>"<span class="english-word">First</span>，我们要<span class="english-word">go</span> <span class="english-word">straight</span> <span class="english-word">from</span> <span class="english-word">school</span>。"<span class="yang-lebei">杨乐北</span>读着<span class="english-word">map</span>。</p>
+                
+                <p>"<span class="english-word">Straight</span>是什么意思？"小<span class="english-word">girl</span>问。</p>
+                
+                <p>"<span class="english-word">Straight</span>就是<span class="english-word">not</span> <span class="english-word">turn</span>，一直<span class="english-word">forward</span>！"<span class="yang-letian">杨乐天</span>用手势示范。</p>
+                
+                <p>"<span class="english-word">Then</span>，我们要<span class="english-word">turn</span> <span class="english-word">left</span> <span class="english-word">at</span> <span class="english-word">the</span> <span class="english-word">park</span>。"<span class="yang-leda">杨乐达</span>继续读。</p>
+                
+                <p>"<span class="english-word">Left</span>是<span class="english-word">this</span> <span class="english-word">side</span>！"<span class="yang-letian">杨乐天</span>举起<span class="english-word">left</span> <span class="english-word">hand</span>。</p>
+                
+                <p>"不对！"<span class="yang-leda">杨乐达</span>大笑，"你举的是<span class="english-word">right</span> <span class="english-word">hand</span>！<span class="english-word">Left</span>是这边！"他举起<span class="english-word">left</span> <span class="english-word">hand</span>。</p>
+                
+                <p>"<span class="english-word">Oops</span>！我总是<span class="english-word">confused</span> <span class="english-word">left</span> <span class="english-word">and</span> <span class="english-word">right</span>！"<span class="yang-letian">杨乐天</span>挠挠头。</p>
+                
+                <p>"没关系！"小<span class="english-word">girl</span>安慰他，"我也经常<span class="english-word">confused</span>！"</p>
+                
+                <p>他们按照指示来到了<span class="english-word">park</span>，准备<span class="english-word">turn</span> <span class="english-word">left</span>。</p>
+                
+                <p>但是<span class="yang-letian">杨乐天</span>又搞错了方向，往<span class="english-word">right</span>走了。</p>
+                
+                <p>"<span class="english-word">Brother</span>！<span class="english-word">Wrong</span> <span class="english-word">way</span>！"<span class="yang-leda">杨乐达</span>喊道。</p>
+                
+                <p>"<span class="english-word">How</span> <span class="english-word">about</span>我们<span class="english-word">teach</span>你一个<span class="english-word">trick</span>？"<span class="yang-lebei">杨乐北</span>建议。</p>
+                
+                <p>"<span class="english-word">What</span> <span class="english-word">trick</span>？"<span class="yang-letian">杨乐天</span>感兴趣地问。</p>
+                
+                <p>"<span class="english-word">Left</span> <span class="english-word">hand</span> <span class="english-word">makes</span> 'L' <span class="english-word">shape</span>！"<span class="yang-lebei">杨乐北</span>示范，"看，<span class="english-word">thumb</span> <span class="english-word">and</span> <span class="english-word">finger</span> <span class="english-word">make</span> 'L'！"</p>
+                
+                <p>"<span class="english-word">Oh</span>！<span class="english-word">L</span> <span class="english-word">for</span> <span class="english-word">Left</span>！<span class="english-word">Smart</span>！"<span class="yang-letian">杨乐天</span>高兴地学着做<span class="english-word">L</span> <span class="english-word">shape</span>。</p>
+                
+                <p>现在他们顺利地<span class="english-word">turned</span> <span class="english-word">left</span>，继续<span class="english-word">following</span> <span class="english-word">the</span> <span class="english-word">map</span>。</p>
+                
+                <p>"<span class="english-word">Next</span>，我们要<span class="english-word">cross</span> <span class="english-word">the</span> <span class="english-word">bridge</span> <span class="english-word">over</span> <span class="english-word">the</span> <span class="english-word">river</span>。"<span class="yang-leda">杨乐达</span>读道。</p>
+                
+                <p>当他们来到<span class="english-word">bridge</span>的时候，发现<span class="english-word">bridge</span>看起来有点<span class="english-word">old</span> <span class="english-word">and</span> <span class="english-word">shaky</span>。</p>
+                
+                <p>"<span class="english-word">This</span> <span class="english-word">bridge</span> <span class="english-word">looks</span> <span class="english-word">scary</span>！"小<span class="english-word">girl</span>害怕地说。</p>
+                
+                <p>"<span class="english-word">Don't worry</span>！"<span class="yang-letian">杨乐天</span>勇敢地说，"我们<span class="english-word">test</span>一下<span class="english-word">bridge</span>！"</p>
+                
+                <p>他小心地踩了一脚，<span class="english-word">bridge</span>发出"<span class="english-word">creak</span>"的声音。</p>
+                
+                <p>"<span class="english-word">Uh oh</span>！"<span class="yang-leda">杨乐达</span>担心地说，"<span class="english-word">Bridge</span> <span class="english-word">sounds</span> <span class="english-word">dangerous</span>！"</p>
+                
+                <p>就在这时，魔法<span class="english-word">map</span>又发出了<span class="english-word">light</span>，显示了另一条<span class="english-word">route</span>。</p>
+                
+                <p>"<span class="english-word">Look</span>！<span class="english-word">Alternative</span> <span class="english-word">route</span>！"<span class="yang-lebei">杨乐北</span>指着<span class="english-word">map</span>，"我们可以<span class="english-word">go</span> <span class="english-word">around</span> <span class="english-word">the</span> <span class="english-word">river</span>！"</p>
+                
+                <p>"<span class="english-word">Good</span> <span class="english-word">idea</span>！<span class="english-word">Safety</span> <span class="english-word">first</span>！"柯南院长同意。</p>
+                
+                <p>他们绕过<span class="english-word">river</span>，经过了一个<span class="english-word">beautiful</span> <span class="english-word">market</span>。</p>
+                
+                <p>"<span class="english-word">Wow</span>！这个<span class="english-word">market</span>好<span class="english-word">colorful</span>！"小<span class="english-word">girl</span>高兴地说。</p>
+                
+                <p>"看！那里有<span class="english-word">bakery</span>、<span class="english-word">flower</span> <span class="english-word">shop</span>、还有<span class="english-word">toy</span> <span class="english-word">store</span>！"<span class="yang-letian">杨乐天</span>兴奋地指着各种<span class="english-word">shops</span>。</p>
+                
+                <p>突然，<span class="yang-leda">杨乐达</span>被<span class="english-word">toy</span> <span class="english-word">store</span>里的一个<span class="english-word">robot</span>吸引了，他不看<span class="english-word">road</span>，径直朝<span class="english-word">toy</span> <span class="english-word">store</span>走去。</p>
+                
+                <p>"<span class="english-word">Watch out</span>！"<span class="yang-lebei">杨乐北</span>大喊，但为时已晚，<span class="yang-leda">杨乐达</span>撞到了<span class="english-word">market</span>的<span class="english-word">fruit</span> <span class="english-word">stand</span>！</p>
+                
+                <p><span class="english-word">Apples</span>、<span class="english-word">oranges</span>、<span class="english-word">bananas</span>滚得到处都是！</p>
+                
+                <p>"<span class="english-word">Oh no</span>！<span class="english-word">Sorry</span>！<span class="english-word">Sorry</span>！"<span class="yang-leda">杨乐达</span>急忙道歉，开始捡<span class="english-word">fruits</span>。</p>
+                
+                <p><span class="english-word">Fruit</span> <span class="english-word">vendor</span>笑着说："<span class="english-word">No problem</span>，<span class="english-word">little boy</span>！<span class="english-word">Accidents</span> <span class="english-word">happen</span>！"</p>
+                
+                <p>大家一起帮忙收拾，很快就把<span class="english-word">fruits</span>放回了<span class="english-word">stand</span>。</p>
+                
+                <p>"<span class="english-word">Thank you</span> <span class="english-word">for</span> <span class="english-word">helping</span>！"<span class="english-word">vendor</span>感激地说，"<span class="english-word">Take</span> <span class="english-word">some</span> <span class="english-word">fruits</span> <span class="english-word">for</span> <span class="english-word">your</span> <span class="english-word">journey</span>！"</p>
+                
+                <p>继续<span class="english-word">following</span> <span class="english-word">the</span> <span class="english-word">map</span>，他们终于看到了目标——一个<span class="english-word">big</span> <span class="english-word">supermarket</span>旁边的<span class="english-word">beautiful</span> <span class="english-word">garden</span>。</p>
+                
+                <p>"<span class="english-word">This</span> <span class="english-word">is</span> <span class="english-word">it</span>！"小<span class="english-word">girl</span>兴奋地说，"我<span class="english-word">recognize</span>这个<span class="english-word">garden</span>！我<span class="english-word">home</span>就在<span class="english-word">nearby</span>！"</p>
+                
+                <p>"<span class="english-word">Great</span>！我们<span class="english-word">did</span> <span class="english-word">it</span>！"<span class="yang-letian">杨乐天</span>高兴地跳了起来。</p>
+                
+                <p>就在这时，魔法<span class="english-word">map</span>又开始<span class="english-word">glowing</span>，显示还有其他<span class="english-word">lost</span> <span class="english-word">children</span>需要<span class="english-word">help</span>！</p>
+                
+                <p>"<span class="english-word">More</span> <span class="english-word">children</span> <span class="english-word">need</span> <span class="english-word">help</span>！"<span class="yang-lebei">杨乐北</span>看着<span class="english-word">map</span>。</p>
+                
+                <p>"<span class="english-word">We</span> <span class="english-word">can</span> <span class="english-word">help</span>！"<span class="yang-leda">杨乐达</span>自信地说，"现在我们是<span class="english-word">direction</span> <span class="english-word">experts</span>！"</p>
+                
+                <p>他们很快就找到了另外两个<span class="english-word">lost</span> <span class="english-word">children</span>——一个<span class="english-word">boy</span>和一个<span class="english-word">girl</span>。</p>
+                
+                <p>"<span class="english-word">Don't worry</span>！"<span class="yang-letian">杨乐天</span>对他们说，"我们<span class="english-word">help</span>你们<span class="english-word">find</span> <span class="english-word">home</span>！"</p>
+                
+                <p>但是这次更<span class="english-word">challenging</span>，因为<span class="english-word">children</span>说的<span class="english-word">landmarks</span>都用<span class="english-word">English</span>！</p>
+                
+                <p>"我<span class="english-word">home</span> <span class="english-word">near</span> <span class="english-word">hospital</span> <span class="english-word">and</span> <span class="english-word">pharmacy</span>！"<span class="english-word">boy</span>说。</p>
+                
+                <p>"我<span class="english-word">home</span> <span class="english-word">near</span> <span class="english-word">bank</span> <span class="english-word">and</span> <span class="english-word">post</span> <span class="english-word">office</span>！"<span class="english-word">girl</span>说。</p>
+                
+                <p>"<span class="english-word">Pharmacy</span>是什么？"<span class="yang-leda">杨乐达</span>困惑地问。</p>
+                
+                <p>"<span class="english-word">Pharmacy</span>是<span class="english-word">medicine</span> <span class="english-word">shop</span>！"<span class="yang-lebei">杨乐北</span>解释。</p>
+                
+                <p>"<span class="english-word">Oh</span>！<span class="english-word">Post</span> <span class="english-word">office</span>呢？"<span class="yang-letian">杨乐天</span>问。</p>
+                
+                <p>"<span class="english-word">Post</span> <span class="english-word">office</span>是<span class="english-word">mail</span> <span class="english-word">service</span>！"柯南院长补充。</p>
+                
+                <p>经过一番<span class="english-word">searching</span>和<span class="english-word">navigating</span>，他们成功地帮助所有的<span class="english-word">lost</span> <span class="english-word">children</span>找到了<span class="english-word">home</span>。</p>
+                
+                <p>魔法<span class="english-word">map</span>发出了<span class="english-word">brilliant</span> <span class="english-word">golden</span> <span class="english-word">light</span>，然后显示出一个<span class="english-word">special</span> <span class="english-word">message</span>："<span class="english-word">Congratulations</span>！<span class="english-word">You</span> <span class="english-word">are</span> <span class="english-word">now</span> <span class="english-word">Master</span> <span class="english-word">Navigators</span>！"</p>
+                
+                <p>"<span class="english-word">We</span> <span class="english-word">did</span> <span class="english-word">it</span>！"<span class="yang-letian">杨乐天</span>兴奋地说。</p>
+                
+                <p>"<span class="english-word">And</span> <span class="english-word">we</span> <span class="english-word">learned</span> <span class="english-word">so</span> <span class="english-word">many</span> <span class="english-word">place</span> <span class="english-word">names</span>！"<span class="yang-leda">杨乐达</span>补充道。</p>
+                
+                <p>"最重要的是，"<span class="yang-lebei">杨乐北</span>说，"我们<span class="english-word">helped</span> <span class="english-word">people</span> <span class="english-word">find</span> <span class="english-word">their</span> <span class="english-word">way</span> <span class="english-word">home</span>！"</p>
+                
+                <p>柯南院长骄傲地说："你们不仅学会了<span class="english-word">places</span> <span class="english-word">and</span> <span class="english-word">directions</span>，更学会了<span class="english-word">helping</span> <span class="english-word">others</span>！"</p>
+                
+                <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 15px 0; border: 2px dashed #f39c12;">
+                    <h5 style="color: #f39c12; margin-bottom: 10px;">🔍 魔法侦探任务</h5>
+                    <p><strong>你能猜出这些地点单词的意思吗？</strong></p>
+                    <p>💡 <span class="english-word">school</span> = ________（提示：学习的地方）</p>
+                    <p>💡 <span class="english-word">library</span> = ________（提示：有很多书的地方）</p>
+                    <p>💡 <span class="english-word">garden</span> = ________（提示：有花有草的地方）</p>
+                    <p>💡 <span class="english-word">forest</span> = ________（提示：有很多树的地方）</p>
+                    <p>💡 <span class="english-word">river</span> = ________（提示：流动的水）</p>
+                    <p>💡 <span class="english-word">bridge</span> = ________（提示：连接两岸的建筑）</p>
+                    <p>💡 <span class="english-word">map</span> = ________（提示：地图）</p>
+                    <p>💡 <span class="english-word">window</span> = ________（提示：窗户）</p>
+                    <p>💡 <span class="english-word">found</span> = ________（提示：找到了）</p>
+                    <p>💡 <span class="english-word">treasure</span> = ________（提示：宝藏）</p>
+                    <p>💡 <span class="english-word">hunters</span> = ________（提示：猎人）</p>
+                    <p>💡 <span class="english-word">compass</span> = ________（提示：指南针）</p>
+                    <p>💡 <span class="english-word">creative</span> = ________（提示：有创意的）</p>
+                    <p>💡 <span class="english-word">pool</span> = ________（提示：游泳池）</p>
+                    <p>💡 <span class="english-word">playground</span> = ________（提示：操场）</p>
+                    <p>💡 <span class="english-word">bright</span> = ________（提示：明亮的）</p>
+                    <p>💡 <span class="english-word">light</span> = ________（提示：光）</p>
+                    <p>💡 <span class="english-word">activated</span> = ________（提示：激活了）</p>
+                    <p>💡 <span class="english-word">lost</span> = ________（提示：迷路了）</p>
+                    <p>💡 <span class="english-word">children</span> = ________（提示：孩子们）</p>
+                    <p>💡 <span class="english-word">directions</span> = ________（提示：方向）</p>
+                    <p>💡 <span class="english-word">home</span> = ________（提示：家）</p>
+                    <p>💡 <span class="english-word">guide</span> = ________（提示：指导）</p>
+                    <p>💡 <span class="english-word">blinking</span> = ________（提示：闪烁）</p>
+                    <p>💡 <span class="english-word">clue</span> = ________（提示：线索）</p>
+                    <p>💡 <span class="english-word">girl</span> = ________（提示：女孩）</p>
+                    <p>💡 <span class="english-word">little girl</span> = ________（提示：小女孩）</p>
+                    <p>💡 <span class="english-word">what's wrong</span> = ________（提示：怎么了）</p>
+                    <p>💡 <span class="english-word">don't cry</span> = ________（提示：别哭）</p>
+                    <p>💡 <span class="english-word">find</span> = ________（提示：找到）</p>
+                    <p>💡 <span class="english-word">direction</span> = ________（提示：方向）</p>
+                    <p>💡 <span class="english-word">experts</span> = ________（提示：专家）</p>
+                    <p>💡 <span class="english-word">way</span> = ________（提示：路）</p>
+                    <p>💡 <span class="english-word">landmarks</span> = ________（提示：地标）</p>
+                    <p>💡 <span class="english-word">special</span> = ________（提示：特别的）</p>
+                    <p>💡 <span class="english-word">places</span> = ________（提示：地方）</p>
+                    <p>💡 <span class="english-word">park</span> = ________（提示：公园）</p>
+                    <p>💡 <span class="english-word">store</span> = ________（提示：商店）</p>
+                    <p>💡 <span class="english-word">restaurant</span> = ________（提示：餐厅）</p>
+                    <p>💡 <span class="english-word">remember</span> = ________（提示：记得）</p>
+                    <p>💡 <span class="english-word">big</span> = ________（提示：大的）</p>
+                    <p>💡 <span class="english-word">supermarket</span> = ________（提示：超市）</p>
+                    <p>💡 <span class="english-word">clues</span> = ________（提示：线索的复数）</p>
+                    <p>💡 <span class="english-word">beautiful</span> = ________（提示：美丽的）</p>
+                    <p>💡 <span class="english-word">flowers</span> = ________（提示：花朵）</p>
+                    <p>💡 <span class="english-word">with</span> = ________（提示：和）</p>
+                    <p>💡 <span class="english-word">near</span> = ________（提示：附近）</p>
+                    <p>💡 <span class="english-word">close</span> = ________（提示：接近的）</p>
+                    <p>💡 <span class="english-word">get</span> = ________（提示：到达）</p>
+                    <p>💡 <span class="english-word">there</span> = ________（提示：那里）</p>
+                    <p>💡 <span class="english-word">learn</span> = ________（提示：学习）</p>
+                    <p>💡 <span class="english-word">glowing</span> = ________（提示：发光的）</p>
+                    <p>💡 <span class="english-word">path</span> = ________（提示：路径）</p>
+                    <p>💡 <span class="english-word">location</span> = ________（提示：位置）</p>
+                    <p>💡 <span class="english-word">route</span> = ________（提示：路线）</p>
+                    <p>💡 <span class="english-word">GPS</span> = ________（提示：全球定位系统）</p>
+                    <p>💡 <span class="english-word">global</span> = ________（提示：全球的）</p>
+                    <p>💡 <span class="english-word">positioning</span> = ________（提示：定位）</p>
+                    <p>💡 <span class="english-word">system</span> = ________（提示：系统）</p>
+                    <p>💡 <span class="english-word">navigation</span> = ________（提示：导航）</p>
+                    <p>💡 <span class="english-word">TV</span> = ________（提示：电视）</p>
+                    <p>💡 <span class="english-word">learned</span> = ________（提示：学会了）</p>
+                    <p>💡 <span class="english-word">brother</span> = ________（提示：兄弟）</p>
+                    <p>💡 <span class="english-word">so</span> = ________（提示：如此）</p>
+                    <p>💡 <span class="english-word">smart</span> = ________（提示：聪明的）</p>
+                    <p>💡 <span class="english-word">journey</span> = ________（提示：旅程）</p>
+                    <p>💡 <span class="english-word">first</span> = ________（提示：首先）</p>
+                    <p>💡 <span class="english-word">go</span> = ________（提示：去）</p>
+                    <p>💡 <span class="english-word">straight</span> = ________（提示：直走）</p>
+                    <p>💡 <span class="english-word">from</span> = ________（提示：从）</p>
+                    <p>💡 <span class="english-word">not</span> = ________（提示：不）</p>
+                    <p>💡 <span class="english-word">turn</span> = ________（提示：转弯）</p>
+                    <p>💡 <span class="english-word">forward</span> = ________（提示：向前）</p>
+                    <p>💡 <span class="english-word">then</span> = ________（提示：然后）</p>
+                    <p>💡 <span class="english-word">left</span> = ________（提示：左）</p>
+                    <p>💡 <span class="english-word">at</span> = ________（提示：在）</p>
+                    <p>💡 <span class="english-word">the</span> = ________（提示：这个）</p>
+                    <p>💡 <span class="english-word">this</span> = ________（提示：这个）</p>
+                    <p>💡 <span class="english-word">side</span> = ________（提示：边）</p>
+                    <p>💡 <span class="english-word">hand</span> = ________（提示：手）</p>
+                    <p>💡 <span class="english-word">right</span> = ________（提示：右）</p>
+                    <p>💡 <span class="english-word">confused</span> = ________（提示：困惑的）</p>
+                    <p>💡 <span class="english-word">and</span> = ________（提示：和）</p>
+                    <p>💡 <span class="english-word">wrong</span> = ________（提示：错误的）</p>
+                    <p>💡 <span class="english-word">how about</span> = ________（提示：怎么样）</p>
+                    <p>💡 <span class="english-word">teach</span> = ________（提示：教）</p>
+                    <p>💡 <span class="english-word">trick</span> = ________（提示：技巧）</p>
+                    <p>💡 <span class="english-word">what</span> = ________（提示：什么）</p>
+                    <p>💡 <span class="english-word">makes</span> = ________（提示：制作）</p>
+                    <p>💡 <span class="english-word">shape</span> = ________（提示：形状）</p>
+                    <p>💡 <span class="english-word">thumb</span> = ________（提示：拇指）</p>
+                    <p>💡 <span class="english-word">finger</span> = ________（提示：手指）</p>
+                    <p>💡 <span class="english-word">make</span> = ________（提示：制作）</p>
+                    <p>💡 <span class="english-word">for</span> = ________（提示：为了）</p>
+                    <p>💡 <span class="english-word">turned</span> = ________（提示：转了）</p>
+                    <p>💡 <span class="english-word">following</span> = ________（提示：跟随）</p>
+                    <p>💡 <span class="english-word">next</span> = ________（提示：下一个）</p>
+                    <p>💡 <span class="english-word">cross</span> = ________（提示：穿过）</p>
+                    <p>💡 <span class="english-word">over</span> = ________（提示：在...上面）</p>
+                    <p>💡 <span class="english-word">old</span> = ________（提示：旧的）</p>
+                    <p>💡 <span class="english-word">shaky</span> = ________（提示：摇晃的）</p>
+                    <p>💡 <span class="english-word">looks</span> = ________（提示：看起来）</p>
+                    <p>💡 <span class="english-word">scary</span> = ________（提示：可怕的）</p>
+                    <p>💡 <span class="english-word">don't worry</span> = ________（提示：别担心）</p>
+                    <p>💡 <span class="english-word">test</span> = ________（提示：测试）</p>
+                    <p>💡 <span class="english-word">creak</span> = ________（提示：嘎吱声）</p>
+                    <p>💡 <span class="english-word">uh oh</span> = ________（提示：糟糕）</p>
+                    <p>💡 <span class="english-word">sounds</span> = ________（提示：听起来）</p>
+                    <p>💡 <span class="english-word">dangerous</span> = ________（提示：危险的）</p>
+                    <p>💡 <span class="english-word">alternative</span> = ________（提示：替代的）</p>
+                    <p>💡 <span class="english-word">around</span> = ________（提示：绕过）</p>
+                    <p>💡 <span class="english-word">good</span> = ________（提示：好的）</p>
+                    <p>💡 <span class="english-word">idea</span> = ________（提示：想法）</p>
+                    <p>💡 <span class="english-word">safety</span> = ________（提示：安全）</p>
+                    <p>💡 <span class="english-word">market</span> = ________（提示：市场）</p>
+                    <p>💡 <span class="english-word">colorful</span> = ________（提示：五彩的）</p>
+                    <p>💡 <span class="english-word">bakery</span> = ________（提示：面包店）</p>
+                    <p>💡 <span class="english-word">flower</span> = ________（提示：花）</p>
+                    <p>💡 <span class="english-word">shop</span> = ________（提示：商店）</p>
+                    <p>💡 <span class="english-word">toy</span> = ________（提示：玩具）</p>
+                    <p>💡 <span class="english-word">shops</span> = ________（提示：商店的复数）</p>
+                    <p>💡 <span class="english-word">robot</span> = ________（提示：机器人）</p>
+                    <p>💡 <span class="english-word">road</span> = ________（提示：路）</p>
+                    <p>💡 <span class="english-word">watch out</span> = ________（提示：小心）</p>
+                    <p>💡 <span class="english-word">fruit</span> = ________（提示：水果）</p>
+                    <p>💡 <span class="english-word">stand</span> = ________（提示：摊位）</p>
+                    <p>💡 <span class="english-word">apples</span> = ________（提示：苹果的复数）</p>
+                    <p>💡 <span class="english-word">oranges</span> = ________（提示：橙子的复数）</p>
+                    <p>💡 <span class="english-word">bananas</span> = ________（提示：香蕉的复数）</p>
+                    <p>💡 <span class="english-word">oh no</span> = ________（提示：哦不）</p>
+                    <p>💡 <span class="english-word">sorry</span> = ________（提示：对不起）</p>
+                    <p>💡 <span class="english-word">fruits</span> = ________（提示：水果的复数）</p>
+                    <p>💡 <span class="english-word">vendor</span> = ________（提示：小贩）</p>
+                    <p>💡 <span class="english-word">no problem</span> = ________（提示：没问题）</p>
+                    <p>💡 <span class="english-word">little boy</span> = ________（提示：小男孩）</p>
+                    <p>💡 <span class="english-word">accidents</span> = ________（提示：意外）</p>
+                    <p>💡 <span class="english-word">happen</span> = ________（提示：发生）</p>
+                    <p>💡 <span class="english-word">thank you</span> = ________（提示：谢谢你）</p>
+                    <p>💡 <span class="english-word">helping</span> = ________（提示：帮助）</p>
+                    <p>💡 <span class="english-word">take</span> = ________（提示：拿）</p>
+                    <p>💡 <span class="english-word">some</span> = ________（提示：一些）</p>
+                    <p>💡 <span class="english-word">your</span> = ________（提示：你的）</p>
+                    <p>💡 <span class="english-word">is</span> = ________（提示：是）</p>
+                    <p>💡 <span class="english-word">it</span> = ________（提示：它）</p>
+                    <p>💡 <span class="english-word">recognize</span> = ________（提示：认出）</p>
+                    <p>💡 <span class="english-word">nearby</span> = ________（提示：附近）</p>
+                    <p>💡 <span class="english-word">great</span> = ________（提示：太棒了）</p>
+                    <p>💡 <span class="english-word">we</span> = ________（提示：我们）</p>
+                    <p>💡 <span class="english-word">did</span> = ________（提示：做了）</p>
+                    <p>💡 <span class="english-word">more</span> = ________（提示：更多）</p>
+                    <p>💡 <span class="english-word">need</span> = ________（提示：需要）</p>
+                    <p>💡 <span class="english-word">help</span> = ________（提示：帮助）</p>
+                    <p>💡 <span class="english-word">can</span> = ________（提示：可以）</p>
+                    <p>💡 <span class="english-word">boy</span> = ________（提示：男孩）</p>
+                    <p>💡 <span class="english-word">challenging</span> = ________（提示：有挑战性的）</p>
+                    <p>💡 <span class="english-word">english</span> = ________（提示：英语）</p>
+                    <p>💡 <span class="english-word">hospital</span> = ________（提示：医院）</p>
+                    <p>💡 <span class="english-word">pharmacy</span> = ________（提示：药店）</p>
+                    <p>💡 <span class="english-word">bank</span> = ________（提示：银行）</p>
+                    <p>💡 <span class="english-word">post</span> = ________（提示：邮政）</p>
+                    <p>💡 <span class="english-word">office</span> = ________（提示：办公室）</p>
+                    <p>💡 <span class="english-word">medicine</span> = ________（提示：药）</p>
+                    <p>💡 <span class="english-word">mail</span> = ________（提示：邮件）</p>
+                    <p>💡 <span class="english-word">service</span> = ________（提示：服务）</p>
+                    <p>💡 <span class="english-word">searching</span> = ________（提示：寻找）</p>
+                    <p>💡 <span class="english-word">navigating</span> = ________（提示：导航）</p>
+                    <p>💡 <span class="english-word">brilliant</span> = ________（提示：辉煌的）</p>
+                    <p>💡 <span class="english-word">golden</span> = ________（提示：金色的）</p>
+                    <p>💡 <span class="english-word">message</span> = ________（提示：信息）</p>
+                    <p>💡 <span class="english-word">congratulations</span> = ________（提示：恭喜）</p>
+                    <p>💡 <span class="english-word">you</span> = ________（提示：你）</p>
+                    <p>💡 <span class="english-word">are</span> = ________（提示：是）</p>
+                    <p>💡 <span class="english-word">now</span> = ________（提示：现在）</p>
+                    <p>💡 <span class="english-word">master</span> = ________（提示：大师）</p>
+                    <p>💡 <span class="english-word">navigators</span> = ________（提示：导航员）</p>
+                    <p>💡 <span class="english-word">many</span> = ________（提示：许多）</p>
+                    <p>💡 <span class="english-word">place</span> = ________（提示：地方）</p>
+                    <p>💡 <span class="english-word">names</span> = ________（提示：名字）</p>
+                    <p>💡 <span class="english-word">helped</span> = ________（提示：帮助了）</p>
+                    <p>💡 <span class="english-word">people</span> = ________（提示：人们）</p>
+                    <p>💡 <span class="english-word">their</span> = ________（提示：他们的）</p>
+                    <p>💡 <span class="english-word">others</span> = ________（提示：其他人）</p>
+                </div>
+            </div>
+
+            <div class="word-box">
+                <h4 class="section-title">🔢 单词板块：魔法地图单词</h4>
+                <div class="word-list">
+                    <div class="word-card">
+                        <div class="english">school</div>
+                        <div class="example">I go to school every weekday.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">library</div>
+                        <div class="example">I love reading books in the library.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">garden</div>
+                        <div class="example">My grandmother grows flowers in her garden.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">forest</div>
+                        <div class="example">The forest is full of tall trees.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">river</div>
+                        <div class="example">The river flows gently to the sea.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">bridge</div>
+                        <div class="example">We walked across the old stone bridge.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">park</div>
+                        <div class="example">Children play in the park every afternoon.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">playground</div>
+                        <div class="example">The playground has swings and slides.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">hospital</div>
+                        <div class="example">My mom works as a nurse in the hospital.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">clinic</div>
+                        <div class="example">I visit the clinic when I feel sick.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">pharmacy</div>
+                        <div class="example">We buy medicine at the pharmacy.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">restaurant</div>
+                        <div class="example">We had dinner at a nice restaurant.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">cafe</div>
+                        <div class="example">I like to drink coffee at the cafe.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">bakery</div>
+                        <div class="example">The bakery sells fresh bread every morning.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">supermarket</div>
+                        <div class="example">Mom buys groceries at the supermarket.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">market</div>
+                        <div class="example">The farmers market has fresh vegetables.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">store</div>
+                        <div class="example">I bought a new toy at the store.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">shop</div>
+                        <div class="example">There are many shops on this street.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">bank</div>
+                        <div class="example">Dad goes to the bank to get money.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">post office</div>
+                        <div class="example">I send letters at the post office.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">police station</div>
+                        <div class="example">The police station keeps our city safe.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">fire station</div>
+                        <div class="example">Firefighters work at the fire station.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">gas station</div>
+                        <div class="example">We stop at the gas station to fill up.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">bus stop</div>
+                        <div class="example">I wait for the school bus at the bus stop.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">train station</div>
+                        <div class="example">Many people travel from the train station.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">airport</div>
+                        <div class="example">Airplanes take off from the airport.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">harbor</div>
+                        <div class="example">Many boats dock in the harbor.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">port</div>
+                        <div class="example">Large ships arrive at the port daily.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">beach</div>
+                        <div class="example">We love swimming at the beach in summer.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">mountain</div>
+                        <div class="example">The mountain is covered with snow.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">hill</div>
+                        <div class="example">We climbed to the top of the hill.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">valley</div>
+                        <div class="example">A peaceful village lies in the valley.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">lake</div>
+                        <div class="example">The lake is calm and beautiful.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">pond</div>
+                        <div class="example">Ducks swim in the small pond.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">ocean</div>
+                        <div class="example">The ocean is vast and deep.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">sea</div>
+                        <div class="example">We sailed across the blue sea.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">island</div>
+                        <div class="example">The tropical island has palm trees.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">peninsula</div>
+                        <div class="example">The peninsula extends into the ocean.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">desert</div>
+                        <div class="example">The desert is hot and dry.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">jungle</div>
+                        <div class="example">Many wild animals live in the jungle.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">swamp</div>
+                        <div class="example">Alligators live in the swamp.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">marsh</div>
+                        <div class="example">Birds nest in the grassy marsh.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">cave</div>
+                        <div class="example">The explorers entered the dark cave.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">volcano</div>
+                        <div class="example">The volcano erupted with hot lava.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">waterfall</div>
+                        <div class="example">The waterfall crashes down the rocks.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">spring</div>
+                        <div class="example">Fresh water flows from the natural spring.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">stream</div>
+                        <div class="example">A gentle stream runs through the forest.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">canal</div>
+                        <div class="example">Boats travel through the narrow canal.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">dam</div>
+                        <div class="example">The dam controls the river water.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">tunnel</div>
+                        <div class="example">The train goes through the mountain tunnel.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">highway</div>
+                        <div class="example">Cars drive fast on the highway.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">road</div>
+                        <div class="example">The road leads to the next town.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">street</div>
+                        <div class="example">I live on a quiet street.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">avenue</div>
+                        <div class="example">The wide avenue has many shops.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">boulevard</div>
+                        <div class="example">Trees line both sides of the boulevard.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">alley</div>
+                        <div class="example">The narrow alley connects two streets.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">crossing</div>
+                        <div class="example">Look both ways at the crossing.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">intersection</div>
+                        <div class="example">Traffic lights control the busy intersection.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">corner</div>
+                        <div class="example">The candy store is on the corner.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">block</div>
+                        <div class="example">My house is three blocks away.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">neighborhood</div>
+                        <div class="example">I know everyone in my neighborhood.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">community</div>
+                        <div class="example">Our community works together on projects.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">city</div>
+                        <div class="example">New York is a very large city.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">town</div>
+                        <div class="example">Our small town has friendly people.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">village</div>
+                        <div class="example">The quiet village has only one school.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">country</div>
+                        <div class="example">China is a beautiful country.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">state</div>
+                        <div class="example">California is a state in America.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">province</div>
+                        <div class="example">Beijing is the capital of the province.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">district</div>
+                        <div class="example">The shopping district has many stores.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">region</div>
+                        <div class="example">This region is famous for its mountains.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">area</div>
+                        <div class="example">This area is perfect for picnics.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">zone</div>
+                        <div class="example">This is a no parking zone.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">place</div>
+                        <div class="example">This is my favorite place to read.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">location</div>
+                        <div class="example">The treasure is hidden in this location.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">position</div>
+                        <div class="example">Mark your position on the map.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">direction</div>
+                        <div class="example">Which direction should we go?</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">north</div>
+                        <div class="example">Canada is north of the United States.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">south</div>
+                        <div class="example">Birds fly south in winter.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">east</div>
+                        <div class="example">The sun rises in the east.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">west</div>
+                        <div class="example">The sun sets in the west.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">up</div>
+                        <div class="example">Please look up at the stars.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">down</div>
+                        <div class="example">The ball rolled down the hill.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">left</div>
+                        <div class="example">Turn left at the next street.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">right</div>
+                        <div class="example">The library is on your right.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">front</div>
+                        <div class="example">Sit in the front of the classroom.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">back</div>
+                        <div class="example">My seat is at the back of the bus.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">inside</div>
+                        <div class="example">It's warm inside the house.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">outside</div>
+                        <div class="example">The children are playing outside.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">near</div>
+                        <div class="example">The park is near our school.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">far</div>
+                        <div class="example">The mountain looks far away.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">close</div>
+                        <div class="example">My best friend lives close to me.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">distant</div>
+                        <div class="example">We can see distant mountains.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">here</div>
+                        <div class="example">Please come here right now.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">there</div>
+                        <div class="example">Put the book over there.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">everywhere</div>
+                        <div class="example">There are flowers everywhere in spring.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">nowhere</div>
+                        <div class="example">I looked everywhere but found it nowhere.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">somewhere</div>
+                        <div class="example">I left my keys somewhere in the house.</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="english">anywhere</div>
+                        <div class="example">You can sit anywhere you like.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🗺️ 魔法寻宝游戏</h4>
+                <div class="mission-card">
+                    <h4>🏆 魔法任务：地图寻宝大冒险</h4>
+                    <p>在家里或教室画一张魔法地图，把学到的英文单词标在不同的地点。</p>
+                    <ol>
+                        <li>让家人或小伙伴说出一个地点的中文名，你指出英文单词。</li>
+                        <li>也可以反过来，说英文单词，让别人指出地图上的位置。</li>
+                        <li>全部答对，找到"魔法宝藏"！</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">🚶 魔法路线指引</h4>
+                <div class="mission-card">
+                    <h4>🧭 魔法任务：用英语指路</h4>
+                    <p>和小伙伴一起玩"指路游戏"：</p>
+                    <ol>
+                        <li>一个人说出起点和终点，比如"从school到library"。</li>
+                        <li>另一个人用简单的英语描述路线，比如："Go to the garden, then to the library."</li>
+                        <li>可以画路线，也可以用动作表演。</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="game-box">
+                <h4 class="section-title">📝 魔法地图故事创作</h4>
+                <div class="mission-card">
+                    <h4>📚 魔法任务：编一个地图冒险故事</h4>
+                    <p>用学到的地点单词，编一个属于你的魔法地图冒险故事，可以画出来，也可以写下来！</p>
+                    <p>比如："One day, I found a magic <span class="english-word">map</span>. I went to the <span class="english-word">forest</span> and crossed the <span class="english-word">bridge</span>..."</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🗺️ 双胞胎寻宝探险家</h4>
+                <div class="mission-card">
+                    <h4>👫 魔法任务：模仿双胞胎弟弟的寻宝冒险</h4>
+                    <p>重现故事中杨乐天和杨乐达的搞笑寻宝时刻：</p>
+                    <ol>
+                        <li><strong>制作创意地图</strong>：像双胞胎一样画一张有趣的寻宝地图，可以画错一些地方</li>
+                        <li><strong>搞笑说明</strong>：学杨乐天说"我们是<span class="english-word">treasure hunters</span>！"</li>
+                        <li><strong>混淆地点</strong>：故意把<span class="english-word">playground</span>画成<span class="english-word">pool</span>，然后纠正</li>
+                        <li><strong>发明工具</strong>：制作自己的<span class="english-word">compass</span>和探险装备</li>
+                    </ol>
+                    <p>记住：<span class="english-word">Creative mistakes</span>让学习更<span class="english-word">fun</span>！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🧭 迷路儿童救援队</h4>
+                <div class="mission-card">
+                    <h4>👶 魔法任务：帮助迷路的小朋友回家</h4>
+                    <p>模拟故事中的救援任务：</p>
+                    <ol>
+                        <li><strong>设置场景</strong>：一个人扮演<span class="english-word">lost child</span>，描述家附近的<span class="english-word">landmarks</span></li>
+                        <li><strong>收集线索</strong>：询问"<span class="english-word">What's near your home</span>？"</li>
+                        <li><strong>分析地标</strong>：根据<span class="english-word">supermarket</span>、<span class="english-word">garden</span>、<span class="english-word">hospital</span>等线索找位置</li>
+                        <li><strong>安全导航</strong>：像故事中一样选择<span class="english-word">safe route</span>，避开危险的<span class="english-word">bridge</span></li>
+                        <li><strong>成功庆祝</strong>：找到家后说"<span class="english-word">We did it</span>！"</li>
+                    </ol>
+                    <p>成为真正的<span class="english-word">Master Navigator</span>！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">👈👉 左右方向大师</h4>
+                <div class="mission-card">
+                    <h4>🤚 魔法任务：掌握Left和Right的终极技巧</h4>
+                    <p>学习杨乐天的L手势技巧：</p>
+                    <ol>
+                        <li><strong>L形状记忆法</strong>：用<span class="english-word">left hand</span>做L形状，记住"<span class="english-word">L for Left</span>"</li>
+                        <li><strong>方向指令游戏</strong>：听指令做动作，如"<span class="english-word">Turn left</span>"、"<span class="english-word">Go straight</span>"</li>
+                        <li><strong>搞笑纠错</strong>：故意走错方向，然后大笑着纠正</li>
+                        <li><strong>教学挑战</strong>：教会其他人区分<span class="english-word">left</span>和<span class="english-word">right</span></li>
+                    </ol>
+                    <p>完成后你就不会再<span class="english-word">confused</span> <span class="english-word">left and right</span>了！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🛒 市场大冒险</h4>
+                <div class="mission-card">
+                    <h4>🍎 魔法任务：魔法市场探险</h4>
+                    <p>重现故事中的市场冒险：</p>
+                    <ol>
+                        <li><strong>设置水果摊</strong>：用玩具或图片布置<span class="english-word">fruit stand</span></li>
+                        <li><strong>学习水果名</strong>：练习说<span class="english-word">apples</span>、<span class="english-word">oranges</span>、<span class="english-word">bananas</span></li>
+                        <li><strong>模拟意外</strong>：像杨乐达一样"撞倒"水果摊（安全地）</li>
+                        <li><strong>礼貌道歉</strong>：学会说"<span class="english-word">Sorry</span>！"和"<span class="english-word">Thank you</span>！"</li>
+                        <li><strong>帮忙收拾</strong>：一起把<span class="english-word">fruits</span>放回<span class="english-word">stand</span></li>
+                    </ol>
+                    <p>学会：<span class="english-word">Accidents happen</span>，但要有礼貌！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🔍 地标识别专家</h4>
+                <div class="mission-card">
+                    <h4>🏢 魔法任务：成为地标识别大师</h4>
+                    <p>训练识别各种地点和建筑：</p>
+                    <ol>
+                        <li><strong>地标分类</strong>：将地点分为医疗（<span class="english-word">hospital</span>、<span class="english-word">pharmacy</span>）、商业（<span class="english-word">market</span>、<span class="english-word">shop</span>）、服务（<span class="english-word">bank</span>、<span class="english-word">post office</span>）等</li>
+                        <li><strong>功能配对</strong>：说出每个地方的用途</li>
+                        <li><strong>位置描述</strong>：用<span class="english-word">near</span>、<span class="english-word">close</span>、<span class="english-word">nearby</span>描述位置关系</li>
+                        <li><strong>快速识别</strong>：看图片或听描述快速说出地点名称</li>
+                    </ol>
+                    <p>成为<span class="english-word">Landmark Expert</span>！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🗺️ GPS导航挑战</h4>
+                <div class="mission-card">
+                    <h4>📱 魔法任务：成为人工GPS系统</h4>
+                    <p>学习现代导航技术：</p>
+                    <ol>
+                        <li><strong>GPS知识</strong>：理解<span class="english-word">Global Positioning System</span>的含义</li>
+                        <li><strong>路线规划</strong>：设计从起点到终点的<span class="english-word">route</span></li>
+                        <li><strong>语音导航</strong>：用英语给出导航指令</li>
+                        <li><strong>备用路线</strong>：像故事中一样准备<span class="english-word">alternative route</span></li>
+                        <li><strong>安全优先</strong>：选择<span class="english-word">safe</span>路线，<span class="english-word">safety first</span>！</li>
+                    </ol>
+                    <p>你就是活的<span class="english-word">Magic GPS</span>！</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🏆 Master Navigator毕业考试</h4>
+                <div class="mission-card">
+                    <h4>🎓 魔法任务：获得Master Navigator证书</h4>
+                    <p>完成最终导航挑战：</p>
+                    <ol>
+                        <li><strong>地点速记</strong>：30秒内说出15个地点的英文名</li>
+                        <li><strong>方向指令</strong>：正确执行<span class="english-word">left</span>、<span class="english-word">right</span>、<span class="english-word">straight</span>指令</li>
+                        <li><strong>路线描述</strong>：用英语描述完整路线</li>
+                        <li><strong>应急处理</strong>：遇到<span class="english-word">dangerous bridge</span>时选择安全路线</li>
+                        <li><strong>助人为乐</strong>：帮助"迷路"的朋友找到"家"</li>
+                    </ol>
+                    <p>全部通过获得"<span class="english-word">Official Master Navigator</span>"证书！</p>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #1890ff 0%, #096dd9 100%); color: white; padding: 20px; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <h5 style="color: white; margin-bottom: 15px;">🏆 Master Navigator证书</h5>
+                    <p style="margin: 8px 0; text-align: center; font-weight: bold;">恭喜你完成了地图导航学习！</p>
+                    <p style="margin: 8px 0; text-align: center;">你现在是一名真正的：</p>
+                    <p style="margin: 8px 0; text-align: center; font-size: 1.2em; color: #fff566; font-weight: bold;">🧭 MASTER NAVIGATOR 🧭</p>
+                    <p style="margin: 8px 0; text-align: center;">你最擅长的导航技能：</p>
+                    <p style="margin: 8px 0; text-align: center;">________________（选择：Left/Right Recognition / Safe Route Planning / Landmark Identification）</p>
+                    <p style="margin: 8px 0; text-align: center;">你帮助过的"迷路"朋友数量：</p>
+                    <p style="margin: 8px 0; text-align: center;">________________人</p>
+                    <p style="margin-top: 15px; font-style: italic; text-align: center;">🌟 记住：帮助别人找到回家的路是最棒的技能！🌟</p>
+                </div>
+            </div>
+            
+            <div class="game-box">
+                <h4 class="section-title">🌍 魔法地图创造大师</h4>
+                <div class="mission-card">
+                    <h4>🎨 魔法任务：设计你的专属魔法地图</h4>
+                    <p>创造独一无二的魔法地图：</p>
+                    <div style="background: #f6ffed; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                        <p><strong>地图设计要素：</strong></p>
+                        <p>🏫 <span class="english-word">Educational Zone</span>: school, library, playground</p>
+                        <p>🛒 <span class="english-word">Shopping District</span>: market, supermarket, shops</p>
+                        <p>🏥 <span class="english-word">Health Center</span>: hospital, pharmacy, clinic</p>
+                        <p>🌳 <span class="english-word">Nature Area</span>: park, garden, forest, river</p>
+                        <p>🏦 <span class="english-word">Service Hub</span>: bank, post office, restaurant</p>
+                    </div>
+                    <ol>
+                        <li><strong>区域规划</strong>：设计不同功能区域</li>
+                        <li><strong>道路连接</strong>：画出<span class="english-word">roads</span>和<span class="english-word">bridges</span></li>
+                        <li><strong>标注英文</strong>：所有地点都用英文标记</li>
+                        <li><strong>添加故事</strong>：为每个地点编写小故事</li>
+                        <li><strong>测试导航</strong>：邀请朋友用你的地图导航</li>
+                    </ol>
+                    <p>创建属于你的<span class="english-word">Magic Navigation World</span>！</p>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="chapter-nav">
+            <a href="chapter05.html" class="">⬅️ 上一章</a>
+            <a href="index.html" class="back-link">📚 返回章节目录</a>
+            <a href="chapter07.html" class="">下一章 ➡️</a>
+        </div>
+    </div>
+    
+    <!-- 单词发音功能 Word Pronunciation Feature -->
+    <script src="../js/word-pronunciation.js"></script>
+    
+    <!-- 发音功能使用说明提示 -->
+    <div id="pronunciation-guide" style="position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); max-width: 300px; font-size: 0.9em; z-index: 1000; opacity: 0; transition: opacity 0.5s ease;">
+        <div style="display: flex; align-items: center; margin-bottom: 8px;">
+            <span style="font-size: 1.2em; margin-right: 8px;">🔊</span>
+            <strong>单词发音功能已启用！</strong>
+        </div>
+        <p style="margin: 5px 0; font-size: 0.85em;">点击任意单词卡即可听到标准英语发音</p>
+        <p style="margin: 5px 0; font-size: 0.85em;">Click any word card to hear pronunciation</p>
+        <button onclick="this.parentElement.style.opacity='0'" style="position: absolute; top: 5px; right: 8px; background: none; border: none; color: white; cursor: pointer; font-size: 1.1em;">×</button>
+    </div>
+    
+    <script>
+        // 显示发音功能提示
+        setTimeout(() => {
+            const guide = document.getElementById('pronunciation-guide');
+            if (guide) {
+                guide.style.opacity = '1';
+                // 5秒后自动隐藏
+                setTimeout(() => {
+                    guide.style.opacity = '0';
+                }, 5000);
+            }
+        }, 2000);
+    </script>
+</body>
+</html>

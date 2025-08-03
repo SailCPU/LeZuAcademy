@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>单词发音功能测试页面</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            color: #333;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .word-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            user-select: none;
+            margin: 10px;
+            display: inline-block;
+            min-width: 200px;
+        }
+        .word-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-color: #007bff;
+        }
+        .word-card .english {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 5px;
+        }
+        .word-card .chinese {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .word-card .example {
+            font-style: italic;
+            color: #666;
+            margin-top: 8px;
+            font-size: 0.9em;
+        }
+        .status {
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🔊 单词发音功能测试</h1>
+        <p>这个页面用于测试单词卡的发音功能是否正常工作。</p>
+        
+        <div id="support-status" class="status info">
+            <strong>🔍 检查浏览器支持情况...</strong>
+        </div>
+        
+        <h2>📝 测试单词卡</h2>
+        <p>点击下面的单词卡测试发音功能：</p>
+        
+        <div class="word-card" data-word="hello">
+            <div class="english">hello</div>
+            <div class="chinese">你好</div>
+            <div class="example">Hello, how are you? 你好，你好吗？</div>
+        </div>
+        
+        <div class="word-card" data-word="magic">
+            <div class="english">magic</div>
+            <div class="chinese">魔法</div>
+            <div class="example">This is magic! 这是魔法！</div>
+        </div>
+        
+        <div class="word-card" data-word="beautiful">
+            <div class="english">beautiful</div>
+            <div class="chinese">美丽的</div>
+            <div class="example">The flower is beautiful. 花朵很美丽。</div>
+        </div>
+        
+        <div class="word-card" data-word="adventure">
+            <div class="english">adventure</div>
+            <div class="chinese">冒险</div>
+            <div class="example">Let's go on an adventure! 让我们去冒险吧！</div>
+        </div>
+        
+        <div class="word-card" data-word="pronunciation">
+            <div class="english">pronunciation</div>
+            <div class="chinese">发音</div>
+            <div class="example">Good pronunciation is important. 好的发音很重要。</div>
+        </div>
+        
+        <h2>🎮 功能测试</h2>
+        <button onclick="testManualSpeech()" style="padding: 10px 20px; margin: 5px; border: none; background: #007bff; color: white; border-radius: 5px; cursor: pointer;">手动测试发音</button>
+        <button onclick="testStopSpeech()" style="padding: 10px 20px; margin: 5px; border: none; background: #dc3545; color: white; border-radius: 5px; cursor: pointer;">停止发音</button>
+        <button onclick="checkStatus()" style="padding: 10px 20px; margin: 5px; border: none; background: #28a745; color: white; border-radius: 5px; cursor: pointer;">检查状态</button>
+        
+        <div id="test-results" class="status info" style="margin-top: 20px;">
+            <strong>测试结果将显示在这里...</strong>
+        </div>
+    </div>
+    
+    <script>
+        // 检查浏览器支持
+        function checkBrowserSupport() {
+            const statusDiv = document.getElementById('support-status');
+            
+            if ('speechSynthesis' in window) {
+                statusDiv.className = 'status success';
+                statusDiv.innerHTML = '<strong>✅ 浏览器支持语音合成功能！</strong><br>您可以正常使用单词发音功能。';
+                
+                // 等待语音加载
+                setTimeout(() => {
+                    const voices = speechSynthesis.getVoices();
+                    const englishVoices = voices.filter(v => v.lang.startsWith('en'));
+                    statusDiv.innerHTML += `<br>📢 可用语音数量: ${voices.length}, 英语语音: ${englishVoices.length}`;
+                }, 1000);
+            } else {
+                statusDiv.className = 'status error';
+                statusDiv.innerHTML = '<strong>❌ 浏览器不支持语音合成功能</strong><br>请使用Chrome、Edge、Safari或Firefox的最新版本。';
+            }
+        }
+        
+        // 手动测试发音
+        function testManualSpeech() {
+            if (window.wordPronunciation) {
+                window.wordPronunciation.speakText("This is a pronunciation test");
+                updateTestResults("✅ 手动发音测试执行成功");
+            } else {
+                updateTestResults("❌ 发音功能未加载");
+            }
+        }
+        
+        // 停止发音
+        function testStopSpeech() {
+            if (window.wordPronunciation) {
+                window.wordPronunciation.stopSpeaking();
+                updateTestResults("🛑 发音已停止");
+            } else {
+                updateTestResults("❌ 发音功能未加载");
+            }
+        }
+        
+        // 检查状态
+        function checkStatus() {
+            if (window.wordPronunciation) {
+                const status = window.wordPronunciation.checkSupport();
+                updateTestResults(`📊 功能状态：<br>
+                    - 支持情况: ${status.isSupported ? '✅ 支持' : '❌ 不支持'}<br>
+                    - 语音数量: ${status.voicesCount}<br>
+                    - 首选语音: ${status.preferredVoice || '无'}`);
+            } else {
+                updateTestResults("❌ 发音功能未加载，请检查JavaScript文件");
+            }
+        }
+        
+        // 更新测试结果
+        function updateTestResults(message) {
+            const resultsDiv = document.getElementById('test-results');
+            resultsDiv.innerHTML = message;
+        }
+        
+        // 页面加载时检查支持
+        checkBrowserSupport();
+        
+        // 检查发音功能是否加载
+        setTimeout(() => {
+            if (window.wordPronunciation) {
+                updateTestResults("✅ 单词发音功能已成功加载！点击上面的单词卡测试发音。");
+            } else {
+                updateTestResults("⚠️ 单词发音功能未加载，可能是JavaScript文件路径错误。");
+            }
+        }, 2000);
+    </script>
+    
+    <!-- 加载发音功能 -->
+    <script src="柯南侦探英语冒险-杨乐北的单词探案记/js/word-pronunciation.js"></script>
+</body>
+</html>
